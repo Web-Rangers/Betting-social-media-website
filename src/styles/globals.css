@@ -19,13 +19,13 @@ a {
 @font-face {
     font-family: 'Samsung Sans';
     src: url(/fonts/SamsungSans-Regular.ttf) format('truetype');
-    font-weight: normal;
+    font-weight: 400;
 }
 
 @font-face {
     font-family: 'Samsung Sans';
     src: url(/fonts/SamsungSans-Bold.ttf) format('truetype');
-    font-weight: bold;
+    font-weight: 600;
 }
 
 @font-face {

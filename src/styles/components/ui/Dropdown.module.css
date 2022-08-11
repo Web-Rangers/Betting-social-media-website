@@ -1,0 +1,11 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21B2;
+}

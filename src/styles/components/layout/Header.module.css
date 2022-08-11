@@ -1,0 +1,54 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 27px 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 90px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.link {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+    color: #1A1C21;
+}
+
+.active {
+    color: #1A1C21;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.spacer {
+    height: 80px;
+}
