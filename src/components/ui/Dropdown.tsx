@@ -58,16 +58,18 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 className={styles.activeItem}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {
-                    selected?.label && (
-                        <span className={styles.label}>
-                            {selected?.label}
-                        </span>
-                    )
-                }
-                <span>
-                    {selected?.name}
-                </span>
+                <div className={styles.activeName}>
+                    {
+                        selected?.label && (
+                            <span className={styles.label}>
+                                {selected?.label}
+                            </span>
+                        )
+                    }
+                    <span>
+                        {selected?.name}
+                    </span>
+                </div>
                 <motion.span
                     className={styles.chevron}
                     variants={ChevronVariants}

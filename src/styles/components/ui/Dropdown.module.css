@@ -10,15 +10,22 @@
     color: #1A1C21B2;
     border: 1px solid #7F3FFC33;
     border-radius: 8px;
+    width: 100%;
 }
 
 .activeItem {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     padding: 11px 24px;
     cursor: pointer;
+}
+
+.activeName {
+    display: flex;
+    gap: 8px;
 }
 
 .chevron {
@@ -34,6 +41,7 @@
     overflow: hidden;
     height: 0;
     width: 100%;
+    z-index: 10;
 }
 
 .dropdown div:first-child {
@@ -61,6 +69,7 @@
     padding: 11px 24px;
     cursor: pointer;
     width: 100%;
+    background-color: #FFFFFF;
 }
 
 .item:hover {
