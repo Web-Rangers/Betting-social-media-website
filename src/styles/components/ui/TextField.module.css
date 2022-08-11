@@ -1,0 +1,17 @@
+.textFieldContainer{
+    position: relative;
+}
+.textFieldContainer input{
+    padding: 15px 24px;
+    border: 1px solid rgba(26, 28, 33, 0.2);
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 1);
+}
+.textFieldContainer input::placeholder{
+    color: rgba(26, 28, 33, 0.5);
+}
