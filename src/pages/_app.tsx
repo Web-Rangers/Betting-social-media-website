@@ -6,14 +6,21 @@ import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import Header from "../components/layout/Header";
+import { useRouter } from "next/router";
+
+const pagesWithoutDefaultHeader = [
+    "/login"
+]
 
 const MyApp: AppType = ({
     Component,
     pageProps: { session, ...pageProps },
 }) => {
+    const router = useRouter()
+
     return (
         <SessionProvider session={session}>
-            <Header />
+            {!pagesWithoutDefaultHeader.includes(router.pathname) && <Header />}
             <Component {...pageProps} />
         </SessionProvider>
     );
