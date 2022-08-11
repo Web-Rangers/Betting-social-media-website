@@ -8,4 +8,70 @@
     font-size: 16px;
     line-height: 19px;
     color: #1A1C21B2;
+    border: 1px solid #7F3FFC33;
+    border-radius: 8px;
+}
+
+.activeItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    cursor: pointer;
+}
+
+.chevron {
+    max-height: 16px;
+    max-width: 16px;
+}
+
+.dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 105%;
+    overflow: hidden;
+    height: 0;
+    width: 100%;
+}
+
+.dropdown div:first-child {
+    border-top: 1px solid #7F3FFC33;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.dropdown div {
+    border-left: 1px solid #7F3FFC33;
+    border-right: 1px solid #7F3FFC33;
+}
+
+.dropdown div:last-child {
+    border-bottom: 1px solid #7F3FFC33;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.item:hover {
+    background-color: #F2F2F2B2;
+}
+
+.label {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
 }
