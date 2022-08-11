@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/components/ui/Dropdown.module.css'
 import Image from 'next/image';
 
 interface DropdownProps {
-    items: { name: string, id: string, label?: string }[];
+    items: { name: string, id: string, label?: string | ReactNode }[];
     onSelect: (id: string) => void;
 }
 
@@ -108,7 +108,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 interface ItemProps {
     name: string;
     id: string;
-    label?: string;
+    label?: string | ReactNode;
     onClick: () => void;
 }
 
