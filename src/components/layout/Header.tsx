@@ -19,48 +19,45 @@ const Header: React.FC = () => {
     const router = useRouter()
 
     return (
-        <>
-            <div className={styles.container}>
-                <div className={styles.logo}>
-                    <Image
-                        src="/logo.svg"
-                        height={32}
-                        width={188}
-                    />
-                </div>
-                <nav>
-                    <div className={styles.links}>
-                        {
-                            links.map(({ href, label }) => (
-                                <MenuLink
-                                    key={label}
-                                    href={href}
-                                    label={label}
-                                    active={router.pathname.includes(href)}
-                                />
-                            ))
-                        }
-                    </div>
-                    <div className={styles.controls}>
-                        <Dropdown
-                            items={[
-                                { name: 'GMT+1', id: '1', label: '13:00' },
-                                { name: 'GMT+2', id: '2', label: '14:00' },
-                                { name: 'GMT+3', id: '3', label: '15:00' },
-                                { name: 'GMT+4', id: '4', label: '16:00' },
-                                { name: 'GMT+5', id: '5', label: '17:00' },
-                            ]}
-                            onSelect={(id) => { }}
-                        />
-                        <Settings />
-                        <button className={styles.button}>
-                            Sign In
-                        </button>
-                    </div>
-                </nav>
+        <div className={styles.container}>
+            <div className={styles.logo}>
+                <Image
+                    src="/logo.svg"
+                    height={32}
+                    width={188}
+                />
             </div>
-            <div className={styles.spacer} />
-        </>
+            <nav>
+                <div className={styles.links}>
+                    {
+                        links.map(({ href, label }) => (
+                            <MenuLink
+                                key={label}
+                                href={href}
+                                label={label}
+                                active={router.pathname.includes(href)}
+                            />
+                        ))
+                    }
+                </div>
+                <div className={styles.controls}>
+                    <Dropdown
+                        items={[
+                            { name: 'GMT+1', id: '1', label: '13:00' },
+                            { name: 'GMT+2', id: '2', label: '14:00' },
+                            { name: 'GMT+3', id: '3', label: '15:00' },
+                            { name: 'GMT+4', id: '4', label: '16:00' },
+                            { name: 'GMT+5', id: '5', label: '17:00' },
+                        ]}
+                        onSelect={(id) => { }}
+                    />
+                    <Settings />
+                    <button className={styles.button}>
+                        Sign In
+                    </button>
+                </div>
+            </nav>
+        </div>
     );
 }
 

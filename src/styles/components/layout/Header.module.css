@@ -8,7 +8,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #1A1C211A;
+    /* border: 1px solid #1A1C211A; */
+    z-index: 99;
+    background-color: #FFFFFF;
 }
 
 .container nav {
@@ -68,10 +70,6 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
-}
-
-.spacer {
-    height: 100px;
 }
 
 /* Settings component */
