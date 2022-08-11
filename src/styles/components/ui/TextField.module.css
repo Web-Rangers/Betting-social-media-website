@@ -11,6 +11,8 @@
     font-size: 15px;
     line-height: 18px;
     color: rgba(26, 28, 33, 1);
+    outline: none;
+    width: 100%;
 }
 .textFieldContainer input::placeholder{
     color: rgba(26, 28, 33, 0.5);
