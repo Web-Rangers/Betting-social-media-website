@@ -28,21 +28,21 @@ const Login: NextPage = () => {
                         </span>
                         <div className={styles.socials}>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/facebook.svg"
                                     width={24}
                                     height={24}
                                 />
                             </div>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/google.svg"
                                     width={24}
                                     height={24}
                                 />
                             </div>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/twitter.svg"
                                     width={24}
                                     height={24}
@@ -53,11 +53,11 @@ const Login: NextPage = () => {
                             OR
                         </span>
                         <div className={styles.fields}>
-                            <TextField 
-                                type="email" 
+                            <TextField
+                                type="email"
                                 placeholder="Email Address"
                             />
-                            <PasswordField 
+                            <PasswordField
                                 placeholder="Password"
                             />
                         </div>
@@ -74,7 +74,7 @@ const Login: NextPage = () => {
                     </form>
                 </div>
                 <div className={styles.pageImg}>
-                    <Image 
+                    <Image
                         src="/images/login/background.png"
                         layout="fill"
                         objectFit="cover"

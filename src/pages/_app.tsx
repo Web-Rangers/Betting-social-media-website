@@ -5,18 +5,31 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
-import Header from "../components/layout/Header";
 import MainLayout from "../components/layout/MainLayout";
+import { ReactElement, ReactNode } from "react";
+import { useRouter } from "next/router";
 
 const MyApp: AppType = ({
     Component,
     pageProps: { session, ...pageProps },
 }) => {
+    const router = useRouter();
+    const noLayoutRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
+
+    function getLayout(): ReactElement {
+        if (!noLayoutRoutes.includes(router.pathname)) {
+            return (
+                <MainLayout>
+                    <Component {...pageProps} />
+                </MainLayout>
+            );
+        }
+        return <Component {...pageProps} />;
+    }
+
     return (
         <SessionProvider session={session}>
-            <MainLayout>
-                <Component {...pageProps} />
-            </MainLayout>
+            {getLayout()}
         </SessionProvider>
     );
 };
