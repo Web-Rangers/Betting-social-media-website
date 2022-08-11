@@ -17,3 +17,11 @@
 .textFieldContainer input::placeholder{
     color: rgba(26, 28, 33, 0.5);
 }
+.eye{
+    position: absolute;
+    right: 24px;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}

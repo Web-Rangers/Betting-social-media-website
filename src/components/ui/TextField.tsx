@@ -1,5 +1,3 @@
-import type { NextComponentType } from "next"
-import { ChangeEvent } from "react"
 import styles from "../../styles/components/ui/TextField.module.css"
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
