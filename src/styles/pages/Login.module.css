@@ -8,8 +8,85 @@
     position: relative;
 }
 .formArea{
-    min-width: 490px;
+    min-width: 500px;
     width: 44%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    width: 490px;
+    display: flex;
+    flex-direction: column;
+}
+.loginTitle{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 41px;
+    color: #1A1C21;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+.formText{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.formText a{
+    color: #7F3FFC;
+    font-weight: 600;
+}
+.socials{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 54px;
+    margin-bottom: 30px;
+}
+.social{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 38px;
+    border: 1px solid rgba(26, 28, 33, 0.2);
+    border-radius: 8px;
+    flex: 1 1;
+}
+.separatorOr{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(26, 28, 33, 0.5);
+    gap: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.separatorOr::before, .separatorOr::after{
+    content: "";
+    height: 0px;
+    width: 100%;
+    border-top: 1px solid rgba(26, 28, 33, 0.2);
+}
+.fields{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 30px;
+    margin-bottom: 24px;
+}
+.formBtns{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    
 }
