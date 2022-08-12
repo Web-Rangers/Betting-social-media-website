@@ -8,18 +8,19 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const TextField: React.FC<TextFieldProps> = (props) => {
+    const {iconClick, ...inputProps} = props
 
     return (
         <div className={styles.textFieldContainer}>
-            <input {...props} style={props.icon ? {paddingRight: 48} : {}} />
-            {props.icon && 
+            <input {...inputProps} style={inputProps.icon ? {paddingRight: 48} : {}} />
+            {inputProps.icon && 
                 <div 
                     className={styles.icon} 
-                    onClick={props.iconClick}
-                    style={props.iconClick ? {cursor: "pointer"} : {}}
+                    onClick={iconClick}
+                    style={iconClick ? {cursor: "pointer"} : {}}
                 >
                     <Image 
-                        src={props.icon}
+                        src={inputProps.icon}
                         layout="fill"
                         objectFit="contain"
                     />
