@@ -1,0 +1,91 @@
+.container {
+    width: 100%;
+    background-color: #26292E;
+    border-radius: 16px;
+    padding: 60px 80px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 73px;
+}
+
+.container .row:last-child {
+    gap: 23px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container .column:last-child {
+    flex: 4;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: justify;
+    color: #FFFFFF;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.column h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.link {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFFB2;
+}
+
+.socialLink {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #F2F2F2B2;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    padding: 13px 34px;
+    border-radius: 8px;
+    border: 1px solid #FFFFFF1A;
+    min-width: max-content;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
