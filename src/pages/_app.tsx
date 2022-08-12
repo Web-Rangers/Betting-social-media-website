@@ -9,7 +9,10 @@ import Header from "../components/layout/Header";
 import { useRouter } from "next/router";
 
 const pagesWithoutDefaultHeader = [
-    "/login"
+    "/login",
+    "/signup",
+    "/forgotpassword",
+    "/changepassword"
 ]
 
 const MyApp: AppType = ({
