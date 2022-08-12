@@ -16,4 +16,9 @@
     font-size: 15px;
     line-height: 18px;
     color: #FFFFFF;
+    transition: all .3s ease-in-out;
+}
+.submit:disabled{
+    background: rgba(26, 28, 33, 0.3);
+    cursor: default;
 }

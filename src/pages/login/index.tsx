@@ -22,7 +22,7 @@ const Login: NextPage = () => {
                         </h1>
                         <span className={styles.formText}>
                             Don’t have an account?&nbsp;&nbsp;&nbsp;
-                            <a href="/register">
+                            <a href="/signup">
                                 Create one
                             </a>
                         </span>
@@ -63,7 +63,7 @@ const Login: NextPage = () => {
                         </div>
                         <div className={styles.formBtns}>
                             <span className={styles.formText}>
-                                <a href="/forgotpassword">
+                                <a href="/forgot-password">
                                     Forgot Password?
                                 </a>
                             </span>

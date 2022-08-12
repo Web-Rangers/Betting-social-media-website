@@ -202,3 +202,24 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.formTextForgot{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: rgba(26, 28, 33, 0.7);
+}
+
+.backToLogin{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-size: 15px;
+    line-height: 18px;
+    color: #7F3FFC;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-bottom: 54px;
+}
