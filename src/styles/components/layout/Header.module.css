@@ -3,11 +3,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 27px 60px;
+    padding: 19px 140px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    /* border: 1px solid #1A1C211A; */
+    z-index: 99;
+    background-color: #FFFFFF;
 }
 
 .container nav {
@@ -47,8 +50,97 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 33px;
 }
 
-.spacer {
-    height: 80px;
+.button {
+    position: relative;
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    padding: 12px 24px;
+    background-color: #7F3FFC;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
 }
+
+/* Settings component */
+
+.settings {
+    position: relative;
+}
+
+.settingsIcon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.settingsMenu {
+    position: absolute;
+    top: calc(100% + 20px);
+    background-color: #FFFFFF;
+    right: 0;
+    border: 1px solid #1A1C211A;
+    padding: 16px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 10;
+}
+
+.settings .settingItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settingsMenu h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    width: max-content;
+}
+
+.settingsItemContent {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.oddsFormat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 12px 20px;
+    background-color: #1A1C210A;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.oddsFormat.active {
+    background-color: #7F3FFC1A;
+    color: #7F3FFC;
+}
+
+.oddsFormat:hover {
+    background-color: #7F3FFC1A;
+    color: #7F3FFC;
+}
+
+/* Settings component */
