@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
-import styles from '../../styles/components/layout/Header.module.css'
-import Dropdown from '../ui/Dropdown';
+import styles from '@styles/components/layout/Header.module.css'
+import Dropdown from '@components/ui/Dropdown';
 
 const links = [
     { href: '/sport', label: 'Football' },

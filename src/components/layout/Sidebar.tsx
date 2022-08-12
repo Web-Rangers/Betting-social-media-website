@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
-import styles from '../../styles/components/layout/Sidebar.module.css'
+import styles from '@styles/components/layout/Sidebar.module.css'
 
 const links = [
     { href: '/popular-matches', label: 'Popular Games', image: '/images/menu/popular-games.svg' },
