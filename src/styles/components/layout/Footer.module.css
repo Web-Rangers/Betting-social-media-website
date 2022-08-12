@@ -58,6 +58,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFFB2;
+    width: max-content;
 }
 
 .socialLink {

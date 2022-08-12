@@ -8,6 +8,7 @@ import "../styles/globals.css";
 import MainLayout from "../components/layout/MainLayout";
 import { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";
+import TipsterLayout from "@components/layout/TipsterLayout";
 
 const MyApp: AppType = ({
     Component,
@@ -15,9 +16,17 @@ const MyApp: AppType = ({
 }) => {
     const router = useRouter();
     const noLayoutRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
+    const tipsterRoutes = ["/tipsters", "/competition"];
 
     function getLayout(): ReactElement {
-        if (!noLayoutRoutes.includes(router.pathname)) {
+        if (!noLayoutRoutes.includes(router.asPath.split('?')[0] ?? '')) {
+            if (tipsterRoutes.includes(router.asPath.split('?')[0] ?? '')) {
+                return (
+                    <TipsterLayout>
+                        <Component {...pageProps} />
+                    </TipsterLayout>
+                );
+            }
             return (
                 <MainLayout>
                     <Component {...pageProps} />
