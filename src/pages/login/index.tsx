@@ -74,8 +74,8 @@ const Login: NextPage = () => {
                     </form>
                 </div>
                 <div className={styles.pageImg}>
-                    <Image
-                        src="/images/login/background.png"
+                    <Image 
+                        src="/images/login/background-login.png"
                         layout="fill"
                         objectFit="cover"
                     />
