@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import { ReactSVG } from 'react-svg'
-import { motion } from 'framer-motion'
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import styles from '../../styles/components/layout/Sidebar.module.css'
 
 const links = [
@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
                     ))
                 }
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -57,6 +57,23 @@ interface MenuLinkProps {
     image: string,
     active?: boolean,
     expanded?: boolean,
+}
+
+const MenuTextVariants = {
+    open: {
+        width: 'max-content',
+        transition: {
+            type: 'easeInOut',
+            duration: 0.2,
+        }
+    },
+    closed: {
+        width: 0,
+        transition: {
+            type: 'easeInOut',
+            duration: 0.2,
+        }
+    }
 }
 
 const MenuLink: React.FC<MenuLinkProps> = (props) => {
@@ -72,7 +89,17 @@ const MenuLink: React.FC<MenuLinkProps> = (props) => {
                     height={10}
                     width={10}
                 />
-                {expanded && <div className={styles.menuLinkLabel}>{label}</div>}
+                <AnimatePresence initial={false}>
+                    {expanded && <motion.div
+                        className={styles.menuLinkLabel}
+                        variants={MenuTextVariants}
+                        initial='closed'
+                        animate='open'
+                        exit='closed'
+                    >
+                        {label}
+                    </motion.div>}
+                </AnimatePresence>
             </a>
         </Link>
     )
