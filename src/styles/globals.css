@@ -6,6 +6,27 @@ body {
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/* width */
+body *::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+body *::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+/* Handle */
+body *::-webkit-scrollbar-thumb {
+    background: #7e3ffcaf;
+    border-radius: 16px;
+}
+
+/* Handle on hover */
+body *::-webkit-scrollbar-thumb:hover {
+    background: #7F3FFC;
+}
+
 a {
     color: inherit;
     text-decoration: none;

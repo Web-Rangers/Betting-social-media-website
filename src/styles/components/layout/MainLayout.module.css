@@ -7,27 +7,6 @@
     border: 1px solid #D9D9D9;
 }
 
-/* width */
-.pageWrap::-webkit-scrollbar {
-    width: 5px;
-}
-
-/* Track */
-.pageWrap::-webkit-scrollbar-track {
-    background: #FFFFFF;
-}
-
-/* Handle */
-.pageWrap::-webkit-scrollbar-thumb {
-    background: #7e3ffcaf;
-    border-radius: 16px;
-}
-
-/* Handle on hover */
-.pageWrap::-webkit-scrollbar-thumb:hover {
-    background: #7F3FFC;
-}
-
 .content {
     height: 200vh;
     padding: 20px;
