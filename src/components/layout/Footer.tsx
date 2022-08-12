@@ -27,7 +27,6 @@ const BookmakerLinks = [
     { href: '/bet365', text: 'Bet365' },
     { href: '/betway', text: 'Betway' },
     { href: '/betvictor', text: 'Betvictor' },
-    { href: '/betway', text: 'Betway' },
     { href: '/1xbet', text: '1Xbet' },
 ]
 

@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import styles from '@styles/components/layout/Header.module.css'
 import Dropdown from '@components/ui/Dropdown';
+import { useSession } from 'next-auth/react';
+import UserProfile from '@components/ui/UserProfile';
 
 const links = [
     { href: '/tisters', label: 'Tipsters' },
@@ -13,6 +15,7 @@ const links = [
 
 const TipsterHeader: React.FC = () => {
     const router = useRouter()
+    const { data: session } = useSession()
 
     return (
         <div className={styles.container}>
@@ -48,9 +51,13 @@ const TipsterHeader: React.FC = () => {
                         onSelect={(id) => { }}
                     />
                     <Settings />
-                    <button className={styles.button}>
-                        Sign In
-                    </button>
+                    {
+                        session === null
+                            ? <button className={styles.button}>
+                                Sign In
+                            </button>
+                            : <UserProfile />
+                    }
                 </div>
             </nav>
         </div>

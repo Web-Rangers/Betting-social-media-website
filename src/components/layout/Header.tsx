@@ -2,11 +2,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '@styles/components/layout/Header.module.css'
 import Dropdown from '@components/ui/Dropdown';
 import TextField from '@components/ui/TextField';
 import Fuse from 'fuse.js'
+import UserProfile from '@components/ui/UserProfile';
+import { useSession } from 'next-auth/react';
 
 const links = [
     { href: '/sport', label: 'Football' },
@@ -19,10 +21,9 @@ const links = [
     { href: '/sport', label: 'Volleyball' },
 ]
 
-
-
 const Header: React.FC = () => {
     const router = useRouter()
+    const { data: session } = useSession()
 
     return (
         <div className={styles.container}>
@@ -59,9 +60,13 @@ const Header: React.FC = () => {
                         onSelect={(id) => { }}
                     />
                     <Settings />
-                    <button className={styles.button}>
-                        Sign In
-                    </button>
+                    {
+                        session === null
+                            ? <button className={styles.button}>
+                                Sign In
+                            </button>
+                            : <UserProfile />
+                    }
                 </div>
             </nav>
         </div>
@@ -108,7 +113,7 @@ const SettingsVariants = {
 
 const Settings: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const dropdownRef = React.useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement>(null)
 
     const closeIfNotDropdown = (e: MouseEvent) => {
         if ((e.target != dropdownRef.current) && (!dropdownRef.current?.contains(e.target as Node))) {
@@ -247,7 +252,7 @@ const MoreItemsVariants = {
 const More: React.FC<MoreProps> = (props) => {
     const { items } = props;
     const [isOpen, setIsOpen] = useState(false)
-    const dropdownRef = React.useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement>(null)
     const [filteredItems, setFilteredItems] = useState<MoreProps['items']>(items)
 
     function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
