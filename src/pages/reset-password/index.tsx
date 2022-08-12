@@ -6,9 +6,8 @@ import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
 import SubmitButton from "../../components/ui/SubmitButton"
 import { useState } from "react"
-import Link from "next/link"
 
-const Register: NextPage = () => {
+const Forgot: NextPage = () => {
     const [passwordCheck, setPasswordCheck] = useState([false, false, false, false])
 
     function checkPassword(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,72 +41,20 @@ const Register: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Optimo Registration</title>
+                <title>Optimo Login</title>
                 <meta name="description" content="Optimo betting social media login" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
-                        <h1 className={styles.loginTitle}>
-                            Sign Up
+                        <h1 className={styles.loginTitle} style={{marginBottom: 0}}>
+                            Enter New Password
                         </h1>
-                        <span className={styles.formText}>
-                            You already have an account?&nbsp;&nbsp;&nbsp;
-                            <a href="/login">
-                                Sign In
-                            </a>
-                        </span>
-                        <div className={styles.socials}>
-                            <div className={styles.social}>
-                                <Image 
-                                    src="/images/login/facebook.svg"
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                            <div className={styles.social}>
-                                <Image 
-                                    src="/images/login/google.svg"
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                            <div className={styles.social}>
-                                <Image 
-                                    src="/images/login/twitter.svg"
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                        </div>
-                        <span className={styles.separatorOr}>
-                            OR
-                        </span>
                         <div className={styles.fields}>
-                            <div className={styles.row}>
-                                <TextField 
-                                    type="text" 
-                                    placeholder="First Name"
-                                />
-                                <TextField 
-                                    type="text" 
-                                    placeholder="Last Name"
-                                />
-                            </div>
-                            <TextField 
-                                type="email" 
-                                placeholder="Email Address"
-                            />
-                            <TextField 
-                                type="nickname" 
-                                placeholder="Nickname"
-                                icon="/images/login/dice.svg"
-                                iconClick={()=>{}}
-                            />
                             <PasswordField 
                                 name="password"
-                                placeholder="Password"
+                                placeholder="New password"
                                 onChange={checkPassword}
                             />
                             <PasswordField 
@@ -151,24 +98,17 @@ const Register: NextPage = () => {
                             >
                                 Include at least one symbol
                             </span>
-                            <label className={styles.checkTerms}>
-                                <input type={'checkbox'} name="agree_to_terms" />
-                                <div className={styles.checkBox} />
-                                <span className={styles.checkText}>
-                                    I confirm that I am over 18 years old and I agree with the <Link href="/login"><a>Terms and Conditions and Privacy Policy.</a></Link>
-                                </span>
-                            </label>
                         </div>
-                        <div className={styles.formBtns}>
-                            <SubmitButton>
-                                Sign Up
+                        <div className={styles.formBtns} style={{marginTop: 32}}>
+                            <SubmitButton style={{marginLeft: "auto"}}>
+                                Save new password
                             </SubmitButton>
                         </div>
-                    </form>
+                    </form>            
                 </div>
                 <div className={styles.pageImg}>
                     <Image 
-                        src="/images/login/background-register.png"
+                        src="/images/login/background-password.png"
                         layout="fill"
                         objectFit="cover"
                     />
@@ -178,4 +118,4 @@ const Register: NextPage = () => {
     );
 };
 
-export default Register;
+export default Forgot;
