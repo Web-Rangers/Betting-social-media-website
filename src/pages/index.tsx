@@ -7,6 +7,7 @@ import Slider from "@components/ui/Slider";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
+import LiveMatches from "@components/ui/LiveMatches";
 
 const TipstersTemp = [
     { name: "John Doe", image: "/images/profile-placeholder.png", winrate: 0.5 },
@@ -60,6 +61,33 @@ const BookmakersTemp = [
     { name: "Betway", image: "/images/bookmaker-placeholder-3.png", rating: 3.5, color: '#193052' },
 ]
 
+const LiveMatchesTemp = [
+    {
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+        ],
+        id: 1,
+        duration: '48:32',
+    },
+    {
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 0 },
+        ],
+        id: 2,
+        duration: '48:32',
+    },
+    {
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 0 },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+        ],
+        id: 3,
+        duration: '48:32',
+    },
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -83,6 +111,7 @@ const Home: NextPage = () => {
             <div className={styles.sideColumn}>
                 {!session && <SignUpPropose />}
                 <TopTipsters tipsters={TipstersTemp} />
+                <LiveMatches matches={LiveMatchesTemp} />
                 <Banner height={463} image="/images/banner-placeholder-2.png" />
                 <BestBookmakers bookmakers={BookmakersTemp} />
             </div>
