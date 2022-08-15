@@ -1,14 +1,18 @@
 .mainColumn {
     grid-column-start: 1;
     grid-column-end: 10;
+    display: flex;
+    flex-direction: column;
     gap: 40px;
 }
 
 .sideColumn {
     grid-column-start: 10;
     grid-column-end: 13;
-    gap: 40px;
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .slider {
@@ -187,4 +191,240 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
+}
+
+/* Top Tipsters */
+
+.topTipsters {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.topTipsters h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.topTipstersList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 16px 6px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+}
+
+.topThreeTipsters {
+    display: flex;
+    flex-direction: row;
+    gap: 38px;
+    justify-content: space-between;
+}
+
+.topTipster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px;
+    gap: 10px;
+    flex: 1;
+}
+
+.topTipsterImage {
+    position: relative;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    border: 3px solid #1A1C211A;
+}
+
+.topTipster:first-child .topTipsterImage::after {
+    content: '2';
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    height: 20px;
+    width: 20px;
+    background-color: #1A1C211A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21CC;
+}
+
+.topTipster:last-child .topTipsterImage::after {
+    content: '3';
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    height: 20px;
+    width: 20px;
+    background-color: #1A1C211A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21CC;
+}
+
+.topTipster:nth-child(2) .topTipsterImage::after {
+    content: url(/icons/crown.svg);
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    height: 20px;
+    width: 20px;
+    background-color: #7F3FFC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+.topTipster:nth-child(2) .topTipsterImage {
+    border-color: #7F3FFC;
+}
+
+.topTipsterName {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+}
+
+.topTipsterWinrate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.winrateLabel {
+    color: #1A1C2199;
+}
+
+.winratePercent {
+    color: #1A1C21CC;
+}
+
+.topTipster:first-child .topTipsterWinrate {
+    height: 90px;
+}
+
+.topTipster:last-child .topTipsterWinrate {
+    height: 70px;
+}
+
+.topTipster:nth-child(2) .topTipsterWinrate {
+    height: 110px;
+    background-color: #7F3FFC;
+}
+
+.topTipster:nth-child(2) .winrateLabel {
+    color: #FFFFFFCC;
+}
+
+.topTipster:nth-child(2) .winratePercent {
+    color: #FFFFFF;
+}
+
+.topTipstersOther {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.topOther {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 8px 12px 0px;
+    border-bottom: 1px solid #1A1C211A;
+}
+
+.otherIndex {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21CC;
+}
+
+.otherContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.otherInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+}
+
+.topOtherImage {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.topOtherWinrate {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1A1C21B2;
+}
+
+.topTipstersMore {
+    width: 100%;
+    text-align: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+    cursor: pointer;
+    padding-bottom: 8px;
 }

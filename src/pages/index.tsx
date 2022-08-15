@@ -6,6 +6,17 @@ import Slider from "@components/ui/Slider";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
+const TipstersTemp = [
+    { name: "John Doe", image: "/images/profile-placeholder.png", winrate: 0.5 },
+    { name: "Jane Doe", image: "/images/profile-placeholder.png", winrate: 0.3 },
+    { name: "Jack Doe", image: "/images/profile-placeholder.png", winrate: 0.2 },
+    { name: "Jill Doe", image: "/images/profile-placeholder.png", winrate: 0.1 },
+    { name: "Joe Doe", image: "/images/profile-placeholder.png", winrate: 0.9 },
+    { name: "Juan Doe", image: "/images/profile-placeholder.png", winrate: 0.8 },
+    { name: "Julie Doe", image: "/images/profile-placeholder.png", winrate: 0.7 },
+    { name: "Jenny Doe", image: "/images/profile-placeholder.png", winrate: 0.6 },
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -24,6 +35,7 @@ const Home: NextPage = () => {
             </div>
             <div className={styles.sideColumn}>
                 {!session && <SignUpPropose />}
+                <TopTipsters tipsters={TipstersTemp} />
             </div>
         </>
     );
@@ -109,6 +121,69 @@ const SignUpPropose: React.FC = () => {
                 specimen book.
             </span>
             <button>Sign Up</button>
+        </div>
+    )
+}
+
+interface TopTipstersProps {
+    tipsters: { name: string, winrate: number, image: string }[];
+}
+
+const TopTipsters: React.FC<TopTipstersProps> = (props) => {
+    const { tipsters } = props;
+
+    return (
+        <div className={styles.topTipsters}>
+            <h2 className={styles.topTipstersTitle}>Top Tipsters</h2>
+            <div className={styles.topTipstersList}>
+                <div className={styles.topThreeTipsters}>
+                    {tipsters.slice(0, 3).map(tipster => (
+                        <div className={styles.topTipster}>
+                            <div className={styles.topTipsterImage}>
+                                <Image
+                                    src={tipster.image}
+                                    alt={tipster.name}
+                                    width={70}
+                                    height={70}
+                                />
+                            </div>
+                            <span className={styles.topTipsterName}>
+                                {tipster.name}
+                            </span>
+                            <div className={styles.topTipsterWinrate}>
+                                <span className={styles.winrateLabel}>Winrate</span>
+                                <span className={styles.winratePercent}>{tipster.winrate * 100}%</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className={styles.topTipstersOther}>
+                    {tipsters.slice(3, 8).map((tipster, index) => (
+                        <div className={styles.topOther}>
+                            <div className={styles.otherContent}>
+                                <div className={styles.otherIndex}> {index + 4} </div>
+                                <div className={styles.otherInfo}>
+                                    <div className={styles.topOtherImage}>
+                                        <Image
+                                            src={tipster.image}
+                                            alt={tipster.name}
+                                            width={30}
+                                            height={30}
+                                        />
+                                    </div>
+                                    <span className={styles.topTipsterName}> {tipster.name} </span>
+                                </div>
+                            </div>
+                            <div className={styles.topOtherWinrate}>
+                                Winrate {tipster.winrate * 100}%
+                            </div>
+                        </div>
+                    ))}
+                    <a className={styles.topTipstersMore}>
+                        See All
+                    </a>
+                </div>
+            </div>
         </div>
     )
 }
