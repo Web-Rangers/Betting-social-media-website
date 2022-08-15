@@ -1,3 +1,4 @@
+import Banner from "@components/ui/Banner";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
