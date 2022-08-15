@@ -1,0 +1,139 @@
+.liveMatches {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.liveMatchesTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+}
+
+.liveMatchesTitleText {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.liveMatchesTitleText h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+    text-transform: uppercase;
+}
+
+.liveMatchesTitleText h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #1A1C21;
+}
+
+.liveMatchesTitle button {
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    color: #1A1C21;
+    border: 1px solid #1A1C2133;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 4px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.liveMatchesList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.liveMatchesList .liveMatchesItem:not(:first-child) .matchInfo {
+    display: none;
+}
+
+.liveMatchesItem {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px 20px 12px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+}
+
+.matchInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.matchInfoHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.matchDuration {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 21px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    background-color: #CF1F1F;
+    border-radius: 4px;
+}
+
+.expand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #1A1C211A;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.matchTeams {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.matchTeam {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.matchTeams .matchTeam:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.matchTeams .matchTeam:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
