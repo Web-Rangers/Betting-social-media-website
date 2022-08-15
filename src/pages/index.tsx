@@ -6,6 +6,7 @@ import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import BestBookmakers from "@components/ui/BestBookmakers";
 
 const TipstersTemp = [
     { name: "John Doe", image: "/images/profile-placeholder.png", winrate: 0.5 },
@@ -53,6 +54,12 @@ const MostTipsTemp = [
     }
 ]
 
+const BookmakersTemp = [
+    { name: "Bet365", image: "/images/bookmaker-placeholder-1.png", rating: 4.5, color: '#26292E' },
+    { name: "Bwin", image: "/images/bookmaker-placeholder-2.png", rating: 4.0, color: '#FF6300' },
+    { name: "Betway", image: "/images/bookmaker-placeholder-3.png", rating: 3.5, color: '#193052' },
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -70,11 +77,14 @@ const Home: NextPage = () => {
                 </div>
                 <div className={styles.paddedContainer}>
                     <MostTips tips={MostTipsTemp} />
+                    <Banner height={200} image="/images/banner-placeholder-1.png" />
                 </div>
             </div>
             <div className={styles.sideColumn}>
                 {!session && <SignUpPropose />}
                 <TopTipsters tipsters={TipstersTemp} />
+                <Banner height={463} image="/images/banner-placeholder-2.png" />
+                <BestBookmakers bookmakers={BookmakersTemp} />
             </div>
         </>
     );
