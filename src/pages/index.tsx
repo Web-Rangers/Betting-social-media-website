@@ -17,6 +17,41 @@ const TipstersTemp = [
     { name: "Jenny Doe", image: "/images/profile-placeholder.png", winrate: 0.6 },
 ]
 
+const MostTipsTemp = [
+    {
+        league: "Premier League",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        tipAmount: 21,
+        date: "23:20 2020.01.01",
+        status: 'upcoming'
+    },
+    {
+        league: "Premier League",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        tipAmount: 21,
+        date: "2020-01-01",
+        status: 'live',
+        duration: '48:32'
+    },
+    {
+        league: "Premier League",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        tipAmount: 21,
+        date: "2020-01-01",
+        status: 'finished',
+        duration: '17:32'
+    }
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -31,6 +66,9 @@ const Home: NextPage = () => {
                             ))
                         }
                     </Slider>
+                </div>
+                <div className={styles.paddedContainer}>
+                    <MostTips tips={MostTipsTemp} />
                 </div>
             </div>
             <div className={styles.sideColumn}>
@@ -183,6 +221,72 @@ const TopTipsters: React.FC<TopTipstersProps> = (props) => {
                         See All
                     </a>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+interface MostTipsProps {
+    tips: {
+        league: string,
+        teams: { image: string, name: string }[],
+        tipAmount: number,
+        date?: string,
+        status?: string,
+        duration?: string
+    }[];
+}
+
+const MostTips: React.FC<MostTipsProps> = (props) => {
+    const { tips } = props;
+
+    function getStatusComponent(tip: typeof tips[0]) {
+        switch (tip.status) {
+            case 'finished':
+                return <span className={styles.mostTipsFinished}>{tip.duration}s</span>;
+            case 'live':
+                return <span className={styles.mostTipsLive}>Live: {tip.duration}</span>;
+            case 'upcoming':
+                return <span className={styles.mostTipsUpcoming}>{tip.date}</span>;
+        }
+    }
+
+    return (
+        <div className={styles.mostTips}>
+            <h2>Most Tips</h2>
+            <div className={styles.mostTipsList}>
+                {tips.map(tip => (
+                    <div className={styles.mostTipsItem}>
+                        <div className={styles.mostTipsRow}>
+                            <div className={styles.mostTipsTeams}>
+                                {tip.teams.map(team => (
+                                    <div className={styles.mostTipsTeam}>
+                                        <Image
+                                            src={team.image}
+                                            alt={team.name}
+                                            width={30}
+                                            height={30}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            {tip.status && (getStatusComponent(tip))}
+                        </div>
+                        <div className={styles.mostTipsRow}>
+                            <div className={styles.mostTipsInfo}>
+                                <span className={styles.mostTipsLeague}>{tip.league}</span>
+                                <div className={styles.mostTipsTeamNames}>
+                                    {tip.teams.map(team => (
+                                        <span className={styles.mostTipsTeamName}>{team.name}</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className={styles.mostTipsTipAmount}>
+                                {tip.tipAmount} Tips
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     )
