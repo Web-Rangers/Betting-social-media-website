@@ -8,6 +8,8 @@
 }
 
 .content {
-    height: 200vh;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 24px;
+    margin-right: 140px;
 }

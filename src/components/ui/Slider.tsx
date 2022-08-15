@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import styles from '@styles/components/ui/Slider.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 interface SliderProps {
-    children?: React.ReactChild[];
+    children?: ReactElement[]
 }
 
 const Slider: React.FC<SliderProps> = (props) => {
