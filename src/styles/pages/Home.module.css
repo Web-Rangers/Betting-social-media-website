@@ -4,6 +4,13 @@
     gap: 40px;
 }
 
+.sideColumn {
+    grid-column-start: 10;
+    grid-column-end: 13;
+    gap: 40px;
+    padding-top: 20px;
+}
+
 .slider {
     border-top-left-radius: 16px;
     border-bottom-right-radius: 16px;
@@ -138,4 +145,46 @@
     width: 36px;
 }
 
-/* Slide */
+/* SignUp Propose */
+
+.signUpPropose {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 8px;
+    border: 1px solid #7F3FFC;
+    padding: 24px 24px 24px 16px;
+    background-color: #7F3FFC1A;
+}
+
+.signUpPropose h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #1A1C21;
+}
+
+.signUpPropose span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    color: #1A1C21;
+}
+
+.signUpPropose button {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    padding: 15px 0px;
+    background: #7F3FFC;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}

@@ -4,8 +4,11 @@ import { trpc } from "../utils/trpc";
 import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
+    const { data: session } = useSession()
+
     return (
         <>
             <div className={styles.mainColumn}>
@@ -19,6 +22,9 @@ const Home: NextPage = () => {
                     </Slider>
                 </div>
             </div>
+            <div className={styles.sideColumn}>
+                {!session && <SignUpPropose />}
+            </div>
         </>
     );
 };
@@ -31,6 +37,7 @@ const Slide: React.FC = () => {
                     src="/images/slide-background-placeholder.png"
                     alt="slide-background"
                     layout="fill"
+                    objectFit="cover"
                 />
             </div>
             <div className={styles.slideTimer}>
@@ -85,6 +92,23 @@ const Slide: React.FC = () => {
                     </div>
                 </div>
             </div>
+        </div>
+    )
+}
+
+const SignUpPropose: React.FC = () => {
+    return (
+        <div className={styles.signUpPropose}>
+            <h2>
+                Join with us!
+            </h2>
+            <span>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type
+                specimen book.
+            </span>
+            <button>Sign Up</button>
         </div>
     )
 }
