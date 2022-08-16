@@ -19,7 +19,9 @@ interface PredictionsProps {
             comment: boolean,
             outcome: string
         }[]
-    }[]
+    }[],
+    h3: string,
+    h2: string,
 }
 
 const Predictions: React.FC<PredictionsProps> = (props) => {
@@ -27,6 +29,10 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.titles}>
+                <h3>{props.h3}</h3>
+                <h2>{props.h2}</h2>
+            </div>
             {matches.map((match, index) => (
                 <div key={index} className={styles.match}>
                     <div className={styles.header}>

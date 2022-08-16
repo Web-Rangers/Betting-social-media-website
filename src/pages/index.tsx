@@ -216,7 +216,11 @@ const Home: NextPage = () => {
                             />
                         </div>
                         <div className={styles.matches}>
-                            <Predictions matches={PredictionsTemp} />
+                            <Predictions
+                                matches={PredictionsTemp}
+                                h2="Best Predictions"
+                                h3="Today"
+                            />
                         </div>
                     </div>
                 </div>
