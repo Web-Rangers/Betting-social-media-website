@@ -135,6 +135,15 @@
     cursor: pointer;
 }
 
+.predictions {
+    display: flex;
+    flex-direction: column;
+}
+
+.predictions .prediction:not(:last-child) {
+    border-bottom: 1px solid #1A1C211A;
+}
+
 .prediction {
     display: flex;
     flex-direction: row;
