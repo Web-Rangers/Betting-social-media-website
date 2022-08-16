@@ -7,7 +7,7 @@ const SubmitButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (p
         <button className={styles.submit} type="submit" {...props}>
             {props.children}
             <Image 
-                src="/images/icons/arrow-narrow-right.svg"
+                src="/icons/arrow-narrow-right.svg"
                 width={24}
                 height={24}
             />
