@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
+import Predictions from "@components/ui/Predictions";
 
 const TipstersTemp = [
     { name: "John Doe", image: "/images/profile-placeholder.png", winrate: 0.5 },
@@ -102,6 +103,86 @@ const FiltersTemp = [
     { name: "UEFA Europa League", subName: "England", count: 100, image: "/images/team-2-placeholder.svg", id: "10" },
 ]
 
+const PredictionsTemp = [
+    {
+        time: "23:20",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        predictions: [
+            {
+                time: "23:20",
+                user: {
+                    name: "John Doe",
+                    image: "/images/profile-placeholder.png",
+                    winrate: 0.5
+                },
+                comment: false,
+                outcome: 'Liverpool win'
+            },
+            {
+                time: "23:20",
+                user: {
+                    name: "Jane Doe",
+                    image: "/images/profile-placeholder.png",
+                    winrate: 0.3
+                },
+                comment: true,
+                outcome: 'Manchester win'
+            }
+        ]
+    },
+    {
+        time: "23:20",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        predictions: [
+            {
+                time: "23:20",
+                user: {
+                    name: "John Doe",
+                    image: "/images/profile-placeholder.png",
+                    winrate: 0.5
+                },
+                comment: false,
+                outcome: 'Liverpool win'
+            },
+        ]
+    },
+    {
+        time: "23:20",
+        teams: [
+            { name: "Liverpool", image: "/images/team-1-placeholder.svg" },
+            { name: "Manchester City", image: "/images/team-2-placeholder.svg" },
+        ],
+        predictions: [
+            {
+                time: "23:20",
+                user: {
+                    name: "John Doe",
+                    image: "/images/profile-placeholder.png",
+                    winrate: 0.5
+                },
+                comment: false,
+                outcome: 'Liverpool win'
+            },
+            {
+                time: "23:20",
+                user: {
+                    name: "Jane Doe",
+                    image: "/images/profile-placeholder.png",
+                    winrate: 0.3
+                },
+                comment: true,
+                outcome: 'Manchester win'
+            }
+        ]
+    },
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -135,7 +216,7 @@ const Home: NextPage = () => {
                             />
                         </div>
                         <div className={styles.matches}>
-
+                            <Predictions matches={PredictionsTemp} />
                         </div>
                     </div>
                 </div>
