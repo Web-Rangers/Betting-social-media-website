@@ -35,7 +35,7 @@ const Forgot: NextPage = () => {
                         <form className={styles.form} onSubmit={submitForgot}>
                             <a className={styles.backToLogin} href="/login">
                                 <Image 
-                                    src="/images/icons/arrow-left-purple.svg"
+                                    src="/icons/arrow-left-purple.svg"
                                     width={24}
                                     height={24}
                                     objectFit="contain"
