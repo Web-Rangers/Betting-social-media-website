@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
+import Filter from "@components/ui/Filter";
 
 const TipstersTemp = [
     { name: "John Doe", image: "/images/profile-placeholder.png", winrate: 0.5 },
@@ -88,6 +89,19 @@ const LiveMatchesTemp = [
     },
 ]
 
+const FiltersTemp = [
+    { name: "Premier League", subName: "England", count: 100, image: "/images/team-1-placeholder.svg", id: "1" },
+    { name: "La Liga", subName: "Spain", count: 100, image: "/images/team-2-placeholder.svg", id: "2" },
+    { name: "Bundesliga", subName: "Germany", count: 100, image: "/images/team-1-placeholder.svg", id: "3" },
+    { name: "Serie A", subName: "Italy", count: 100, image: "/images/team-2-placeholder.svg", id: "4" },
+    { name: "Ligue 1", subName: "France", count: 100, image: "/images/team-1-placeholder.svg", id: "5" },
+    { name: "Eredivisie", subName: "Netherlands", count: 100, image: "/images/team-2-placeholder.svg", id: "6" },
+    { name: "Primera Division", subName: "Spain", count: 100, image: "/images/team-1-placeholder.svg", id: "7" },
+    { name: "Super League", subName: "Russia", count: 100, image: "/images/team-2-placeholder.svg", id: "8" },
+    { name: "UEFA Champions League", subName: "England", count: 100, image: "/images/team-1-placeholder.svg", id: "9" },
+    { name: "UEFA Europa League", subName: "England", count: 100, image: "/images/team-2-placeholder.svg", id: "10" },
+]
+
 const Home: NextPage = () => {
     const { data: session } = useSession()
 
@@ -106,6 +120,24 @@ const Home: NextPage = () => {
                 <div className={styles.paddedContainer}>
                     <MostTips tips={MostTipsTemp} />
                     <Banner height={200} image="/images/banner-placeholder-1.png" />
+                    <div className={styles.matchesContainer}>
+                        <div className={styles.matchesFilters}>
+                            <Filter
+                                h3="Top Leagues"
+                                h2="Football Leagues"
+                                items={FiltersTemp}
+                                onChange={(id) => { }}
+                            />
+                            <Filter
+                                h3="Leagues"
+                                items={FiltersTemp}
+                                onChange={(id) => { }}
+                            />
+                        </div>
+                        <div className={styles.matches}>
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className={styles.sideColumn}>
