@@ -193,7 +193,7 @@ const Home: NextPage = () => {
                     <Slider>
                         {
                             [1, 2, 3, 4, 5].map(i => (
-                                <Slide />
+                                <Slide key={`slide_${i}`} />
                             ))
                         }
                     </Slider>
@@ -328,8 +328,8 @@ const TopTipsters: React.FC<TopTipstersProps> = (props) => {
             <h2 className={styles.topTipstersTitle}>Top Tipsters</h2>
             <div className={styles.topTipstersList}>
                 <div className={styles.topThreeTipsters}>
-                    {tipsters.slice(0, 3).map(tipster => (
-                        <div className={styles.topTipster}>
+                    {tipsters.slice(0, 3).map((tipster, index) => (
+                        <div className={styles.topTipster} key={`tipster_${index}`}>
                             <div className={styles.topTipsterImage}>
                                 <Image
                                     src={tipster.image}
@@ -350,7 +350,7 @@ const TopTipsters: React.FC<TopTipstersProps> = (props) => {
                 </div>
                 <div className={styles.topTipstersOther}>
                     {tipsters.slice(3, 8).map((tipster, index) => (
-                        <div className={styles.topOther}>
+                        <div className={styles.topOther} key={`tipster_${index + 4}`}>
                             <div className={styles.otherContent}>
                                 <div className={styles.otherIndex}> {index + 4} </div>
                                 <div className={styles.otherInfo}>
@@ -408,12 +408,15 @@ const MostTips: React.FC<MostTipsProps> = (props) => {
         <div className={styles.mostTips}>
             <h2>Most Tips</h2>
             <div className={styles.mostTipsList}>
-                {tips.map(tip => (
-                    <div className={styles.mostTipsItem}>
+                {tips.map((tip, index) => (
+                    <div className={styles.mostTipsItem} key={`tip_${index}`}>
                         <div className={styles.mostTipsRow}>
                             <div className={styles.mostTipsTeams}>
-                                {tip.teams.map(team => (
-                                    <div className={styles.mostTipsTeam}>
+                                {tip.teams.map((team, index) => (
+                                    <div
+                                        className={styles.mostTipsTeam}
+                                        key={`team_image_${index}`}
+                                    >
                                         <Image
                                             src={team.image}
                                             alt={team.name}
@@ -429,8 +432,13 @@ const MostTips: React.FC<MostTipsProps> = (props) => {
                             <div className={styles.mostTipsInfo}>
                                 <span className={styles.mostTipsLeague}>{tip.league}</span>
                                 <div className={styles.mostTipsTeamNames}>
-                                    {tip.teams.map(team => (
-                                        <span className={styles.mostTipsTeamName}>{team.name}</span>
+                                    {tip.teams.map((team, index) => (
+                                        <span
+                                            className={styles.mostTipsTeamName}
+                                            key={`team_name_${index}`}
+                                        >
+                                            {team.name}
+                                        </span>
                                     ))}
                                 </div>
                             </div>
