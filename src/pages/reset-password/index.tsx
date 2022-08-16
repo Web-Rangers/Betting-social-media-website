@@ -6,6 +6,7 @@ import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
 import SubmitButton from "../../components/ui/SubmitButton"
 import { useState } from "react"
+import Link from "next/link"
 
 const Forgot: NextPage = () => {
     const [passwordCheck, setPasswordCheck] = useState([false, false, false, false])
@@ -41,11 +42,16 @@ const Forgot: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Optimo Login</title>
-                <meta name="description" content="Optimo betting social media login" />
+                <title>Optimo Reset Password</title>
+                <meta name="description" content="Optimo betting social media reset password" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
+                <div className={styles.header}>
+                    <Link href={'/'}>
+                        <a>OPTIMO</a>
+                    </Link>
+                </div>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
                         <h1 className={styles.loginTitle} style={{marginBottom: 0}}>

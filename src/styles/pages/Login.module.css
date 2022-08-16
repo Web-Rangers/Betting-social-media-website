@@ -26,6 +26,9 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+.form::-webkit-scrollbar{
+    display: none;
+}
 .loginTitle{
     font-family: 'Samsung Sans';
     font-style: normal;
@@ -222,4 +225,16 @@
     display: flex;
     align-items: center;
     margin-bottom: 54px;
+}
+
+.header{
+    position: fixed;
+    top: 27px;
+    left: calc((44% - 490px) / 2);
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: #1E2025;
 }

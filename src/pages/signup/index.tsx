@@ -42,11 +42,16 @@ const Register: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Optimo Registration</title>
-                <meta name="description" content="Optimo betting social media login" />
+                <title>Optimo Sign Up</title>
+                <meta name="description" content="Optimo betting social media sign up" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
+                <div className={styles.header}>
+                    <Link href={'/'}>
+                        <a>OPTIMO</a>
+                    </Link>
+                </div>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
                         <h1 className={styles.loginTitle}>
