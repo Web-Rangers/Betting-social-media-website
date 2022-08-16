@@ -32,6 +32,8 @@ const Header: React.FC = () => {
                     src="/logo.svg"
                     height={32}
                     width={188}
+                    objectFit="contain"
+                    objectPosition="left center"
                 />
             </div>
             <nav>

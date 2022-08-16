@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
                             href={href}
                             label={label}
                             image={image}
-                            active={router.asPath.split('?')[0] === href}
+                            active={router.asPath.split('?')[0]?.includes(href)}
                             expanded={isOpen}
                         />
                     ))
