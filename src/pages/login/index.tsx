@@ -5,6 +5,7 @@ import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
 import SubmitButton from "../../components/ui/SubmitButton"
+import Link from "next/link"
 
 const Login: NextPage = () => {
     return (
@@ -15,6 +16,11 @@ const Login: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
+                <div className={styles.header}>
+                    <Link href={'/'}>
+                        <a>OPTIMO</a>
+                    </Link>
+                </div>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
                         <h1 className={styles.loginTitle}>

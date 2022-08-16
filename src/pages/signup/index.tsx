@@ -47,6 +47,11 @@ const Register: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
+                <div className={styles.header}>
+                    <Link href={'/'}>
+                        <a>OPTIMO</a>
+                    </Link>
+                </div>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
                         <h1 className={styles.loginTitle}>

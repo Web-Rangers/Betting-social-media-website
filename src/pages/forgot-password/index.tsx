@@ -6,6 +6,7 @@ import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
 import SubmitButton from "../../components/ui/SubmitButton"
 import { useState } from "react"
+import Link from "next/link"
 
 const Forgot: NextPage = () => {
     const [submitForbidden, setSubmitForbidden] = useState(true)
@@ -24,6 +25,11 @@ const Forgot: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
+                <div className={styles.header}>
+                    <Link href={'/'}>
+                        <a>OPTIMO</a>
+                    </Link>
+                </div>
                 <div className={styles.formArea}>
                     {!submitted ? 
                         <form className={styles.form} onSubmit={submitForgot}>
