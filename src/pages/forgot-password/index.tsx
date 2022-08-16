@@ -20,8 +20,8 @@ const Forgot: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Optimo Login</title>
-                <meta name="description" content="Optimo betting social media login" />
+                <title>Optimo Forgot Password</title>
+                <meta name="description" content="Optimo betting social media forgot password" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
