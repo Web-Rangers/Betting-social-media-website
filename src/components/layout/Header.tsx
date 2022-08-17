@@ -27,13 +27,15 @@ const Header: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.logo}>
-                <Image
-                    src="/logo.svg"
-                    height={32}
-                    width={188}
-                />
-            </div>
+            <Link href={'/'}>
+                <a className={styles.logo}>
+                    <Image
+                        src="/logo.svg"
+                        height={32}
+                        width={188}
+                    />
+                </a>
+            </Link>
             <nav>
                 <div className={styles.links}>
                     {

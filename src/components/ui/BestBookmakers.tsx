@@ -24,10 +24,11 @@ const BestBookmakers: React.FC<BestBookmakersProps> = (props) => {
                 <button>See All</button>
             </div>
             <div className={styles.bestBookmakersList}>
-                {bookmakers.map(bookmaker => (
+                {bookmakers.map((bookmaker, index) => (
                     <div
                         className={styles.bestBookmaker}
                         style={{ backgroundColor: bookmaker.color }}
+                        key={`bookmaker_${index}`}
                     >
                         <div className={styles.bestBookmakerImage}>
                             <Image

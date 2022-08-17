@@ -4,6 +4,30 @@
     gap: 30px;
 }
 
+.titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.titles h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.titles h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
 .match {
     display: flex;
     flex-direction: column;
@@ -135,12 +159,22 @@
     cursor: pointer;
 }
 
+.predictions {
+    display: flex;
+    flex-direction: column;
+}
+
+.predictions .prediction:not(:last-child) {
+    border-bottom: 1px solid #1A1C211A;
+}
+
 .prediction {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
+    background-color: #F2F2F233;
 }
 
 .user {

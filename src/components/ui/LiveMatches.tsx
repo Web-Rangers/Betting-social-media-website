@@ -27,8 +27,8 @@ const LiveMatches: React.FC<LiveMatchesProps> = (props) => {
                 <button>See All</button>
             </div>
             <div className={styles.liveMatchesList}>
-                {matches.map((match) => (
-                    <div className={styles.liveMatchesItem}>
+                {matches.map((match, index) => (
+                    <div className={styles.liveMatchesItem} key={`match_${index}`}>
                         <div className={styles.matchInfo}>
                             <div className={styles.matchInfoHeader}>
                                 <div className={styles.matchDuration}>Live: {match.duration}</div>
@@ -50,8 +50,8 @@ const LiveMatches: React.FC<LiveMatchesProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.matchTeams}>
-                            {match.teams.map((team) => (
-                                <div className={styles.matchTeam}>
+                            {match.teams.map((team, index) => (
+                                <div className={styles.matchTeam} key={`team_${index}`}>
                                     <div className={styles.matchTeamName}>{team.name}</div>
                                     <div className={styles.matchTeamScore}>{team.score}</div>
                                 </div>
