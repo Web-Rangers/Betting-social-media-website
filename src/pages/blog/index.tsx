@@ -24,7 +24,7 @@ const BlogPage: NextPage = () => {
             <div className={styles.mainColumn}>
                 {news[0] && <MainNews {...news[0]} />}
                 <NewsBlock
-                    news={news.slice(0, 6)}
+                    news={news.slice(1, 7)}
                     h2="Recently addded"
                     h3="News"
                 />
@@ -33,6 +33,11 @@ const BlogPage: NextPage = () => {
                 <SideNews news={news} />
                 <TopMatches matches={matches} />
             </div>
+            <FullWidthNewsBlock
+                news={news.slice(7, 12)}
+                h2="Last week"
+                h3="News"
+            />
         </>
     )
 }
@@ -333,6 +338,111 @@ const NewsBlock: React.FC<NewsBlockProps> = (props) => {
                         </div>
                     </div>
                 ))}
+            </div>
+        </div>
+    )
+}
+
+const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
+    const { news, h2, h3 } = props;
+    return (
+        <div className={styles.fullWidthNewsBlock}>
+            {(h2 || h3) && <div className={styles.fullWidthNewsBlockHeader}>
+                {h3 && <h3>{h3}</h3>}
+                {h2 && <h2>{h2}</h2>}
+            </div>}
+            <div className={styles.fullWidthNewsBlockContent}>
+                <div className={styles.main}>
+                    {
+                        news.slice(0, 2).map((news, index) => (
+                            <div key={`news_${index}`} className={styles.news}>
+                                <Image
+                                    src={news.image}
+                                    alt={news.title}
+                                    layout="fill"
+                                    objectFit='cover'
+                                />
+                                <div className={styles.info}>
+                                    <span className={styles.date}>
+                                        <Moment format='DD MMM YYYY'>
+                                            {news.date}
+                                        </Moment>
+                                    </span>
+                                    <h2 className={styles.title}>
+                                        {news.title}
+                                    </h2>
+                                </div>
+                                <div className={styles.stats}>
+                                    <span className={styles.stat}>
+                                        <Image
+                                            src="/icons/comment-white.svg"
+                                            alt="comment"
+                                            width={24}
+                                            height={24}
+                                        />
+                                        {news.comments}
+                                    </span>
+                                    <span className={styles.stat}>
+                                        <Image
+                                            src="/icons/views.svg"
+                                            alt="view"
+                                            width={24}
+                                            height={24}
+                                        />
+                                        {news.views}
+                                    </span>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className={styles.side}>
+                    {
+                        news.slice(2).map((news, index) => (
+                            <div key={`news_${index}`} className={styles.news}>
+                                <div className={styles.image}>
+                                    <Image
+                                        src={news.image}
+                                        alt={news.title}
+                                        height={100}
+                                        width={100}
+                                        objectFit='cover'
+                                    />
+                                </div>
+                                <div className={styles.info}>
+                                    <span className={styles.date}>
+                                        <Moment format='DD MMM YYYY'>
+                                            {news.date}
+                                        </Moment>
+                                    </span>
+                                    <h2 className={styles.title}>
+                                        {shortenString(news.title, 45)}
+                                    </h2>
+                                    <div className={styles.stats}>
+                                        <span className={styles.stat}>
+                                            <Image
+                                                src="/icons/comment.svg"
+                                                alt="comment"
+                                                width={16}
+                                                height={16}
+                                            />
+                                            {news.comments}
+                                        </span>
+                                        <span className={styles.stat}>
+                                            <Image
+                                                src="/icons/views-gray.svg"
+                                                alt="views"
+                                                width={16}
+                                                height={16}
+                                            />
+                                            {news.views}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )
