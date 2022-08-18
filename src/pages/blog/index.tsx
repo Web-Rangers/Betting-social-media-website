@@ -5,15 +5,17 @@ import Image from 'next/image';
 import { trpc } from 'src/utils/trpc';
 import Moment from 'react-moment';
 import shortenString from 'src/utils/shortenString';
+import { MatchStatus } from 'src/types/matchStatus';
 
 const BlogPage: NextPage = () => {
     const { data: news, isLoading: newsLoading } = trpc.useQuery(['news.getAll']);
+    const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAll']);
 
-    if (newsLoading) {
+    if (newsLoading || matchesLoading) {
         return <div>Loading...</div>
     }
 
-    if (!news) {
+    if (!news || !matches) {
         return <div>Error...</div>
     }
 
@@ -24,6 +26,7 @@ const BlogPage: NextPage = () => {
             </div>
             <div className={styles.sideColumn}>
                 <SideNews news={news} />
+                <TopMatches matches={matches} />
             </div>
         </>
     )
@@ -174,6 +177,86 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
                     </div>
                 ))
             }
+        </div>
+    )
+}
+
+interface TopMatchesProps {
+    matches: {
+        teams: {
+            name: string,
+            image: string,
+            score: number
+        }[]
+        id: number,
+        date: string,
+        status: MatchStatus,
+        duration?: string,
+    }[]
+}
+
+const TopMatches: React.FC<TopMatchesProps> = (props) => {
+    const { matches } = props;
+
+    function getElementByStatus(match: typeof matches[0]): React.ReactElement {
+        switch (match.status) {
+            case MatchStatus.live:
+                return <div className={styles.live}>Live</div>
+            default:
+                return <div className={styles.matchDate}>
+                    <Moment format='HH:mm' className={styles.date}>
+                        {match.date}
+                    </Moment>
+                    <span className={styles.today}>Today</span>
+                </div>
+        }
+    }
+
+    return (
+        <div className={styles.topMatches}>
+            <div className={styles.topMatchesHeader}>
+                <div className={styles.titles}>
+                    <h3>Today</h3>
+                    <h2>Top Matches</h2>
+                </div>
+                <button>
+                    See All
+                </button>
+            </div>
+            <div className={styles.topMatchesContent}>
+                {matches.slice(0, 3).map((match, index) => (
+                    <div key={`top_match_${index}`} className={styles.topMatch}>
+                        {getElementByStatus(match)}
+                        <div className={styles.topMatchInfo}>
+                            <div className={styles.topMatchTeams}>
+                                {match.teams.map((team, index) => (
+                                    <div
+                                        key={`top_match_team_image_${index}`}
+                                        className={styles.topMatchTeam}
+                                    >
+                                        <Image
+                                            src={team.image}
+                                            alt={team.name}
+                                            width={32}
+                                            height={32}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className={styles.topMatchTeamNames}>
+                                {match.teams.map((team, index) => (
+                                    <div
+                                        key={`top_match_team_name_${index}`}
+                                        className={styles.topMatchTeamName}
+                                    >
+                                        {team.name}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
