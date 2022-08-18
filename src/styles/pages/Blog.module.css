@@ -293,6 +293,7 @@
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
+    text-transform: uppercase;
 }
 
 .matchDate {
@@ -301,6 +302,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
+    padding: 0px 7px;
 }
 
 .matchDate .date {
@@ -369,4 +371,108 @@
     font-size: 15px;
     line-height: 18px;
     color: #1A1C21CC;
+}
+
+/* News Block */
+
+.newsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.newsBlockHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.newsBlockHeader h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.newsBlockHeader h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.newsBlockContent {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.newsBlockContent .news {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% / 3 - 20px);
+}
+
+.newsBlockContent .news .image {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.newsBlockContent .news .info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.newsBlockContent .news .info .mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.newsBlockContent .news .info .mainInfo .date {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21B2;
+}
+
+.newsBlockContent .news .info .mainInfo .title {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+
+.newsBlockContent .news .info .stats {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.newsBlockContent .news .info .stats .stat {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21B2;
 }

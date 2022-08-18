@@ -23,6 +23,11 @@ const BlogPage: NextPage = () => {
         <>
             <div className={styles.mainColumn}>
                 {news[0] && <MainNews {...news[0]} />}
+                <NewsBlock
+                    news={news.slice(0, 6)}
+                    h2="Recently addded"
+                    h3="News"
+                />
             </div>
             <div className={styles.sideColumn}>
                 <SideNews news={news} />
@@ -224,7 +229,7 @@ const TopMatches: React.FC<TopMatchesProps> = (props) => {
                 </button>
             </div>
             <div className={styles.topMatchesContent}>
-                {matches.slice(0, 3).map((match, index) => (
+                {matches.slice(0, 5).map((match, index) => (
                     <div key={`top_match_${index}`} className={styles.topMatch}>
                         {getElementByStatus(match)}
                         <div className={styles.topMatchInfo}>
@@ -252,6 +257,78 @@ const TopMatches: React.FC<TopMatchesProps> = (props) => {
                                         {team.name}
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+interface NewsBlockProps {
+    news: {
+        title: string,
+        date: string,
+        image: string,
+        likes: number,
+        comments: number,
+        views: number,
+    }[],
+    h2?: string,
+    h3?: string,
+}
+
+const NewsBlock: React.FC<NewsBlockProps> = (props) => {
+    const { news, h2, h3 } = props;
+
+    return (
+        <div className={styles.newsBlock}>
+            {(h2 || h3) && <div className={styles.newsBlockHeader}>
+                {h3 && <h3>{h3}</h3>}
+                {h2 && <h2>{h2}</h2>}
+            </div>}
+            <div className={styles.newsBlockContent}>
+                {news.map((news, index) => (
+                    <div key={`news_${index}`} className={styles.news}>
+                        <div className={styles.image}>
+                            <Image
+                                src={news.image}
+                                alt={news.title}
+                                layout="fill"
+                                objectFit='cover'
+                            />
+                        </div>
+                        <div className={styles.info}>
+                            <div className={styles.mainInfo}>
+                                <span className={styles.date}>
+                                    <Moment format='DD MMM YYYY'>
+                                        {news.date}
+                                    </Moment>
+                                </span>
+                                <h2 className={styles.title}>
+                                    {news.title}
+                                </h2>
+                            </div>
+                            <div className={styles.stats}>
+                                <span className={styles.stat}>
+                                    <Image
+                                        src="/icons/comment.svg"
+                                        alt="comments"
+                                        width={16}
+                                        height={16}
+                                    />
+                                    {news.comments}
+                                </span>
+                                <span className={styles.stat}>
+                                    <Image
+                                        src="/icons/views-gray.svg"
+                                        alt="views"
+                                        width={16}
+                                        height={16}
+                                    />
+                                    {news.views}
+                                </span>
                             </div>
                         </div>
                     </div>
