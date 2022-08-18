@@ -13,7 +13,7 @@ const TipstersTemp = [
 ]
 
 export const tipsterRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return TipstersTemp
     },
 });

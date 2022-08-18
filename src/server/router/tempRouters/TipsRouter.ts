@@ -1,5 +1,6 @@
 import { createRouter } from "../context";
 import { z } from "zod";
+import { MatchStatus } from "src/types/matchStatus";
 
 const MostTipsTemp = [
     {
@@ -10,7 +11,7 @@ const MostTipsTemp = [
         ],
         tipAmount: 21,
         date: "23:20 2020.01.01",
-        status: 'upcoming'
+        status: MatchStatus.upcoming
     },
     {
         league: "Premier League",
@@ -20,7 +21,7 @@ const MostTipsTemp = [
         ],
         tipAmount: 21,
         date: "2020-01-01",
-        status: 'live',
+        status: MatchStatus.live,
         duration: '48:32'
     },
     {
@@ -31,13 +32,13 @@ const MostTipsTemp = [
         ],
         tipAmount: 21,
         date: "2020-01-01",
-        status: 'finished',
+        status: MatchStatus.finished,
         duration: '17:32'
     }
 ]
 
 export const tipsRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return MostTipsTemp
     },
 });

@@ -86,7 +86,7 @@ const NewsTemp = [
 ]
 
 export const newsRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return NewsTemp
     },
 });

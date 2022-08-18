@@ -82,7 +82,7 @@ const PredictionsTemp = [
 ]
 
 export const predictionsRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return PredictionsTemp
     },
 });

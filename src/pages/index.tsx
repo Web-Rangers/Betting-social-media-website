@@ -10,13 +10,14 @@ import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
 import Predictions from "@components/ui/Predictions";
+import { MatchStatus } from "src/types/matchStatus";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
-    const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['liveMatches.getAll'])
+    const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
 
@@ -231,7 +232,7 @@ interface MostTipsProps {
         teams: { image: string, name: string }[],
         tipAmount: number,
         date?: string,
-        status?: string,
+        status?: MatchStatus,
         duration?: string
     }[];
 }
@@ -241,11 +242,11 @@ const MostTips: React.FC<MostTipsProps> = (props) => {
 
     function getStatusComponent(tip: typeof tips[0]) {
         switch (tip.status) {
-            case 'finished':
+            case MatchStatus.finished:
                 return <span className={styles.mostTipsFinished}>{tip.duration}s</span>;
-            case 'live':
+            case MatchStatus.live:
                 return <span className={styles.mostTipsLive}>Live: {tip.duration}</span>;
-            case 'upcoming':
+            case MatchStatus.upcoming:
                 return <span className={styles.mostTipsUpcoming}>{tip.date}</span>;
         }
     }
