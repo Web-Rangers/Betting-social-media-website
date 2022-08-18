@@ -7,18 +7,20 @@ import { protectedExampleRouter } from "./protected-example-router";
 import { tipsterRouter } from "./tempRouters/TipsterRouter";
 import { tipsRouter } from "./tempRouters/TipsRouter";
 import { bookmakerRouter } from "./tempRouters/BookmakerRouter";
-import { liveMatchesRouter } from "./tempRouters/LiveMatchesRouter";
+import { matchesRouter } from "./tempRouters/MatchesRouter";
 import { filtersRouter } from "./tempRouters/FiltersRouter";
 import { predictionsRouter } from "./tempRouters/PredictionsRouter";
+import { newsRouter } from "./tempRouters/NewsRouter";
 
 export const appRouter = createRouter()
     .transformer(superjson)
     .merge('tipsters.', tipsterRouter)
     .merge('tips.', tipsRouter)
     .merge('bookmakers.', bookmakerRouter)
-    .merge('liveMatches.', liveMatchesRouter)
+    .merge('matches.', matchesRouter)
     .merge('filters.', filtersRouter)
     .merge('predictions.', predictionsRouter)
+    .merge('news.', newsRouter)
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

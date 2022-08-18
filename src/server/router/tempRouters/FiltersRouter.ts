@@ -15,7 +15,7 @@ const FiltersTemp = [
 ]
 
 export const filtersRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return FiltersTemp
     },
 });

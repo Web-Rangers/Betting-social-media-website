@@ -8,7 +8,7 @@ const BookmakersTemp = [
 ]
 
 export const bookmakerRouter = createRouter().query("getAll", {
-    resolve() {
+    async resolve() {
         return BookmakersTemp
     },
 });
