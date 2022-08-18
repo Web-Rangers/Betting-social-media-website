@@ -11,6 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
 .matchPreview{
     position: relative;
@@ -142,4 +143,114 @@
     font-size: 16px;
     line-height: 19px;
     color: #FFFFFF;
+}
+
+.matchStatPages{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.pageSelector{
+    display: flex;
+    gap: 60px;
+    overflow-x: auto;
+    width: 100%;
+    padding-top: 9px;
+    border-bottom: 1px solid rgba(26, 28, 33, 0.1);
+    margin-bottom: 20px;
+}
+.pageSelector::-webkit-scrollbar{
+    display: none;
+}
+.page{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+    text-transform: capitalize;
+    min-width: max-content;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    display:inline-block;
+    text-align:center;
+    cursor: pointer;
+    padding-bottom: 19px;
+    z-index: 2;
+}
+.page::before{
+    display: block;
+    content: attr(aria-label);  
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;  
+    font-weight: 700;
+    height: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.pageActive{
+    font-weight: 700;
+}
+.pageUnderline{
+    background: #1A1C21;
+    border-radius: 2px;
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+/* inner pages styles */
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+/* match summary */
+.stageStat{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+.stage{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    gap: 24px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 8px;
+}
+.statLine{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 24px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.statLine > *:first-child{
+    color: #1A1C21;
+}
+.iconWithText{
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }

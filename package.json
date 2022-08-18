@@ -13,7 +13,7 @@
     "@trpc/next": "^9.27.0",
     "@trpc/react": "^9.27.0",
     "@trpc/server": "^9.27.0",
-    "framer-motion": "^7.0.1",
+    "framer-motion": "^7.2.0",
     "fuse.js": "^6.6.2",
     "next": "12.2.3",
     "next-auth": "^4.10.3",
