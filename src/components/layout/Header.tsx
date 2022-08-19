@@ -63,7 +63,7 @@ const Header: React.FC = () => {
                     />
                     <Settings />
                     {
-                        session === null
+                        !session
                             ? <button className={styles.button}>
                                 Sign In
                             </button>
