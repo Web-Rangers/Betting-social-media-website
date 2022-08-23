@@ -6,6 +6,8 @@ import Slider from '@components/ui/Slider';
 import type { Tipsters } from 'src/types/queryTypes';
 import { inferArrayElementType } from 'src/utils/inferArrayElementType';
 import * as portals from 'react-reverse-portal';
+import { AnimatePresence, AnimationProps, motion, Variant } from 'framer-motion';
+import Moment from 'react-moment';
 
 interface IPortalContext {
     portalNode: portals.HtmlPortalNode | null
@@ -21,7 +23,11 @@ const TipsterRating: React.FC = () => {
         if (isSSR) {
             return null;
         }
-        return portals.createHtmlPortalNode({ attributes: { style: "position: absolute; top: 0; left: 0;" } });
+        return portals.createHtmlPortalNode({
+            attributes: {
+                style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            }
+        });
     }, []);
 
 
@@ -92,15 +98,18 @@ const VerifiedTipsters: React.FC<{ tipsters: Tipsters, portalNode: portals.HtmlP
 }
 
 const TipsterCard: React.FC<inferArrayElementType<Tipsters>> = (props) => {
-    const { avgProfit, image, name, subscribtionCost, winrate, sport } = props
+    const { avgProfit, image, name, subscriptionCost, winrate, sport } = props
     const [following, setFollowing] = useState(false);
     const portalCotext = useContext(PortalContext)
+    const [modalOpen, setModalOpen] = useState(false)
 
     return (
         <>
             {portalCotext?.portalNode &&
                 <portals.InPortal node={portalCotext.portalNode}>
-                    Hello!
+                    <AnimatePresence initial={false}>
+                        {modalOpen && <TipsterModal {...props} onClose={() => setModalOpen(false)} />}
+                    </AnimatePresence>
                 </portals.InPortal>
             }
             <div className={styles.tipsterCard}>
@@ -146,10 +155,10 @@ const TipsterCard: React.FC<inferArrayElementType<Tipsters>> = (props) => {
                 </div>
                 <div className={styles.subscriptionInfo}>
                     <div>
-                        <h4>$ {subscribtionCost}/MO</h4>
+                        <h4>$ {subscriptionCost}/MO</h4>
                         <span>How to subscribe?</span>
                     </div>
-                    <button>
+                    <button onClick={() => setModalOpen(!modalOpen)}>
                         Subscribe
                     </button>
                 </div>
@@ -159,13 +168,130 @@ const TipsterCard: React.FC<inferArrayElementType<Tipsters>> = (props) => {
     )
 }
 
-const TipsterModal: React.FC<inferArrayElementType<Tipsters>> = (props) => {
-    const { image, name, subscribtionCost } = props
+const TipsterModalVariants = {
+    open: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
 
+interface TipsterModalProps extends inferArrayElementType<Tipsters> {
+    onClose: () => void
+}
+
+const plans = [
+    { name: 'Monthly', multiplier: 1, id: 1 },
+    { name: '6/mo', multiplier: 6, id: 2 },
+    { name: '12/mo', multiplier: 12, id: 3 }
+]
+
+const TipsterModal: React.FC<TipsterModalProps> = (props) => {
+    const { image, name, subscriptionCost, onClose } = props
+    const [selectedPlan, setSelectedPlan] = useState(1)
 
     return (
-        <div>
-
+        <div className={styles.modalContainer}>
+            <motion.div
+                className={styles.backdrop}
+                onClick={onClose}
+                variants={TipsterModalVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+            />
+            <motion.div
+                className={styles.modal}
+                variants={TipsterModalVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+            >
+                <div className={styles.header}>
+                    <Image
+                        src={image}
+                        height={70}
+                        width={70}
+                    />
+                    <div>
+                        <span>Subscribe to</span>
+                        <span className={styles.name}>{name}</span>
+                    </div>
+                    <div
+                        className={styles.close}
+                        onClick={onClose}
+                    >
+                        <Image
+                            src='/icons/close.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                </div>
+                <div className={styles.plans}>
+                    <span>Plans</span>
+                    <div className={styles.plansList}>
+                        {plans.map(({ name, multiplier, id }) => (
+                            <div
+                                className={`${styles.plan} ${selectedPlan === id && styles.active}`}
+                                onClick={() => setSelectedPlan(id)}
+                            >
+                                <span className={styles.name}>
+                                    {name}
+                                </span>
+                                <span className={styles.cost}>
+                                    $ {subscriptionCost * multiplier}
+                                </span>
+                                <span className={styles.duration}>
+                                    Per {multiplier > 1 && multiplier} month{multiplier > 1 && 's'}
+                                </span>
+                                <span className={styles.description}>
+                                    Subscription will run from now to{' '}
+                                    <Moment
+                                        format='D MMMM YYYY'
+                                        date={new Date(
+                                            new Date().getFullYear(),
+                                            new Date().getMonth() + multiplier,
+                                            new Date().getDate()
+                                        )}
+                                    />
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className={styles.paymentMethods}>
+                    <span>Payment methods</span>
+                    <button>
+                        <Image
+                            src="/images/paypal.svg"
+                            height={20}
+                            width={80}
+                        />
+                    </button>
+                    <button>
+                        <Image
+                            src="/images/visa.svg"
+                            height={14}
+                            width={48}
+                        />
+                        <Image
+                            src="/images/mastercard.svg"
+                            height={20}
+                            width={32}
+                        />
+                    </button>
+                </div>
+            </motion.div>
         </div>
     )
 }
