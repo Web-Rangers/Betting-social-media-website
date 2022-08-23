@@ -1,0 +1,224 @@
+.mainBlock {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+/* Verified Tipsters */
+
+.verifiedTipsters {
+    position: relative;
+    height: 510px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 40px 170px 15px;
+    border-top-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
+    gap: 40px;
+}
+
+.verifiedTipstersBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.verifiedTipstersTitle {
+    z-index: 1;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.verifiedTipstersSubtitle {
+    z-index: 1;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.verifiedTipstersSlider {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tipsterSlide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+/* Tipster Card */
+
+.tipsterCard {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 20px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    flex: 1;
+}
+
+.tipsterCard .mainInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.tipsterCard .avatar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+    flex: 1;
+}
+
+.tipsterCard .info {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+.tipsterCard .info .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1A1C211A;
+}
+
+.tipsterCard .info .header .sport {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+
+.tipsterCard .info .header button {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #7F3FFC;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.tipsterCard .info .stats {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tipsterCard .info .stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.tipsterCard .info .stats div h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C2199;
+}
+
+.tipsterCard .info .stats div span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.tipsterCard .subscriptionInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #1A1C211A;
+}
+
+.tipsterCard .subscriptionInfo div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.tipsterCard .subscriptionInfo div h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: #1A1C21;
+}
+
+.tipsterCard .subscriptionInfo div span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21B2;
+}
+
+.tipsterCard .subscriptionInfo button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px;
+    border-radius: 8px;
+    background-color: #7F3FFC;
+    border: none;
+    cursor: pointer;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
