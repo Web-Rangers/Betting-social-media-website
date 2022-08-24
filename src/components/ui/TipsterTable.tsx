@@ -5,6 +5,8 @@ import {
     flexRender,
     getCoreRowModel,
     getPaginationRowModel,
+    getSortedRowModel,
+    SortingState,
     Table,
     useReactTable,
 } from '@tanstack/react-table'
@@ -32,6 +34,7 @@ const columns = [
                 />
             </div>
             : props.row.index + 1,
+        enableSorting: false,
     }),
     columnHelper.accessor(row => ({ ...row }), {
         id: 'user',
@@ -39,6 +42,7 @@ const columns = [
             return <TipsterInfo {...info.getValue()} />
         },
         header: () => <span>Tipster</span>,
+        enableSorting: false,
     }),
     columnHelper.accessor('form', {
         cell: info => <div className={styles.dots}>
@@ -54,11 +58,12 @@ const columns = [
                     />
             })}
         </div>,
-        header: () => <span>Form</span>
+        header: () => <span>Form</span>,
+        enableSorting: false,
     }),
     columnHelper.accessor('betCount', {
         cell: info => info.getValue(),
-        header: () => <span>Bets</span>
+        header: () => <span>Bets</span>,
     }),
     columnHelper.accessor('winrate', {
         cell: info => info.getValue() * 100 + '%',
@@ -79,16 +84,22 @@ const columns = [
 const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
     const { tipsters } = props;
     const pageSize = 20;
+    const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
         data: tipsters,
         columns,
+        state: {
+            sorting
+        },
+        onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         initialState: {
             pagination: {
                 pageSize: pageSize,
-            }
+            },
         },
     })
 
@@ -98,16 +109,41 @@ const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => (
-                                <th key={header.id} className={styles.header}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
+                            {headerGroup.headers.map(header => {
+                                return (
+                                    <th key={header.id} colSpan={header.colSpan} className={styles.header}>
+                                        {header.isPlaceholder ? null : (
+                                            <div
+                                                {...{
+                                                    className: header.column.getCanSort()
+                                                        ? 'cursor-pointer select-none'
+                                                        : '',
+                                                    onClick: header.column.getToggleSortingHandler(),
+                                                }}
+                                            >
+                                                {flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                                {{
+                                                    asc: <Image
+                                                        src='/icons/chevron.svg'
+                                                        height={16}
+                                                        width={16}
+                                                        className={styles.sortAsc}
+                                                    />,
+                                                    desc: <Image
+                                                        src='/icons/chevron.svg'
+                                                        height={16}
+                                                        width={16}
+                                                        className={styles.sortDesc}
+                                                    />,
+                                                }[header.column.getIsSorted() as string] ?? null}
+                                            </div>
                                         )}
-                                </th>
-                            ))}
+                                    </th>
+                                )
+                            })}
                         </tr>
                     ))}
                 </thead>

@@ -320,10 +320,6 @@
     justify-content: center;
 }
 
-/* .chevron:disabled {
-    display: none;
-} */
-
 .chevron.left {
     transform: rotate(90deg);
 }
@@ -368,6 +364,11 @@
     color: #1A1C21B2;
 }
 
+.header:not(:nth-child(2)) span {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
 .body .row .cell {
     text-align: center;
 }
@@ -388,4 +389,8 @@
 .row .cell:last-child {
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
+}
+
+.sortAsc {
+    transform: rotate(180deg);
 }
