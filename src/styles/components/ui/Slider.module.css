@@ -12,6 +12,7 @@
     margin: 0 5px;
     border-radius: 100%;
     transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .dot.active {

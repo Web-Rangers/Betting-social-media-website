@@ -51,6 +51,7 @@ const TipsterRating: React.FC = () => {
                 </div>
                 <div className={styles.mainColumn}>
                     <TipsterTable tipsters={tipsters} />
+                    <Banner image='/images/banner-placeholder-1.png' height={200} />
                 </div>
                 <div className={styles.sideColumn}>
                     <CountdownTimer {...currentCompetition} />
