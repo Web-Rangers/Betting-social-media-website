@@ -12,7 +12,7 @@ import Image from 'next/image'
 import shortenNumber from 'src/utils/shortenNumber'
 import { PortalContext } from 'src/utils/portalContext'
 import * as portals from 'react-reverse-portal';
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import TipsterModal from './TipsterModal'
 
 const columnHelper = createColumnHelper<inferArrayElementType<Tipsters>>()
@@ -111,8 +111,9 @@ const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
 }
 
 const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
-    const { name, image, subscriberCount } = props
+    const { name, image, subscriberCount, avgProfit, sport, followerCount } = props
     const [modalOpen, setModalOpen] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
 
     return (
         <>
@@ -126,7 +127,14 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
                 }
             </PortalContext.Consumer>
             <div className={styles.tipster}>
-                <div className={styles.user}>
+                <div
+                    className={styles.user}
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                >
+                    <AnimatePresence initial={false}>
+                        {isHovering && <UserHover {...props} />}
+                    </AnimatePresence>
                     <div className={styles.avatar}>
                         <Image
                             src={image}
@@ -150,6 +158,77 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
                 </button>
             </div>
         </>
+    )
+}
+
+const UserHoverVariants = {
+    open: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const UserHover: React.FC<inferArrayElementType<Tipsters>> = (props) => {
+    const { avgProfit, name, image, sport, followerCount } = props
+
+    return (
+        <motion.div
+            className={styles.hoverContainer}
+            variants={UserHoverVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+        >
+            <div className={`${styles.profit} ${avgProfit > 0 ? styles.positive : styles.negative}`}>
+                <span>Avg. Monthly Profit</span>
+                <span>$ {avgProfit}</span>
+            </div>
+            <div className={styles.userDetailed}>
+                <div className={styles.infoContainer}>
+                    <div className={styles.user}>
+                        <div className={styles.avatar}>
+                            <Image
+                                src={image}
+                                height={60}
+                                width={60}
+                            />
+                        </div>
+                        <div className={styles.userInfo}>
+                            <span className={styles.name}>{name}</span>
+                            <span className={styles.sport}>
+                                Top {sport.name} Tipster
+                                <Image
+                                    src={sport.image}
+                                    height={24}
+                                    width={24}
+                                />
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.followers}>
+                        <button>
+                            <Image
+                                src='/icons/follow.svg'
+                                height={20}
+                                width={20}
+                            />
+                            Follow
+                        </button>
+                        <span>{shortenNumber(followerCount, 0)} followers</span>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
     )
 }
 
