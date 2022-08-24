@@ -8,6 +8,9 @@ import { inferArrayElementType } from 'src/utils/inferArrayElementType';
 import * as portals from 'react-reverse-portal';
 import { AnimatePresence, AnimationProps, motion, Variant } from 'framer-motion';
 import Moment from 'react-moment';
+import BestBookmakers from '@components/ui/BestBookmakers';
+import LiveMatches from '@components/ui/LiveMatches';
+import Banner from '@components/ui/Banner';
 
 interface IPortalContext {
     portalNode: portals.HtmlPortalNode | null
@@ -17,25 +20,25 @@ const PortalContext = createContext<IPortalContext>({ portalNode: null });
 
 const TipsterRating: React.FC = () => {
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll']);
-    const isSSR = typeof window === "undefined";
-
+    const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
+    const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const portalNode = useMemo(() => {
-        if (isSSR) {
+        if (typeof window === "undefined") {
             return null;
         }
         return portals.createHtmlPortalNode({
             attributes: {
-                style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                style: "position: absolute; top: 0; left: 0;"
             }
         });
     }, []);
 
 
-    if (tipstersLoading) {
+    if (tipstersLoading || bookmakersLoading || liveMatchesLoading) {
         return <div>Loading...</div>
     }
 
-    if (!tipsters) {
+    if (!tipsters || !bookmakers || !liveMatches) {
         return <div>Error...</div>
     }
 
@@ -45,6 +48,14 @@ const TipsterRating: React.FC = () => {
                 {portalNode && <portals.OutPortal node={portalNode} />}
                 <div className={styles.mainBlock}>
                     <VerifiedTipsters tipsters={tipsters} portalNode={portalNode} />
+                </div>
+                <div className={styles.mainColumn}>
+                    a
+                </div>
+                <div className={styles.sideColumn}>
+                    <BestBookmakers bookmakers={bookmakers} />
+                    <LiveMatches matches={liveMatches} />
+                    <Banner image='/images/banner-placeholder-2.png' height={463} />
                 </div>
             </PortalContext.Provider>
         </>
