@@ -1,6 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
 .table {
     border-spacing: 0;
     border-collapse: separate;
+    width: 100%;
 }
 
 .header {
@@ -288,6 +297,60 @@
     content: url(/icons/roi-negative.svg);
     position: absolute;
     left: -20px;
+}
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.chevron {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .chevron:disabled {
+    display: none;
+} */
+
+.chevron.left {
+    transform: rotate(90deg);
+}
+
+.chevron.right {
+    transform: rotate(-90deg);
+}
+
+.pageNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+    cursor: pointer;
+}
+
+.pageNumber.active {
+    background-color: #7F3FFC;
+    color: #FFFFFF;
 }
 
 /* Table styling */

@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { ReactElement, useContext, useEffect, useState } from 'react'
 import { Tipsters } from 'src/types/queryTypes'
 import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
+    getPaginationRowModel,
+    Table,
     useReactTable,
 } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
@@ -40,10 +42,16 @@ const columns = [
     }),
     columnHelper.accessor('form', {
         cell: info => <div className={styles.dots}>
-            {info.getValue().map(value => {
+            {info.getValue().map((value, index) => {
                 return value
-                    ? <div className={`${styles.dot} ${styles.win}`} />
-                    : <div className={`${styles.dot} ${styles.lose}`} />
+                    ? <div
+                        key={`table_dot_${index}_${info.row.index}`}
+                        className={`${styles.dot} ${styles.win}`}
+                    />
+                    : <div
+                        key={`table_dot_${index}_${info.row.index}`}
+                        className={`${styles.dot} ${styles.lose}`}
+                    />
             })}
         </div>,
         header: () => <span>Form</span>
@@ -70,48 +78,58 @@ const columns = [
  */
 const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
     const { tipsters } = props;
+    const pageSize = 20;
 
     const table = useReactTable({
         data: tipsters,
         columns,
-        getCoreRowModel: getCoreRowModel()
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        initialState: {
+            pagination: {
+                pageSize: pageSize,
+            }
+        },
     })
 
     return (
-        <table className={styles.table}>
-            <thead>
-                {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
-                        {headerGroup.headers.map(header => (
-                            <th key={header.id} className={styles.header}>
-                                {header.isPlaceholder
-                                    ? null
-                                    : flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext()
-                                    )}
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-            </thead>
-            <tbody className={styles.body}>
-                {table.getRowModel().rows.map(row => (
-                    <tr key={row.id} className={styles.row}>
-                        {row.getVisibleCells().map(cell => (
-                            <td key={cell.id} className={styles.cell}>
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className={styles.container}>
+            <table className={styles.table}>
+                <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => (
+                                <th key={header.id} className={styles.header}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody className={styles.body}>
+                    {table.getRowModel().rows.map(row => (
+                        <tr key={row.id} className={styles.row}>
+                            {row.getVisibleCells().map(cell => (
+                                <td key={cell.id} className={styles.cell}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <Pagination table={table} pageCount={Math.round(tipsters.length / pageSize)} />
+        </div>
     )
 }
 
 const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
-    const { name, image, subscriberCount, avgProfit, sport, followerCount } = props
+    const { name, image, subscriberCount } = props
     const [modalOpen, setModalOpen] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
 
@@ -229,6 +247,77 @@ const UserHover: React.FC<inferArrayElementType<Tipsters>> = (props) => {
                 </div>
             </div>
         </motion.div>
+    )
+}
+
+const Pagination: React.FC<{ table: Table<inferArrayElementType<Tipsters>>, pageCount: number }> = (props) => {
+    const { table, pageCount } = props
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [pages, setPages] = useState<ReactElement[]>()
+
+    function updatePages() {
+        let numbers = new Array<ReactElement>();
+        for (let index = (currentPage >= 3 ? currentPage - 2 : 0); index < ((currentPage + 2 >= pageCount) ? pageCount : currentPage + 3); index++) {
+            numbers.push(
+                <span
+                    key={`pagination_page_${index}`}
+                    className={`${styles.pageNumber} ${index === currentPage && styles.active}`}
+                    onClick={() => changePage(index)}
+                >
+                    {index + 1}
+                </span>
+            )
+        }
+        setPages(numbers)
+    }
+
+    function changePage(index: number) {
+        setCurrentPage(index)
+        table.setPageIndex(index)
+    }
+
+    function nextPage() {
+        table.nextPage()
+        updatePages()
+        setCurrentPage(currentPage + 1)
+    }
+
+    function prevPage() {
+        table.previousPage()
+        updatePages()
+        setCurrentPage(currentPage - 1)
+    }
+
+    useEffect(() => {
+        updatePages()
+    }, [currentPage])
+
+    return (
+        <div className={styles.pagination}>
+            <button
+                className={`${styles.chevron} ${styles.left}`}
+                onClick={prevPage}
+                disabled={!table.getCanPreviousPage()}
+            >
+                <Image
+                    src='/icons/chevron.svg'
+                    height={24}
+                    width={24}
+                />
+            </button>
+            {pages}
+            <button
+                className={`${styles.chevron} ${styles.right}`}
+                onClick={nextPage}
+                disabled={!table.getCanNextPage()}
+            >
+                <Image
+                    src='/icons/chevron.svg'
+                    height={24}
+                    width={24}
+                />
+            </button>
+        </div>
     )
 }
 
