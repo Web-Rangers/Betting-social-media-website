@@ -1,0 +1,183 @@
+/* Tipster Modal */
+
+.modalContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContainer .backdrop {
+    height: 100%;
+    width: 100%;
+    backdrop-filter: brightness(50%);
+}
+
+.modalContainer .modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    width: 400px;
+}
+
+.modal .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 22px;
+}
+
+.modal .header div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1A1C21E5
+}
+
+.modal .header div .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #1A1C21E5;
+}
+
+.modal .close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.modal .plans {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal .plans>span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21B2;
+}
+
+.modal .plans .plansList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.modal .plansList .plan {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 14px 14px;
+    gap: 10px;
+    width: calc(50% - 6px);
+    border: 1px solid #1A1C2133;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.modal .plan .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    color: #1A1C21E5;
+    transition: all .3s ease-in-out;
+}
+
+.modal .plan .cost {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 28px;
+    color: #1A1C21;
+    transition: all .3s ease-in-out;
+}
+
+.modal .plan .duration {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    color: #1A1C21E5;
+    transition: all .3s ease-in-out;
+}
+
+.modal .plan .description {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    transition: all .3s ease-in-out;
+}
+
+.modal .plan.active {
+    background-color: #7F3FFC;
+}
+
+.modal .plan.active .name,
+.modal .plan.active .duration {
+    color: #FFFFFFE5;
+}
+
+.modal .plan.active .cost {
+    color: #FFFFFF;
+}
+
+.modal .plan.active .description {
+    color: #FFFFFFB2;
+}
+
+.modal .paymentMethods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal .paymentMethods>span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21B2;
+}
+
+.modal .paymentMethods button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 10px;
+    border: 1px solid #1A1C2133;
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}

@@ -1,0 +1,175 @@
+.table {
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+.header {
+    text-align: center;
+    padding: 19px 16px 19px 16px;
+}
+
+.cell {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1A1C21B2;
+    padding: 19px 16px 19px 16px;
+    border: none;
+}
+
+/* User */
+
+.tipster {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tipster button {
+    padding: 8px 24px 8px 24px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    border: 1px solid #1A1C2133;
+    border-radius: 4px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.userInfo .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+}
+
+.userInfo .subscribers {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21B2;
+}
+
+/* Dots */
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+}
+
+.dot.win {
+    background-color: #2CD114;
+}
+
+.dot.lose {
+    background-color: #CF1F1F;
+}
+
+.dots {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* ROI */
+
+.roi {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.roi.positive {
+    color: #2CD114;
+}
+
+.roi.positive:before {
+    content: url(/icons/roi-positive.svg);
+    position: absolute;
+    left: -20px;
+}
+
+.roi.negative {
+    color: #CF1F1F;
+}
+
+.roi.negative:before {
+    content: url(/icons/roi-negative.svg);
+    position: absolute;
+    left: -20px;
+}
+
+/* Table styling */
+
+.header:nth-child(2) {
+    text-align: start;
+}
+
+.header {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1A1C21B2;
+}
+
+.body .row .cell {
+    text-align: center;
+}
+
+.body .row .cell:nth-child(2) {
+    text-align: start;
+}
+
+.row:nth-child(odd) {
+    background-color: #F2F2F24D;
+}
+
+.row .cell:first-child {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.row .cell:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
