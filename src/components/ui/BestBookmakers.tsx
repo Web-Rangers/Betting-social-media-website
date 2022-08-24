@@ -1,17 +1,9 @@
 import React from 'react';
 import styles from '@styles/components/ui/BestBookmakers.module.css';
 import Image from 'next/image';
+import { Bookmakers } from 'src/types/queryTypes';
 
-interface BestBookmakersProps {
-    bookmakers: {
-        rating: number,
-        name: string,
-        image: string,
-        color: string
-    }[];
-}
-
-const BestBookmakers: React.FC<BestBookmakersProps> = (props) => {
+const BestBookmakers: React.FC<{ bookmakers: Bookmakers }> = (props) => {
     const { bookmakers } = props;
 
     return (

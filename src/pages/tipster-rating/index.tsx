@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import styles from "@styles/pages/TipsterRating.module.css"
 import { inferQueryOutput, trpc } from 'src/utils/trpc'
 import Image from 'next/image';
 import Slider from '@components/ui/Slider';
-import type { Tipsters } from 'src/types/queryTypes';
+import type { CurrentCompetition, Tipsters } from 'src/types/queryTypes';
 import { inferArrayElementType } from 'src/utils/inferArrayElementType';
 import * as portals from 'react-reverse-portal';
 import { AnimatePresence, AnimationProps, motion, Variant } from 'framer-motion';
@@ -11,6 +11,8 @@ import Moment from 'react-moment';
 import BestBookmakers from '@components/ui/BestBookmakers';
 import LiveMatches from '@components/ui/LiveMatches';
 import Banner from '@components/ui/Banner';
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 interface IPortalContext {
     portalNode: portals.HtmlPortalNode | null
@@ -22,6 +24,7 @@ const TipsterRating: React.FC = () => {
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll']);
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
+    const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
     const portalNode = useMemo(() => {
         if (typeof window === "undefined") {
             return null;
@@ -34,11 +37,11 @@ const TipsterRating: React.FC = () => {
     }, []);
 
 
-    if (tipstersLoading || bookmakersLoading || liveMatchesLoading) {
+    if (tipstersLoading || bookmakersLoading || liveMatchesLoading || currentCompetitionLoading) {
         return <div>Loading...</div>
     }
 
-    if (!tipsters || !bookmakers || !liveMatches) {
+    if (!tipsters || !bookmakers || !liveMatches || !currentCompetition) {
         return <div>Error...</div>
     }
 
@@ -53,6 +56,7 @@ const TipsterRating: React.FC = () => {
                     a
                 </div>
                 <div className={styles.sideColumn}>
+                    <CountdownTimer {...currentCompetition} />
                     <BestBookmakers bookmakers={bookmakers} />
                     <LiveMatches matches={liveMatches} />
                     <Banner image='/images/banner-placeholder-2.png' height={463} />
@@ -253,6 +257,7 @@ const TipsterModal: React.FC<TipsterModalProps> = (props) => {
                     <div className={styles.plansList}>
                         {plans.map(({ name, multiplier, id }) => (
                             <div
+                                key={`subscription_plan_${id}`}
                                 className={`${styles.plan} ${selectedPlan === id && styles.active}`}
                                 onClick={() => setSelectedPlan(id)}
                             >
@@ -305,6 +310,75 @@ const TipsterModal: React.FC<TipsterModalProps> = (props) => {
             </motion.div>
         </div>
     )
+}
+
+const CountdownTimer: React.FC<CurrentCompetition> = (props) => {
+    const { endsOn, startedOn } = props;
+    const [progress, setProgress] = useState(((new Date().getTime() - startedOn.getTime()) / (endsOn.getTime() - startedOn.getTime())) * 100)
+
+    function calculateProgress() {
+        const currentTime = new Date().getTime();
+        const startTime = startedOn.getTime();
+        const targetTime = endsOn.getTime();
+        const res = ((currentTime - startTime) / (targetTime - startTime)) * 100
+        setProgress(res)
+    }
+
+    useEffect(() => {
+        const timer = setInterval(calculateProgress, 60000);
+        return () => clearInterval(timer)
+    }, [])
+
+    return (
+        <div className={styles.timer}>
+            <div className={styles.background}>
+                <Image
+                    src='/images/competition-timer-background.png'
+                    layout='fill'
+                    objectFit='cover'
+                />
+            </div>
+            <div className={styles.header}>
+                <h3>Free Tipster Competition</h3>
+                <span>Left before the end of the tournament</span>
+            </div>
+            <div className={styles.progress}>
+                <CircularProgressbarWithChildren
+                    value={progress}
+                    maxValue={100}
+                    counterClockwise
+                    styles={{
+                        path: {
+                            strokeLinecap: 'round',
+                            strokeWidth: '4px',
+                            stroke: '#2CD114'
+                        },
+                        trail: {
+                            strokeWidth: '1px',
+                            stroke: '#FFFFFF80'
+                        }
+                    }}
+                >
+                    <Moment
+                        className={styles.time}
+                        duration={new Date()}
+                        date={endsOn}
+                        format="DD : hh : mm"
+                    />
+                    <div className={styles.timeHint}>
+                        <span>Days</span>
+                        <span>Hours</span>
+                        <span>Minutes</span>
+                    </div>
+                </CircularProgressbarWithChildren>
+            </div>
+            <div className={styles.rules}>
+                <span>Take a tour of competition rules</span>
+                <button>Learn More</button>
+            </div>
+        </div>
+    )
+
 }
 
 export default TipsterRating;

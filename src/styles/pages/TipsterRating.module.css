@@ -427,3 +427,118 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+/* Countdown Timer */
+
+.timer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 25px 32px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.timer .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.timer .header {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.timer .header h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.timer .header span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFFCC;
+}
+
+.timer .time {
+    width: max-content;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    word-spacing: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.timer .timeHint {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+    min-width: 172px;
+}
+
+/* .timer .timeHint span:first-child {
+    margin-left: -25px;
+} */
+
+.timer .timeHint span:nth-child(2) {
+    margin-right: -8px;
+}
+
+.timer .timeHint span:last-child {
+    margin-right: -15px;
+}
+
+.timer .rules {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.timer .rules span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFFCC;
+}
+
+.timer .rules button {
+    padding: 12px 24px;
+    background-color: #FFFFFF33;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
