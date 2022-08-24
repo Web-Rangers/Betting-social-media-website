@@ -244,6 +244,7 @@
     font-size: 15px;
     line-height: 18px;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 /* Countdown Timer */
@@ -359,4 +360,5 @@
     font-size: 15px;
     line-height: 18px;
     color: #FFFFFF;
+    cursor: pointer;
 }
