@@ -16,8 +16,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import TipsterTable from '@components/ui/TipsterTable';
 import TipsterModal from '@components/ui/TipsterModal';
 import { PortalContext } from 'src/utils/portalContext';
+import { NextPage } from 'next';
 
-const TipsterRating: React.FC = () => {
+const TipsterRating: NextPage = () => {
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll']);
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])

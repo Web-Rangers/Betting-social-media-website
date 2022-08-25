@@ -81,9 +81,9 @@ const columns = [
  * <PortalContext.Provider> for the modal
  * to work
  */
-const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
-    const { tipsters } = props;
-    const pageSize = 20;
+const TipsterTable: React.FC<{ tipsters: Tipsters, pageSize?: number }> = (props) => {
+    const { tipsters, pageSize } = props;
+    const _pageSize = pageSize ?? 20;
     const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
@@ -98,7 +98,7 @@ const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
         getSortedRowModel: getSortedRowModel(),
         initialState: {
             pagination: {
-                pageSize: pageSize,
+                pageSize: _pageSize,
             },
         },
     })
@@ -159,7 +159,7 @@ const TipsterTable: React.FC<{ tipsters: Tipsters }> = (props) => {
                     ))}
                 </tbody>
             </table>
-            <Pagination table={table} pageCount={Math.round(tipsters.length / pageSize)} />
+            <Pagination table={table} pageCount={Math.round(tipsters.length / _pageSize)} />
         </div>
     )
 }
