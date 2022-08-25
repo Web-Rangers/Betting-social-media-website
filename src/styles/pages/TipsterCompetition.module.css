@@ -1,0 +1,294 @@
+.mainBlock {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+/* Current Competition */
+
+.currentCompetition {
+    position: relative;
+    padding: 42px 104px;
+    border-top-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.currentCompetition .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.currentCompetition h1 {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.currentCompetition .steps {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.currentCompetition .steps span {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFFE5;
+    border: 1px solid #FFFFFF4D;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #1A1C2133;
+    padding: 14px 14px 14px 48px;
+    flex: 1;
+}
+
+.currentCompetition .steps span:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 32px;
+    width: 32px;
+    background-color: #FFFFFF33;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.currentCompetition .steps span:nth-child(1):before {
+    content: '1';
+}
+
+.currentCompetition .steps span:nth-child(2):before {
+    content: '2';
+}
+
+.currentCompetition .steps span:nth-child(3):before {
+    content: '3';
+}
+
+.currentCompetition h2 {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.currentCompetition .rewardDistribution::before {
+    content: '';
+    position: absolute;
+    right: 120%;
+    top: 50%;
+    width: 250%;
+    height: 1px;
+    background-color: #FFFFFF4D;
+}
+
+.currentCompetition .rewardDistribution::after {
+    content: '';
+    position: absolute;
+    left: 120%;
+    top: 50%;
+    width: 250%;
+    height: 1px;
+    background-color: #FFFFFF4D;
+}
+
+.currentCompetition .separator {
+    position: relative;
+    width: 77%;
+    height: 1px;
+    background-color: #FFFFFF4D;
+}
+
+.currentCompetition .leaders {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.currentCompetition .duration {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.currentCompetition .timeLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.currentCompetition .time {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 24px;
+    color: #FFFFFF;
+    word-spacing: 14px;
+}
+
+.currentCompetition .timeHint {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+    min-width: 172px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.currentCompetition .timeHint span:nth-child(2) {
+    margin-right: -8px;
+}
+
+.currentCompetition .timeHint span:last-child {
+    margin-right: -15px;
+}
+
+.currentCompetition .duration .text {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* Leader */
+
+.leader {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.leader .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFFCC;
+}
+
+.leader .prize {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.leader .avatar {
+    position: relative;
+}
+
+.leaders .leader:nth-child(1) .avatar .crown,
+.leaders .leader:nth-child(3) .avatar .crown {
+    position: absolute;
+    top: -28px;
+    left: -32px;
+    z-index: 1;
+    height: 130px;
+    width: 130px;
+}
+
+.leaders .leader:nth-child(2) .avatar .crown {
+    position: absolute;
+    top: -40px;
+    left: -43px;
+    z-index: 1;
+    height: 170px;
+    width: 170px;
+}
+
+.leader .avatar .crown:after {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    color: #1A1C21CC;
+}
+
+.leaders .leader:nth-child(2) .avatar .crown:after {
+    content: '1';
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    background-color: #F5C260;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    bottom: 15px;
+    left: calc(50% - 16px);
+}
+
+.leaders .leader:nth-child(1) .avatar .crown:after {
+    content: '2';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: #DEDEDE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    bottom: 10px;
+    left: calc(50% - 15px);
+}
+
+.leaders .leader:nth-child(3) .avatar .crown:after {
+    content: '3';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: #CA7B00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    bottom: 10px;
+    left: calc(50% - 15px);
+}
