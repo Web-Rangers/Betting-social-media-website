@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/pages/TipsterCompetition.module.css'
 import Image from 'next/image'
@@ -10,6 +10,7 @@ import { PortalContext } from 'src/utils/portalContext'
 import TipsterTable from '@components/ui/TipsterTable'
 import TextField from '@components/ui/TextField'
 import Dropdown from '@components/ui/Dropdown'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const TableDropdownItems = [
     {
@@ -76,6 +77,7 @@ const TipsterCompetition: NextPage = () => {
                     </div>
                 </div>
                 <div className={styles.sideColumn}>
+                    <GetStarted />
                 </div>
             </PortalContext.Provider>
         </>
@@ -167,6 +169,106 @@ const Leader: React.FC<{ name: string, image: string, prize: number, place: numb
             </div>
             <span className={styles.prize}>$ {prize}</span>
         </div>
+    )
+}
+
+const GetStarted: React.FC = () => {
+    const [step, setStep] = useState<number>(1);
+
+    return (
+        <div className={styles.getStarted}>
+            <h3>How can I take part in tipster competition</h3>
+            <div className={styles.steps}>
+                <AnimatePresence
+                    initial={false}
+                >
+                    {step === 1 &&
+                        <CompetitionStep
+                            step={1}
+                            text="Join the competition"
+                            onClick={() => setStep(2)}
+                            key="step_1"
+                        />
+                    }
+                    {step === 2 &&
+                        <CompetitionStep
+                            step={2}
+                            text="Build your reputation"
+                            onClick={() => setStep(3)}
+                            key="step_2"
+                        />
+                    }
+                    {step === 3 &&
+                        <CompetitionStep
+                            step={3}
+                            text="Sell your tips"
+                            onClick={() => setStep(1)}
+                            key="step_3"
+                        />
+                    }
+                </AnimatePresence>
+            </div>
+        </div>
+    )
+}
+
+const StepVariants = {
+    show: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    hide: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => void }> = (props) => {
+    const { onClick, step, text } = props;
+
+    return (
+        <motion.div
+            className={styles.step}
+            variants={StepVariants}
+            initial="hide"
+            animate="show"
+            exit="hide"
+        >
+            <Image
+                src={`/images/tipster-competition-step-${step}.svg`}
+                height={46}
+                width={46}
+                alt=""
+            />
+            <div className={styles.description}>
+                <h4>{`${step} STEP`}</h4>
+                <span>{text}</span>
+            </div>
+            <div className={styles.dots}>
+                {[1, 2, 3].map(item => (
+                    <span
+                        className={item === step ? styles.active : ''}
+                        key={`dot_${step}_${item}`}
+                    />
+                ))}
+            </div>
+            <div
+                className={styles.next}
+                onClick={onClick}
+            >
+                <Image
+                    src='/icons/chevron-white.svg'
+                    height={24}
+                    width={24}
+                />
+            </div>
+        </motion.div>
     )
 }
 
