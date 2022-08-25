@@ -377,7 +377,7 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
     )
 }
 
-interface CompetitioonParticipantProps {
+interface CompetitionParticipantProps {
     name: string
     image: string
     prize: number
@@ -388,7 +388,7 @@ interface CompetitioonParticipantProps {
     place: number
 }
 
-const CompetitionParticipant: React.FC<CompetitioonParticipantProps> = (props) => {
+const CompetitionParticipant: React.FC<CompetitionParticipantProps> = (props) => {
     const { avgProfit, image, name, prize, subscriberCount, subscriptionCost, winrate, place } = props
     const [modalOpen, setModalOpen] = useState(false)
 
