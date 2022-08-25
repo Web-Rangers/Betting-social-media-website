@@ -43,6 +43,11 @@
 }
 
 .active {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
     color: #1A1C21;
 }
 

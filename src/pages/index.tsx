@@ -232,7 +232,7 @@ interface MostTipsProps {
         teams: { image: string, name: string }[],
         tipAmount: number,
         date?: string,
-        status?: MatchStatus,
+        status: MatchStatus,
         duration?: string
     }[];
 }

@@ -1,20 +1,9 @@
 import React from 'react'
 import styles from '@styles/components/ui/LiveMatches.module.css'
 import Image from 'next/image'
+import { LiveMatches } from 'src/types/queryTypes'
 
-interface LiveMatchesProps {
-    matches: {
-        teams: {
-            name: string
-            score: number
-            image: string
-        }[],
-        id: number,
-        duration: string,
-    }[]
-}
-
-const LiveMatches: React.FC<LiveMatchesProps> = (props) => {
+const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
     const { matches } = props
 
     return (

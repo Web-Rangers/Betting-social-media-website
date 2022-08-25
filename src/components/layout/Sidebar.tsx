@@ -9,7 +9,7 @@ import styles from '@styles/components/layout/Sidebar.module.css'
 const links = [
     { href: '/popular-matches', label: 'Popular Games', image: '/images/menu/popular-games.svg' },
     { href: '/matches', label: 'Matches', image: '/images/menu/matches.svg' },
-    { href: '/live-events', label: 'Live Events', image: '/images/menu/live-events.svg' },
+    { href: '/live-matches', label: 'Live Events', image: '/images/menu/live-events.svg' },
     { href: '/tipster-rating', label: 'Tipster Rating', image: '/images/menu/tipster-rating.svg' },
     { href: '/predictions', label: 'Predictions', image: '/images/menu/predictions.svg' },
     { href: '/bookmakers', label: 'Bookmakers', image: '/images/menu/bookmakers.svg' },

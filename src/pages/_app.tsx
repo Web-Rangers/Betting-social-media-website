@@ -16,7 +16,7 @@ const MyApp: AppType = ({
 }) => {
     const router = useRouter();
     const noLayoutRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
-    const tipsterRoutes = ["/tipsters", "/competition"];
+    const tipsterRoutes = ["/tipster-rating", "/tipster-competition"];
 
     function getLayout(): ReactElement {
         if (!noLayoutRoutes.includes(router.asPath.split('?')[0] ?? '')) {

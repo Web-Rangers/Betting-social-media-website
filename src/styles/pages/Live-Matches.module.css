@@ -1,0 +1,12 @@
+.mainColumn {
+    grid-column-start: 5;
+    grid-column-end: 13;
+    padding-top: 20px;
+}
+
+.sideColumn {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin-left: 60px;
+    padding-top: 20px;
+}
