@@ -11,6 +11,7 @@ import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
 import Predictions from "@components/ui/Predictions";
 import { MatchStatus } from "src/types/matchStatus";
+import { MostTips, Tipsters } from "src/types/queryTypes";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
@@ -163,11 +164,7 @@ const SignUpPropose: React.FC = () => {
     )
 }
 
-interface TopTipstersProps {
-    tipsters: { name: string, winrate: number, image: string }[];
-}
-
-const TopTipsters: React.FC<TopTipstersProps> = (props) => {
+const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
     const { tipsters } = props;
 
     return (
@@ -226,18 +223,7 @@ const TopTipsters: React.FC<TopTipstersProps> = (props) => {
     )
 }
 
-interface MostTipsProps {
-    tips: {
-        league: string,
-        teams: { image: string, name: string }[],
-        tipAmount: number,
-        date?: string,
-        status: MatchStatus,
-        duration?: string
-    }[];
-}
-
-const MostTips: React.FC<MostTipsProps> = (props) => {
+const MostTips: React.FC<{ tips: MostTips }> = (props) => {
     const { tips } = props;
 
     function getStatusComponent(tip: typeof tips[0]) {
