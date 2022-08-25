@@ -1,27 +1,83 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/pages/TipsterCompetition.module.css'
 import Image from 'next/image'
 import { CurrentCompetition } from 'src/types/queryTypes'
 import Moment from 'react-moment'
+import * as portals from 'react-reverse-portal'
+import { PortalContext } from 'src/utils/portalContext'
+import TipsterTable from '@components/ui/TipsterTable'
+import TextField from '@components/ui/TextField'
+import Dropdown from '@components/ui/Dropdown'
+
+const TableDropdownItems = [
+    {
+        name: '1-10 Months',
+        id: '1'
+    },
+    {
+        name: '1-5 Months',
+        id: '2'
+    },
+    {
+        name: '1-2 Months',
+        id: '3'
+    },
+    {
+        name: '1 Month',
+        id: '4'
+    },
+]
 
 const TipsterCompetition: NextPage = () => {
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
+    const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
+    const portalNode = useMemo(() => {
+        if (typeof window === "undefined") {
+            return null;
+        }
+        return portals.createHtmlPortalNode({
+            attributes: {
+                style: "position: absolute; top: 0; left: 0;"
+            }
+        });
+    }, [])
 
-    if (currentCompetitionLoading) {
+    if (currentCompetitionLoading || tipstersLoading) {
         return <div>Loading...</div>
     }
 
-    if (!currentCompetition) {
+    if (!currentCompetition || !tipsters) {
         return <div>Error...</div>
     }
 
     return (
         <>
-            <div className={styles.mainBlock}>
-                <CurrentCompetition {...currentCompetition} />
-            </div>
+            <PortalContext.Provider value={{ portalNode: portalNode }}>
+                {portalNode && <portals.OutPortal node={portalNode} />}
+                <div className={styles.mainBlock}>
+                    <CurrentCompetition {...currentCompetition} />
+                </div>
+                <div className={styles.mainColumn}>
+                    <div className={styles.table}>
+                        <h2>Top 100 Tipsters</h2>
+                        <div className={styles.tableControls}>
+                            <TextField icon='/icons/search.svg' placeholder='Search for tipsters' />
+                            <div>
+                                <Dropdown
+                                    items={TableDropdownItems}
+                                    onSelect={() => { }}
+                                    label="Tipsters by:"
+                                />
+                            </div>
+                        </div>
+                        <TipsterTable tipsters={tipsters} pageSize={10} />
+                    </div>
+                </div>
+                <div className={styles.sideColumn}>
+                </div>
+            </PortalContext.Provider>
         </>
     )
 }
@@ -31,6 +87,13 @@ const CurrentCompetition: React.FC<CurrentCompetition> = (props) => {
 
     return (
         <div className={styles.currentCompetition}>
+            <div className={styles.share}>
+                <Image
+                    src='/icons/share.svg'
+                    height={24}
+                    width={24}
+                />
+            </div>
             <Image
                 src='/images/tipster-competition-background.png'
                 layout='fill'

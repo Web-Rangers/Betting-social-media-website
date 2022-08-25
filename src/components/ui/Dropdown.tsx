@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 interface DropdownProps {
     items: { name: string, id: string, label?: string | ReactNode }[];
+    label?: string,
     onSelect: (id: string) => void;
 }
 
@@ -27,7 +28,7 @@ const ChevronVariants = {
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-    const { items, onSelect } = props;
+    const { items, onSelect, label } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(items[0]);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 className={styles.activeItem}
                 onClick={() => setIsOpen(!isOpen)}
             >
+                {label && <span className={styles.mainLabel}>{label}</span>}
                 <div className={styles.activeName}>
                     {
                         selected?.label && (

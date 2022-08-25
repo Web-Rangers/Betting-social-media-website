@@ -5,6 +5,48 @@
     grid-row-end: 2;
 }
 
+.mainColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 60px;
+}
+
+.sideColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    grid-column-start: 10;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.table h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.tableControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 /* Current Competition */
 
 .currentCompetition {
@@ -17,6 +59,20 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+}
+
+.currentCompetition .share {
+    position: absolute;
+    right: 42px;
+    top: 42px;
+    z-index: 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: #FFFFFF4D;
+    cursor: pointer;
 }
 
 .currentCompetition .background {
