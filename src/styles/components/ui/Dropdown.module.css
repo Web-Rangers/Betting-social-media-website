@@ -11,6 +11,7 @@
     border: 1px solid #7F3FFC33;
     border-radius: 8px;
     width: 100%;
+    min-width: max-content;
 }
 
 .mainLabel {

@@ -17,6 +17,46 @@ import TipsterTable from '@components/ui/TipsterTable';
 import TipsterModal from '@components/ui/TipsterModal';
 import { PortalContext } from 'src/utils/portalContext';
 import { NextPage } from 'next';
+import TextField from '@components/ui/TextField';
+import Dropdown from '@components/ui/Dropdown';
+
+const SportItems = [
+    {
+        name: 'Football',
+        id: '1'
+    },
+    {
+        name: 'Baseball',
+        id: '2'
+    },
+    {
+        name: 'Basketball',
+        id: '3'
+    },
+    {
+        name: 'Box',
+        id: '4'
+    },
+]
+
+const TimeItems = [
+    {
+        name: '1-10 Months',
+        id: '1'
+    },
+    {
+        name: '1-5 Months',
+        id: '2'
+    },
+    {
+        name: '1-2 Months',
+        id: '3'
+    },
+    {
+        name: '1 Month',
+        id: '4'
+    },
+]
 
 const TipsterRating: NextPage = () => {
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll']);
@@ -51,7 +91,28 @@ const TipsterRating: NextPage = () => {
                     <VerifiedTipsters tipsters={tipsters} portalNode={portalNode} />
                 </div>
                 <div className={styles.mainColumn}>
-                    <TipsterTable tipsters={tipsters} />
+                    <div className={styles.tableContainer}>
+                        <div className={styles.controls}>
+                            <TextField
+                                placeholder='Search for tipsters'
+                                icon='/icons/search.svg'
+                            />
+                            <div className={styles.dropdowns}>
+                                <Dropdown
+                                    items={SportItems}
+                                    label='Sport:'
+                                    onSelect={() => { }}
+                                />
+                                <Dropdown
+                                    items={TimeItems}
+                                    label='Tipsters by:'
+                                    onSelect={() => { }}
+                                />
+                                <button>Reset</button>
+                            </div>
+                        </div>
+                        <TipsterTable tipsters={tipsters} />
+                    </div>
                     <Banner image='/images/banner-placeholder-1.png' height={200} />
                     <PageTips />
                 </div>

@@ -26,6 +26,38 @@
     grid-row-end: 3;
 }
 
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tableContainer .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 42px;
+}
+
+.tableContainer .controls .dropdowns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.tableContainer .controls .dropdowns button {
+    border: none;
+    background-color: transparent;
+    padding: 12px 31px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    cursor: pointer;
+}
+
 /* Verified Tipsters */
 
 .verifiedTipsters {
