@@ -362,3 +362,58 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+
+/* Page Tips */
+
+.tips {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 40px;
+    gap: 40px;
+    background-color: #F2F2F24D;
+    border-radius: 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.tips .block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}
+
+.tips .block ol {
+    padding: 0 20px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tips .block ol li::marker {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    color: #1A1C21;
+}
+
+.tips .block h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #1A1C21;
+}
+
+.tips .block div {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

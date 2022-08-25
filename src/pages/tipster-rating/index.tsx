@@ -52,6 +52,7 @@ const TipsterRating: React.FC = () => {
                 <div className={styles.mainColumn}>
                     <TipsterTable tipsters={tipsters} />
                     <Banner image='/images/banner-placeholder-1.png' height={200} />
+                    <PageTips />
                 </div>
                 <div className={styles.sideColumn}>
                     <CountdownTimer {...currentCompetition} />
@@ -245,6 +246,55 @@ const CountdownTimer: React.FC<CurrentCompetition> = (props) => {
             <div className={styles.rules}>
                 <span>Take a tour of competition rules</span>
                 <button>Learn More</button>
+            </div>
+        </div>
+    )
+
+}
+
+const PageTips: React.FC = () => {
+
+    return (
+        <div className={styles.tips}>
+            <div className={styles.block}>
+                <h2>7 Reasons to Follow Our Betting Tips and Predictions</h2>
+                <ol>
+                    <li>
+                        In today’s high paced world is really important to ensure that we use our time efficiently.
+                        In order to win regularly from sports betting, you definitely have to commit a lot of time in researching,
+                        building data models and know what is happening with each team or player. This indeed is very challenging
+                        and only a very few people are successful with that. By following betting tips provided by experts you are
+                        using their knowledge in your favour while not spending any time on doing the hard work. It won’t be crazy
+                        if we assume that by betting with the right information and tips in our hands we are increasing our chance
+                        of winning quite significantly. Therefore, this is our reason number 1 why to follow betting tips.
+                    </li>
+                    <li>
+                        If you are willing to commit the hard work and be the person who knows a certain sport in depth this is
+                        great you will not need betting tips for your chosen sport. But if you are treating sports betting as an
+                        investment there is a huge chance that you will want to see your betting portfolio well diversified meaning
+                        that you should bet on more than one sport. Therefore, you will need again an expert who will provide you
+                        with well researched betting tips on different sports. Certainly, this is the right way to build sustainable
+                        portfolio by using your own knowledge and leverage other people’s expertise. This is reason number 2 why it
+                        is wise to use betting tips as part of your betting activities.
+                    </li>
+                    <li>
+                        Take calculated risk. Sports betting is not about gambling, it is about making educated decisions that will
+                        likely result in long term profits. By following betting tips, you are ensuring to always be informed when
+                        placing your bets and reduce the risk factor to the very minimum. At the end of the day, betting is a game
+                        of chances but it is always good to know the odds are in your favour and betting tips are the tool that
+                        will help you achieve that.
+                    </li>
+                </ol>
+            </div>
+            <div className={styles.block}>
+                <h2>How to Turn Our Sports Betting Tips to Profit?</h2>
+                <div>
+                    <span>Sports betting is a hugely popular way to increase the amount of fun you have when you watch your favourite sports. Alongside this, while we would not recommend trying to make sports betting a second source of income as it can be a fickle hobby, it is entirely possible to make a good profit from betting on your favourite sports.</span>
+                    <span>To do this, you need to be supremely disciplined when you come to betting. Many bettors will look to employ strategies when they bet, such as only backing or avoiding specific markets or teams, they will only wager on certain events and will likely stay away from betting tips that are too short or too long.</span>
+                    <span>With regard to sports betting odds, it is always important to understand what the odds mean. For example, an odds-on bet means that a side is likely to win that particular game or event, while very long odds mean the chances of the bet coming off a very lower. With a long odds bet offers a big potential return but a huge risk to your wager amount, and a short odds bet offering a safer path but with a smaller return, many bettors will look to play somewhere in the middle of this, in an area where the potential risk and reward and weight together well.</span>
+                    <span>Importantly, if you are not overly confident when it comes to betting on your own, then you can wager on our sports betting tips and betting predictions to help swell your wins. You can then use these sports betting tips at home on your laptop or on the move on your phone, whilst utilising a bookmaker’s betting app is also a great way to keep up to date with the biggest games.</span>
+                    <span>The use of betting calculators alongside using strong money management is vital to ensure you stay in profit when it comes to betting. When it comes to your money management, we recommend that you set limits for yourself when it comes to depositing, whilst you should not only ever bet huge amounts of money all in one bet. You can also track your performance in betting too, with this showing you where and when you are losing/gaining money.</span>
+                </div>
             </div>
         </div>
     )
