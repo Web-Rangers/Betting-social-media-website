@@ -26,6 +26,17 @@
     grid-row-end: 3;
 }
 
+.bottomBlock {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .table {
     display: flex;
     flex-direction: column;
@@ -41,10 +52,19 @@
     color: #1A1C21;
 }
 
-.tableControls {
+.controls {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.bottomBlock>h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
 }
 
 /* Current Competition */
@@ -436,4 +456,224 @@
 
 .step .dots span.active {
     background-color: #FFFFFF;
+}
+
+/* Previous Competitions */
+
+.previousCompetitions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 738px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.previousCompetitions .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.previousCompetitions .slide {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    padding: 20px 24px;
+    height: 100%;
+}
+
+.previousCompetitions .slide .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    margin-left: 70px;
+}
+
+.previousCompetitions .slide .title h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.previousCompetitions .slide .title span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFFE5;
+}
+
+.previousCompetitions .slide .participants {
+    display: flex;
+    flex-direction: row;
+    gap: 21px;
+    flex-wrap: wrap;
+}
+
+/* Participant */
+
+.participant {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 14px;
+    border: 1px solid #FFFFFF66;
+    border-radius: 8px;
+    width: 380px;
+    backdrop-filter: blur(5px);
+}
+
+.participant .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.participant .userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px
+}
+
+.participant .avatar {
+    height: 74px;
+    width: 74px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant .detailedInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.participant .detailedInfo .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFFCC;
+}
+
+.participant .detailedInfo .subscribers {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFFB2;
+}
+
+.participant .detailedInfo button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.participant .competitionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.participant .place {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.participant .prize {
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF66;
+    border-radius: 8px;
+}
+
+.participant .stats {
+    padding-top: 20px;
+    border-top: 1px solid #FFFFFF66;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.participant button {
+    padding: 9px 24px;
+    border-radius: 8px;
+    background-color: #7F3FFC;
+    border: none;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.participant .stats>div {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.participant .stats>div div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.participant .stats>div div span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF99;
+}
+
+.participant .stats>div div span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
 }

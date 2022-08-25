@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/pages/TipsterCompetition.module.css'
 import Image from 'next/image'
-import { CurrentCompetition } from 'src/types/queryTypes'
+import { CurrentCompetition, PreviousCompetitions } from 'src/types/queryTypes'
 import Moment from 'react-moment'
 import * as portals from 'react-reverse-portal'
 import { PortalContext } from 'src/utils/portalContext'
@@ -11,6 +11,9 @@ import TipsterTable from '@components/ui/TipsterTable'
 import TextField from '@components/ui/TextField'
 import Dropdown from '@components/ui/Dropdown'
 import { AnimatePresence, motion } from 'framer-motion'
+import Slider from '@components/ui/Slider'
+import shortenNumber from 'src/utils/shortenNumber'
+import TipsterModal from '@components/ui/TipsterModal'
 
 const TableDropdownItems = [
     {
@@ -31,9 +34,48 @@ const TableDropdownItems = [
     },
 ]
 
+const CompetitionDropdownItems = [
+    {
+        name: 'Today',
+        id: '1'
+    },
+    {
+        name: 'This week',
+        id: '2'
+    },
+    {
+        name: 'This month',
+        id: '3'
+    },
+    {
+        name: 'This year',
+        id: '4'
+    },
+]
+
+const CompetitionSportItems = [
+    {
+        name: 'Football',
+        id: '1'
+    },
+    {
+        name: 'Baseball',
+        id: '2'
+    },
+    {
+        name: 'Basketball',
+        id: '3'
+    },
+    {
+        name: 'Box',
+        id: '4'
+    },
+]
+
 const TipsterCompetition: NextPage = () => {
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
+    const { data: previousCompetition, isLoading: previousCompetitionLoading } = trpc.useQuery(['competitions.getPrevious'])
     const portalNode = useMemo(() => {
         if (typeof window === "undefined") {
             return null;
@@ -45,11 +87,11 @@ const TipsterCompetition: NextPage = () => {
         });
     }, [])
 
-    if (currentCompetitionLoading || tipstersLoading) {
+    if (currentCompetitionLoading || tipstersLoading || previousCompetitionLoading) {
         return <div>Loading...</div>
     }
 
-    if (!currentCompetition || !tipsters) {
+    if (!currentCompetition || !tipsters || !previousCompetition) {
         return <div>Error...</div>
     }
 
@@ -63,7 +105,7 @@ const TipsterCompetition: NextPage = () => {
                 <div className={styles.mainColumn}>
                     <div className={styles.table}>
                         <h2>Top 100 Tipsters</h2>
-                        <div className={styles.tableControls}>
+                        <div className={styles.controls}>
                             <TextField icon='/icons/search.svg' placeholder='Search for tipsters' />
                             <div>
                                 <Dropdown
@@ -78,6 +120,26 @@ const TipsterCompetition: NextPage = () => {
                 </div>
                 <div className={styles.sideColumn}>
                     <GetStarted />
+                </div>
+                <div className={styles.bottomBlock}>
+                    <h2>The winners of previous competitions</h2>
+                    <div className={styles.controls}>
+                        <div>
+                            <Dropdown
+                                items={CompetitionDropdownItems}
+                                onSelect={() => { }}
+                                label="Time"
+                            />
+                        </div>
+                        <div>
+                            <Dropdown
+                                items={CompetitionSportItems}
+                                onSelect={() => { }}
+                            />
+                        </div>
+
+                    </div>
+                    <PreviousCompetitions competitions={previousCompetition} />
                 </div>
             </PortalContext.Provider>
         </>
@@ -271,5 +333,141 @@ const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => voi
         </motion.div>
     )
 }
+
+const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (props) => {
+    const { competitions } = props
+
+    return (
+        <div className={styles.previousCompetitions}>
+            <div className={styles.background}>
+                <Image
+                    src="/images/previous-competitions-background.png"
+                    layout='fill'
+                    objectFit='cover'
+                />
+            </div>
+            <Slider
+                showArrows={true}
+                showPagination={false}
+                arrowOffset={{
+                    top: 24,
+                    side: 24,
+                }}
+            >
+                {competitions.map(({ endsOn, name, startedOn, users }) => (
+                    <div
+                        key={`competition_${startedOn}_${endsOn}`}
+                        className={styles.slide}
+                    >
+                        <div className={styles.title}>
+                            <h2>{name}</h2>
+                            <span>
+                                <Moment date={startedOn} format="DD MMM YYYY" /> - <Moment date={endsOn} format="DD MMM YYYY" />
+                            </span>
+                        </div>
+                        <div className={styles.participants}>
+                            {users.map((user, index) => (
+                                <CompetitionParticipant {...user} place={index + 1} />
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </Slider>
+        </div>
+    )
+}
+
+interface CompetitioonParticipantProps {
+    name: string
+    image: string
+    prize: number
+    subscriptionCost: number
+    winrate: number
+    avgProfit: number
+    subscriberCount: number
+    place: number
+}
+
+const CompetitionParticipant: React.FC<CompetitioonParticipantProps> = (props) => {
+    const { avgProfit, image, name, prize, subscriberCount, subscriptionCost, winrate, place } = props
+    const [modalOpen, setModalOpen] = useState(false)
+
+    return (
+        <>
+            <PortalContext.Consumer>
+                {({ portalNode }) => portalNode &&
+                    <portals.InPortal node={portalNode}>
+                        <AnimatePresence initial={false}>
+                            {modalOpen &&
+                                <TipsterModal
+                                    // This is temporary, props will be a user object in the future
+                                    followerCount={0}
+                                    roi={0}
+                                    betCount={0}
+                                    form={[]}
+                                    sport={{ name: '', image: '' }}
+                                    {...props}
+                                    onClose={() => setModalOpen(false)}
+                                />
+                            }
+                        </AnimatePresence>
+                    </portals.InPortal>
+                }
+            </PortalContext.Consumer>
+            <div className={styles.participant}>
+                <div className={styles.info}>
+                    <div className={styles.userInfo}>
+                        <div className={styles.avatar}>
+                            <Image
+                                src={image}
+                                height={74}
+                                width={74}
+                            />
+                        </div>
+                        <div className={styles.detailedInfo}>
+                            <span className={styles.name}>{name}</span>
+                            <span className={styles.subscribers}>{shortenNumber(subscriberCount, 0)} subscribers</span>
+                            <button>
+                                <Image
+                                    src='/icons/follow-white.svg'
+                                    height={20}
+                                    width={20}
+                                />
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                    <div className={styles.competitionInfo}>
+                        <span className={styles.place}>{place === 1 ? 'Winner' : `Place ${place}`}</span>
+                        <span className={styles.prize}>
+                            <Image
+                                src='/icons/cup.svg'
+                                height={26}
+                                width={26}
+                            />
+                            $ {prize}
+                        </span>
+                    </div>
+                </div>
+                <div className={styles.stats}>
+                    <button onClick={() => setModalOpen(true)}>
+                        $ {subscriptionCost}/MO
+                    </button>
+                    <div>
+                        <div className={styles.stat}>
+                            <span>Hitrate</span>
+                            <span>{winrate * 100}%</span>
+                        </div>
+                        <div className={styles.stat}>
+                            <span>Profit</span>
+                            <span>$ {avgProfit}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
 
 export default TipsterCompetition;

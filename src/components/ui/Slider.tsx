@@ -7,11 +7,22 @@ import * as portals from 'react-reverse-portal';
 
 interface SliderProps {
     children?: ReactElement[]
-    showArrows?: boolean
+    showArrows?: boolean,
+    showPagination?: boolean,
+    arrowOffset?: {
+        top: number | string,
+        side: number | string
+    }
 }
 
 const Slider: React.FC<SliderProps> = (props) => {
-    const { children, showArrows } = props;
+    const {
+        children,
+        showArrows =
+        false,
+        showPagination = true,
+        arrowOffset
+    } = props;
     const portalNode = useMemo(() => portals.createHtmlPortalNode({
         attributes: { style: "position: absolute; width: 100%; z-index: 1;" }
     }), []);
@@ -22,6 +33,7 @@ const Slider: React.FC<SliderProps> = (props) => {
             <Carousel
                 className={styles.container}
                 showArrows={showArrows}
+                showIndicators={showPagination}
                 showStatus={false}
                 showThumbs={false}
                 emulateTouch
@@ -30,12 +42,20 @@ const Slider: React.FC<SliderProps> = (props) => {
                 }
                 renderArrowNext={(clickHandler, hasNext) =>
                     <portals.InPortal node={portalNode}>
-                        <ArrowNext clickHandler={clickHandler} hasNext={hasNext} />
+                        <ArrowNext
+                            clickHandler={clickHandler}
+                            hasNext={hasNext}
+                            offset={arrowOffset}
+                        />
                     </portals.InPortal>
                 }
                 renderArrowPrev={(clickHandler, hasPrev) =>
                     <portals.InPortal node={portalNode}>
-                        <ArrowPrev clickHandler={clickHandler} hasPrev={hasPrev} />
+                        <ArrowPrev
+                            clickHandler={clickHandler}
+                            hasPrev={hasPrev}
+                            offset={arrowOffset}
+                        />
                     </portals.InPortal>
                 }
             >
@@ -70,15 +90,23 @@ interface ArrowProps {
     clickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
     hasNext?: boolean,
     hasPrev?: boolean,
+    offset?: {
+        top: number | string,
+        side: number | string
+    }
 }
 
 const ArrowNext: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasNext } = props;
+    const { clickHandler, hasNext, offset } = props;
     return (
         hasNext
             ? <div
                 className={`${styles.arrow} ${hasNext && styles.next}`}
                 onClick={clickHandler}
+                style={offset && {
+                    top: offset?.top,
+                    right: offset?.side
+                }}
             >
                 <Image
                     src='/icons/slider-next.svg'
@@ -91,12 +119,16 @@ const ArrowNext: React.FC<ArrowProps> = (props) => {
 }
 
 const ArrowPrev: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasPrev } = props;
+    const { clickHandler, hasPrev, offset } = props;
     return (
         hasPrev
             ? <div
                 className={`${styles.arrow} ${hasPrev && styles.prev}`}
                 onClick={clickHandler}
+                style={offset && {
+                    top: offset?.top,
+                    left: offset?.side
+                }}
             >
                 <Image
                     src='/icons/slider-prev.svg'
