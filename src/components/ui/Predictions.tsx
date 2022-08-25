@@ -1,37 +1,22 @@
 import React from 'react'
 import styles from '@styles/components/ui/Predictions.module.css'
 import Image from 'next/image'
+import { Predictions } from 'src/types/queryTypes'
 
 interface PredictionsProps {
-    matches: {
-        time: string,
-        teams: {
-            name: string,
-            image: string
-        }[],
-        predictions: {
-            time: string,
-            user: {
-                name: string,
-                image: string
-                winrate: number
-            },
-            comment: boolean,
-            outcome: string
-        }[]
-    }[],
+    matches: Predictions,
     h3: string,
     h2: string,
 }
 
 const Predictions: React.FC<PredictionsProps> = (props) => {
-    const { matches } = props
+    const { matches, h2, h3 } = props
 
     return (
         <div className={styles.container}>
             <div className={styles.titles}>
-                <h3>{props.h3}</h3>
-                <h2>{props.h2}</h2>
+                <h3>{h3}</h3>
+                <h2>{h2}</h2>
             </div>
             {matches.map((match, index) => (
                 <div key={index} className={styles.match}>
