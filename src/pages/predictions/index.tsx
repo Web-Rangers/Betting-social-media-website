@@ -10,6 +10,37 @@ import BestBookmakers from '@components/ui/BestBookmakers'
 import Banner from '@components/ui/Banner'
 import Filter from '@components/ui/Filter'
 import Predictions from '@components/ui/Predictions'
+import TextField from '@components/ui/TextField'
+
+const SortItems = [
+    {
+        name: 'Upcoming',
+        id: '1'
+    },
+    {
+        name: 'Most',
+        id: '2'
+    },
+    {
+        name: 'Multiple',
+        id: '3'
+    },
+]
+
+const TypeItems = [
+    {
+        name: 'All',
+        id: '1'
+    },
+    {
+        name: 'Free',
+        id: '2'
+    },
+    {
+        name: 'Paid',
+        id: '3'
+    },
+]
 
 const PredictionsPage: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
@@ -33,6 +64,26 @@ const PredictionsPage: NextPage = () => {
             </div>
             <div className={styles.mainColumn}>
                 <div className={styles.filters}>
+                    <h4>Filter</h4>
+                    <div className={styles.search}>
+                        <TextField
+                            placeholder='Search'
+                            icon='/icons/search.svg'
+                        />
+                        <button>
+                            Reset
+                        </button>
+                    </div>
+                    <h5>SORT BY</h5>
+                    <SortButtons
+                        items={SortItems}
+                        onChange={() => { }}
+                    />
+                    <h5>Type</h5>
+                    <SortButtons
+                        items={TypeItems}
+                        onChange={() => { }}
+                    />
                     <Filter
                         items={leagues}
                         h3="CHOOSE LEAGUE"
@@ -180,6 +231,42 @@ const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void 
                     </div>
                 ))}
             </Slider>
+        </div>
+    )
+}
+
+interface SortButtonsProps {
+    items: {
+        name: string,
+        id: string
+    }[],
+    onChange: (ids: string[]) => void
+}
+
+const SortButtons: React.FC<SortButtonsProps> = (props) => {
+    const { items, onChange } = props
+    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+    function handleSelect(id: string) {
+        if (selectedItems.includes(id)) {
+            setSelectedItems(selectedItems.filter(item => item !== id))
+            onChange(selectedItems.filter(item => item !== id))
+        } else {
+            setSelectedItems([...selectedItems, id])
+            onChange([...selectedItems, id])
+        }
+    }
+
+    return (
+        <div className={styles.filterButtons}>
+            {items.map(({ id, name }) => (
+                <button
+                    onClick={() => handleSelect(id)}
+                    className={selectedItems.includes(id) ? styles.active : undefined}
+                >
+                    {name}
+                </button>
+            ))}
         </div>
     )
 }
