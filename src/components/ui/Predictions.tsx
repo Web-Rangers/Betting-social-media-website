@@ -14,10 +14,10 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.titles}>
+            {(h2 || h3) && <div className={styles.titles}>
                 {h3 && <h3>{h3}</h3>}
                 {h2 && <h2>{h2}</h2>}
-            </div>
+            </div>}
             {matches.map((match, index) => (
                 <div key={index} className={styles.match}>
                     <div className={styles.header}>
