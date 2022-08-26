@@ -24,7 +24,8 @@ interface SliderProps {
             height: number,
             width: number
         },
-        backgroundColor?: string
+        backgroundColor?: string,
+        arrowColor?: 'light' | 'dark'
     }
 }
 
@@ -61,6 +62,7 @@ const Slider: React.FC<SliderProps> = (props) => {
                             offset={arrowOptions?.offset?.next}
                             size={arrowOptions?.size}
                             backgroundColor={arrowOptions?.backgroundColor}
+                            arrowColor={arrowOptions?.arrowColor}
                         />
                     </portals.InPortal>
                 }
@@ -72,6 +74,7 @@ const Slider: React.FC<SliderProps> = (props) => {
                             offset={arrowOptions?.offset?.prev}
                             size={arrowOptions?.size}
                             backgroundColor={arrowOptions?.backgroundColor}
+                            arrowColor={arrowOptions?.arrowColor}
                         />
                     </portals.InPortal>
                 }
@@ -115,56 +118,83 @@ interface ArrowProps {
         height: number,
         width: number
     },
-    backgroundColor?: string
+    backgroundColor?: string,
+    arrowColor?: 'light' | 'dark'
 }
 
 const ArrowNext: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasNext, offset, size, backgroundColor } = props;
+    const { clickHandler, hasNext, offset, size, backgroundColor, arrowColor } = props;
+
+    function getArrowColor(type: typeof arrowColor) {
+        switch (type) {
+            case 'dark':
+                return 'invert(1)'
+            case 'light':
+                return undefined
+            default:
+                break;
+        }
+    }
+
     return (
-        hasNext
-            ? <div
-                className={`${styles.arrow} ${hasNext && styles.next}`}
-                onClick={clickHandler}
+        <div
+            className={`${styles.arrow} ${styles.next} ${hasNext && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                right: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-next.svg'
+                height={12}
+                width={7}
                 style={{
-                    top: offset?.top ?? undefined,
-                    right: offset?.side ?? undefined,
-                    height: size?.height ?? undefined,
-                    width: size?.width ?? undefined,
-                    backgroundColor: backgroundColor ?? undefined
+                    filter: getArrowColor(arrowColor)
                 }}
-            >
-                <Image
-                    src='/icons/slider-next.svg'
-                    height={12}
-                    width={7}
-                />
-            </div>
-            : <></>
+            />
+        </div>
     )
 }
 
 const ArrowPrev: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasPrev, offset, size, backgroundColor } = props;
+    const { clickHandler, hasPrev, offset, size, backgroundColor, arrowColor } = props;
+
+    function getArrowColor(type: typeof arrowColor) {
+        switch (type) {
+            case 'dark':
+                return 'invert(1)'
+            case 'light':
+                return undefined
+            default:
+                break;
+        }
+    }
+
     return (
-        hasPrev
-            ? <div
-                className={`${styles.arrow} ${hasPrev && styles.prev}`}
-                onClick={clickHandler}
+        <div
+            className={`${styles.arrow} ${styles.prev} ${hasPrev && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                left: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-prev.svg'
+                height={12}
+                width={7}
                 style={{
-                    top: offset?.top ?? undefined,
-                    left: offset?.side ?? undefined,
-                    height: size?.height ?? undefined,
-                    width: size?.width ?? undefined,
-                    backgroundColor: backgroundColor ?? undefined
+                    filter: getArrowColor(arrowColor)
                 }}
-            >
-                <Image
-                    src='/icons/slider-prev.svg'
-                    height={12}
-                    width={7}
-                />
-            </div>
-            : <></>
+            />
+        </div>
     )
 }
 

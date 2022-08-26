@@ -34,6 +34,9 @@
     width: 44px;
     cursor: pointer;
     z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .arrow.next {
@@ -44,4 +47,9 @@
 .arrow.prev {
     position: absolute;
     left: -90px
+}
+
+.arrow.active {
+    pointer-events: all;
+    opacity: 1;
 }

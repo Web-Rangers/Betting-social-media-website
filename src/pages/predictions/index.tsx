@@ -28,7 +28,9 @@ const Predictions: NextPage = () => {
             <div className={styles.mainBlock}>
                 <TipsSlider tips={tips} />
             </div>
-            <div className={styles.mainColumn}></div>
+            <div className={styles.mainColumn}>
+
+            </div>
             <div className={styles.sideColumn}>
                 <BestBookmakers bookmakers={bookmakers} />
                 <Banner height={463} image='/images/banner-placeholder-2.png' />
