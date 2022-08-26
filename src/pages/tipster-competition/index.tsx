@@ -349,9 +349,17 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
             <Slider
                 showArrows={true}
                 showPagination={false}
-                arrowOffset={{
-                    top: 24,
-                    side: 24,
+                arrowOptions={{
+                    offset: {
+                        next: {
+                            top: 24,
+                            side: 24,
+                        },
+                        prev: {
+                            top: 24,
+                            side: 24,
+                        }
+                    }
                 }}
             >
                 {competitions.map(({ endsOn, name, startedOn, users }) => (
@@ -367,7 +375,7 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
                         </div>
                         <div className={styles.participants}>
                             {users.map((user, index) => (
-                                <CompetitionParticipant {...user} place={index + 1} />
+                                <CompetitionParticipant {...user} place={index + 1} key={`participant_${index}`} />
                             ))}
                         </div>
                     </div>

@@ -12,11 +12,12 @@ import Filter from "@components/ui/Filter";
 import Predictions from "@components/ui/Predictions";
 import { MatchStatus } from "src/types/matchStatus";
 import { MostTips, Tipsters } from "src/types/queryTypes";
+import MatchTipsCard from "@components/ui/MatchTipsCard";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
-    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
+    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
     const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
                     </Slider>
                 </div>
                 <div className={styles.paddedContainer}>
-                    <MostTips tips={tips} />
+                    <MostTips tips={tips.slice(0, 3)} />
                     <Banner height={200} image="/images/banner-placeholder-1.png" />
                     <div className={styles.matchesContainer}>
                         <div className={styles.matchesFilters}>
@@ -61,7 +62,7 @@ const Home: NextPage = () => {
                         </div>
                         <div className={styles.matches}>
                             <Predictions
-                                matches={predictions}
+                                leagues={predictions}
                                 h2="Best Predictions"
                                 h3="Today"
                             />
@@ -226,60 +227,12 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 const MostTips: React.FC<{ tips: MostTips }> = (props) => {
     const { tips } = props;
 
-    function getStatusComponent(tip: typeof tips[0]) {
-        switch (tip.status) {
-            case MatchStatus.finished:
-                return <span className={styles.mostTipsFinished}>{tip.duration}s</span>;
-            case MatchStatus.live:
-                return <span className={styles.mostTipsLive}>Live: {tip.duration}</span>;
-            case MatchStatus.upcoming:
-                return <span className={styles.mostTipsUpcoming}>{tip.date}</span>;
-        }
-    }
-
     return (
         <div className={styles.mostTips}>
             <h2>Most Tips</h2>
             <div className={styles.mostTipsList}>
                 {tips.map((tip, index) => (
-                    <div className={styles.mostTipsItem} key={`tip_${index}`}>
-                        <div className={styles.mostTipsRow}>
-                            <div className={styles.mostTipsTeams}>
-                                {tip.teams.map((team, index) => (
-                                    <div
-                                        className={styles.mostTipsTeam}
-                                        key={`team_image_${index}`}
-                                    >
-                                        <Image
-                                            src={team.image}
-                                            alt={team.name}
-                                            width={30}
-                                            height={30}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            {tip.status && (getStatusComponent(tip))}
-                        </div>
-                        <div className={styles.mostTipsRow}>
-                            <div className={styles.mostTipsInfo}>
-                                <span className={styles.mostTipsLeague}>{tip.league}</span>
-                                <div className={styles.mostTipsTeamNames}>
-                                    {tip.teams.map((team, index) => (
-                                        <span
-                                            className={styles.mostTipsTeamName}
-                                            key={`team_name_${index}`}
-                                        >
-                                            {team.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className={styles.mostTipsTipAmount}>
-                                {tip.tipAmount} Tips
-                            </div>
-                        </div>
-                    </div>
+                    <MatchTipsCard {...tip} key={`tip_${index}`} />
                 ))}
             </div>
         </div>

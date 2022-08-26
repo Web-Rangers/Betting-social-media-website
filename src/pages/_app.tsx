@@ -4,7 +4,8 @@ import type { AppRouter } from "../server/router";
 import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
-import "../styles/globals.css";
+import '@styles/date-picker-reset.css'
+import "@styles/globals.css";
 import MainLayout from "../components/layout/MainLayout";
 import { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";

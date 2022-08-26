@@ -1,0 +1,129 @@
+.mostTipsItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 32px 20px 30px;
+    gap: 20px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.mostTipsRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mostTipsTeams {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.mostTipsTeams .mostTipsTeam:last-child {
+    margin-left: -10px;
+    z-index: +1;
+}
+
+.mostTipsTeam {
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    overflow: hidden;
+    border: 3px solid #E8E8E9;
+}
+
+.mostTipsFinished {
+    padding: 8px 14px;
+    border-radius: 4px;
+    background-color: #7F3FFC;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+.mostTipsLive {
+    padding: 8px 14px;
+    border-radius: 4px;
+    background-color: #CF1F1F;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.mostTipsUpcoming {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21B2;
+    width: min-content;
+    text-align: right;
+}
+
+.mostTipsInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mostTipsLeague {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21B2;
+    text-align: left;
+}
+
+.mostTipsTeamNames {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mostTipsTeamName:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.mostTipsTeamName:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21CC;
+}
+
+.mostTipsTipAmount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    background-color: #1A1C211A;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+}

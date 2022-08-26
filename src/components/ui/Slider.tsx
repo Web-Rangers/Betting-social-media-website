@@ -9,9 +9,23 @@ interface SliderProps {
     children?: ReactElement[]
     showArrows?: boolean,
     showPagination?: boolean,
-    arrowOffset?: {
-        top: number | string,
-        side: number | string
+    arrowOptions?: {
+        offset: {
+            next?: {
+                top: number | string,
+                side: number | string
+            },
+            prev?: {
+                top: number | string,
+                side: number | string
+            }
+        },
+        size?: {
+            height: number,
+            width: number
+        },
+        backgroundColor?: string,
+        arrowColor?: 'light' | 'dark'
     }
 }
 
@@ -21,7 +35,7 @@ const Slider: React.FC<SliderProps> = (props) => {
         showArrows =
         false,
         showPagination = true,
-        arrowOffset
+        arrowOptions
     } = props;
     const portalNode = useMemo(() => portals.createHtmlPortalNode({
         attributes: { style: "position: absolute; width: 100%; z-index: 1;" }
@@ -45,7 +59,10 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowNext
                             clickHandler={clickHandler}
                             hasNext={hasNext}
-                            offset={arrowOffset}
+                            offset={arrowOptions?.offset?.next}
+                            size={arrowOptions?.size}
+                            backgroundColor={arrowOptions?.backgroundColor}
+                            arrowColor={arrowOptions?.arrowColor}
                         />
                     </portals.InPortal>
                 }
@@ -54,7 +71,10 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowPrev
                             clickHandler={clickHandler}
                             hasPrev={hasPrev}
-                            offset={arrowOffset}
+                            offset={arrowOptions?.offset?.prev}
+                            size={arrowOptions?.size}
+                            backgroundColor={arrowOptions?.backgroundColor}
+                            arrowColor={arrowOptions?.arrowColor}
                         />
                     </portals.InPortal>
                 }
@@ -93,50 +113,88 @@ interface ArrowProps {
     offset?: {
         top: number | string,
         side: number | string
-    }
+    },
+    size?: {
+        height: number,
+        width: number
+    },
+    backgroundColor?: string,
+    arrowColor?: 'light' | 'dark'
 }
 
 const ArrowNext: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasNext, offset } = props;
+    const { clickHandler, hasNext, offset, size, backgroundColor, arrowColor } = props;
+
+    function getArrowColor(type: typeof arrowColor) {
+        switch (type) {
+            case 'dark':
+                return 'invert(1)'
+            case 'light':
+                return undefined
+            default:
+                break;
+        }
+    }
+
     return (
-        hasNext
-            ? <div
-                className={`${styles.arrow} ${hasNext && styles.next}`}
-                onClick={clickHandler}
-                style={offset && {
-                    top: offset?.top,
-                    right: offset?.side
+        <div
+            className={`${styles.arrow} ${styles.next} ${hasNext && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                right: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-next.svg'
+                height={12}
+                width={7}
+                style={{
+                    filter: getArrowColor(arrowColor)
                 }}
-            >
-                <Image
-                    src='/icons/slider-next.svg'
-                    height={12}
-                    width={7}
-                />
-            </div>
-            : <></>
+            />
+        </div>
     )
 }
 
 const ArrowPrev: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasPrev, offset } = props;
+    const { clickHandler, hasPrev, offset, size, backgroundColor, arrowColor } = props;
+
+    function getArrowColor(type: typeof arrowColor) {
+        switch (type) {
+            case 'dark':
+                return 'invert(1)'
+            case 'light':
+                return undefined
+            default:
+                break;
+        }
+    }
+
     return (
-        hasPrev
-            ? <div
-                className={`${styles.arrow} ${hasPrev && styles.prev}`}
-                onClick={clickHandler}
-                style={offset && {
-                    top: offset?.top,
-                    left: offset?.side
+        <div
+            className={`${styles.arrow} ${styles.prev} ${hasPrev && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                left: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-prev.svg'
+                height={12}
+                width={7}
+                style={{
+                    filter: getArrowColor(arrowColor)
                 }}
-            >
-                <Image
-                    src='/icons/slider-prev.svg'
-                    height={12}
-                    width={7}
-                />
-            </div>
-            : <></>
+            />
+        </div>
     )
 }
 
