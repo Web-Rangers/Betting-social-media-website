@@ -6,16 +6,20 @@ import { MostTips } from 'src/types/queryTypes'
 import Slider from '@components/ui/Slider'
 import MatchTipsCard from '@components/ui/MatchTipsCard'
 import Image from 'next/image'
+import BestBookmakers from '@components/ui/BestBookmakers'
+import Banner from '@components/ui/Banner'
 
 const Predictions: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
+    const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
+    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
 
-    if (tipsLoading || predictionsLoading) {
+    if (tipsLoading || predictionsLoading || bookmakersLoading || filtersLoading) {
         return <div>Loading...</div>
     }
 
-    if (!tips || !predictions) {
+    if (!tips || !predictions || !bookmakers || !filters) {
         return <div>Error...</div>
     }
 
@@ -23,6 +27,11 @@ const Predictions: NextPage = () => {
         <>
             <div className={styles.mainBlock}>
                 <TipsSlider tips={tips} />
+            </div>
+            <div className={styles.mainColumn}></div>
+            <div className={styles.sideColumn}>
+                <BestBookmakers bookmakers={bookmakers} />
+                <Banner height={463} image='/images/banner-placeholder-2.png' />
             </div>
         </>
     )

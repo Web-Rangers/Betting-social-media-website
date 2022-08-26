@@ -373,7 +373,7 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
                         </div>
                         <div className={styles.participants}>
                             {users.map((user, index) => (
-                                <CompetitionParticipant {...user} place={index + 1} />
+                                <CompetitionParticipant {...user} place={index + 1} key={`participant_${index}`} />
                             ))}
                         </div>
                     </div>
