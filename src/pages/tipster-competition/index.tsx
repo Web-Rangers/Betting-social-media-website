@@ -350,8 +350,14 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
                 showArrows={true}
                 showPagination={false}
                 arrowOffset={{
-                    top: 24,
-                    side: 24,
+                    next: {
+                        top: 24,
+                        side: 24,
+                    },
+                    prev: {
+                        top: 24,
+                        side: 24,
+                    }
                 }}
             >
                 {competitions.map(({ endsOn, name, startedOn, users }) => (

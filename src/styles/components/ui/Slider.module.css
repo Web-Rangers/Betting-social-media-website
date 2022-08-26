@@ -33,6 +33,7 @@
     height: 44px;
     width: 44px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .arrow.next {

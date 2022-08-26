@@ -10,8 +10,14 @@ interface SliderProps {
     showArrows?: boolean,
     showPagination?: boolean,
     arrowOffset?: {
-        top: number | string,
-        side: number | string
+        next?: {
+            top: number | string,
+            side: number | string
+        },
+        prev?: {
+            top: number | string,
+            side: number | string
+        }
     }
 }
 
@@ -45,7 +51,7 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowNext
                             clickHandler={clickHandler}
                             hasNext={hasNext}
-                            offset={arrowOffset}
+                            offset={arrowOffset?.next}
                         />
                     </portals.InPortal>
                 }
@@ -54,7 +60,7 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowPrev
                             clickHandler={clickHandler}
                             hasPrev={hasPrev}
-                            offset={arrowOffset}
+                            offset={arrowOffset?.prev}
                         />
                     </portals.InPortal>
                 }

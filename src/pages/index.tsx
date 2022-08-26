@@ -44,7 +44,7 @@ const Home: NextPage = () => {
                     </Slider>
                 </div>
                 <div className={styles.paddedContainer}>
-                    <MostTips tips={tips} />
+                    <MostTips tips={tips.slice(0, 3)} />
                     <Banner height={200} image="/images/banner-placeholder-1.png" />
                     <div className={styles.matchesContainer}>
                         <div className={styles.matchesFilters}>
