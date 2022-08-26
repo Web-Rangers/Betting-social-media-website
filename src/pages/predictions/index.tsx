@@ -11,6 +11,7 @@ import Banner from '@components/ui/Banner'
 import Filter from '@components/ui/Filter'
 import Predictions from '@components/ui/Predictions'
 import TextField from '@components/ui/TextField'
+import DatePicker from '@components/ui/DatePicker'
 
 const SortItems = [
     {
@@ -79,6 +80,8 @@ const PredictionsPage: NextPage = () => {
                         items={SortItems}
                         onChange={() => { }}
                     />
+                    <h5>Date</h5>
+                    <DatePicker onChange={() => { }} />
                     <h5>Type</h5>
                     <SortButtons
                         items={TypeItems}
