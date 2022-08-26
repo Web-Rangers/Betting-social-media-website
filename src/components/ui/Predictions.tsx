@@ -5,8 +5,8 @@ import { Predictions } from 'src/types/queryTypes'
 
 interface PredictionsProps {
     matches: Predictions,
-    h3: string,
-    h2: string,
+    h3?: string,
+    h2?: string,
 }
 
 const Predictions: React.FC<PredictionsProps> = (props) => {
@@ -15,8 +15,8 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
     return (
         <div className={styles.container}>
             <div className={styles.titles}>
-                <h3>{h3}</h3>
-                <h2>{h2}</h2>
+                {h3 && <h3>{h3}</h3>}
+                {h2 && <h2>{h2}</h2>}
             </div>
             {matches.map((match, index) => (
                 <div key={index} className={styles.match}>
@@ -47,7 +47,7 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.details}>
-                            <div className={styles.total}>{match.predictions.length} Tips</div>
+                            <div className={styles.total}>{match.predictions.length} Tip{match.predictions.length > 1 ? 's' : ''}</div>
                             <div className={styles.more}>Details</div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
                                     <span>{prediction.comment ? 'With Comment' : 'Without comment'}</span>
                                 </div>
                                 <div className={styles.outcome}>
-                                    <span>Prediction</span>
+                                    <span>{prediction.type} Prediction</span>
                                     <span>{prediction.outcome}</span>
                                 </div>
                             </div>

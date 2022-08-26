@@ -8,8 +8,10 @@ import MatchTipsCard from '@components/ui/MatchTipsCard'
 import Image from 'next/image'
 import BestBookmakers from '@components/ui/BestBookmakers'
 import Banner from '@components/ui/Banner'
+import Filter from '@components/ui/Filter'
+import Predictions from '@components/ui/Predictions'
 
-const Predictions: NextPage = () => {
+const PredictionsPage: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
@@ -29,7 +31,16 @@ const Predictions: NextPage = () => {
                 <TipsSlider tips={tips} />
             </div>
             <div className={styles.mainColumn}>
-
+                <div className={styles.filters}>
+                    <Filter
+                        items={filters}
+                        h3="CHOOSE LEAGUE"
+                        onChange={() => { }}
+                    />
+                </div>
+                <div className={styles.predictions}>
+                    <Predictions matches={predictions} />
+                </div>
             </div>
             <div className={styles.sideColumn}>
                 <BestBookmakers bookmakers={bookmakers} />
@@ -96,4 +107,4 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
     )
 }
 
-export default Predictions
+export default PredictionsPage

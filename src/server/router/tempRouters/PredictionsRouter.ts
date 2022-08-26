@@ -17,7 +17,8 @@ const PredictionsTemp = [
                     winrate: 0.5
                 },
                 comment: false,
-                outcome: 'Liverpool win'
+                outcome: 'Liverpool win',
+                type: 'Paid'
             },
             {
                 time: "23:20",
@@ -27,7 +28,8 @@ const PredictionsTemp = [
                     winrate: 0.3
                 },
                 comment: true,
-                outcome: 'Manchester win'
+                outcome: 'Manchester win',
+                type: 'Free'
             }
         ]
     },
@@ -46,7 +48,8 @@ const PredictionsTemp = [
                     winrate: 0.5
                 },
                 comment: false,
-                outcome: 'Liverpool win'
+                outcome: 'Liverpool win',
+                type: 'Paid'
             },
         ]
     },
@@ -65,7 +68,8 @@ const PredictionsTemp = [
                     winrate: 0.5
                 },
                 comment: false,
-                outcome: 'Liverpool win'
+                outcome: 'Liverpool win',
+                type: 'Paid'
             },
             {
                 time: "23:20",
@@ -75,7 +79,8 @@ const PredictionsTemp = [
                     winrate: 0.3
                 },
                 comment: true,
-                outcome: 'Manchester win'
+                outcome: 'Manchester win',
+                type: 'Paid'
             }
         ]
     },
