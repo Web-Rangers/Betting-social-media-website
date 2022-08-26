@@ -64,15 +64,21 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
             <div className={styles.sliderContainer}>
                 <Slider
                     showArrows={true}
-                    arrowOffset={{
-                        next: {
-                            top: -55,
-                            side: 100,
+                    arrowOptions={{
+                        offset: {
+                            next: {
+                                top: -48,
+                                side: 100,
+                            },
+                            prev: {
+                                top: -48,
+                                side: 'calc(100% - 170px)'
+                            }
                         },
-                        prev: {
-                            top: -55,
-                            side: 'calc(100% - 200px)'
-                        }
+                        size: {
+                            height: 30,
+                            width: 30
+                        },
                     }}
                 >
                     {_tips.map((tipsChunk, index) => (

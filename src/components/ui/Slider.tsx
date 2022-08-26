@@ -9,15 +9,22 @@ interface SliderProps {
     children?: ReactElement[]
     showArrows?: boolean,
     showPagination?: boolean,
-    arrowOffset?: {
-        next?: {
-            top: number | string,
-            side: number | string
+    arrowOptions?: {
+        offset: {
+            next?: {
+                top: number | string,
+                side: number | string
+            },
+            prev?: {
+                top: number | string,
+                side: number | string
+            }
         },
-        prev?: {
-            top: number | string,
-            side: number | string
-        }
+        size?: {
+            height: number,
+            width: number
+        },
+        backgroundColor?: string
     }
 }
 
@@ -27,7 +34,7 @@ const Slider: React.FC<SliderProps> = (props) => {
         showArrows =
         false,
         showPagination = true,
-        arrowOffset
+        arrowOptions
     } = props;
     const portalNode = useMemo(() => portals.createHtmlPortalNode({
         attributes: { style: "position: absolute; width: 100%; z-index: 1;" }
@@ -51,7 +58,9 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowNext
                             clickHandler={clickHandler}
                             hasNext={hasNext}
-                            offset={arrowOffset?.next}
+                            offset={arrowOptions?.offset?.next}
+                            size={arrowOptions?.size}
+                            backgroundColor={arrowOptions?.backgroundColor}
                         />
                     </portals.InPortal>
                 }
@@ -60,7 +69,9 @@ const Slider: React.FC<SliderProps> = (props) => {
                         <ArrowPrev
                             clickHandler={clickHandler}
                             hasPrev={hasPrev}
-                            offset={arrowOffset?.prev}
+                            offset={arrowOptions?.offset?.prev}
+                            size={arrowOptions?.size}
+                            backgroundColor={arrowOptions?.backgroundColor}
                         />
                     </portals.InPortal>
                 }
@@ -99,19 +110,27 @@ interface ArrowProps {
     offset?: {
         top: number | string,
         side: number | string
-    }
+    },
+    size?: {
+        height: number,
+        width: number
+    },
+    backgroundColor?: string
 }
 
 const ArrowNext: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasNext, offset } = props;
+    const { clickHandler, hasNext, offset, size, backgroundColor } = props;
     return (
         hasNext
             ? <div
                 className={`${styles.arrow} ${hasNext && styles.next}`}
                 onClick={clickHandler}
-                style={offset && {
-                    top: offset?.top,
-                    right: offset?.side
+                style={{
+                    top: offset?.top ?? undefined,
+                    right: offset?.side ?? undefined,
+                    height: size?.height ?? undefined,
+                    width: size?.width ?? undefined,
+                    backgroundColor: backgroundColor ?? undefined
                 }}
             >
                 <Image
@@ -125,15 +144,18 @@ const ArrowNext: React.FC<ArrowProps> = (props) => {
 }
 
 const ArrowPrev: React.FC<ArrowProps> = (props) => {
-    const { clickHandler, hasPrev, offset } = props;
+    const { clickHandler, hasPrev, offset, size, backgroundColor } = props;
     return (
         hasPrev
             ? <div
                 className={`${styles.arrow} ${hasPrev && styles.prev}`}
                 onClick={clickHandler}
-                style={offset && {
-                    top: offset?.top,
-                    left: offset?.side
+                style={{
+                    top: offset?.top ?? undefined,
+                    left: offset?.side ?? undefined,
+                    height: size?.height ?? undefined,
+                    width: size?.width ?? undefined,
+                    backgroundColor: backgroundColor ?? undefined
                 }}
             >
                 <Image

@@ -349,14 +349,16 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
             <Slider
                 showArrows={true}
                 showPagination={false}
-                arrowOffset={{
-                    next: {
-                        top: 24,
-                        side: 24,
-                    },
-                    prev: {
-                        top: 24,
-                        side: 24,
+                arrowOptions={{
+                    offset: {
+                        next: {
+                            top: 24,
+                            side: 24,
+                        },
+                        prev: {
+                            top: 24,
+                            side: 24,
+                        }
                     }
                 }}
             >
