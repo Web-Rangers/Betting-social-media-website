@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                         </div>
                         <div className={styles.matches}>
                             <Predictions
-                                matches={predictions}
+                                leagues={predictions}
                                 h2="Best Predictions"
                                 h3="Today"
                             />

@@ -28,6 +28,59 @@
     color: #1A1C21;
 }
 
+.league {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.league .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 3px solid #1A1C211A;
+}
+
+.leagueDescription {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.leagueDescription .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+}
+
+.leagueDescription .titles span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C2199;
+}
+
+.leagueDescription .titles span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.matches {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .match {
     display: flex;
     flex-direction: column;
@@ -139,7 +192,17 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    color: #FFFFFF
+    transition: all 0.3s ease-in-out;
+}
+
+.total.open {
+    background-color: #7F3FFC;
+    color: #FFFFFF;
+}
+
+.total.closed {
+    background-color: #1A1C211A;
+    color: #1A1C21;
 }
 
 .more {
@@ -162,6 +225,8 @@
 .predictions {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    height: auto;
 }
 
 .predictions .prediction:not(:last-child) {

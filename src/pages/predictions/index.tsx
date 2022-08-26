@@ -39,7 +39,7 @@ const PredictionsPage: NextPage = () => {
                     />
                 </div>
                 <div className={styles.predictions}>
-                    <Predictions matches={predictions} />
+                    <Predictions leagues={predictions} />
                 </div>
             </div>
             <div className={styles.sideColumn}>
