@@ -12,6 +12,7 @@ import Filter from "@components/ui/Filter";
 import Predictions from "@components/ui/Predictions";
 import { MatchStatus } from "src/types/matchStatus";
 import { MostTips, Tipsters } from "src/types/queryTypes";
+import MatchTipsCard from "@components/ui/MatchTipsCard";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
@@ -226,60 +227,12 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 const MostTips: React.FC<{ tips: MostTips }> = (props) => {
     const { tips } = props;
 
-    function getStatusComponent(tip: typeof tips[0]) {
-        switch (tip.status) {
-            case MatchStatus.finished:
-                return <span className={styles.mostTipsFinished}>{tip.duration}s</span>;
-            case MatchStatus.live:
-                return <span className={styles.mostTipsLive}>Live: {tip.duration}</span>;
-            case MatchStatus.upcoming:
-                return <span className={styles.mostTipsUpcoming}>{tip.date}</span>;
-        }
-    }
-
     return (
         <div className={styles.mostTips}>
             <h2>Most Tips</h2>
             <div className={styles.mostTipsList}>
                 {tips.map((tip, index) => (
-                    <div className={styles.mostTipsItem} key={`tip_${index}`}>
-                        <div className={styles.mostTipsRow}>
-                            <div className={styles.mostTipsTeams}>
-                                {tip.teams.map((team, index) => (
-                                    <div
-                                        className={styles.mostTipsTeam}
-                                        key={`team_image_${index}`}
-                                    >
-                                        <Image
-                                            src={team.image}
-                                            alt={team.name}
-                                            width={30}
-                                            height={30}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            {tip.status && (getStatusComponent(tip))}
-                        </div>
-                        <div className={styles.mostTipsRow}>
-                            <div className={styles.mostTipsInfo}>
-                                <span className={styles.mostTipsLeague}>{tip.league}</span>
-                                <div className={styles.mostTipsTeamNames}>
-                                    {tip.teams.map((team, index) => (
-                                        <span
-                                            className={styles.mostTipsTeamName}
-                                            key={`team_name_${index}`}
-                                        >
-                                            {team.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className={styles.mostTipsTipAmount}>
-                                {tip.tipAmount} Tips
-                            </div>
-                        </div>
-                    </div>
+                    <MatchTipsCard {...tip} key={`tip_${index}`} />
                 ))}
             </div>
         </div>
