@@ -165,7 +165,7 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
 
 const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void }> = (props) => {
     const { sports, onChange } = props
-    const _sports = sliceIntoChunks(sports, 6);
+    const _sports = sliceIntoChunks(sports, 5);
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
     function sliceIntoChunks(arr: Sports, chunkSize: number) {
