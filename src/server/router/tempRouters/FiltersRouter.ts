@@ -1,7 +1,8 @@
 import { createRouter } from "../context";
 import { z } from "zod";
+import { resolve } from "path";
 
-const FiltersTemp = [
+const SportLeagues = [
     { name: "Premier League", subName: "England", count: 100, image: "/images/team-1-placeholder.svg", id: "1" },
     { name: "La Liga", subName: "Spain", count: 100, image: "/images/team-2-placeholder.svg", id: "2" },
     { name: "Bundesliga", subName: "Germany", count: 100, image: "/images/team-1-placeholder.svg", id: "3" },
@@ -14,8 +15,26 @@ const FiltersTemp = [
     { name: "UEFA Europa League", subName: "England", count: 100, image: "/images/team-2-placeholder.svg", id: "10" },
 ]
 
-export const filtersRouter = createRouter().query("getAll", {
-    async resolve() {
-        return FiltersTemp
-    },
-});
+const Sports = [
+    { name: "Football", image: "/images/sport-placeholder.svg", id: '1' },
+    { name: "Basketball", image: "/images/sport-placeholder.svg", id: '2' },
+    { name: "Hockey", image: "/images/sport-placeholder.svg", id: '3' },
+    { name: "Rugby", image: "/images/sport-placeholder.svg", id: '4' },
+    { name: "Tennis", image: "/images/sport-placeholder.svg", id: '5' },
+    { name: "Baseball", image: "/images/sport-placeholder.svg", id: '6' },
+    { name: "Handball", image: "/images/sport-placeholder.svg", id: '7' },
+    { name: "Soccer", image: "/images/sport-placeholder.svg", id: '8' },
+    { name: "Badminton", image: "/images/sport-placeholder.svg", id: '9' }
+]
+
+export const filtersRouter = createRouter()
+    .query("getLeagues", {
+        async resolve() {
+            return SportLeagues
+        },
+    })
+    .query("getSports", {
+        async resolve() {
+            return Sports
+        }
+    })

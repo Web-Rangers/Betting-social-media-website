@@ -5,7 +5,7 @@ import { trpc } from 'src/utils/trpc'
 import Filter from '@components/ui/Filter'
 
 const LiveMatches: NextPage = () => {
-    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
+    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
 
     if (filtersLoading) {
         return <div>Loading...</div>

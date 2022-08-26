@@ -24,6 +24,9 @@
 .mainColumn .predictions {
     grid-column-start: 5;
     grid-column-end: 13;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .sideColumn {
@@ -77,4 +80,60 @@
     flex-direction: row;
     gap: 40px;
     padding: 0 20px 50px;
+}
+
+/* Sports Slider */
+
+.sportsSlider {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sportsSlider h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.sportsSlider .slide {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.sportsSlider .sport {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px 8px;
+    gap: 9px;
+    border: 1px solid #1A1C2133;
+    border-radius: 8px;
+    flex: 1;
+    cursor: pointer;
+    color: #1A1C21;
+    transition: all 0.3s ease-in-out;
+}
+
+.sportsSlider .sport.active {
+    background-color: #7F3FFC;
+    color: #FFFFFF;
+}
+
+.sportsSlider .sport .image {
+    height: 24px;
+    width: 24px;
+}
+
+.sportsSlider .sport .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
 }

@@ -17,7 +17,7 @@ import MatchTipsCard from "@components/ui/MatchTipsCard";
 const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
-    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
+    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
     const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])

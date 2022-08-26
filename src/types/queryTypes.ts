@@ -13,3 +13,5 @@ export type PreviousCompetitions = inferQueryOutput<"competitions.getPrevious">
 export type MostTips = inferQueryOutput<"tips.getAll">
 
 export type Predictions = inferQueryOutput<"predictions.getAll">
+
+export type Sports = inferQueryOutput<"filters.getSports">

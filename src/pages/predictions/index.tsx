@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NextPage } from 'next'
 import styles from '@styles/pages/Predictions.module.css'
 import { trpc } from 'src/utils/trpc'
-import { MostTips } from 'src/types/queryTypes'
+import { MostTips, Sports } from 'src/types/queryTypes'
 import Slider from '@components/ui/Slider'
 import MatchTipsCard from '@components/ui/MatchTipsCard'
 import Image from 'next/image'
@@ -15,13 +15,14 @@ const PredictionsPage: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
-    const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getAll'])
+    const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeagues'])
+    const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
 
-    if (tipsLoading || predictionsLoading || bookmakersLoading || filtersLoading) {
+    if (tipsLoading || predictionsLoading || bookmakersLoading || leaguesLoading || sportsLoading) {
         return <div>Loading...</div>
     }
 
-    if (!tips || !predictions || !bookmakers || !filters) {
+    if (!tips || !predictions || !bookmakers || !leagues || !sports) {
         return <div>Error...</div>
     }
 
@@ -33,12 +34,13 @@ const PredictionsPage: NextPage = () => {
             <div className={styles.mainColumn}>
                 <div className={styles.filters}>
                     <Filter
-                        items={filters}
+                        items={leagues}
                         h3="CHOOSE LEAGUE"
                         onChange={() => { }}
                     />
                 </div>
                 <div className={styles.predictions}>
+                    <SportsSider sports={sports} onChange={() => { }} />
                     <Predictions leagues={predictions} />
                 </div>
             </div>
@@ -103,6 +105,81 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
                     ))}
                 </Slider>
             </div>
+        </div>
+    )
+}
+
+const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void }> = (props) => {
+    const { sports, onChange } = props
+    const _sports = sliceIntoChunks(sports, 6);
+    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+    function sliceIntoChunks(arr: Sports, chunkSize: number) {
+        const res = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+            const chunk = arr.slice(i, i + chunkSize);
+            res.push(chunk);
+        }
+        return res;
+    }
+
+    function handleSelect(id: string) {
+        if (selectedItems.includes(id)) {
+            setSelectedItems(selectedItems.filter(item => item !== id))
+            onChange(selectedItems.filter(item => item !== id))
+        } else {
+            setSelectedItems([...selectedItems, id])
+            onChange([...selectedItems, id])
+        }
+    }
+
+    return (
+        <div className={styles.sportsSlider}>
+            <h4>Sport</h4>
+            <Slider
+                showPagination={false}
+                showArrows={true}
+                arrowOptions={{
+                    offset: {
+                        next: {
+                            top: 0,
+                            side: 0,
+                        },
+                        prev: {
+                            top: 0,
+                            side: 'calc(100% - 50px)'
+                        }
+                    },
+                    size: {
+                        height: 30,
+                        width: 30
+                    },
+                    backgroundColor: 'transparent',
+                    arrowColor: 'dark'
+                }}
+            >
+                {_sports.map((sportsChunk, slideIndex) => (
+                    <div className={styles.slide} key={`sports_slide_${slideIndex}`}>
+                        {sportsChunk.map(({ name, image, id }, index) => (
+                            <div
+                                className={`${styles.sport} ${selectedItems.includes(id) && styles.active}`}
+                                key={`sports_slide_${slideIndex}_item_${index}`}
+                                onClick={() => handleSelect(id)}
+                            >
+                                <div className={styles.image}>
+                                    <Image
+                                        src={image}
+                                        alt={name}
+                                        height={24}
+                                        width={24}
+                                    />
+                                </div>
+                                <span className={styles.name}>{name}</span>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </Slider>
         </div>
     )
 }

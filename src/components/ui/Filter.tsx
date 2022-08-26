@@ -42,10 +42,10 @@ const Filter: React.FC<FilterProps> = (props) => {
     function handleSelect(id: string) {
         if (selectedItems.includes(id)) {
             setSelectedItems(selectedItems.filter(item => item !== id))
-            onChange && onChange(selectedItems.filter(item => item !== id))
+            onChange(selectedItems.filter(item => item !== id))
         } else {
             setSelectedItems([...selectedItems, id])
-            onChange && onChange([...selectedItems, id])
+            onChange([...selectedItems, id])
         }
     }
 
