@@ -1,6 +1,7 @@
 import { createRouter } from "../context";
 import { z } from "zod";
 import { MatchStatus } from "src/types/matchStatus";
+import Fuse from 'fuse.js'
 
 const LiveMatchesTemp = [
     {
@@ -36,8 +37,13 @@ const MatchesTemp = [
             { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
         ],
         id: 1,
-        date: "2020-01-01 12:00",
+        date: "2020.01.01 12:00",
         status: MatchStatus.live,
+        league: 'Premier League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        }
     },
     {
         teams: [
@@ -45,8 +51,13 @@ const MatchesTemp = [
             { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 0 },
         ],
         id: 2,
-        date: "2020-01-01 17:22",
+        date: "2020.01.01 17:22",
         status: MatchStatus.upcoming,
+        league: 'England League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        }
     },
     {
         teams: [
@@ -54,9 +65,14 @@ const MatchesTemp = [
             { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
         ],
         id: 3,
-        date: "2020-01-01 13:00",
+        date: "2020.01.01 13:00",
         status: MatchStatus.finished,
-        duration: '17:32'
+        duration: '17:32',
+        league: 'Premier League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        }
     },
 ]
 
@@ -69,5 +85,24 @@ export const matchesRouter = createRouter()
     .query("getAll", {
         async resolve() {
             return MatchesTemp
+        }
+    })
+    .query("search", {
+        input: z.object({
+            searchString: z.string(),
+            sport: z.string().nullish()
+        }),
+        async resolve({ input }) {
+            const options = {
+                includeScore: true,
+                keys: ['league', 'teams.name']
+            }
+
+            const fuse = new Fuse(MatchesTemp, options)
+
+            const result = fuse.search(input.searchString).map(item => item.item)
+
+
+            return result
         }
     })
