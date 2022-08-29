@@ -32,6 +32,9 @@ const MatchesPage: NextPage = () => {
 
     return (
         <>
+            <div className={styles.mainBlock}>
+                <Banner height={200} image="/images/banner-placeholder-1.png" />
+            </div>
             <div className={styles.mainColumn}>
                 <div className={styles.filters}>
                     <DatePicker onChange={() => { }} />
@@ -50,9 +53,6 @@ const MatchesPage: NextPage = () => {
                     <MatchesInfo leagues={predictions} />
                 </div>
             </div>
-            {/* <div className={styles.mainBlock}>
-                <Banner height={200} image="/images/banner-placeholder-1.png" />
-            </div> */}
             <div className={styles.sideColumn}>
                 <LiveMatches matches={matches} />
                 <Banner height={463} image='/images/banner-placeholder-2.png' />

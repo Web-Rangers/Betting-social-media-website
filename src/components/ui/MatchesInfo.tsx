@@ -25,17 +25,19 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
             {leagues.map((league, leagueIndex) =>
                 <div className={styles.league} key={`league_${leagueIndex}`}>
                     <div className={styles.leagueDescription}>
-                        <div className={styles.image}>
-                            <Image
-                                src={league.image}
-                                height={40}
-                                width={40}
-                                alt={league.name}
-                            />
-                        </div>
-                        <div className={styles.titles}>
-                            <span>{league.country} • {league.sport.name}</span>
-                            <span>{league.name}</span>
+                        <div className={styles.leagueWrapper}>
+                            <div className={styles.image}>
+                                <Image
+                                    src={league.image}
+                                    height={40}
+                                    width={40}
+                                    alt={league.name}
+                                />
+                            </div>
+                            <div className={styles.titles}>
+                                <span>{league.country} • {league.sport.name}</span>
+                                <span>{league.name}</span>
+                            </div>
                         </div>
                         <div className={styles.matchesOptions}>
                             test
