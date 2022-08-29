@@ -40,7 +40,33 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.matchesOptions}>
-                            test
+                            <button>
+                                <Image 
+                                    src='/icons/live-matches.svg'
+                                    alt=''
+                                    height={15}
+                                    width={15}
+                                />
+                                Live Matches
+                            </button>
+                            <button>
+                                <Image 
+                                    src='/icons/chart-bubble.svg'
+                                    alt=''
+                                    height={15}
+                                    width={15}
+                                />
+                                Odds
+                            </button>
+                            <button>
+                                <Image 
+                                    src='/icons/chart-line.svg'
+                                    alt=''
+                                    height={15}
+                                    width={15}
+                                />
+                                Statistic
+                            </button>
                         </div>
                     </div>
                     <div className={styles.matches}>

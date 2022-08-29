@@ -18,7 +18,28 @@
 }
 
 .matchesOptions {
-    align-self: center;
+    display: flex;
+    gap: 10px;
+}
+
+.matchesOptions button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 23px 9px 16px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.2);
+    border-radius: 4px;
+    height: 34px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    cursor: pointer;
 }
 
 .titles {
