@@ -16,6 +16,7 @@ import DateInput from '@components/ui/DatePicker'
 
 const AddTip: NextPage = () => {
     const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
+    const [step, setStep] = useState(1);
     const portalNode = useMemo(() => {
         if (typeof window === "undefined") {
             return null;
@@ -52,7 +53,7 @@ const AddTip: NextPage = () => {
                         <div className={styles.progress}>
                             <div className={styles.progressBarContainer}>
                                 <CircularProgressbarWithChildren
-                                    value={1}
+                                    value={step}
                                     maxValue={3}
                                     styles={{
                                         path: {
