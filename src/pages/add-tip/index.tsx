@@ -273,6 +273,7 @@ const FilterModal: React.FC<{ sports: Sports, onClose: () => void, onChange: (id
                             <div
                                 className={styles.sport}
                                 onClick={() => handleSelect(id)}
+                                key={`sport_${id}`}
                             >
                                 <span>
                                     {name}
@@ -280,6 +281,7 @@ const FilterModal: React.FC<{ sports: Sports, onClose: () => void, onChange: (id
                                 <input
                                     type={'checkbox'}
                                     checked={selectedItems.includes(id)}
+                                    readOnly
                                 />
                             </div>
                         ))}
