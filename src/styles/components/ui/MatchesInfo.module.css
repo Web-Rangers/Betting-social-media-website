@@ -1,0 +1,362 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.matchDuration {
+    padding: 8px 14px 8px 13px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    background-color: #CF1F1F;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.matchesOptions {
+    align-self: center;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.titles h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.titles h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.league {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.league .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 3px solid #1A1C211A;
+}
+
+.leagueDescription {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.leagueDescription .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+}
+
+.leagueDescription .titles span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C2199;
+}
+
+.leagueDescription .titles span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.matches {
+    display: flex;
+    flex-direction: column;
+}
+
+.match {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background: rgba(242, 242, 242, 0.3);
+}
+.match:nth-child(even) {
+    background: transparent;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 24px 28px 31px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.time span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.time span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21B2
+}
+
+.teamImages {
+    display: flex;
+    flex-direction: row;
+}
+
+.teamImages .teamImage:not(:first-child) {
+    margin-left: -10px;
+    z-index: +1;
+}
+
+.teamImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    border: 3px solid #E8E8E9;
+    background-color: #FFFFFF;
+}
+
+.teamNames {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.teamNames .teamName:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.teamNames .teamName:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21CC;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 16px;
+    width: 79px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.total.open {
+    background-color: #7F3FFC;
+    color: #FFFFFF;
+}
+
+.total.closed {
+    color: #1A1C21;
+}
+
+.more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    border-radius: 4px;
+    border: 1px solid #1A1C211A;
+    cursor: pointer;
+}
+
+.predictions {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: auto;
+}
+
+.predictions .prediction:not(:last-child) {
+    border-bottom: 1px solid #1A1C211A;
+}
+
+.prediction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #F2F2F233;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.userImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 3px solid #E8E8E9;
+    background-color: #FFFFFF;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.userInfo .userName {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+}
+
+.userInfo .userWinrate {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21CC;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21CC;
+}
+
+.outcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.outcome span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(26, 28, 33, 0.7);
+}
+
+.outcome span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.outcome.score {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding-right: 28px;
+}
+
+.outcome.score span:first-child {
+    font-size: 15px;
+    color: #1A1C21;
+    font-weight: 600;
+}
+
+.outcome.score span:last-child {
+    color: rgba(26, 28, 33, 0.7);
+    font-weight: 400;
+}
