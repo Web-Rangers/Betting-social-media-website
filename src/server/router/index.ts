@@ -12,7 +12,6 @@ import { filtersRouter } from "./tempRouters/FiltersRouter";
 import { predictionsRouter } from "./tempRouters/PredictionsRouter";
 import { newsRouter } from "./tempRouters/NewsRouter";
 import { competitionRouter } from "./tempRouters/CompetitionRouter";
-import { coinsRouter } from "./tempRouters/CoinsRouter";
 
 export const appRouter = createRouter()
     .transformer(superjson)
@@ -24,7 +23,6 @@ export const appRouter = createRouter()
     .merge('predictions.', predictionsRouter)
     .merge('news.', newsRouter)
     .merge('competitions.', competitionRouter)
-    .merge('coins.', coinsRouter)
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
