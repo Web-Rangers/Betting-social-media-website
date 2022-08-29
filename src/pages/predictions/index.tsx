@@ -264,6 +264,7 @@ const SortButtons: React.FC<SortButtonsProps> = (props) => {
         <div className={styles.filterButtons}>
             {items.map(({ id, name }) => (
                 <button
+                    key={`sort_button_${id}_${name}`}
                     onClick={() => handleSelect(id)}
                     className={selectedItems.includes(id) ? styles.active : undefined}
                 >
