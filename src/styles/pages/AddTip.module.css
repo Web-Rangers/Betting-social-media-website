@@ -300,3 +300,135 @@
     background-color: #7F3FFC;
     color: #FFFFFF;
 }
+
+/* Filter Modal */
+
+.filterModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: brightness(50%);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filterModal .modal {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 30px;
+    gap: 30px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    width: 380px;
+}
+
+.filterModal .modal .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filterModal .modal .header h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.filterModal .modal .header .close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.filterModal .modal h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C2180;
+}
+
+.filterModal .modal .block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filterModal .modal .sports {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 16px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+}
+
+.filterModal .modal .sports .sport {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 16px 0;
+    border-bottom: 1px solid #1A1C211A;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.filterModal .modal .sports .sport input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    border: 1px solid #1A1C214D;
+    outline: none;
+}
+
+.filterModal .modal .sports .sport input[type="checkbox"]:checked {
+    accent-color: #7F3FFC;
+}
+
+.filterModal .modal .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.filterModal .modal .buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.filterModal .modal .buttons button.clear {
+    color: #1A1C21;
+    background-color: transparent;
+    border: 1px solid #1A1C2133;
+}
+
+.filterModal .modal .buttons button.apply {
+    color: #FFFFFF;
+    background-color: #7F3FFC;
+    border: 1px solid transparent;
+}

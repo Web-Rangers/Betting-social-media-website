@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { ChangeEvent, ChangeEventHandler, useMemo, useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useMemo, useState, VoidFunctionComponent } from 'react'
 import styles from '@styles/pages/AddTip.module.css'
 import Image from 'next/image'
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar'
@@ -8,9 +8,14 @@ import { trpc } from 'src/utils/trpc'
 import debounce from 'src/utils/debounce'
 import * as portals from 'react-reverse-portal'
 import { PortalContext } from 'src/utils/portalContext'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import DateInput from '@components/ui/DatePicker'
+
+// TODO
+// fix prop drilling
 
 const AddTip: NextPage = () => {
+    const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
     const portalNode = useMemo(() => {
         if (typeof window === "undefined") {
             return null;
@@ -21,6 +26,14 @@ const AddTip: NextPage = () => {
             }
         });
     }, []);
+
+    if (sportsLoading) {
+        return <div>Loading...</div>
+    }
+
+    if (!sports) {
+        return <div>Error...</div>
+    }
 
     return (
         <>
@@ -60,7 +73,7 @@ const AddTip: NextPage = () => {
                                 <span>Find Event</span>
                                 <span>Use the search bar</span>
                             </div>
-                            <SearchBar />
+                            <SearchBar sports={sports} />
                         </div>
                     </div>
                     <span className={styles.disclaimer}>
@@ -75,8 +88,10 @@ const AddTip: NextPage = () => {
     )
 }
 
-const SearchBar: React.FC = (props) => {
+const SearchBar: React.FC<{ sports: Sports }> = (props) => {
+    const { sports } = props
     const [searchValue, setSearchValue] = useState<string>('');
+    const [selectedSports, setSelectedSports] = useState<string[]>([])
     const { data: searchResults, refetch } = trpc.useQuery(['matches.search', { searchString: searchValue }])
 
     function handleSearch(e: ChangeEvent<HTMLInputElement>) {
@@ -89,7 +104,11 @@ const SearchBar: React.FC = (props) => {
     return (
         <div className={styles.searchBarContainer}>
             <div className={styles.filterContainer}>
-                <Filter />
+                <Filter
+                    sports={sports}
+                    onChange={(ids) => setSelectedSports(ids)}
+                    defaultSelected={selectedSports}
+                />
             </div>
             <input
                 className={styles.searchBar}
@@ -152,7 +171,8 @@ const SearchBar: React.FC = (props) => {
     )
 }
 
-const Filter: React.FC = () => {
+const Filter: React.FC<{ sports: Sports, onChange: (ids: string[]) => void, defaultSelected: string[] }> = (props) => {
+    const { sports, onChange, defaultSelected } = props
     const [isOpen, setIsOpen] = useState(false)
 
     return (
@@ -161,6 +181,14 @@ const Filter: React.FC = () => {
                 {({ portalNode }) => portalNode &&
                     <portals.InPortal node={portalNode}>
                         <AnimatePresence initial={false}>
+                            {isOpen &&
+                                <FilterModal
+                                    sports={sports}
+                                    onClose={() => setIsOpen(false)}
+                                    onChange={(ids) => onChange(ids)}
+                                    defaultSelected={defaultSelected}
+                                />
+                            }
                         </AnimatePresence>
                     </portals.InPortal>
                 }
@@ -177,6 +205,106 @@ const Filter: React.FC = () => {
                 Filter
             </div>
         </>
+    )
+}
+
+const ModalVariants = {
+    open: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const FilterModal: React.FC<{ sports: Sports, onClose: () => void, onChange: (ids: string[]) => void, defaultSelected: string[] }> = (props) => {
+    const { sports, onClose, onChange, defaultSelected } = props
+    const [selectedItems, setSelectedItems] = useState<string[]>(defaultSelected)
+
+    function handleSelect(id: string) {
+        if (selectedItems.includes(id)) {
+            setSelectedItems(selectedItems.filter(item => item !== id))
+            onChange(selectedItems.filter(item => item !== id))
+        } else {
+            setSelectedItems([...selectedItems, id])
+            onChange([...selectedItems, id])
+        }
+    }
+
+    function handleClear() {
+        setSelectedItems([])
+        onChange([])
+    }
+
+    return (
+        <motion.div
+            className={styles.filterModal}
+            variants={ModalVariants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+        >
+            <div className={styles.modal}>
+                <div className={styles.header}>
+                    <h4>Filter</h4>
+                    <div
+                        className={styles.close}
+                        onClick={onClose}
+                    >
+                        <Image
+                            src='/icons/close.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                </div>
+                <div className={styles.block}>
+                    <h5>CHOOSE SPORT</h5>
+                    <div className={styles.sports}>
+                        {sports.map(({ name, id }) => (
+                            <div
+                                className={styles.sport}
+                                onClick={() => handleSelect(id)}
+                            >
+                                <span>
+                                    {name}
+                                </span>
+                                <input
+                                    type={'checkbox'}
+                                    checked={selectedItems.includes(id)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className={styles.block}>
+                    <h5>CHOOSE DATE</h5>
+                    <DateInput onChange={() => { }} />
+                </div>
+                <div className={styles.buttons}>
+                    <button
+                        className={styles.clear}
+                        onClick={handleClear}
+                    >
+                        Clear
+                    </button>
+                    <button
+                        className={styles.apply}
+                        onClick={onClose}
+                    >
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </motion.div>
     )
 }
 
