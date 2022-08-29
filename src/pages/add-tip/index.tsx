@@ -139,8 +139,11 @@ const SearchBar: React.FC<{ sports: Sports }> = (props) => {
                             </div>
                             <div className={styles.teams}>
                                 <div className={styles.images}>
-                                    {teams.map(({ image }) => (
-                                        <div className={styles.image}>
+                                    {teams.map(({ image }, index) => (
+                                        <div
+                                            key={`team_image_${index}`}
+                                            className={styles.image}
+                                        >
                                             <Image
                                                 src={image}
                                                 height={36}
@@ -150,8 +153,11 @@ const SearchBar: React.FC<{ sports: Sports }> = (props) => {
                                     ))}
                                 </div>
                                 <div className={styles.names}>
-                                    {teams.map(({ name }) => (
-                                        <span className={styles.name}>
+                                    {teams.map(({ name }, index) => (
+                                        <span
+                                            className={styles.name}
+                                            key={`team_name_${index}`}
+                                        >
                                             {name}
                                         </span>
                                     ))}

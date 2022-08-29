@@ -31,17 +31,19 @@ const Forgot: NextPage = () => {
                     </Link>
                 </div>
                 <div className={styles.formArea}>
-                    {!submitted ? 
+                    {!submitted ?
                         <form className={styles.form} onSubmit={submitForgot}>
-                            <a className={styles.backToLogin} href="/login">
-                                <Image 
-                                    src="/icons/arrow-left-purple.svg"
-                                    width={24}
-                                    height={24}
-                                    objectFit="contain"
-                                />
-                                &nbsp;&nbsp;&nbsp;Back to Login
-                            </a>
+                            <Link className={styles.backToLogin} href="/login">
+                                <a>
+                                    <Image
+                                        src="/icons/arrow-left-purple.svg"
+                                        width={24}
+                                        height={24}
+                                        objectFit="contain"
+                                    />
+                                    &nbsp;&nbsp;&nbsp;Back to Login
+                                </a>
+                            </Link>
                             <h1 className={styles.loginTitle}>
                                 Forgot your password?
                             </h1>
@@ -54,7 +56,7 @@ const Forgot: NextPage = () => {
                                     placeholder="Email Address"
                                     onChange={(e) => {
                                         if (e.target.validity.valid) {
-                                            e.target.value.length>0 && setSubmitForbidden(false)
+                                            e.target.value.length > 0 && setSubmitForbidden(false)
                                         }
                                         else {
                                             setSubmitForbidden(true)
@@ -63,9 +65,9 @@ const Forgot: NextPage = () => {
                                 />
                             </div>
                             <div className={styles.formBtns}>
-                                <SubmitButton 
+                                <SubmitButton
                                     disabled={submitForbidden}
-                                    style={{marginLeft:"auto"}}
+                                    style={{ marginLeft: "auto" }}
                                 >
                                     Reset my password
                                 </SubmitButton>
@@ -80,10 +82,10 @@ const Forgot: NextPage = () => {
                                 The link has been sent to the email.
                             </span>
                         </div>
-                    }                    
+                    }
                 </div>
                 <div className={styles.pageImg}>
-                    <Image 
+                    <Image
                         src="/images/login/background-password.png"
                         layout="fill"
                         objectFit="cover"
