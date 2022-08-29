@@ -54,7 +54,7 @@ const AddTip: NextPage = () => {
                             <div className={styles.progressBarContainer}>
                                 <CircularProgressbarWithChildren
                                     value={step}
-                                    maxValue={3}
+                                    maxValue={2}
                                     styles={{
                                         path: {
                                             strokeWidth: '10px',
@@ -67,7 +67,7 @@ const AddTip: NextPage = () => {
                                     }}
                                     className={styles.progressBar}
                                 >
-                                    <span className={styles.progressText}><b>1</b>/3</span>
+                                    <span className={styles.progressText}><b>1</b>/2</span>
                                 </CircularProgressbarWithChildren>
                             </div>
                             <div className={styles.stepText}>
