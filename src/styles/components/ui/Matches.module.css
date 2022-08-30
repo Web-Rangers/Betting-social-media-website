@@ -4,7 +4,7 @@
     gap: 30px;
 }
 
-.matchDuration {
+.matchLive {
     padding: 8px 14px 8px 13px;
     font-family: 'Samsung Sans';
     font-style: normal;
@@ -130,6 +130,7 @@
     border-radius: 8px;
     background: rgba(242, 242, 242, 0.3);
 }
+
 .match:nth-child(even) {
     background: transparent;
 }
@@ -163,6 +164,8 @@
     font-size: 15px;
     line-height: 18px;
     color: #1A1C21;
+    width: min-content;
+    text-align: center;
 }
 
 .time span:last-child {
@@ -243,6 +246,7 @@
     line-height: 14px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    width: max-content;
 }
 
 .total.open {

@@ -8,6 +8,8 @@ export type LiveMatches = inferQueryOutput<"matches.getAllLive">
 
 export type Matches = inferQueryOutput<"matches.getAll">
 
+export type MatchesByLeague = inferQueryOutput<"matches.getAllByLeague">
+
 export type CurrentCompetition = inferQueryOutput<"competitions.getCurrent">
 
 export type PreviousCompetitions = inferQueryOutput<"competitions.getPrevious">

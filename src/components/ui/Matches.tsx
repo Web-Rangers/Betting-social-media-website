@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
-import styles from '@styles/components/ui/MatchesInfo.module.css'
+import styles from '@styles/components/ui/Matches.module.css'
 import Image from 'next/image'
-import { Predictions } from 'src/types/queryTypes'
+import { MatchesByLeague } from 'src/types/queryTypes'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { motion } from 'framer-motion'
+import { MatchStatus } from 'src/types/matchStatus'
 
 interface MatchesInfoProps {
-    leagues: Predictions,
+    leagues: MatchesByLeague,
     h3?: string,
     h2?: string,
 }
 
-type MatchType = inferArrayElementType<inferArrayElementType<Predictions>['matches']>
+type MatchType = inferArrayElementType<inferArrayElementType<MatchesByLeague>['matches']>
 
-const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
+const Matches: React.FC<MatchesInfoProps> = (props) => {
     const { leagues, h2, h3 } = props
 
     return (
@@ -41,7 +42,7 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
                         </div>
                         <div className={styles.matchesOptions}>
                             <button>
-                                <Image 
+                                <Image
                                     src='/icons/live-matches.svg'
                                     alt=''
                                     height={15}
@@ -50,7 +51,7 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
                                 Live Matches
                             </button>
                             <button>
-                                <Image 
+                                <Image
                                     src='/icons/chart-bubble.svg'
                                     alt=''
                                     height={15}
@@ -59,7 +60,7 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
                                 Odds
                             </button>
                             <button>
-                                <Image 
+                                <Image
                                     src='/icons/chart-line.svg'
                                     alt=''
                                     height={15}
@@ -80,35 +81,30 @@ const MatchesInfo: React.FC<MatchesInfoProps> = (props) => {
     )
 }
 
-const MatchesInfoVariants = {
-    open: {
-        height: 'auto',
-        transition: {
-            duration: 0.3,
-            ease: 'easeInOut'
-        }
-    },
-    closed: {
-        height: 0,
-        transition: {
-            duration: 0.3,
-            ease: 'easeInOut'
+const Match: React.FC<MatchType> = (props) => {
+    const { status, teams, date, odds, tip_count } = props
+    const [isOpen, setIsOpen] = useState(false);
+
+    function getTag(status: MatchStatus) {
+        switch (status) {
+            case MatchStatus.live:
+                return <div className={styles.matchLive}>Live</div>
+            case MatchStatus.upcoming:
+                return <span>{date}</span>
+            case MatchStatus.finished:
+                return <span>{date}</span>
+
+            default:
+                return <></>
         }
     }
-}
-
-const Match: React.FC<MatchType> = (props) => {
-    const { predictions, teams, time } = props
-    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className={styles.match}>
             <div className={styles.header}>
                 <div className={styles.info}>
                     <div className={styles.time}>
-                        <span>{time}</span>
-                        <span>Today</span>
-                        {/* <div className={styles.matchDuration}>Live</div> */}
+                        {getTag(status)}
                     </div>
                     <div className={styles.teamImages}>
                         {teams.map((team, index) => (
@@ -129,79 +125,35 @@ const Match: React.FC<MatchType> = (props) => {
                             </div>
                         ))}
                     </div>
-                    
+
                 </div>
                 <div className={styles.details}>
                     <div className={`${styles.outcome} ${styles.score}`}>
-                        <span>0</span>
-                        <span>0</span>
+                        <span>{teams[0]?.score}</span>
+                        <span>{teams[1]?.score}</span>
                     </div>
                     <div className={styles.outcome}>
                         <span>Home</span>
-                        <span>34%</span>
+                        <span>{odds.home * 100}%</span>
                     </div>
                     <div className={styles.outcome}>
                         <span>Draw</span>
-                        <span>17%</span>
+                        <span>{odds.draw * 100}%</span>
                     </div>
                     <div className={styles.outcome}>
                         <span>Away</span>
-                        <span>49%</span>
+                        <span>{odds.away * 100}%</span>
                     </div>
                     <div
                         className={`${styles.total} ${isOpen ? styles.open : styles.closed}`}
                         onClick={() => setIsOpen(!isOpen)}
                     >
-                        {predictions.length} Tip{predictions.length > 1 ? 's' : ''}
+                        {tip_count} Tip{tip_count > 1 ? 's' : ''}
                     </div>
                 </div>
             </div>
-            <motion.div
-                className={styles.predictions}
-                variants={MatchesInfoVariants}
-                animate={isOpen ? 'open' : 'closed'}
-                initial={false}
-            >
-                {predictions.map((prediction, index) => (
-                    <div key={index} className={styles.prediction}>
-                        <div className={styles.info}>
-                            <div className={styles.time}>
-                                <span>{prediction.time}</span>
-                                <span>Today</span>
-                            </div>
-                            <div className={styles.user}>
-                                <div className={styles.userImage}>
-                                    <Image
-                                        src={prediction.user.image}
-                                        alt={prediction.user.name}
-                                        width={40}
-                                        height={40}
-                                    />
-                                </div>
-                                <div className={styles.userInfo}>
-                                    <div className={styles.userName}>{prediction.user.name}</div>
-                                    <div className={styles.userWinrate}>Winrate {prediction.user.winrate * 100}%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.comment}>
-                            <Image
-                                src="/icons/comment.svg"
-                                alt="Comment"
-                                width={20}
-                                height={20}
-                            />
-                            <span>{prediction.comment ? 'With Comment' : 'Without comment'}</span>
-                        </div>
-                        <div className={styles.outcome}>
-                            <span>{prediction.type} Prediction</span>
-                            <span>{prediction.outcome}</span>
-                        </div>
-                    </div>
-                ))}
-            </motion.div>
         </div>
     )
 }
 
-export default MatchesInfo;
+export default Matches;
