@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from '@styles/pages/UserDashboard.module.css'
 import { trpc } from 'src/utils/trpc'
 import { UserInfo } from 'src/types/queryTypes'
@@ -56,6 +56,28 @@ const NavigationItems = [
 const UserDashboard: NextPage = () => {
     const { data: userInfo, isLoading: userInfoLoading } = trpc.useQuery(['user.getInfo'])
     const [currentPage, setCurrentPage] = useState(Tabs.Dashboard)
+    const memoizedPage = useMemo(() => getPage(currentPage), [currentPage])
+
+    function getPage(page: Tabs) {
+        switch (page) {
+            case Tabs.Dashboard:
+                return <>Dashboard</>
+            case Tabs.Withdraw:
+                return <>Withdraw</>
+            case Tabs.Subscription:
+                return <>Subscription</>
+            case Tabs.TrackingTips:
+                return <>Tracking Tips</>
+            case Tabs.PendingTips:
+                return <>Pending Tips</>
+            case Tabs.HistoricalTips:
+                return <>Historical Tips</>
+            case Tabs.Settings:
+                return <>Profile Settings</>
+            default:
+                return <></>
+        }
+    }
 
     if (userInfoLoading) {
         return <div>Loading...</div>
@@ -76,7 +98,9 @@ const UserDashboard: NextPage = () => {
                     />
                 </div>
             </div>
-            <div className={styles.mainColumn}>a</div>
+            <div className={styles.mainColumn}>
+                {memoizedPage}
+            </div>
         </>
     )
 }
