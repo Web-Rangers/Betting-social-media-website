@@ -52,11 +52,30 @@
 }
 
 .navigation .userInfo .avatar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100%;
     border: 3px solid #1A1C211A;
+}
+
+.navigation .userInfo .avatar.verified::after {
+    content: '';
+    background-image: url(/icons/check-white.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 19px;
+    width: 19px;
+    position: absolute;
+    border-radius: 100%;
+    background-color: #2CD114;
+    top: 0;
+    right: 0;
+    border: 3px solid #FFFFFF;
 }
 
 .navigation .userInfo .name {

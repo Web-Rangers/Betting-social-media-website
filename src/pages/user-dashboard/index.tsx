@@ -56,10 +56,8 @@ const NavigationItems = [
 const UserDashboard: NextPage = () => {
     const { data: userInfo, isLoading: userInfoLoading } = trpc.useQuery(['user.getInfo'])
     const [currentPage, setCurrentPage] = useState(Tabs.Dashboard)
-    const memoizedPage = useMemo(() => getPage(currentPage), [currentPage])
-
-    function getPage(page: Tabs) {
-        switch (page) {
+    const memoizedPage = useMemo(() => {
+        switch (currentPage) {
             case Tabs.Dashboard:
                 return <>Dashboard</>
             case Tabs.Withdraw:
@@ -77,7 +75,7 @@ const UserDashboard: NextPage = () => {
             default:
                 return <></>
         }
-    }
+    }, [currentPage])
 
     if (userInfoLoading) {
         return <div>Loading...</div>
