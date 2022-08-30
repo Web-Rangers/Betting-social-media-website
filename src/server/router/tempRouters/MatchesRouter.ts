@@ -76,6 +76,177 @@ const MatchesTemp = [
     },
 ]
 
+const MatchesByLeague = [
+    {
+        name: 'Premier League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        },
+        country: 'England',
+        image: "/images/team-1-placeholder.svg",
+        matches: [
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.upcoming,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            }
+        ]
+    },
+    {
+        name: 'Premier League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        },
+        country: 'England',
+        image: "/images/team-1-placeholder.svg",
+        matches: [
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.upcoming,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            }
+        ]
+    },
+    {
+        name: 'Premier League',
+        sport: {
+            name: 'Football',
+            image: '/images/sport-placeholder.svg'
+        },
+        country: 'England',
+        image: "/images/team-1-placeholder.svg",
+        matches: [
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.upcoming,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            },
+            {
+                teams: [
+                    { name: "Liverpool", image: "/images/team-1-placeholder.svg", score: 1 },
+                    { name: "Manchester City", image: "/images/team-2-placeholder.svg", score: 1 },
+                ],
+                id: 1,
+                date: "2020.01.01 12:00",
+                status: MatchStatus.live,
+                odds: {
+                    home: 0.34,
+                    draw: 0.17,
+                    away: 0.49
+                },
+                tip_count: 21
+            }
+        ]
+    }
+]
+
 export const matchesRouter = createRouter()
     .query("getAllLive", {
         async resolve() {
@@ -85,6 +256,11 @@ export const matchesRouter = createRouter()
     .query("getAll", {
         async resolve() {
             return MatchesTemp
+        }
+    })
+    .query("getAllByLeague", {
+        async resolve() {
+            return MatchesByLeague
         }
     })
     .query("search", {
