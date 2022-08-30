@@ -26,6 +26,7 @@
 .bottom {
     grid-row-start: 3;
     grid-row-end: 4;
+    margin-bottom: 100px;
 }
 
 /* Main News */
