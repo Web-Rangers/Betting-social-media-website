@@ -28,9 +28,11 @@ const Login: NextPage = () => {
                         </h1>
                         <span className={styles.formText}>
                             Don’t have an account?&nbsp;&nbsp;&nbsp;
-                            <a href="/signup">
-                                Create one
-                            </a>
+                            <Link href="/signup">
+                                <a>
+                                    Create one
+                                </a>
+                            </Link>
                         </span>
                         <div className={styles.socials}>
                             <div className={styles.social}>
@@ -69,9 +71,11 @@ const Login: NextPage = () => {
                         </div>
                         <div className={styles.formBtns}>
                             <span className={styles.formText}>
-                                <a href="/forgot-password">
-                                    Forgot Password?
-                                </a>
+                                <Link href="/forgot-password">
+                                    <a>
+                                        Forgot Password?
+                                    </a>
+                                </Link>
                             </span>
                             <SubmitButton>
                                 Sign In
@@ -80,7 +84,7 @@ const Login: NextPage = () => {
                     </form>
                 </div>
                 <div className={styles.pageImg}>
-                    <Image 
+                    <Image
                         src="/images/login/background-login.png"
                         layout="fill"
                         objectFit="cover"

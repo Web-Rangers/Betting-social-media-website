@@ -54,7 +54,7 @@ const AddTip: NextPage = () => {
                             <div className={styles.progressBarContainer}>
                                 <CircularProgressbarWithChildren
                                     value={step}
-                                    maxValue={3}
+                                    maxValue={2}
                                     styles={{
                                         path: {
                                             strokeWidth: '10px',
@@ -67,7 +67,7 @@ const AddTip: NextPage = () => {
                                     }}
                                     className={styles.progressBar}
                                 >
-                                    <span className={styles.progressText}><b>1</b>/3</span>
+                                    <span className={styles.progressText}><b>1</b>/2</span>
                                 </CircularProgressbarWithChildren>
                             </div>
                             <div className={styles.stepText}>
@@ -139,8 +139,11 @@ const SearchBar: React.FC<{ sports: Sports }> = (props) => {
                             </div>
                             <div className={styles.teams}>
                                 <div className={styles.images}>
-                                    {teams.map(({ image }) => (
-                                        <div className={styles.image}>
+                                    {teams.map(({ image }, index) => (
+                                        <div
+                                            key={`team_image_${index}`}
+                                            className={styles.image}
+                                        >
                                             <Image
                                                 src={image}
                                                 height={36}
@@ -150,8 +153,11 @@ const SearchBar: React.FC<{ sports: Sports }> = (props) => {
                                     ))}
                                 </div>
                                 <div className={styles.names}>
-                                    {teams.map(({ name }) => (
-                                        <span className={styles.name}>
+                                    {teams.map(({ name }, index) => (
+                                        <span
+                                            className={styles.name}
+                                            key={`team_name_${index}`}
+                                        >
                                             {name}
                                         </span>
                                     ))}

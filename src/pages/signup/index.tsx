@@ -59,27 +59,29 @@ const Register: NextPage = () => {
                         </h1>
                         <span className={styles.formText}>
                             You already have an account?&nbsp;&nbsp;&nbsp;
-                            <a href="/login">
-                                Sign In
-                            </a>
+                            <Link href="/login">
+                                <a>
+                                    Sign In
+                                </a>
+                            </Link>
                         </span>
                         <div className={styles.socials}>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/facebook.svg"
                                     width={24}
                                     height={24}
                                 />
                             </div>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/google.svg"
                                     width={24}
                                     height={24}
                                 />
                             </div>
                             <div className={styles.social}>
-                                <Image 
+                                <Image
                                     src="/images/login/twitter.svg"
                                     width={24}
                                     height={24}
@@ -91,31 +93,31 @@ const Register: NextPage = () => {
                         </span>
                         <div className={styles.fields}>
                             <div className={styles.row}>
-                                <TextField 
-                                    type="text" 
+                                <TextField
+                                    type="text"
                                     placeholder="First Name"
                                 />
-                                <TextField 
-                                    type="text" 
+                                <TextField
+                                    type="text"
                                     placeholder="Last Name"
                                 />
                             </div>
-                            <TextField 
-                                type="email" 
+                            <TextField
+                                type="email"
                                 placeholder="Email Address"
                             />
-                            <TextField 
-                                type="nickname" 
+                            <TextField
+                                type="nickname"
                                 placeholder="Nickname"
                                 icon="/images/login/dice.svg"
-                                iconClick={()=>{}}
+                                iconClick={() => { }}
                             />
-                            <PasswordField 
+                            <PasswordField
                                 name="password"
                                 placeholder="Password"
                                 onChange={checkPassword}
                             />
-                            <PasswordField 
+                            <PasswordField
                                 name="repeat_password"
                                 placeholder="Repeat Password"
                             />
@@ -172,7 +174,7 @@ const Register: NextPage = () => {
                     </form>
                 </div>
                 <div className={styles.pageImg}>
-                    <Image 
+                    <Image
                         src="/images/login/background-register.png"
                         layout="fill"
                         objectFit="cover"
