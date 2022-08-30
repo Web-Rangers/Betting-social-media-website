@@ -1,22 +1,13 @@
-.mainBlock {
+.rightColumn {
     grid-column-start: 1;
-    grid-column-end: 13;
+    grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
-}
-
-.mainColumn {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 40px;
-    grid-column-start: 1;
-    grid-column-end: 10;
-    grid-row-start: 2;
-    grid-row-end: 3;
     margin-left: 60px;
+    padding-top: 20px;
 }
 
-.mainColumn .filters {
+.rightColumn .filters {
     position: relative;
     grid-column-start: 1;
     grid-column-end: 5;
@@ -25,7 +16,24 @@
     gap: 12px;
 }
 
-.mainColumn .filters h4 {
+.mainColumn {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+    grid-column-start: 4;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.mainColumn .banner {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.rightColumn .filters h4 {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-weight: 600;
@@ -34,51 +42,11 @@
     color: #1A1C21;
 }
 
-.mainColumn .filters h5 {
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    color: #1A1C2180;
-}
-
-.mainColumn .filters .search {
-    height: 42px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-between;
-}
-
-.mainColumn .filters .search>div {
-    width: 100%;
-}
-
-.mainColumn .filters .search>div input {
-    max-height: 42px;
-}
-
-.mainColumn .filters .search button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 14px 20px;
-    border: none;
-    background-color: #1A1C214D;
-    border-radius: 8px;
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
 .mainColumn .predictions {
-    grid-column-start: 5;
-    grid-column-end: 13;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
     display: flex;
     flex-direction: column;
     gap: 40px;

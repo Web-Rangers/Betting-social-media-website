@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { NextPage } from 'next'
-import styles from '@styles/pages/Predictions.module.css'
+import styles from '@styles/pages/Matches.module.css'
 import { trpc } from 'src/utils/trpc'
-import Image from 'next/image'
 import BestBookmakers from '@components/ui/BestBookmakers'
 import Banner from '@components/ui/Banner'
 import Filter from '@components/ui/Filter'
-import TextField from '@components/ui/TextField'
 import DatePicker from '@components/ui/DatePicker'
 import LiveMatches from '@components/ui/LiveMatches'
 import Matches from '@components/ui/Matches'
@@ -29,10 +27,7 @@ const MatchesPage: NextPage = () => {
 
     return (
         <>
-            <div className={styles.mainBlock}>
-                <Banner height={200} image="/images/banner-placeholder-1.png" />
-            </div>
-            <div className={styles.mainColumn}>
+            <div className={styles.rightColumn}>
                 <div className={styles.filters}>
                     <DatePicker onChange={() => { }} />
                     <Filter
@@ -46,14 +41,19 @@ const MatchesPage: NextPage = () => {
                         onChange={() => { }}
                     />
                 </div>
+            </div>
+            <div className={styles.mainColumn}>
+                <div className={styles.banner}>
+                    <Banner height={200} image="/images/banner-placeholder-1.png" />
+                </div>
                 <div className={styles.predictions}>
                     <Matches leagues={matches} />
                 </div>
-            </div>
-            <div className={styles.sideColumn}>
-                <LiveMatches matches={liveMatches} />
-                <Banner height={463} image='/images/banner-placeholder-2.png' />
-                <BestBookmakers bookmakers={bookmakers} />
+                <div className={styles.sideColumn}>
+                    <LiveMatches matches={liveMatches} />
+                    <Banner height={463} image='/images/banner-placeholder-2.png' />
+                    <BestBookmakers bookmakers={bookmakers} />
+                </div>
             </div>
         </>
     )
