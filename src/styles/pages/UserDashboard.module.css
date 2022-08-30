@@ -1,0 +1,195 @@
+.sideColumn {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding: 20px 30px 0 60px;
+    height: calc(100vh - 85px);
+    background-color: #FBFBFB;
+}
+
+.mainColumn {
+    padding-top: 20px;
+    grid-column-start: 4;
+    grid-column-end: 13;
+}
+
+.navigationContainer {
+    position: sticky;
+    top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Navigation */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.navigation .userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.navigation .userInfo .user {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.navigation .userInfo .details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+.navigation .userInfo .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: 3px solid #1A1C211A;
+}
+
+.navigation .userInfo .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+.navigation .userInfo .rank {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21CC;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.navigation .userInfo .rank b {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21CC;
+}
+
+.navigation .userInfo .stats {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.navigation .userInfo .stats .stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 4px;
+    border: 1px solid #7F3FFC33;
+    border-radius: 8px;
+}
+
+.navigation .userInfo .stats .stat h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+}
+
+.navigation .userInfo .stats .stat span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.navigation nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Menu Item */
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.menuItem>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+}
+
+.menuItem .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    transition: all 0.3s ease-in-out;
+}
+
+.menuItem .counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A1C211A;
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    transition: all 0.3s ease-in-out;
+}
+
+.menuItem.active {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    background-color: #7F3FFC;
+}
+
+.menuItem.active .name,
+.menuItem.active .counter {
+    color: #FFFFFF;
+}
+
+.menuItem.active .counter {
+    background-color: #FFFFFF33;
+}

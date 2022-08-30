@@ -19,3 +19,5 @@ export type Predictions = inferQueryOutput<"predictions.getAll">
 export type Sports = inferQueryOutput<"filters.getSports">
 
 export type Methods = inferQueryOutput<"coins.getMethods">
+
+export type UserInfo = inferQueryOutput<"user.getInfo">
