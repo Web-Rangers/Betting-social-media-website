@@ -2,7 +2,7 @@
     grid-column-start: 1;
     grid-column-end: 4;
     padding: 20px 30px 0 60px;
-    height: calc(100vh - 85px);
+    height: 100%;
     background-color: #FBFBFB;
 }
 
@@ -217,4 +217,369 @@
 
 .menuItem.active .counter {
     background-color: #FFFFFF33;
+}
+
+/* Dashboard Tab */
+
+.dashboardTab {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.dashboardTab .row {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.dashboardTab .block {
+    padding: 46px;
+    border: 1px solid #7F3FFC1A;
+    border-radius: 16px;
+    display: flex;
+}
+
+.dashboardTab .block.positive {
+    background-color: #7F3FFCE5;
+}
+
+.dashboardTab .block.negative {
+    background-color: #FF5018B2;
+}
+
+.dashboardTab .block.small {
+    flex: 0.58;
+}
+
+.dashboardTab .block.narrow {
+    flex: 1;
+}
+
+.dashboardTab .block.wide {
+    flex: 2;
+}
+
+.dashboardTab .block.hidden {
+    border: none;
+    background: none;
+}
+
+.block .image {
+    height: 60px;
+    width: 60px;
+}
+
+#profit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+#profit .text {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#profit h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+#profit span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+
+#stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#stats .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#stats h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#stats span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1A1C21;
+}
+
+#coins {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+
+#coins .info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+#coins .count {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#coins .info h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#coins .info span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #1A1C21;
+}
+
+#coins .description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#coins .description span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+#coins .description a {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#coins .description a:after {
+    content: url(/icons/arrow-narrow-right-black.svg);
+    height: 24px;
+    width: 24px;
+}
+
+#bookmaker {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: center;
+}
+
+#bookmaker h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#sport {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+#sport .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#sport h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+
+#sport h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+#odds {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#odds .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+#odds .text {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#odds h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#odds span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #1A1C21;
+}
+
+#unit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#unit .info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#unit .detailed {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+}
+
+#unit .text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#unit h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#unit h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+#unit span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #1A1C21;
+}
+
+#bets {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#bets .progressBar {
+    height: 140px;
+    width: 140px;
+    border-radius: 100%;
+    border: none;
+    background-color: #7F3FFC08;
+}
+
+#bets h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+#bets span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+}
+
+#bets .progressBar.won h3,
+#bets .progressBar.won span {
+    color: #7F3FFC;
+}
+
+#bets .progressBar.pending h3,
+#bets .progressBar.pending span {
+    color: #FFB82D;
+}
+
+#bets .progressBar.lost h3,
+#bets .progressBar.lost span {
+    color: #FF5018;
 }
