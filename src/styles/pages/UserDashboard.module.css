@@ -276,6 +276,10 @@
     align-items: center;
     justify-content: center;
     gap: 30px;
+    background-image: url(/images/dashboard/masks/wallet-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #profit .text {
@@ -306,6 +310,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-image: url(/images/dashboard/masks/stats-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #stats .stat {
@@ -336,6 +344,10 @@
     display: flex;
     flex-direction: row;
     gap: 80px;
+    background-image: url(/images/dashboard/masks/coins-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #coins .info {
@@ -423,6 +435,10 @@
     flex-direction: column;
     gap: 40px;
     align-items: center;
+    background-image: url(/images/dashboard/masks/sport-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #sport .info {
@@ -454,6 +470,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url(/images/dashboard/masks/odds-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #odds .info {
@@ -491,6 +511,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url(/images/dashboard/masks/unit-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 #unit .info {
@@ -543,6 +567,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-image: url(/images/dashboard/masks/bets-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #bets .progressBar {
