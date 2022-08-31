@@ -101,15 +101,19 @@ const FollowersInfo = {
     count: 1782,
     difference: 0.0293,
     followers: [
-        { name: "John Doe", follower_count: 2000, following: false },
-        { name: "Jane Doe", follower_count: 2000, following: true },
-        { name: "Jack Doe", follower_count: 2000, following: false },
-        { name: "Jill Doe", follower_count: 2000, following: false },
-        { name: "Joe Doe", follower_count: 2000, following: false },
-        { name: "Juan Doe", follower_count: 2000, following: true },
-        { name: "Julie Doe", follower_count: 2000, following: true },
-        { name: "Jenny Doe", follower_count: 2000, following: false },
-        { name: "Lee Doe", follower_count: 2000, following: true },
+        { name: "John Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Jane Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jack Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Jill Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Joe Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Juan Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Julie Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jenny Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Lee Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Juan Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jane Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "John Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: false },
+        { name: "Julie Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
     ]
 }
 
