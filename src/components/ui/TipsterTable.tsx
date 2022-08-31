@@ -160,7 +160,7 @@ const TipsterTable: React.FC<{ tipsters: Tipsters, pageSize?: number }> = (props
                     ))}
                 </tbody>
             </table>
-            <Pagination table={table} pageCount={Math.round(tipsters.length / _pageSize)} />
+            <Pagination table={table} pageCount={Math.ceil(tipsters.length / _pageSize)} />
         </div>
     )
 }

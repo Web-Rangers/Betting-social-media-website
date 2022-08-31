@@ -178,3 +178,105 @@
     line-height: 19px;
     color: #7F3FFC;
 }
+
+/* History Table */
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.table {
+    border-spacing: 0;
+    border-collapse: separate;
+    width: 100%;
+}
+
+.cell {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    padding: 13px 24px;
+    border: none;
+}
+
+.tableRow .cell:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.tableRow .cell:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.tableRow:nth-child(odd) .cell {
+    background-color: #F2F2F24D;
+}
+
+.header {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 13px 24px;
+    color: #1A1C21B2;
+    text-align: start;
+}
+
+.amount {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.status {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.status.pending {
+    color: #1A1C21B2;
+}
+
+.status.pending:before {
+    content: url(/icons/dashboard/pending.svg);
+    height: 24px;
+    width: 24px;
+}
+
+.status.success {
+    color: #2CD114;
+}
+
+.status.success:before {
+    content: url(/icons/dashboard/success.svg);
+    height: 24px;
+    width: 24px;
+}
+
+.status.blocked {
+    color: #CF1F1F;
+}
+
+.status.blocked:before {
+    content: url(/icons/dashboard/blocked.svg);
+    height: 24px;
+    width: 24px;
+}

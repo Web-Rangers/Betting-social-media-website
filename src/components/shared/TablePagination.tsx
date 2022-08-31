@@ -1,6 +1,6 @@
 import { Table } from '@tanstack/react-table';
 import React, { ReactElement, useEffect, useState } from 'react'
-import styles from '@styles/shared/TablePagination.module.css'
+import styles from '@styles/components/shared/TablePagination.module.css'
 import Image from 'next/image';
 
 
@@ -45,6 +45,10 @@ const Pagination: React.FC<{ table: Table<any>, pageCount: number }> = (props) =
     useEffect(() => {
         updatePages()
     }, [currentPage])
+
+    if (pageCount === 0) {
+        return <></>
+    }
 
     return (
         <div className={styles.pagination}>
