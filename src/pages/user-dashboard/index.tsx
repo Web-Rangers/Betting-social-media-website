@@ -14,7 +14,9 @@ enum Tabs {
     TrackingTips = 'Tracking Tips',
     PendingTips = 'Pending Tips',
     HistoricalTips = 'Historical Tips',
-    Settings = 'Profile Settings'
+    Settings = 'Profile Settings',
+    Followers = 'Followers',
+    Following = 'Following'
 }
 
 const NavigationItems = [
@@ -74,6 +76,10 @@ const UserDashboard: NextPage = () => {
                 return <>Historical Tips</>
             case Tabs.Settings:
                 return <>Profile Settings</>
+            case Tabs.Following:
+                return <>Following</>
+            case Tabs.Followers:
+                return <>Followers</>
             default:
                 return <></>
         }
@@ -134,11 +140,17 @@ const Navigation: React.FC<{ userInfo: UserInfo, currentPage: Tabs, onPageChange
                     </div>
                 </div>
                 <div className={styles.stats}>
-                    <div className={styles.stat}>
+                    <div
+                        className={`${styles.stat} ${currentPage === Tabs.Followers && styles.active}`}
+                        onClick={() => onPageChange(Tabs.Followers)}
+                    >
                         <h5>Followers</h5>
                         <span>{userInfo.follower_count}</span>
                     </div>
-                    <div className={styles.stat}>
+                    <div
+                        className={`${styles.stat} ${currentPage === Tabs.Following && styles.active}`}
+                        onClick={() => onPageChange(Tabs.Following)}
+                    >
                         <h5>Following</h5>
                         <span>{userInfo.following_count}</span>
                     </div>
