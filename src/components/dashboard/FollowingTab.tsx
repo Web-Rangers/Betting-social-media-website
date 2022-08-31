@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react'
-import styles from '@styles/components/dashboard/FollowersTab.module.css'
+import styles from '@styles/components/dashboard/FollowingTab.module.css'
 import Image from 'next/image'
 import { trpc } from 'src/utils/trpc'
 import debounce from 'src/utils/debounce'
@@ -37,7 +37,7 @@ const FollowingTab: React.FC = () => {
         <div className={styles.followersTab}>
             <div className={styles.row}>
                 <div
-                    id={styles.followers}
+                    id={styles.following}
                     className={`${styles.block} ${styles.wide} ${styles.positive}`}
                 >
                     <div className={styles.image}>

@@ -55,6 +55,10 @@
     gap: 40px;
     align-items: center;
     justify-content: space-around;
+    background-image: url(/images/dashboard/masks/followers-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #followers .text {
@@ -132,6 +136,7 @@
 #followers .search {
     position: relative;
     flex: 0.75;
+    backdrop-filter: blur(12px);
 }
 
 #followers .search input[type="text"] {
