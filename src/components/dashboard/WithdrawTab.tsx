@@ -63,7 +63,7 @@ const WithdrawTab: React.FC = () => {
                 </div>
             </div>
             <h2>Historical Withdraws</h2>
-            <HistoryTable history={data.history} />
+            <HistoryTable history={data.history} pageSize={10} />
         </div>
     )
 }

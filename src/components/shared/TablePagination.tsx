@@ -46,7 +46,7 @@ const Pagination: React.FC<{ table: Table<any>, pageCount: number }> = (props) =
         updatePages()
     }, [currentPage])
 
-    if (pageCount === 0) {
+    if (pageCount <= 1) {
         return <></>
     }
 

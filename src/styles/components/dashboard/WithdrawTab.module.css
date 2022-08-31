@@ -63,6 +63,10 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    background-image: url(/images/dashboard/masks/withdraw-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #withdrawBalance div:first-child {
@@ -115,6 +119,10 @@
     flex-direction: row;
     align-items: center;
     gap: 40px;
+    background-image: url(/images/dashboard/masks/withdraw-total-mask.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: auto;
 }
 
 #withdrawTotal .text {
