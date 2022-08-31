@@ -1,6 +1,5 @@
 import { createRouter } from "../context";
 import { z } from "zod";
-import { resolve } from "path";
 
 const SportLeagues = [
     { name: "Premier League", subName: "England", count: 100, image: "/images/team-1-placeholder.svg", id: "1" },
@@ -27,6 +26,61 @@ const Sports = [
     { name: "Badminton", image: "/images/sport-placeholder.svg", id: '9' }
 ]
 
+const LeaguesByCountry = [
+    {
+        name: 'England',
+        image: '/images/country-placeholder.png',
+        count: 22,
+        leagues: [
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.png',
+        count: 22,
+        leagues: [
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.png',
+        count: 22,
+        leagues: [
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.png',
+        count: 22,
+        leagues: [
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+        ]
+    }
+]
+
 export const filtersRouter = createRouter()
     .query("getLeagues", {
         async resolve() {
@@ -36,5 +90,10 @@ export const filtersRouter = createRouter()
     .query("getSports", {
         async resolve() {
             return Sports
+        }
+    })
+    .query("getLeaguesByCountry", {
+        async resolve() {
+            return LeaguesByCountry
         }
     })
