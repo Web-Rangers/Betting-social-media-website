@@ -93,6 +93,8 @@ export const matchesRouter = createRouter()
             sport: z.string().nullish()
         }),
         async resolve({ input }) {
+            const { searchString, sport } = input
+
             const options = {
                 includeScore: true,
                 keys: ['league', 'teams.name']
@@ -100,8 +102,7 @@ export const matchesRouter = createRouter()
 
             const fuse = new Fuse(MatchesTemp, options)
 
-            const result = fuse.search(input.searchString).map(item => item.item)
-
+            const result = fuse.search(searchString).map(item => item.item)
 
             return result
         }

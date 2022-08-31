@@ -6,6 +6,7 @@ import { UserInfo } from 'src/types/queryTypes'
 import Image from 'next/image'
 import DashboardTab from '@components/dashboard/DahsboardTab'
 import WithdrawTab from '@components/dashboard/WithdrawTab'
+import FollowersTab from '@components/dashboard/FollowersTab'
 
 enum Tabs {
     Dashboard = 'Dashboard',
@@ -79,7 +80,7 @@ const UserDashboard: NextPage = () => {
             case Tabs.Following:
                 return <>Following</>
             case Tabs.Followers:
-                return <>Followers</>
+                return <FollowersTab />
             default:
                 return <></>
         }

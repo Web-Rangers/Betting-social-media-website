@@ -1,6 +1,7 @@
 import { createRouter } from "../context";
 import { z } from "zod";
 import { TransactionStatus } from "src/types/transactionStatus";
+import Fuse from 'fuse.js'
 
 const UserInfo = {
     image: '/images/profile-placeholder.png',
@@ -96,6 +97,22 @@ const WithdrawInfo = {
     ]
 }
 
+const FollowersInfo = {
+    count: 1782,
+    difference: 0.0293,
+    followers: [
+        { name: "John Doe", follower_count: 2000, following: false },
+        { name: "Jane Doe", follower_count: 2000, following: true },
+        { name: "Jack Doe", follower_count: 2000, following: false },
+        { name: "Jill Doe", follower_count: 2000, following: false },
+        { name: "Joe Doe", follower_count: 2000, following: false },
+        { name: "Juan Doe", follower_count: 2000, following: true },
+        { name: "Julie Doe", follower_count: 2000, following: true },
+        { name: "Jenny Doe", follower_count: 2000, following: false },
+        { name: "Lee Doe", follower_count: 2000, following: true },
+    ]
+}
+
 export const userRouter = createRouter()
     .query("getInfo", {
         async resolve() {
@@ -110,5 +127,29 @@ export const userRouter = createRouter()
     .query("getWithdrawInfo", {
         async resolve() {
             return WithdrawInfo
+        }
+    })
+    .query("getFollowersInfo", {
+        async resolve() {
+            return FollowersInfo
+        }
+    })
+    .query("searchFollowers", {
+        input: z.object({
+            searchString: z.string()
+        }),
+        async resolve({ input }) {
+            const { searchString } = input
+
+            const options = {
+                includeScore: true,
+                keys: ['name']
+            }
+
+            const fuse = new Fuse(FollowersInfo.followers, options)
+
+            const result = fuse.search(searchString).map(item => item.item)
+
+            return result
         }
     })
