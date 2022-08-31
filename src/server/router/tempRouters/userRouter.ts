@@ -117,6 +117,25 @@ const FollowersInfo = {
     ]
 }
 
+const FollowingInfo = {
+    count: 395,
+    followers: [
+        { name: "John Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jane Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jack Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jill Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Joe Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Juan Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Julie Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jenny Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Lee Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Juan Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Jane Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "John Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+        { name: "Julie Doe", image: '/images/profile-placeholder.png', follower_count: 2000, following: true },
+    ]
+}
+
 export const userRouter = createRouter()
     .query("getInfo", {
         async resolve() {
@@ -151,6 +170,30 @@ export const userRouter = createRouter()
             }
 
             const fuse = new Fuse(FollowersInfo.followers, options)
+
+            const result = fuse.search(searchString).map(item => item.item)
+
+            return result
+        }
+    })
+    .query("getFollowingInfo", {
+        async resolve() {
+            return FollowingInfo
+        }
+    })
+    .query("searchFollowing", {
+        input: z.object({
+            searchString: z.string()
+        }),
+        async resolve({ input }) {
+            const { searchString } = input
+
+            const options = {
+                includeScore: true,
+                keys: ['name']
+            }
+
+            const fuse = new Fuse(FollowingInfo.followers, options)
 
             const result = fuse.search(searchString).map(item => item.item)
 

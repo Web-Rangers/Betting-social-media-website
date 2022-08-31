@@ -129,6 +129,7 @@
     border: 1px solid #7F3FFC33;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .navigation .userInfo .stats .stat h5 {

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import DashboardTab from '@components/dashboard/DahsboardTab'
 import WithdrawTab from '@components/dashboard/WithdrawTab'
 import FollowersTab from '@components/dashboard/FollowersTab'
+import FollowingTab from '@components/dashboard/FollowingTab'
 
 enum Tabs {
     Dashboard = 'Dashboard',
@@ -78,7 +79,7 @@ const UserDashboard: NextPage = () => {
             case Tabs.Settings:
                 return <>Profile Settings</>
             case Tabs.Following:
-                return <>Following</>
+                return <FollowingTab />
             case Tabs.Followers:
                 return <FollowersTab />
             default:

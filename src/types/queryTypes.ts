@@ -25,3 +25,5 @@ export type UserInfo = inferQueryOutput<"user.getInfo">
 export type WithdrawInfo = inferQueryOutput<"user.getWithdrawInfo">
 
 export type FollowersInfo = inferQueryOutput<"user.getFollowersInfo">
+
+export type FollowingInfo = inferQueryOutput<"user.getFollowingInfo">
