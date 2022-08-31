@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Slider from '@components/ui/Slider'
 import shortenNumber from 'src/utils/shortenNumber'
 import TipsterModal from '@components/ui/TipsterModal'
+import useModalPortal from 'src/utils/usePortal'
 
 const TableDropdownItems = [
     {
@@ -76,16 +77,7 @@ const TipsterCompetition: NextPage = () => {
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
     const { data: previousCompetition, isLoading: previousCompetitionLoading } = trpc.useQuery(['competitions.getPrevious'])
-    const portalNode = useMemo(() => {
-        if (typeof window === "undefined") {
-            return null;
-        }
-        return portals.createHtmlPortalNode({
-            attributes: {
-                style: "position: absolute; top: 0; left: 0;"
-            }
-        });
-    }, [])
+    const portalNode = useModalPortal()
 
     if (currentCompetitionLoading || tipstersLoading || previousCompetitionLoading) {
         return <div>Loading...</div>

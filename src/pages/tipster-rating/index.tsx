@@ -19,6 +19,7 @@ import { PortalContext } from 'src/utils/portalContext';
 import { NextPage } from 'next';
 import TextField from '@components/ui/TextField';
 import Dropdown from '@components/ui/Dropdown';
+import useModalPortal from 'src/utils/usePortal';
 
 const SportItems = [
     {
@@ -63,16 +64,7 @@ const TipsterRating: NextPage = () => {
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
-    const portalNode = useMemo(() => {
-        if (typeof window === "undefined") {
-            return null;
-        }
-        return portals.createHtmlPortalNode({
-            attributes: {
-                style: "position: absolute; top: 0; left: 0;"
-            }
-        });
-    }, []);
+    const portalNode = useModalPortal()
 
 
     if (tipstersLoading || bookmakersLoading || liveMatchesLoading || currentCompetitionLoading) {
