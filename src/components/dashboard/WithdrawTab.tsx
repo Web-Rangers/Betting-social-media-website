@@ -1,16 +1,21 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/components/dashboard/WithdrawTab.module.css'
-import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from '@tanstack/react-table'
+import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { WithdrawInfo } from 'src/types/queryTypes'
 import Pagination from '@components/shared/TablePagination'
 import Moment from 'react-moment'
 import { TransactionStatus } from 'src/types/transactionStatus'
+import * as portals from 'react-reverse-portal'
+import useModalPortal from 'src/utils/usePortal'
+import { PortalContext } from 'src/utils/portalContext'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const WithdrawTab: React.FC = () => {
     const { data, isLoading } = trpc.useQuery(['user.getWithdrawInfo'])
+    const portalNode = useModalPortal()
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -21,61 +26,265 @@ const WithdrawTab: React.FC = () => {
     }
 
     return (
-        <div className={styles.withdrawTab}>
-            <div className={styles.row}>
-                <div
-                    id={styles.withdrawBalance}
-                    className={`${styles.block} ${styles.wide} ${styles.positive}`}
-                >
-                    <div>
-                        <div className={styles.image}>
-                            <Image
-                                src='/images/dashboard/wallet.svg'
-                                height={60}
-                                width={60}
-                            />
+        <>
+            <PortalContext.Provider value={{ portalNode: portalNode }}>
+                {portalNode && <portals.OutPortal node={portalNode} />}
+                <div className={styles.withdrawTab}>
+                    <div className={styles.row}>
+                        <div
+                            id={styles.withdrawBalance}
+                            className={`${styles.block} ${styles.wide} ${styles.positive}`}
+                        >
+                            <div>
+                                <div className={styles.image}>
+                                    <Image
+                                        src='/images/dashboard/wallet.svg'
+                                        height={60}
+                                        width={60}
+                                    />
+                                </div>
+                                <div className={styles.text}>
+                                    <h4>Pending Balance</h4>
+                                    <span>$ {data.pendingBalance}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h5>Cash that can be withdrawn right now</h5>
+                                <WithdrawButton balance={data.availableBalance} />
+                            </div>
                         </div>
-                        <div className={styles.text}>
-                            <h4>Pending Balance</h4>
-                            <span>$ {data.pendingBalance}</span>
+                        <div
+                            id={styles.withdrawTotal}
+                            className={`${styles.block} ${styles.narrow}`}
+                        >
+                            <div className={styles.image}>
+                                <Image
+                                    src='/images/dashboard/total.svg'
+                                    height={60}
+                                    width={60}
+                                />
+                            </div>
+                            <div className={styles.text}>
+                                <h4>Pending Balance</h4>
+                                <span>$ {data.totalEarned}</span>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <h5>Cash that can be withdrawn right now</h5>
-                        <WithdrawButton balance={data.availableBalance} />
-                    </div>
+                    <h2>Historical Withdraws</h2>
+                    <HistoryTable history={data.history} pageSize={10} />
                 </div>
-                <div
-                    id={styles.withdrawTotal}
-                    className={`${styles.block} ${styles.narrow}`}
-                >
-                    <div className={styles.image}>
-                        <Image
-                            src='/images/dashboard/total.svg'
-                            height={60}
-                            width={60}
-                        />
-                    </div>
-                    <div className={styles.text}>
-                        <h4>Pending Balance</h4>
-                        <span>$ {data.totalEarned}</span>
-                    </div>
-                </div>
-            </div>
-            <h2>Historical Withdraws</h2>
-            <HistoryTable history={data.history} pageSize={10} />
-        </div>
+            </PortalContext.Provider>
+        </>
+
     )
 }
 
 const WithdrawButton: React.FC<{ balance: number }> = (props) => {
     const { balance } = props
-    // TODO withdraw modal
+    const [isOpen, setIsOpen] = useState(false)
+
     return (
-        <button className={styles.withdrawButton}>
-            <span>Withdraw</span>
-            <span>$ {balance}</span>
-        </button>
+        <>
+            <PortalContext.Consumer>
+                {({ portalNode }) => portalNode &&
+                    <portals.InPortal node={portalNode}>
+                        <AnimatePresence initial={false}>
+                            {isOpen &&
+                                <WithdrawModal
+                                    maxValue={balance}
+                                    onClose={() => setIsOpen(false)}
+                                />
+                            }
+                        </AnimatePresence>
+                    </portals.InPortal>
+                }
+            </PortalContext.Consumer>
+            <button
+                className={styles.withdrawButton}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <span>Withdraw</span>
+                <span>$ {balance}</span>
+            </button>
+        </>
+    )
+}
+
+const ModalVariants = {
+    open: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+enum PaymentMethods {
+    Paypal = "paypal",
+    MastercardVisa = "mastercard/visa"
+}
+
+const WithdrawModal: React.FC<{ maxValue: number, onClose: () => void }> = (props) => {
+    const { maxValue, onClose } = props
+    const [isMax, setIsMax] = useState<boolean>(false)
+    const [selectedMethod, setSelectedMethod] = useState<PaymentMethods>(PaymentMethods.Paypal)
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const [timeLeft, setTimeLeft] = useState<string | null>(null)
+
+    function handleInput(e: ChangeEvent<HTMLInputElement>) {
+        const value = parseInt(e.target.value);
+        if (value > maxValue) {
+            if (inputRef.current) {
+                inputRef.current.value = maxValue.toString()
+                setIsMax(true)
+            }
+            return
+        }
+        if (value === maxValue) {
+            setIsMax(true)
+        } else {
+            setIsMax(false)
+        }
+    }
+
+    function setMax(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault()
+        if (inputRef.current) {
+            inputRef.current.value = maxValue.toString()
+            setIsMax(true)
+        }
+    }
+
+    function onSubmit(e: FormEvent) {
+        e.preventDefault()
+        onClose()
+    }
+
+    function sendCode(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault()
+        let _timeLeft = 120;
+        const minutes = Math.floor(_timeLeft / 60)
+        const seconds = _timeLeft - minutes * 60
+        const interval = setInterval(() => {
+            const minutes = Math.floor(_timeLeft / 60)
+            const seconds = _timeLeft - minutes * 60
+            if (_timeLeft > 0) {
+                setTimeLeft(`${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`)
+                _timeLeft--
+            } else {
+                clearInterval(interval)
+                setTimeLeft(null)
+            }
+        }, 1000)
+        setTimeLeft(`${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`)
+    }
+
+    return (
+        <motion.div
+            className={styles.modalContainer}
+            variants={ModalVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+        >
+            <form className={styles.modal} onSubmit={onSubmit}>
+                <div className={styles.header}>
+                    <h2>Withdraw Money</h2>
+                    <div
+                        className={styles.close}
+                        onClick={onClose}
+                    >
+                        <Image
+                            src='/icons/close.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                </div>
+                <div className={styles.input}>
+                    <span className={styles.label}>Amount: <b>$</b> </span>
+                    <input
+                        type={'number'}
+                        placeholder='0'
+                        onChange={handleInput}
+                        ref={inputRef}
+                        name='amount'
+                    />
+                    <button
+                        className={isMax ? styles.max : undefined}
+                        onClick={setMax}
+                    >
+                        MAX
+                    </button>
+                </div>
+                <div className={styles.methods}>
+                    <h3>Payment Methods</h3>
+                    <div
+                        className={styles.method}
+                        onClick={() => setSelectedMethod(PaymentMethods.Paypal)}
+                    >
+                        <div>
+                            <Image
+                                src='/images/paypal.svg'
+                                height={20}
+                                width={80}
+                            />
+                        </div>
+                        <input
+                            type={'checkbox'}
+                            readOnly
+                            checked={selectedMethod === PaymentMethods.Paypal}
+                        />
+                    </div>
+                    <div
+                        className={styles.method}
+                        onClick={() => setSelectedMethod(PaymentMethods.MastercardVisa)}
+                    >
+                        <div>
+                            <Image
+                                src='/images/visa.svg'
+                                height={20}
+                                width={48}
+                            />
+                            <Image
+                                src='/images/mastercard.svg'
+                                height={20}
+                                width={32}
+                            />
+                        </div>
+                        <input
+                            type={'checkbox'}
+                            readOnly
+                            checked={selectedMethod === PaymentMethods.MastercardVisa}
+                        />
+                    </div>
+                </div>
+                <div className={styles.code}>
+                    <button onClick={!timeLeft ? sendCode : () => { }}>
+                        {!timeLeft ? 'Send Code' : timeLeft}
+                    </button>
+                    <input
+                        type={'text'}
+                        placeholder="Email verification code"
+                        name='code'
+                    />
+                </div>
+                <button
+                    className={styles.submit}
+                    type={'submit'}
+                >
+                    Withdraw
+                </button>
+            </form>
+        </motion.div>
     )
 }
 
