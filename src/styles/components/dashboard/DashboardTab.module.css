@@ -41,6 +41,8 @@
     width: 60px;
 }
 
+/* Dashboard Tab */
+
 .dashboardTab {
     display: flex;
     flex-direction: column;

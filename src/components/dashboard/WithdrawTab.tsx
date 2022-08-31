@@ -56,6 +56,8 @@ const WithdrawTab: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <h2>Historical Withdraws</h2>
+            <div className={styles.row}></div>
         </div>
     )
 }
