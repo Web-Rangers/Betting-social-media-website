@@ -93,6 +93,7 @@ const Item: React.FC<ItemType> = (props) => {
                 className={styles.subItems}
                 variants={SubItemsVariants}
                 animate={isOpen ? 'open' : 'closed'}
+                initial={false}
             >
                 {leagues.map(({ count, id, image, name }) => (
                     <div
