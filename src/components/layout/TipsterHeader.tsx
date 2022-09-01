@@ -53,13 +53,7 @@ const TipsterHeader: React.FC = () => {
                         onSelect={(id) => { }}
                     />
                     <Settings />
-                    {
-                        !session
-                            ? <button className={styles.button}>
-                                Sign In
-                            </button>
-                            : <UserProfile />
-                    }
+                    <UserProfile />
                 </div>
             </nav>
         </div>

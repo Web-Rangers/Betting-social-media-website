@@ -58,25 +58,6 @@
     gap: 33px;
 }
 
-.button {
-    position: relative;
-    display: flex;
-    width: max-content;
-    white-space: nowrap;
-    padding: 12px 24px;
-    background-color: #7F3FFC;
-    color: #FFFFFF;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 8px;
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-}
-
 /* Settings component */
 
 .settings {
