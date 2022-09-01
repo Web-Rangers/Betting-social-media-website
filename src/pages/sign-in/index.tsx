@@ -28,7 +28,7 @@ const Login: NextPage = () => {
                         </h1>
                         <span className={styles.formText}>
                             Don’t have an account?&nbsp;&nbsp;&nbsp;
-                            <Link href="/signup">
+                            <Link href="/sign-up">
                                 <a>
                                     Create one
                                 </a>

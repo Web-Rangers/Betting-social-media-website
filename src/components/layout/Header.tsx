@@ -66,9 +66,11 @@ const Header: React.FC = () => {
                     <Settings />
                     {
                         !session
-                            ? <button className={styles.button}>
-                                Sign In
-                            </button>
+                            ? <Link href='/sign-in'>
+                                <button className={styles.button}>
+                                    Sign In
+                                </button>
+                            </Link>
                             : <UserProfile />
                     }
                 </div>
