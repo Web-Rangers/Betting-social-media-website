@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from '@styles/components/layout/shared/UserProfile.module.css'
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const NotificationsList = [
     { text: 'You have a new message', date: '10:00', id: 1 },
@@ -247,7 +247,10 @@ const Profile: React.FC<ProfileProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.menuSection}>
-                            <div className={styles.menuItem}>
+                            <div
+                                className={styles.menuItem}
+                                onClick={() => signOut()}
+                            >
                                 <Image
                                     src="/icons/profile/logout.svg"
                                     alt="logout"

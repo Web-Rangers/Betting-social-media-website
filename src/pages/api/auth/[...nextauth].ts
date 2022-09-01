@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                if ((credentials?.email === 'test@test.test') && (credentials.password === 'qwerty')) {
+                if ((credentials?.email === 'qwe@qwe.qwe') && (credentials.password === 'qwerty')) {
                     // handle user auth here
                     const user = { id: 1, name: "John Doe", email: credentials?.email }
                     return user
@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     debug: process.env.NODE_ENV === 'development',
+    secret: env.NEXTAUTH_SECRET
 };
 
 export default NextAuth(authOptions);
