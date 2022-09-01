@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import styles from "../../styles/pages/Login.module.css"
+import styles from "../../styles/pages/Auth.module.css"
 import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
@@ -54,16 +54,16 @@ const Forgot: NextPage = () => {
                 </div>
                 <div className={styles.formArea}>
                     <form className={styles.form}>
-                        <h1 className={styles.loginTitle} style={{marginBottom: 0}}>
+                        <h1 className={styles.loginTitle} style={{ marginBottom: 0 }}>
                             Enter New Password
                         </h1>
                         <div className={styles.fields}>
-                            <PasswordField 
+                            <PasswordField
                                 name="password"
                                 placeholder="New password"
                                 onChange={checkPassword}
                             />
-                            <PasswordField 
+                            <PasswordField
                                 name="repeat_password"
                                 placeholder="Repeat Password"
                             />
@@ -105,15 +105,15 @@ const Forgot: NextPage = () => {
                                 Include at least one symbol
                             </span>
                         </div>
-                        <div className={styles.formBtns} style={{marginTop: 32}}>
-                            <SubmitButton style={{marginLeft: "auto"}}>
+                        <div className={styles.formBtns} style={{ marginTop: 32 }}>
+                            <SubmitButton style={{ marginLeft: "auto" }}>
                                 Save new password
                             </SubmitButton>
                         </div>
-                    </form>            
+                    </form>
                 </div>
                 <div className={styles.pageImg}>
-                    <Image 
+                    <Image
                         src="/images/login/background-password.png"
                         layout="fill"
                         objectFit="cover"
