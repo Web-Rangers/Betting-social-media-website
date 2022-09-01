@@ -29,54 +29,55 @@ const Sports = [
 const LeaguesByCountry = [
     {
         name: 'England',
-        image: '/images/country-placeholder.png',
+        image: '/images/country-placeholder.svg',
         count: 22,
+        id: '1',
         leagues: [
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '2' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '3' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '4' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '5' },
         ]
     },
     {
         name: 'England',
-        image: '/images/country-placeholder.png',
+        image: '/images/country-placeholder.svg',
         count: 22,
+        id: '8',
         leagues: [
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '9' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '10' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '12' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '13' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '14' },
         ]
     },
     {
         name: 'England',
-        image: '/images/country-placeholder.png',
+        image: '/images/country-placeholder.svg',
         count: 22,
+        id: '15',
         leagues: [
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '16' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '17' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '18' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '19' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '20' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '21' },
         ]
     },
     {
         name: 'England',
-        image: '/images/country-placeholder.png',
+        image: '/images/country-placeholder.svg',
         count: 22,
+        id: '22',
         leagues: [
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
-            { name: 'Premier League', image: '/images/team-placeholder.png', count: 78 },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '23' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '24' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '25' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '26' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '27' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '28' },
         ]
     }
 ]
