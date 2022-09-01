@@ -5,6 +5,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar'
 import React, { ReactNode, useMemo, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/components/dashboard/DashboardTab.module.css'
+import sharedStyles from '@styles/components/dashboard/shared.module.css'
 
 const DashboardTab: React.FC = () => {
     const { data, isLoading } = trpc.useQuery(['user.getDashboardInfo'])
@@ -19,12 +20,12 @@ const DashboardTab: React.FC = () => {
 
     return (
         <div className={styles.dashboardTab}>
-            <div className={styles.row}>
+            <div className={sharedStyles.row}>
                 <div
                     id={styles.profit}
-                    className={`${styles.block} ${styles.narrow} ${data.avgProfit > 0 ? styles.positive : styles.negative}`}
+                    className={`${sharedStyles.block} ${sharedStyles.narrow} ${data.avgProfit > 0 ? sharedStyles.positive : sharedStyles.negative}`}
                 >
-                    <div className={styles.image}>
+                    <div className={sharedStyles.image}>
                         <Image
                             src='/images/dashboard/wallet.svg'
                             height={60}
@@ -38,7 +39,7 @@ const DashboardTab: React.FC = () => {
                 </div>
                 <div
                     id={styles.stats}
-                    className={`${styles.block} ${styles.wide}`}
+                    className={`${sharedStyles.block} ${sharedStyles.wide}`}
                 >
                     <div className={styles.stat}>
                         <h3>ROI</h3>
@@ -54,10 +55,10 @@ const DashboardTab: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.row}>
+            <div className={sharedStyles.row}>
                 <div
                     id={styles.coins}
-                    className={`${styles.block} ${styles.wide}`}
+                    className={`${sharedStyles.block} ${sharedStyles.wide}`}
                 >
                     <div className={styles.info}>
                         <div className={styles.image}>
@@ -86,7 +87,7 @@ const DashboardTab: React.FC = () => {
                 </div>
                 <div
                     id={styles.bookmaker}
-                    className={`${styles.block} ${styles.narrow}`}
+                    className={`${sharedStyles.block} ${sharedStyles.narrow}`}
                 >
                     <h5>Favorite Bookmaker</h5>
                     <Image
@@ -97,10 +98,10 @@ const DashboardTab: React.FC = () => {
                     />
                 </div>
             </div>
-            <div className={styles.row}>
+            <div className={sharedStyles.row}>
                 <div
                     id={styles.sport}
-                    className={`${styles.block} ${styles.small}`}
+                    className={`${sharedStyles.block} ${sharedStyles.small}`}
                 >
                     <Image
                         src={data.favoriteSport.image}
@@ -114,10 +115,10 @@ const DashboardTab: React.FC = () => {
                 </div>
                 <div
                     id={styles.odds}
-                    className={`${styles.block} ${styles.narrow}`}
+                    className={`${sharedStyles.block} ${sharedStyles.narrow}`}
                 >
                     <div className={styles.info}>
-                        <div className={styles.image}>
+                        <div className={sharedStyles.image}>
                             <Image
                                 src="/images/dashboard/chart-bubble.svg"
                                 height={60}
@@ -133,12 +134,12 @@ const DashboardTab: React.FC = () => {
                 </div>
                 <div
                     id={styles.unit}
-                    className={`${styles.block} ${styles.narrow}`}
+                    className={`${sharedStyles.block} ${sharedStyles.narrow}`}
                 >
                     <div className={styles.info}>
                         <h5>All Time Average Unit Rate</h5>
                         <div className={styles.detailed}>
-                            <div className={styles.image}>
+                            <div className={sharedStyles.image}>
                                 <Image
                                     src="/images/dashboard/coin.svg"
                                     height={60}
@@ -154,10 +155,10 @@ const DashboardTab: React.FC = () => {
                     <StatisticsChart data={data.coins.history} />
                 </div>
             </div>
-            <div className={styles.row}>
+            <div className={sharedStyles.row}>
                 <div
                     id={styles.bets}
-                    className={`${styles.block} ${styles.wide}`}
+                    className={`${sharedStyles.block} ${sharedStyles.wide}`}
                 >
                     <div className={`${styles.progressBar} ${styles.won}`}>
                         <CircularProgressbarWithChildren
@@ -214,7 +215,7 @@ const DashboardTab: React.FC = () => {
                         </CircularProgressbarWithChildren>
                     </div>
                 </div>
-                <div className={`${styles.block} ${styles.narrow} ${styles.hidden}`} />
+                <div className={`${sharedStyles.block} ${sharedStyles.narrow} ${sharedStyles.hidden}`} />
             </div>
         </div>
     )

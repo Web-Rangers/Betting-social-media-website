@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React, { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/components/dashboard/WithdrawTab.module.css'
+import sharedStyles from '@styles/components/dashboard/shared.module.css'
 import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { WithdrawInfo } from 'src/types/queryTypes'
@@ -30,13 +31,13 @@ const WithdrawTab: React.FC = () => {
             <PortalContext.Provider value={{ portalNode: portalNode }}>
                 {portalNode && <portals.OutPortal node={portalNode} />}
                 <div className={styles.withdrawTab}>
-                    <div className={styles.row}>
+                    <div className={sharedStyles.row}>
                         <div
                             id={styles.withdrawBalance}
-                            className={`${styles.block} ${styles.wide} ${styles.positive}`}
+                            className={`${sharedStyles.block} ${sharedStyles.wide} ${sharedStyles.positive}`}
                         >
                             <div>
-                                <div className={styles.image}>
+                                <div className={sharedStyles.image}>
                                     <Image
                                         src='/images/dashboard/wallet.svg'
                                         height={60}
@@ -55,9 +56,9 @@ const WithdrawTab: React.FC = () => {
                         </div>
                         <div
                             id={styles.withdrawTotal}
-                            className={`${styles.block} ${styles.narrow}`}
+                            className={`${sharedStyles.block} ${sharedStyles.narrow}`}
                         >
-                            <div className={styles.image}>
+                            <div className={sharedStyles.image}>
                                 <Image
                                     src='/images/dashboard/total.svg'
                                     height={60}

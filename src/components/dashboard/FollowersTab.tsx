@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import styles from '@styles/components/dashboard/FollowersTab.module.css'
+import sharedStyles from '@styles/components/dashboard/shared.module.css'
 import Image from 'next/image'
 import { trpc } from 'src/utils/trpc'
 import debounce from 'src/utils/debounce'
@@ -35,12 +36,12 @@ const FollowersTab: React.FC = () => {
 
     return (
         <div className={styles.followersTab}>
-            <div className={styles.row}>
+            <div className={sharedStyles.row}>
                 <div
                     id={styles.followers}
-                    className={`${styles.block} ${styles.wide} ${styles.positive}`}
+                    className={`${sharedStyles.block} ${sharedStyles.wide} ${sharedStyles.positive}`}
                 >
-                    <div className={styles.image}>
+                    <div className={sharedStyles.image}>
                         <Image
                             src='/images/dashboard/followers.svg'
                             height={80}
