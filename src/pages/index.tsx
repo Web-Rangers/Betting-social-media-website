@@ -5,7 +5,7 @@ import { trpc } from "../utils/trpc";
 import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
@@ -14,6 +14,7 @@ import { MatchStatus } from "src/types/matchStatus";
 import { MostTips, Tipsters } from "src/types/queryTypes";
 import MatchTipsCard from "@components/ui/MatchTipsCard";
 import Matches from "@components/ui/Matches";
+import Link from "next/link";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
@@ -163,7 +164,9 @@ const SignUpPropose: React.FC = () => {
                 when an unknown printer took a galley of type and scrambled it to make a type
                 specimen book.
             </span>
-            <button>Sign Up</button>
+            <Link href='/sign-up'>
+                <button>Sign Up</button>
+            </Link>
         </div>
     )
 }

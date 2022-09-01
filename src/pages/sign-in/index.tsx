@@ -21,7 +21,7 @@ const Login: NextPage = () => {
         };
         const email = target.email.value;
         const password = target.password.value;
-        signIn('credentials', { email: email, password: password, callbackUrl: router.query.callbackUrl as string })
+        signIn('credentials', { email: email, password: password, callbackUrl: router.query.callbackUrl as string || '/' })
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
