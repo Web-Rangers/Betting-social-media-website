@@ -16,7 +16,7 @@ const MyApp: AppType = ({
     pageProps: { session, ...pageProps },
 }) => {
     const router = useRouter();
-    const noLayoutRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
+    const noLayoutRoutes = ["/sign-in", "/sign-up", "/forgot-password", "/reset-password"];
     const tipsterRoutes = ["/tipster-rating", "/tipster-competition"];
 
     function getLayout(): ReactElement {

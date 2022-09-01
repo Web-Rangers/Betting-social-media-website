@@ -8,7 +8,7 @@ import Dropdown from '@components/ui/Dropdown';
 import TextField from '@components/ui/TextField';
 import Fuse from 'fuse.js'
 import UserProfile from '@components/layout/shared/UserProfile';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
 
@@ -66,11 +66,11 @@ const Header: React.FC = () => {
                     <Settings />
                     {
                         !session
-                            ? <Link href='/sign-in'>
-                                <button className={styles.button}>
-                                    Sign In
-                                </button>
-                            </Link>
+                            ?
+                            <button className={styles.button} onClick={() => signIn()}>
+                                Sign In
+                            </button>
+
                             : <UserProfile />
                     }
                 </div>

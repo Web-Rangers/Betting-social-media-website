@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import styles from "../../styles/pages/Login.module.css"
+import styles from "../../styles/pages/Auth.module.css"
 import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"

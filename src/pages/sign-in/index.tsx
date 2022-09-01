@@ -1,13 +1,31 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import styles from "../../styles/pages/Login.module.css"
+import styles from "../../styles/pages/Auth.module.css"
 import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
 import SubmitButton from "../../components/ui/SubmitButton"
 import Link from "next/link"
+import { SyntheticEvent } from "react"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/router"
 
 const Login: NextPage = () => {
+    const router = useRouter();
+
+    function handleLogin(e: SyntheticEvent) {
+        e.preventDefault();
+        const target = e.target as typeof e.target & {
+            email: { value: string };
+            password: { value: string };
+        };
+        const email = target.email.value;
+        const password = target.password.value;
+        signIn('credentials', { email: email, password: password, callbackUrl: router.query.callbackUrl as string })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
     return (
         <>
             <Head>
@@ -22,7 +40,7 @@ const Login: NextPage = () => {
                     </Link>
                 </div>
                 <div className={styles.formArea}>
-                    <form className={styles.form}>
+                    <form className={styles.form} onSubmit={handleLogin}>
                         <h1 className={styles.loginTitle}>
                             Sign In
                         </h1>
@@ -62,10 +80,13 @@ const Login: NextPage = () => {
                         </span>
                         <div className={styles.fields}>
                             <TextField
-                                type="email"
+                                type={"email"}
+                                name="email"
                                 placeholder="Email Address"
                             />
                             <PasswordField
+                                name="password"
+                                type={'password'}
                                 placeholder="Password"
                             />
                         </div>
@@ -77,7 +98,7 @@ const Login: NextPage = () => {
                                     </a>
                                 </Link>
                             </span>
-                            <SubmitButton>
+                            <SubmitButton type="submit">
                                 Sign In
                             </SubmitButton>
                         </div>
