@@ -8,12 +8,13 @@ import Filter from '@components/ui/Filter'
 import DatePicker from '@components/ui/DatePicker'
 import LiveMatches from '@components/ui/LiveMatches'
 import Matches from '@components/ui/Matches'
+import NestedFilter from '@components/ui/NestedFilter'
 
 const MatchesPage: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllByLeague'])
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
-    const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeagues'])
+    const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeaguesByCountry'])
     const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
 
@@ -30,12 +31,13 @@ const MatchesPage: NextPage = () => {
             <div className={styles.rightColumn}>
                 <div className={styles.filters}>
                     <DatePicker onChange={() => { }} />
-                    <Filter
+                    <NestedFilter
                         items={leagues}
                         h3="BY COUNTRY"
+                        h2='Choose Matches'
                         onChange={() => { }}
                     />
-                    <Filter
+                    <NestedFilter
                         items={leagues}
                         h3="OTHER COUNTRIES"
                         onChange={() => { }}
