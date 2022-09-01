@@ -61,7 +61,7 @@ const DashboardTab: React.FC = () => {
                     className={`${sharedStyles.block} ${sharedStyles.wide}`}
                 >
                     <div className={styles.info}>
-                        <div className={styles.image}>
+                        <div className={sharedStyles.image}>
                             <Image
                                 src='/images/dashboard/piggy-bank.svg'
                                 height={60}

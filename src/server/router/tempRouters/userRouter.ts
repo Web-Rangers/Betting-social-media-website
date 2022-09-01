@@ -3,6 +3,15 @@ import { z } from "zod";
 import { TransactionStatus } from "src/types/transactionStatus";
 import Fuse from 'fuse.js'
 
+// THIS IS A TEMPORARY FUNCTION FOR GENERATING DATES
+function getOffsetDate(days: number, months: number, years: number) {
+    return new Date(
+        new Date().getFullYear() + years,
+        new Date().getMonth() + months,
+        new Date().getDate() + days
+    )
+}
+
 const UserInfo = {
     image: '/images/profile-placeholder.png',
     name: 'John Doe',
@@ -136,6 +145,30 @@ const FollowingInfo = {
     ]
 }
 
+const SubscriptionInfo = {
+    subscribers_count: 24,
+    subscribers_difference: 0.0293,
+    subscriptions_count: 12,
+    subscribers: [
+        { name: 'John Doe', amount: 125, startedOn: getOffsetDate(0, 0, -1), endsOn: getOffsetDate(0, 0, 1) },
+        { name: 'Jane Doe', amount: 12, startedOn: getOffsetDate(0, 0, -2), endsOn: getOffsetDate(0, 2, 0) },
+        { name: 'Jill Doe', amount: 44, startedOn: getOffsetDate(0, -2, 0), endsOn: getOffsetDate(0, 3, 0) },
+        { name: 'Jack Doe', amount: 66, startedOn: getOffsetDate(0, 0, -1), endsOn: getOffsetDate(0, 0, 1) },
+        { name: 'James Doe', amount: 17, startedOn: getOffsetDate(-1, 0, 0), endsOn: getOffsetDate(0, 2, 0) },
+        { name: 'Jonathan Doe', amount: 29, startedOn: getOffsetDate(0, 0, -2), endsOn: getOffsetDate(0, 0, 3) },
+        { name: 'Jefferey Doe', amount: 42, startedOn: getOffsetDate(-7, 0, 0), endsOn: getOffsetDate(0, 1, 0) },
+    ],
+    subscriptions: [
+        { name: 'Jane Doe', amount: 12, startedOn: getOffsetDate(0, 0, -2), endsOn: getOffsetDate(0, 2, 0) },
+        { name: 'Jill Doe', amount: 44, startedOn: getOffsetDate(0, -2, 0), endsOn: getOffsetDate(0, 3, 0) },
+        { name: 'John Doe', amount: 125, startedOn: getOffsetDate(0, 0, -1), endsOn: getOffsetDate(0, 0, 1) },
+        { name: 'Jefferey Doe', amount: 42, startedOn: getOffsetDate(-7, 0, 0), endsOn: getOffsetDate(0, 1, 0) },
+        { name: 'James Doe', amount: 17, startedOn: getOffsetDate(-1, 0, 0), endsOn: getOffsetDate(0, 2, 0) },
+        { name: 'Jack Doe', amount: 66, startedOn: getOffsetDate(0, 0, -1), endsOn: getOffsetDate(0, 0, 1) },
+        { name: 'Jonathan Doe', amount: 29, startedOn: getOffsetDate(0, 0, -2), endsOn: getOffsetDate(0, 0, 3) },
+    ]
+}
+
 export const userRouter = createRouter()
     .query("getInfo", {
         async resolve() {
@@ -200,3 +233,47 @@ export const userRouter = createRouter()
             return result
         }
     })
+    .query("getSubscriptionInfo", {
+        async resolve() {
+            return SubscriptionInfo
+        }
+    })
+    .query("searchSubscribers", {
+        input: z.object({
+            searchString: z.string()
+        }),
+        async resolve({ input }) {
+            const { searchString } = input
+
+            const options = {
+                includeScore: true,
+                keys: ['name']
+            }
+
+            const fuse = new Fuse(SubscriptionInfo.subscribers, options)
+
+            const result = fuse.search(searchString).map(item => item.item)
+
+            return result
+        }
+    })
+    .query("searchSubscriptions", {
+        input: z.object({
+            searchString: z.string()
+        }),
+        async resolve({ input }) {
+            const { searchString } = input
+
+            const options = {
+                includeScore: true,
+                keys: ['name']
+            }
+
+            const fuse = new Fuse(SubscriptionInfo.subscriptions, options)
+
+            const result = fuse.search(searchString).map(item => item.item)
+
+            return result
+        }
+    })
+
