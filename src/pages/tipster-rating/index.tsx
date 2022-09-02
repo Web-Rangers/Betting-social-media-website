@@ -96,17 +96,20 @@ const TipsterRating: NextPage = () => {
                             <TextField
                                 placeholder='Search for tipsters'
                                 icon='/icons/search.svg'
+                                minWidth={400}
                             />
                             <div className={styles.dropdowns}>
                                 <Dropdown
                                     items={SportItems}
                                     label='Sport:'
                                     onSelect={() => { }}
+                                    minWidth={200}
                                 />
                                 <Dropdown
                                     items={TimeItems}
                                     label='Tipsters by:'
                                     onSelect={() => { }}
+                                    minWidth={250}
                                 />
                                 <button>Reset</button>
                             </div>

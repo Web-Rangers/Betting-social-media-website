@@ -106,12 +106,17 @@ const TipsterCompetition: NextPage = () => {
                     <div className={styles.table}>
                         <h2>Top 100 Tipsters</h2>
                         <div className={styles.controls}>
-                            <TextField icon='/icons/search.svg' placeholder='Search for tipsters' />
+                            <TextField
+                                icon='/icons/search.svg'
+                                placeholder='Search for tipsters'
+                                minWidth={400}
+                            />
                             <div>
                                 <Dropdown
                                     items={TableDropdownItems}
                                     onSelect={() => { }}
                                     label="Tipsters by:"
+                                    minWidth={250}
                                 />
                             </div>
                         </div>
