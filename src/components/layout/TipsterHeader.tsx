@@ -9,10 +9,20 @@ import { useSession } from 'next-auth/react';
 import UserProfile from '@components/layout/shared/UserProfile';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 const links = [
     { href: '/tipster-rating', label: 'Tipsters' },
     { href: '/tipster-competition', label: 'Competition' },
+]
+
+const Timezones = [
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} tz={'America/New_York'} format={'DD.MM Z'} />, id: '1', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} tz={'Europe/Moscow'} format={'DD.MM Z'} />, id: '2', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} tz={'Asia/Tokyo'} format={'DD.MM Z'} />, id: '3', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} tz={'Atlantic/South_Georgia'} format={'DD.MM Z'} />, id: '4', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} tz={'Europe/Amsterdam'} format={'DD.MM Z'} />, id: '5', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} format={'HH:mm'} /> },
 ]
 
 const TipsterHeader: React.FC = () => {
@@ -43,14 +53,9 @@ const TipsterHeader: React.FC = () => {
                 </div>
                 <div className={styles.controls}>
                     <Dropdown
-                        items={[
-                            { name: 'GMT+1', id: '1', label: '13:00' },
-                            { name: 'GMT+2', id: '2', label: '14:00' },
-                            { name: 'GMT+3', id: '3', label: '15:00' },
-                            { name: 'GMT+4', id: '4', label: '16:00' },
-                            { name: 'GMT+5', id: '5', label: '17:00' },
-                        ]}
+                        items={Timezones}
                         onSelect={(id) => { }}
+                        minWidth={200}
                     />
                     <Settings />
                     <UserProfile />

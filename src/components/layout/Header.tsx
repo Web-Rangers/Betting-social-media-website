@@ -55,6 +55,7 @@ const Header: React.FC = () => {
                     <Dropdown
                         items={Timezones}
                         onSelect={(id) => { }}
+                        minWidth={200}
                     />
                     <Settings />
                     <UserProfile />
