@@ -4,7 +4,7 @@ import styles from '../../styles/components/ui/Dropdown.module.css'
 import Image from 'next/image';
 
 interface DropdownProps {
-    items: { name: string, id: string, label?: string | ReactNode }[];
+    items: { name: string | ReactNode, id: string, label?: string | ReactNode }[];
     label?: string,
     onSelect: (id: string) => void;
 }
@@ -108,7 +108,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 }
 
 interface ItemProps {
-    name: string;
+    name: string | ReactNode;
     id: string;
     label?: string | ReactNode;
     onClick: () => void;
