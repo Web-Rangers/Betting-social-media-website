@@ -10,12 +10,20 @@ interface MatchesInfoProps {
     leagues: MatchesByLeague,
     h3?: string,
     h2?: string,
+    withLiveMatchesButton?: boolean,
+    withDatePicker?: boolean
 }
 
 type MatchType = inferArrayElementType<inferArrayElementType<MatchesByLeague>['matches']>
 
 const Matches: React.FC<MatchesInfoProps> = (props) => {
-    const { leagues, h2, h3 } = props
+    const {
+        leagues,
+        h2,
+        h3,
+        withLiveMatchesButton = true,
+        withDatePicker = true
+    } = props
 
     return (
         <div className={styles.container}>
@@ -41,7 +49,7 @@ const Matches: React.FC<MatchesInfoProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.matchesOptions}>
-                            <button>
+                            {withLiveMatchesButton && <button>
                                 <Image
                                     src='/icons/live-matches.svg'
                                     alt=''
@@ -49,7 +57,7 @@ const Matches: React.FC<MatchesInfoProps> = (props) => {
                                     width={15}
                                 />
                                 Live Matches
-                            </button>
+                            </button>}
                             <button>
                                 <Image
                                     src='/icons/chart-bubble.svg'

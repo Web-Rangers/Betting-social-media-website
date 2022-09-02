@@ -49,7 +49,10 @@ const MatchesPage: NextPage = () => {
                     <Banner height={200} image="/images/banner-placeholder-1.png" />
                 </div>
                 <div className={styles.predictions}>
-                    <Matches leagues={matches} />
+                    <Matches
+                        leagues={matches}
+                        withDatePicker={false}
+                    />
                 </div>
                 <div className={styles.sideColumn}>
                     <LiveMatches matches={liveMatches} />
