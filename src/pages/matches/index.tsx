@@ -42,6 +42,7 @@ const MatchesPage: NextPage = () => {
                         h3="OTHER COUNTRIES"
                         onChange={() => { }}
                         withClearButton={false}
+                        colapsible={true}
                     />
                 </div>
             </div>

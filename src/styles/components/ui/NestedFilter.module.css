@@ -55,7 +55,27 @@
 .items {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     gap: 8px;
+}
+
+.showMore {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    cursor: pointer;
+    display: flex;
+    gap: 9px;
+    align-items: center;
+}
+
+.showMore .chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .itemContainer {
