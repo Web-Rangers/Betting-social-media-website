@@ -28,7 +28,7 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    padding: 9px 23px 9px 16px;
+    padding: 9px 16px;
     background: #FFFFFF;
     border: 1px solid rgba(26, 28, 33, 0.2);
     border-radius: 4px;
@@ -40,6 +40,28 @@
     line-height: 14px;
     color: #1A1C21;
     cursor: pointer;
+    outline: none;
+}
+
+.matchesOptions button .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matchesOptions button .controls {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matchesOptions button .prev {
+    transform: rotate(0deg);
+}
+
+.matchesOptions button .next {
+    transform: rotate(180deg);
 }
 
 .titles {
@@ -72,7 +94,7 @@
     gap: 20px;
 }
 
-.league div .image {
+.league .leagueWrapper .image {
     display: flex;
     align-items: center;
     justify-content: center;
