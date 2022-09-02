@@ -11,6 +11,7 @@ const LiveMatchesTemp = [
         ],
         id: 1,
         duration: '48:32',
+        viewer_count: 28,
     },
     {
         teams: [
@@ -19,6 +20,7 @@ const LiveMatchesTemp = [
         ],
         id: 2,
         duration: '48:32',
+        viewer_count: 12,
     },
     {
         teams: [
@@ -27,6 +29,7 @@ const LiveMatchesTemp = [
         ],
         id: 3,
         duration: '48:32',
+        viewer_count: 8,
     },
 ]
 
