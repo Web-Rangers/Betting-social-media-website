@@ -321,10 +321,8 @@ const PredictionsTemp = [
 export const predictionsRouter = createRouter().query("getAll", {
     input: z.object({
         limit: z.number().nullish()
-    }),
+    }).nullish(),
     async resolve({ input }) {
-        const { limit } = input
-
-        return PredictionsTemp.slice(0, limit ?? undefined)
+        return PredictionsTemp.slice(0, input?.limit ?? undefined)
     },
 });
