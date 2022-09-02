@@ -85,6 +85,25 @@
     gap: 40px;
 }
 
+.mainColumn .showMore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+    padding: 15px 24px;
+    width: max-content;
+    align-self: center;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #1A1C2133;
+    cursor: pointer;
+}
+
 .sideColumn {
     display: flex;
     flex-direction: column;

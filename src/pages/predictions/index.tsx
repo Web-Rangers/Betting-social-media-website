@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NextPage } from 'next'
 import styles from '@styles/pages/Predictions.module.css'
 import { trpc } from 'src/utils/trpc'
-import { MostTips, Sports } from 'src/types/queryTypes'
+import { MostTips, Predictions as PredictionsType, Sports } from 'src/types/queryTypes'
 import Slider from '@components/ui/Slider'
 import MatchTipsCard from '@components/ui/MatchTipsCard'
 import Image from 'next/image'
@@ -44,17 +44,24 @@ const TypeItems = [
 ]
 
 const PredictionsPage: NextPage = () => {
+    const [limit, setLimit] = useState<number>(3)
+    const [previousPredictions, setPreviousPredictions] = useState<PredictionsType | null>(null)
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
-    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
+    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(
+        ['predictions.getAll', { limit: limit }],
+        {
+            onSuccess: (data) => setPreviousPredictions(data)
+        }
+    )
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeagues'])
     const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
 
-    if (tipsLoading || predictionsLoading || bookmakersLoading || leaguesLoading || sportsLoading) {
+    if (tipsLoading || bookmakersLoading || leaguesLoading || sportsLoading) {
         return <div>Loading...</div>
     }
 
-    if (!tips || !predictions || !bookmakers || !leagues || !sports) {
+    if (!tips || !bookmakers || !leagues || !sports) {
         return <div>Error...</div>
     }
 
@@ -95,7 +102,16 @@ const PredictionsPage: NextPage = () => {
                 </div>
                 <div className={styles.predictions}>
                     <SportsSider sports={[{ name: 'All', image: '', id: '0' }, ...sports]} onChange={() => { }} />
-                    <Predictions leagues={predictions} />
+                    {(predictions && !predictionsLoading)
+                        ? <Predictions leagues={predictions} />
+                        : previousPredictions && <Predictions leagues={previousPredictions} />
+                    }
+                    <button
+                        className={styles.showMore}
+                        onClick={() => setLimit(limit + 3)}
+                    >
+                        Show more
+                    </button>
                 </div>
             </div>
             <div className={styles.sideColumn}>
