@@ -31,15 +31,15 @@ const SortItems = [
 const TypeItems = [
     {
         name: 'All',
-        id: '1'
+        id: '0'
     },
     {
         name: 'Free',
-        id: '2'
+        id: '1'
     },
     {
         name: 'Paid',
-        id: '3'
+        id: '2'
     },
 ]
 
@@ -94,7 +94,7 @@ const PredictionsPage: NextPage = () => {
                     />
                 </div>
                 <div className={styles.predictions}>
-                    <SportsSider sports={sports} onChange={() => { }} />
+                    <SportsSider sports={[{ name: 'All', image: '', id: '0' }, ...sports]} onChange={() => { }} />
                     <Predictions leagues={predictions} />
                 </div>
             </div>
@@ -168,7 +168,7 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
 const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void }> = (props) => {
     const { sports, onChange } = props
     const _sports = sliceIntoChunks(sports, 5);
-    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    const [selectedItems, setSelectedItems] = useState<string[]>(['0']);
 
     function sliceIntoChunks(arr: Sports, chunkSize: number) {
         const res = [];
@@ -180,11 +180,15 @@ const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void 
     }
 
     function handleSelect(id: string) {
+        if (id === '0') {
+            setSelectedItems(['0'])
+            return
+        }
         if (selectedItems.includes(id)) {
-            setSelectedItems(selectedItems.filter(item => item !== id))
+            setSelectedItems(selectedItems.filter(item => (item !== id) && (item !== '0')))
             onChange(selectedItems.filter(item => item !== id))
         } else {
-            setSelectedItems([...selectedItems, id])
+            setSelectedItems([...selectedItems.filter(item => item !== '0'), id])
             onChange([...selectedItems, id])
         }
     }
@@ -222,14 +226,14 @@ const SportsSider: React.FC<{ sports: Sports, onChange: (ids: string[]) => void 
                                 key={`sports_slide_${slideIndex}_item_${index}`}
                                 onClick={() => handleSelect(id)}
                             >
-                                <div className={styles.image}>
+                                {image !== '' && <div className={styles.image}>
                                     <Image
                                         src={image}
                                         alt={name}
                                         height={24}
                                         width={24}
                                     />
-                                </div>
+                                </div>}
                                 <span className={styles.name}>{name}</span>
                             </div>
                         ))}
@@ -250,14 +254,18 @@ interface SortButtonsProps {
 
 const SortButtons: React.FC<SortButtonsProps> = (props) => {
     const { items, onChange } = props
-    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    const [selectedItems, setSelectedItems] = useState<string[]>(['0']);
 
     function handleSelect(id: string) {
+        if (id === '0') {
+            setSelectedItems(['0'])
+            return
+        }
         if (selectedItems.includes(id)) {
-            setSelectedItems(selectedItems.filter(item => item !== id))
+            setSelectedItems(selectedItems.filter(item => (item !== id) && (item !== '0')))
             onChange(selectedItems.filter(item => item !== id))
         } else {
-            setSelectedItems([...selectedItems, id])
+            setSelectedItems([...selectedItems.filter(item => item !== '0'), id])
             onChange([...selectedItems, id])
         }
     }
