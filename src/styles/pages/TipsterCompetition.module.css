@@ -24,6 +24,7 @@
     grid-column-end: 13;
     grid-row-start: 2;
     grid-row-end: 3;
+    margin-bottom: 100px;
 }
 
 .bottomBlock {
@@ -35,6 +36,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 100px;
 }
 
 .table {
