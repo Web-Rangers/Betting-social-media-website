@@ -9,6 +9,8 @@ interface SliderProps {
     children?: ReactElement[]
     showArrows?: boolean,
     showPagination?: boolean,
+    autoPlay?: boolean,
+    loop?: boolean,
     arrowOptions?: {
         offset: {
             next?: {
@@ -32,9 +34,10 @@ interface SliderProps {
 const Slider: React.FC<SliderProps> = (props) => {
     const {
         children,
-        showArrows =
-        false,
+        showArrows = false,
         showPagination = true,
+        autoPlay = false,
+        loop = false,
         arrowOptions
     } = props;
     const portalNode = useMemo(() => portals.createHtmlPortalNode({
@@ -50,6 +53,10 @@ const Slider: React.FC<SliderProps> = (props) => {
                 showIndicators={showPagination}
                 showStatus={false}
                 showThumbs={false}
+                autoPlay={autoPlay}
+                infiniteLoop={loop}
+                stopOnHover={true}
+                interval={5000}
                 emulateTouch
                 renderIndicator={(clickHandler, isSelected, index) =>
                     <Dot clickHandler={clickHandler} isSelected={isSelected} index={index} />

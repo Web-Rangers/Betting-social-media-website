@@ -1,4 +1,5 @@
 import { env } from "./src/env/server.mjs";
+import withBundleAnalyzer from '@next/bundle-analyzer'
 
 /**
  * Don't be scared of the generics here.
@@ -9,8 +10,12 @@ import { env } from "./src/env/server.mjs";
  * @constraint {{import('next').NextConfig}}
  */
 function defineNextConfig(config) {
-    return config;
+    return _withBundleAnalyzer(config);
 }
+
+const _withBundleAnalyzer = withBundleAnalyzer({
+    enabled: env.ANALYZE === 'true',
+})
 
 export default defineNextConfig({
     reactStrictMode: true,

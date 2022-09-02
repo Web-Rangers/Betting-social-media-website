@@ -5,9 +5,60 @@ import Image from 'next/image'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { motion } from 'framer-motion'
 
-const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string, onChange: (ids: string[]) => void }> = (props) => {
-    const { items, onChange, h2, h3 } = props
+interface NestedFilterProps {
+    items: LeaguesByCountry,
+    h3?: string,
+    h2?: string,
+    onChange: (ids: string[]) => void,
+    withClearButton?: boolean,
+    colapsible?: boolean
+}
+
+const ItemsVariants = {
+    open: {
+        height: 'auto',
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        height: 220,
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const ChevronVariants = {
+    open: {
+        rotate: 180,
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        rotate: 0,
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const NestedFilter: React.FC<NestedFilterProps> = (props) => {
+    const {
+        items,
+        onChange,
+        h2,
+        h3,
+        withClearButton = true,
+        colapsible = false
+    } = props
     const [selectedItems, setSelectedItems] = useState<string[]>([])
+    const [isOpen, setIsOpen] = useState(false)
 
     function handleSelect(id: string) {
         if (selectedItems.includes(id)) {
@@ -19,15 +70,35 @@ const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string
         }
     }
 
+    function clear() {
+        setSelectedItems([])
+        onChange([])
+    }
+
     return (
         <div className={styles.container}>
-            {(h2 || h3) &&
+            {(h2 || h3 || withClearButton) &&
                 <div className={styles.header}>
-                    {h3 && <h3>{h3}</h3>}
-                    {h2 && <h2>{h2}</h2>}
+                    <div className={styles.headings}>
+                        {h3 && <h3>{h3}</h3>}
+                        {h2 && <h2>{h2}</h2>}
+                    </div>
+                    {withClearButton &&
+                        <button
+                            className={styles.clear}
+                            onClick={clear}
+                        >
+                            Clear
+                        </button>
+                    }
                 </div>
             }
-            <div className={styles.items}>
+            <motion.div
+                className={`${styles.items} ${colapsible && styles.colapsible}`}
+                variants={colapsible ? ItemsVariants : undefined}
+                animate={isOpen ? 'open' : 'closed'}
+                initial={false}
+            >
                 {items.map((item) => (
                     <Item
                         key={`nested_filter_item_${item.id}`}
@@ -36,7 +107,27 @@ const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string
                         onSelect={(id) => handleSelect(id)}
                     />
                 ))}
-            </div>
+            </motion.div>
+            {colapsible &&
+                <span
+                    className={styles.showMore}
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    <span>Show {isOpen ? 'less' : 'more'}</span>
+                    <motion.div
+                        className={styles.chevron}
+                        variants={ChevronVariants}
+                        animate={isOpen ? 'open' : 'closed'}
+                        initial={false}
+                    >
+                        <Image
+                            src='/icons/chevron.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </motion.div>
+                </span>
+            }
         </div>
     )
 }

@@ -8,7 +8,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid #1A1C211A; */
     z-index: 99;
     background-color: #FFFFFF;
 }
@@ -26,29 +25,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-}
-
-.link {
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-    color: #1A1C21B2;
-    transition: all 0.3s ease-in-out;
-}
-
-.link:hover {
-    color: #1A1C21;
-}
-
-.active {
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 18px;
-    color: #1A1C21;
 }
 
 .controls {

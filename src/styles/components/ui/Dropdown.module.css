@@ -84,7 +84,8 @@
 }
 
 .item:hover {
-    background-color: #F2F2F2B2;
+    /* background-color: #F2F2F2B2; */
+    filter: brightness(90%);
 }
 
 .label {

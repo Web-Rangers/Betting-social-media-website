@@ -4,9 +4,10 @@ import styles from '../../styles/components/ui/Dropdown.module.css'
 import Image from 'next/image';
 
 interface DropdownProps {
-    items: { name: string, id: string, label?: string | ReactNode }[];
+    items: { name: string | ReactNode, id: string, label?: string | ReactNode }[];
     label?: string,
-    onSelect: (id: string) => void;
+    onSelect: (id: string) => void,
+    minWidth?: string | number
 }
 
 const DropdownVariants = {
@@ -28,7 +29,7 @@ const ChevronVariants = {
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-    const { items, onSelect, label } = props;
+    const { items, onSelect, label, minWidth } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(items[0]);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,13 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
     }, [])
 
     return (
-        <div className={styles.container} ref={dropdownRef}>
+        <div
+            className={styles.container}
+            ref={dropdownRef}
+            style={{
+                minWidth: minWidth
+            }}
+        >
             <div
                 className={styles.activeItem}
                 onClick={() => setIsOpen(!isOpen)}
@@ -108,7 +115,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 }
 
 interface ItemProps {
-    name: string;
+    name: string | ReactNode;
     id: string;
     label?: string | ReactNode;
     onClick: () => void;

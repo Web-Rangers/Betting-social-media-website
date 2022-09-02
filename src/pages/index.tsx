@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
-    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
+    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll', {}])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllByLeague'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
@@ -38,7 +38,10 @@ const Home: NextPage = () => {
         <>
             <div className={styles.mainColumn}>
                 <div className={styles.slider}>
-                    <Slider>
+                    <Slider
+                        autoPlay={true}
+                        loop={true}
+                    >
                         {
                             [1, 2, 3, 4, 5].map(i => (
                                 <Slide key={`slide_${i}`} />

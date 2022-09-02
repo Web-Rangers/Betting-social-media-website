@@ -28,7 +28,11 @@ const LiveMatches: NextPage = () => {
                 />
             </div>
             <div className={styles.mainColumn}>
-                <Matches leagues={matches} />
+                <Matches
+                    leagues={matches}
+                    withLiveMatchesButton={false}
+                    withDatePicker={false}
+                />
             </div>
         </>
     )
