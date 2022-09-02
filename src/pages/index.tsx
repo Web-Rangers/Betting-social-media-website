@@ -38,7 +38,10 @@ const Home: NextPage = () => {
         <>
             <div className={styles.mainColumn}>
                 <div className={styles.slider}>
-                    <Slider>
+                    <Slider
+                        autoPlay={true}
+                        loop={true}
+                    >
                         {
                             [1, 2, 3, 4, 5].map(i => (
                                 <Slide key={`slide_${i}`} />

@@ -347,6 +347,8 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
                 />
             </div>
             <Slider
+                loop={true}
+                autoPlay={true}
                 showArrows={true}
                 showPagination={false}
                 arrowOptions={{

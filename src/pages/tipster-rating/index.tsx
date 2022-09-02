@@ -159,7 +159,11 @@ const VerifiedTipsters: React.FC<{ tipsters: Tipsters, portalNode: portals.HtmlP
                 betting tip on the site.
             </span>
             <div className={styles.verifiedTipstersSlider}>
-                <Slider showArrows={true}>
+                <Slider
+                    showArrows={true}
+                    loop={true}
+                    autoPlay={true}
+                >
                     {_tipsters.map((tipstersChunk, index) => (
                         <div className={styles.tipsterSlide} key={`tipster_slide_${index}`}>
                             {tipstersChunk.map((tipster, index) => (

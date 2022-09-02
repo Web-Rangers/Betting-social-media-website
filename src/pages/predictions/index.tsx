@@ -132,6 +132,8 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
             <h2>Most Popular</h2>
             <div className={styles.sliderContainer}>
                 <Slider
+                    loop={true}
+                    autoPlay={true}
                     showArrows={true}
                     arrowOptions={{
                         offset: {
