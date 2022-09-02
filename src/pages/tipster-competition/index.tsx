@@ -301,6 +301,7 @@ const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => voi
             initial="hide"
             animate="show"
             exit="hide"
+            onClick={onClick}
         >
             <Image
                 src={`/images/tipster-competition-step-${step}.svg`}
@@ -320,10 +321,7 @@ const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => voi
                     />
                 ))}
             </div>
-            <div
-                className={styles.next}
-                onClick={onClick}
-            >
+            <div className={styles.next}>
                 <Image
                     src='/icons/chevron-white.svg'
                     height={24}

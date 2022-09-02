@@ -405,6 +405,7 @@
     background-color: #7F3FFC;
     border-radius: 16px;
     gap: 17px;
+    cursor: pointer;
 }
 
 .step .description {
