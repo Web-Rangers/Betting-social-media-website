@@ -6,8 +6,32 @@
 
 .header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .headings {
+    display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
+}
+
+.header .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #CF1F1F;
+    border: none;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
 .header h3 {

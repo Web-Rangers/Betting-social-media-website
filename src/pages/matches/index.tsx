@@ -41,6 +41,7 @@ const MatchesPage: NextPage = () => {
                         items={leagues}
                         h3="OTHER COUNTRIES"
                         onChange={() => { }}
+                        withClearButton={false}
                     />
                 </div>
             </div>

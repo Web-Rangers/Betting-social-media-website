@@ -5,8 +5,14 @@ import Image from 'next/image'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { motion } from 'framer-motion'
 
-const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string, onChange: (ids: string[]) => void }> = (props) => {
-    const { items, onChange, h2, h3 } = props
+const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string, onChange: (ids: string[]) => void, withClearButton?: boolean }> = (props) => {
+    const {
+        items,
+        onChange,
+        h2,
+        h3,
+        withClearButton = true
+    } = props
     const [selectedItems, setSelectedItems] = useState<string[]>([])
 
     function handleSelect(id: string) {
@@ -19,12 +25,27 @@ const NestedFilter: React.FC<{ items: LeaguesByCountry, h3?: string, h2?: string
         }
     }
 
+    function clear() {
+        setSelectedItems([])
+        onChange([])
+    }
+
     return (
         <div className={styles.container}>
-            {(h2 || h3) &&
+            {(h2 || h3 || withClearButton) &&
                 <div className={styles.header}>
-                    {h3 && <h3>{h3}</h3>}
-                    {h2 && <h2>{h2}</h2>}
+                    <div className={styles.headings}>
+                        {h3 && <h3>{h3}</h3>}
+                        {h2 && <h2>{h2}</h2>}
+                    </div>
+                    {withClearButton &&
+                        <button
+                            className={styles.clear}
+                            onClick={clear}
+                        >
+                            Clear
+                        </button>
+                    }
                 </div>
             }
             <div className={styles.items}>
