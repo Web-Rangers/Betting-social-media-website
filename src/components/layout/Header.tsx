@@ -11,21 +11,11 @@ import UserProfile from '@components/layout/shared/UserProfile';
 import { signIn, useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
-
-const links = [
-    { href: '/sport', label: 'Football' },
-    { href: '/sport', label: 'Basketball' },
-    { href: '/sport', label: 'Hockey' },
-    { href: '/sport', label: 'Handball' },
-    { href: '/sport', label: 'Tennis' },
-    { href: '/sport', label: 'Rugby' },
-    { href: '/sport', label: 'Baseball' },
-    { href: '/sport', label: 'Volleyball' },
-]
+import { trpc } from 'src/utils/trpc';
 
 const Header: React.FC = () => {
     const router = useRouter()
-    const { data: session } = useSession()
+    const { data: links, isLoading: linksLoading } = trpc.useQuery(['navigation.getSports'])
 
     return (
         <div className={styles.container}>
@@ -39,19 +29,18 @@ const Header: React.FC = () => {
                 </a>
             </Link>
             <nav>
-                <div className={styles.links}>
+                {links && <div className={styles.links}>
                     {
-                        links.slice(0, 6).map(({ href, label }) => (
+                        links.slice(0, 6).map((link) => (
                             <MenuLink
-                                key={label}
-                                href={href}
-                                label={label}
-                                active={router.pathname.includes(href)}
+                                key={link.label}
+                                {...link}
+                                active={router.pathname.includes(link.href)}
                             />
                         ))
                     }
                     <More items={links.slice(6)} />
-                </div>
+                </div>}
                 <div className={styles.controls}>
                     <Dropdown
                         items={[
