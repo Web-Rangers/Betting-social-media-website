@@ -12,8 +12,8 @@ import { signIn, useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
 import { trpc } from 'src/utils/trpc';
-import Moment from 'react-moment';
 import 'moment-timezone';
+import Moment from 'react-moment';
 
 const Timezones = [
     { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} tz={'America/New_York'} format={'DD.MM Z'} />, id: '1', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} format={'HH:mm'} /> },

@@ -9,8 +9,8 @@ import { useSession } from 'next-auth/react';
 import UserProfile from '@components/layout/shared/UserProfile';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
-import Moment from 'react-moment';
 import 'moment-timezone';
+import Moment from 'react-moment';
 
 const links = [
     { href: '/tipster-rating', label: 'Tipsters' },
