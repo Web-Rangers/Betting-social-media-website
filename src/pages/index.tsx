@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
-    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll', {}])
+    const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll', null])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllByLeague'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
