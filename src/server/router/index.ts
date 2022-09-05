@@ -4,16 +4,16 @@ import superjson from "superjson";
 
 import { exampleRouter } from "./example";
 import { protectedExampleRouter } from "./protected-example-router";
-import { tipsterRouter } from "./tempRouters/TipsterRouter";
-import { tipsRouter } from "./tempRouters/TipsRouter";
-import { bookmakerRouter } from "./tempRouters/BookmakerRouter";
-import { matchesRouter } from "./tempRouters/MatchesRouter";
-import { filtersRouter } from "./tempRouters/FiltersRouter";
-import { predictionsRouter } from "./tempRouters/PredictionsRouter";
-import { newsRouter } from "./tempRouters/NewsRouter";
-import { competitionRouter } from "./tempRouters/CompetitionRouter";
-import { coinsRouter } from "./tempRouters/CoinsRouter";
-import { userRouter } from "./tempRouters/UserRouter";
+import { tipsterRouter } from "./routers/TipsterRouter";
+import { tipsRouter } from "./routers/TipsRouter";
+import { bookmakerRouter } from "./routers/BookmakerRouter";
+import { matchesRouter } from "./routers/MatchesRouter";
+import { filtersRouter } from "./routers/FiltersRouter";
+import { predictionsRouter } from "./routers/PredictionsRouter";
+import { newsRouter } from "./routers/NewsRouter";
+import { competitionRouter } from "./routers/CompetitionRouter";
+import { coinsRouter } from "./routers/CoinsRouter";
+import { userRouter } from "./routers/UserRouter";
 
 
 export const appRouter = createRouter()
