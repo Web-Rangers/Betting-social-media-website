@@ -10,13 +10,23 @@
     display: none;
 }
 
+.react-datepicker-wrapper {
+    position: relative;
+}
+
+.react-datepicker__tab-loop {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .react-datepicker__input-container>input {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 14px;
+    padding: 11px 24px;
     border: 1px solid #1A1C2133;
     border-radius: 8px;
     width: 100%;
