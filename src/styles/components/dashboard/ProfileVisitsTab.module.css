@@ -101,6 +101,11 @@
     color: #1A1C21CC;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .followButton {
     display: flex;
     align-items: center;

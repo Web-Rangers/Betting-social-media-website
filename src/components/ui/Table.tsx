@@ -1,14 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import {
     ColumnDef,
-    createColumnHelper,
     flexRender,
     getCoreRowModel,
     getPaginationRowModel,
     getSortedRowModel,
     SortingState,
     Table,
-    TableOptions,
     useReactTable,
 } from '@tanstack/react-table'
 import styles from '@styles/components/ui/Table.module.css'

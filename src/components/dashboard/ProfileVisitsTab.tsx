@@ -3,10 +3,9 @@ import styles from '@styles/components/dashboard/ProfileVisitsTab.module.css'
 import sharedStyles from '@styles/components/dashboard/shared.module.css'
 import Image from 'next/image'
 import { trpc } from 'src/utils/trpc'
-import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
+import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { ProfileVisitsInfo } from 'src/types/queryTypes'
-import Pagination from '@components/shared/TablePagination'
 import Moment from 'react-moment'
 import Table from '@components/ui/Table'
 
@@ -38,9 +37,11 @@ const columns = [
         cell: info => {
             const following = info.getValue()
             return (
-                <button className={`${styles.followButton} ${following ? styles.following : styles.follow}`}>
-                    {following ? 'Following' : 'Follow'}
-                </button>
+                <div className={styles.buttonContainer}>
+                    <button className={`${styles.followButton} ${following ? styles.following : styles.follow}`}>
+                        {following ? 'Following' : 'Follow'}
+                    </button>
+                </div>
             )
         },
     }),

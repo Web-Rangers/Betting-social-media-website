@@ -6,8 +6,7 @@ import { trpc } from 'src/utils/trpc'
 import debounce from 'src/utils/debounce'
 import { FollowersInfo } from 'src/types/queryTypes'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
-import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
-import Pagination from '@components/shared/TablePagination'
+import { createColumnHelper } from '@tanstack/react-table'
 import shortenNumber from 'src/utils/shortenNumber'
 import Table from '@components/ui/Table'
 
@@ -43,9 +42,11 @@ const columns = [
         cell: info => {
             const following = info.getValue()
             return (
-                <button className={`${styles.followButton} ${following ? styles.following : styles.follow}`}>
-                    {following ? 'Following' : 'Follow'}
-                </button>
+                <div className={styles.buttonContainer}>
+                    <button className={`${styles.followButton} ${following ? styles.following : styles.follow}`}>
+                        {following ? 'Following' : 'Follow'}
+                    </button>
+                </div>
             )
         },
     }),

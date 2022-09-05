@@ -3,10 +3,9 @@ import React, { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/components/dashboard/WithdrawTab.module.css'
 import sharedStyles from '@styles/components/dashboard/shared.module.css'
-import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
+import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { WithdrawInfo } from 'src/types/queryTypes'
-import Pagination from '@components/shared/TablePagination'
 import Moment from 'react-moment'
 import { TransactionStatus } from 'src/types/transactionStatus'
 import * as portals from 'react-reverse-portal'
@@ -32,10 +31,10 @@ function getStyleByStatus(status: TransactionStatus) {
 
 const columns = [
     columnHelper.accessor('id', {
-        cell: info => <div>
+        cell: info => <div className={styles.id}>
             {info.getValue()}
         </div>,
-        header: () => <span>Id</span>,
+        header: () => <span className={styles.id}>Id</span>,
         enableSorting: false,
     }),
     columnHelper.accessor('amount', {

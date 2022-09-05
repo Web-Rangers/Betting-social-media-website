@@ -214,6 +214,11 @@
     color: #1A1C21;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .subscribeButton.subscribed {
     background-color: #1A1C211A;
 }

@@ -4,10 +4,9 @@ import sharedStyles from '@styles/components/dashboard/shared.module.css'
 import { trpc } from 'src/utils/trpc'
 import Image from 'next/image'
 import debounce from 'src/utils/debounce'
-import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
+import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { SubscriptionInfo } from 'src/types/queryTypes'
-import Pagination from '@components/shared/TablePagination'
 import Moment from 'react-moment'
 import Table from '@components/ui/Table'
 
@@ -66,9 +65,11 @@ const columns = [
     columnHelper.accessor(row => ({ ...row }), {
         id: 'button',
         cell: info => (
-            <button className={`${styles.subscribeButton} ${styles.subscribed}`}>
-                Subscribed
-            </button>
+            <div className={styles.buttonContainer}>
+                <button className={`${styles.subscribeButton} ${styles.subscribed}`}>
+                    Subscribed
+                </button>
+            </div>
         )
     })
 ]
