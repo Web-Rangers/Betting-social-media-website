@@ -4,6 +4,7 @@ import styles from '@styles/components/dashboard/TrackingTipsTab.module.css'
 import Dropdown from '@components/ui/Dropdown'
 import DateInput from '@components/ui/DatePicker'
 import TextField from '@components/ui/TextField'
+import Prediction from '@components/ui/Prediction'
 
 const DateFilterItems = [
     { name: 'Newest to Oldest', id: '1' },
@@ -25,7 +26,6 @@ const TrackingTipsTab: React.FC = () => {
     if (!data) {
         return <div>Error...</div>
     }
-
 
     return (
         <div className={styles.trackingTipsTab}>
@@ -57,6 +57,14 @@ const TrackingTipsTab: React.FC = () => {
                     />
                 </div>
             </div>
+            {
+                data.map((prediction, index) => (
+                    <Prediction
+                        key={`prediction_${index}`}
+                        {...prediction}
+                    />
+                ))
+            }
         </div>
     )
 }

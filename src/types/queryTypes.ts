@@ -31,3 +31,5 @@ export type FollowingInfo = inferQueryOutput<"user.getFollowingInfo">
 export type SubscriptionInfo = inferQueryOutput<"user.getSubscriptionInfo">
 
 export type ProfileVisitsInfo = inferQueryOutput<"user.getProfileVisitsInfo">
+
+export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">

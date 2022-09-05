@@ -1,0 +1,183 @@
+import React from 'react'
+import styles from '@styles/components/ui/Prediction.module.css'
+import { TrackingPredictions } from 'src/types/queryTypes'
+import { inferArrayElementType } from 'src/utils/inferArrayElementType'
+import Moment from 'react-moment'
+import Image from 'next/image'
+import TextField from './TextField'
+
+// add a prediction type from a specific match (all types should have matching fields)
+const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props) => {
+    const { author, date, info } = props
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <div className={styles.info}>
+                    <span className={styles.date}>
+                        <Moment className={styles.part} format='HH:mm'>{date}</Moment>
+                        <Moment className={styles.part} format='DD MMM'>{date}</Moment>
+                    </span>
+                    <div className={styles.user}>
+                        <div className={styles.avatar}>
+                            <Image
+                                src={author.image}
+                                height={46}
+                                width={46}
+                            />
+                        </div>
+                        <div className={styles.userDetails}>
+                            <span>{author.name}</span>
+                            <span>Hit Rate {author.winrate * 100}%</span>
+                        </div>
+                    </div>
+                    <button className={styles.subscribe}>
+                        Subscribe
+                    </button>
+                </div>
+                <div className={styles.controls}>
+                    <div className={styles.track}>
+                        <Image
+                            src={info?.tracking ? '/icons/star-filled.svg' : '/icons/star.svg'}
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                    <div className={styles.share}>
+                        <Image
+                            src='/icons/share-black.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                </div>
+            </div>
+            {info && <div className={styles.predictionInfo}>
+                {(info.match.teams[0] && info.match.teams[1]) && (
+                    <div className={styles.matchInfo}>
+                        <div className={styles.background}>
+                            <Image
+                                src='/images/prediction-background.png'
+                                layout='fill'
+                                objectFit='cover'
+                            />
+                        </div>
+                        <div className={styles.matchDetails}>
+                            <div className={styles.team}>
+                                <Image
+                                    src={info.match.teams[0].image}
+                                    height={36}
+                                    width={36}
+                                />
+                                <span>{info.match.teams[0].name}</span>
+                            </div>
+                            <div className={styles.results}>
+                                <div className={styles.score}>
+                                    <span>{info.match.teams[0].score}</span>
+                                    <div className={styles.date}>
+                                        <Moment className={styles.part} format='HH:mm'>{info.match.date}</Moment>
+                                        <Moment className={styles.part} format='DD MMM'>{info.match.date}</Moment>
+                                    </div>
+                                    <span>{info.match.teams[1].score}</span>
+                                </div>
+                                <div className={styles.league}>
+                                    <span>{info.match.league}</span>
+                                    <span>•</span>
+                                    <span>{info.match.sport.name}</span>
+                                </div>
+                            </div>
+                            <div className={styles.team}>
+                                <Image
+                                    src={info.match.teams[1].image}
+                                    height={36}
+                                    width={36}
+                                />
+                                <span>{info.match.teams[1].name}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {info.text && (
+                    <>
+                        <div className={styles.predictionText}>{info.text}</div>
+                        <div className={styles.separator} />
+                    </>
+                )}
+                <div className={styles.outcomes}>
+                    <div className={styles.outcome}>
+                        <span>Market</span>
+                        <span>{info.market}</span>
+                    </div>
+                    <div className={styles.outcome}>
+                        <span>Selection</span>
+                        <span>{info.selection}</span>
+                    </div>
+                    <div className={styles.outcome}>
+                        <span>Stake</span>
+                        <span>{info.stake}</span>
+                    </div>
+                    <div className={styles.bookmaker}>
+                        <Image
+                            src={info.bookmaker.image}
+                            height={20}
+                            width={56}
+                            objectFit='contain'
+                        />
+                        <span className={styles.odd}>{info.bookmaker.odd}</span>
+                    </div>
+                    <div className={styles.profit}>
+                        <span className={info.profit > 0 ? styles.positive : styles.negative}>
+                            {info.profit > 0
+                                ? 'Success'
+                                : 'Lost'
+                            }
+                        </span>
+                        <span>$ {info.profit}</span>
+                    </div>
+                </div>
+                <div className={styles.stats}>
+                    <div className={styles.stat}>
+                        <Image
+                            src={info.liked ? '/icons/like-filled.svg' : '/icons/like-black.svg'}
+                            height={24}
+                            width={24}
+                        />
+                        <span className={styles.label}>Like</span>
+                        <span>{info.like_count}</span>
+                    </div>
+                    <div className={styles.stat}>
+                        <Image
+                            src='/icons/comment.svg'
+                            height={24}
+                            width={24}
+                        />
+                        <span className={styles.label}>Comments</span>
+                        <span>{info.comment_count}</span>
+                    </div>
+                </div>
+                <div className={styles.commentsContainer}>
+                    <div className={styles.comments}>
+                        <h3>Comments</h3>
+                        <div className={styles.input}>
+                            <div className={styles.avatar}>
+                                <Image
+                                    src='/images/profile-placeholder.png'
+                                    height={46}
+                                    width={46}
+                                />
+                            </div>
+                            <div className={styles.textField}>
+                                <TextField
+                                    placeholder='Write a comment'
+                                    icon='/icons/send.svg'
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>}
+        </div>
+    )
+}
+
+export default Prediction
