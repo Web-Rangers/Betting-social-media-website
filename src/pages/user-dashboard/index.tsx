@@ -9,6 +9,7 @@ import WithdrawTab from '@components/dashboard/WithdrawTab'
 import FollowersTab from '@components/dashboard/FollowersTab'
 import FollowingTab from '@components/dashboard/FollowingTab'
 import SubscriptionTab from '@components/dashboard/SubscriptionTab'
+import ProfileVisitsTab from '@components/dashboard/ProfileVisitsTab'
 
 enum Tabs {
     Dashboard = 'Dashboard',
@@ -41,8 +42,8 @@ const NavigationItems = [
     },
     {
         page: Tabs.ProfileVisits,
-        icon: '/icons/dashboard/subscription.svg',
-        activeIcon: '/icons/dashboard/subscription-white.svg',
+        icon: '/icons/dashboard/profile-visits.svg',
+        activeIcon: '/icons/dashboard/profile-visits-white.svg',
     },
     {
         page: Tabs.TrackingTips,
@@ -78,7 +79,7 @@ const UserDashboard: NextPage = () => {
             case Tabs.Subscription:
                 return <SubscriptionTab />
             case Tabs.ProfileVisits:
-                return <>Profile Visits</>
+                return <ProfileVisitsTab />
             case Tabs.TrackingTips:
                 return <>Tracking Tips</>
             case Tabs.PendingTips:

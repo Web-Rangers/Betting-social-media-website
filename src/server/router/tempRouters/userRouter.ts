@@ -169,6 +169,20 @@ const SubscriptionInfo = {
     ]
 }
 
+const ProfileVisitsInfo = {
+    count: 395,
+    difference: 0.0293,
+    visitors: [
+        { name: 'John Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(0, 0, 0), following: true },
+        { name: 'Jane Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-1, 0, 0), following: true },
+        { name: 'Jill Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-1, 0, 0), following: false },
+        { name: 'Jack Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-2, 0, 0), following: true },
+        { name: 'James Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-3, 0, 0), following: false },
+        { name: 'Jonathan Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-4, 0, 0), following: true },
+        { name: 'Jefferey Doe', image: '/images/profile-placeholder.png', date: getOffsetDate(-5, 0, 0), following: false },
+    ]
+}
+
 export const userRouter = createRouter()
     .query("getInfo", {
         async resolve() {
@@ -274,6 +288,11 @@ export const userRouter = createRouter()
             const result = fuse.search(searchString).map(item => item.item)
 
             return result
+        }
+    })
+    .query("getProfileVisitsInfo", {
+        async resolve() {
+            return ProfileVisitsInfo
         }
     })
 
