@@ -210,6 +210,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    min-height: 40px;
 }
 
 .followButton.following {
@@ -220,7 +221,7 @@
     background-color: #FFFFFF;
 }
 
-.followButton.followButton.follow::before {
+.followButton.follow::before {
     content: url(/icons/follow-gray.svg);
 }
 

@@ -15,6 +15,7 @@ import { competitionRouter } from "./tempRouters/CompetitionRouter";
 import { coinsRouter } from "./tempRouters/CoinsRouter";
 import { userRouter } from "./tempRouters/UserRouter";
 
+
 export const appRouter = createRouter()
     .transformer(superjson)
     .merge('tipsters.', tipsterRouter)
