@@ -126,60 +126,6 @@
     height: 24px;
 }
 
-/* Subscribers Table */
-
-.tableContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-}
-
-.table {
-    border-spacing: 0;
-    border-collapse: separate;
-    width: 100%;
-}
-
-.cell {
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    color: #1A1C21B2;
-    padding: 13px 24px;
-    border: none;
-}
-
-.tableRow .cell:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.tableRow .cell:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.tableRow:nth-child(odd) .cell {
-    background-color: #F2F2F24D;
-}
-
-.tableContainer .header {
-    font-family: 'Samsung Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    padding: 13px 24px;
-    color: #1A1C21B2;
-    text-align: start;
-}
-
 .user {
     display: flex;
     flex-direction: row;

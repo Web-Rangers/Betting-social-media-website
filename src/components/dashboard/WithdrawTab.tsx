@@ -13,6 +13,56 @@ import * as portals from 'react-reverse-portal'
 import useModalPortal from 'src/utils/usePortal'
 import { PortalContext } from 'src/utils/portalContext'
 import { AnimatePresence, motion } from 'framer-motion'
+import Table from '@components/ui/Table'
+
+const columnHelper = createColumnHelper<inferArrayElementType<WithdrawInfo['history']>>()
+
+function getStyleByStatus(status: TransactionStatus) {
+    switch (status) {
+        case TransactionStatus.Pending:
+            return styles.pending
+        case TransactionStatus.Blocked:
+            return styles.blocked
+        case TransactionStatus.Success:
+            return styles.success
+        default:
+            return undefined
+    }
+}
+
+const columns = [
+    columnHelper.accessor('id', {
+        cell: info => <div>
+            {info.getValue()}
+        </div>,
+        header: () => <span>Id</span>,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('amount', {
+        cell: info => <span className={styles.amount}>
+            {info.getValue()}
+        </span>,
+        header: () => <span>Amount</span>,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('date', {
+        cell: info => <Moment date={info.getValue()} format='DD MMM YYYY' />,
+        header: () => <span>Date</span>,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('status', {
+        cell: info => {
+            const status = info.getValue();
+            return (
+                <span className={`${styles.status} ${getStyleByStatus(status)}`}>
+                    {info.getValue()}
+                </span>
+            )
+        },
+        header: () => <span>Status</span>,
+        enableSorting: false,
+    })
+]
 
 const WithdrawTab: React.FC = () => {
     const { data, isLoading } = trpc.useQuery(['user.getWithdrawInfo'])
@@ -72,7 +122,11 @@ const WithdrawTab: React.FC = () => {
                         </div>
                     </div>
                     <h2>Historical Withdraws</h2>
-                    <HistoryTable history={data.history} pageSize={10} />
+                    <Table
+                        data={data.history}
+                        columns={columns}
+                        pageSize={10}
+                    />
                 </div>
             </PortalContext.Provider>
         </>
@@ -286,111 +340,6 @@ const WithdrawModal: React.FC<{ maxValue: number, onClose: () => void }> = (prop
                 </button>
             </form>
         </motion.div>
-    )
-}
-
-const columnHelper = createColumnHelper<inferArrayElementType<WithdrawInfo['history']>>()
-
-function getStyleByStatus(status: TransactionStatus) {
-    switch (status) {
-        case TransactionStatus.Pending:
-            return styles.pending
-        case TransactionStatus.Blocked:
-            return styles.blocked
-        case TransactionStatus.Success:
-            return styles.success
-        default:
-            return undefined
-    }
-}
-
-const columns = [
-    columnHelper.accessor('id', {
-        cell: info => <div>
-            {info.getValue()}
-        </div>,
-        header: () => <span>Id</span>,
-        enableSorting: false,
-    }),
-    columnHelper.accessor('amount', {
-        cell: info => <span className={styles.amount}>
-            {info.getValue()}
-        </span>,
-        header: () => <span>Amount</span>,
-        enableSorting: false,
-    }),
-    columnHelper.accessor('date', {
-        cell: info => <Moment date={info.getValue()} format='DD MMM YYYY' />,
-        header: () => <span>Date</span>,
-        enableSorting: false,
-    }),
-    columnHelper.accessor('status', {
-        cell: info => {
-            const status = info.getValue();
-            return (
-                <span className={`${styles.status} ${getStyleByStatus(status)}`}>
-                    {info.getValue()}
-                </span>
-            )
-        },
-        header: () => <span>Status</span>,
-        enableSorting: false,
-    })
-]
-
-const HistoryTable: React.FC<{ history: WithdrawInfo['history'], pageSize?: number }> = (props) => {
-    const { history, pageSize } = props;
-    const _pageSize = pageSize ?? 20;
-
-    const table = useReactTable({
-        data: history,
-        columns,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        initialState: {
-            pagination: {
-                pageSize: _pageSize,
-            },
-        },
-    })
-
-    return (
-        <div className={styles.tableContainer}>
-            <table className={styles.table}>
-                <thead>
-                    {table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => {
-                                return (
-                                    <th key={header.id} colSpan={header.colSpan} className={styles.header}>
-                                        {header.isPlaceholder ? null : (
-                                            <div>
-                                                {flexRender(
-                                                    header.column.columnDef.header,
-                                                    header.getContext()
-                                                )}
-                                            </div>
-                                        )}
-                                    </th>
-                                )
-                            })}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className={styles.body}>
-                    {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={styles.tableRow}>
-                            {row.getVisibleCells().map(cell => (
-                                <td key={cell.id} className={styles.cell}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <Pagination table={table} pageCount={Math.ceil(history.length / _pageSize)} />
-        </div>
     )
 }
 

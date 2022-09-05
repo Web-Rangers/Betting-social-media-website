@@ -9,6 +9,69 @@ import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { SubscriptionInfo } from 'src/types/queryTypes'
 import Pagination from '@components/shared/TablePagination'
 import Moment from 'react-moment'
+import Table from '@components/ui/Table'
+
+
+const columnHelper = createColumnHelper<inferArrayElementType<SubscriptionInfo['subscribers']>>()
+
+const columns = [
+    columnHelper.accessor((row) => ({ ...row }), {
+        id: 'user',
+        cell: info => {
+            const { image, name } = info.getValue()
+            return (
+                <div className={styles.user}>
+                    <div className={styles.avatar}>
+                        <Image
+                            src={image}
+                            height={36}
+                            width={36}
+                        />
+                    </div>
+                    <span>{name}</span>
+                </div>
+            )
+        }
+    }),
+    columnHelper.accessor('amount', {
+        cell: info => <span className={styles.price}>$ {info.getValue()}</span>
+    }),
+    columnHelper.accessor((row) => ({ ...row }), {
+        id: 'duration',
+        cell: info => {
+            const { endsOn, startedOn } = info.getValue()
+            return (
+                <div className={styles.duration}>
+                    <Moment format='DD MMM YYYY'>{startedOn}</Moment>
+                    <div className={styles.progress}>
+                        <div
+                            className={styles.progressBar}
+                            style={{
+                                width: `${100 - (new Date().getTime() - startedOn.getTime()) / (endsOn.getTime() - startedOn.getTime()) * 100}%`
+                            }}
+                        />
+                    </div>
+                    <Moment format='DD MMM YYYY'>{endsOn}</Moment>
+                </div>
+            )
+        }
+    }),
+    columnHelper.accessor('endsOn', {
+        cell: info => (
+            <div className={styles.timeLeft}>
+                <b><Moment duration={new Date()} format='DD'>{info.getValue()}</Moment></b> days left
+            </div>
+        )
+    }),
+    columnHelper.accessor(row => ({ ...row }), {
+        id: 'button',
+        cell: info => (
+            <button className={`${styles.subscribeButton} ${styles.subscribed}`}>
+                Subscribed
+            </button>
+        )
+    })
+]
 
 const SubscriptionTab: React.FC = () => {
     const [searchString, setSearchString] = useState<string>('')
@@ -76,107 +139,12 @@ const SubscriptionTab: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <SubscribersTable
-                followers={(shouldShowSearchResuts && searchResults && !searchResultsLoading) ? searchResults : data.subscribers}
+            <Table
+                data={(shouldShowSearchResuts && searchResults && !searchResultsLoading) ? searchResults : data.subscribers}
+                columns={columns}
                 pageSize={10}
+                header={false}
             />
-        </div>
-    )
-}
-
-const columnHelper = createColumnHelper<inferArrayElementType<SubscriptionInfo['subscribers']>>()
-
-const columns = [
-    columnHelper.accessor((row) => ({ ...row }), {
-        id: 'user',
-        cell: info => {
-            const { image, name } = info.getValue()
-            return (
-                <div className={styles.user}>
-                    <div className={styles.avatar}>
-                        <Image
-                            src={image}
-                            height={36}
-                            width={36}
-                        />
-                    </div>
-                    <span>{name}</span>
-                </div>
-            )
-        }
-    }),
-    columnHelper.accessor('amount', {
-        cell: info => <span className={styles.price}>$ {info.getValue()}</span>
-    }),
-    columnHelper.accessor((row) => ({ ...row }), {
-        id: 'duration',
-        cell: info => {
-            const { endsOn, startedOn } = info.getValue()
-            return (
-                <div className={styles.duration}>
-                    <Moment format='DD MMM YYYY'>{startedOn}</Moment>
-                    <div className={styles.progress}>
-                        <div
-                            className={styles.progressBar}
-                            style={{
-                                width: `${100 - (new Date().getTime() - startedOn.getTime()) / (endsOn.getTime() - startedOn.getTime()) * 100}%`
-                            }}
-                        />
-                    </div>
-                    <Moment format='DD MMM YYYY'>{endsOn}</Moment>
-                </div>
-            )
-        }
-    }),
-    columnHelper.accessor('endsOn', {
-        cell: info => (
-            <div className={styles.timeLeft}>
-                <b><Moment duration={new Date()} format='DD'>{info.getValue()}</Moment></b> days left
-            </div>
-        )
-    }),
-    columnHelper.accessor(row => ({ ...row }), {
-        id: 'button',
-        cell: info => (
-            <button className={`${styles.subscribeButton} ${styles.subscribed}`}>
-                Subscribed
-            </button>
-        )
-    })
-]
-
-const SubscribersTable: React.FC<{ followers: SubscriptionInfo['subscribers'], pageSize?: number }> = (props) => {
-    const { followers, pageSize } = props;
-    const _pageSize = pageSize ?? 20;
-
-    const table = useReactTable({
-        data: followers,
-        columns,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        initialState: {
-            pagination: {
-                pageSize: _pageSize,
-            },
-        },
-    })
-
-    return (
-        <div className={styles.tableContainer}>
-            <table className={styles.table}>
-                <tbody className={styles.body}>
-                    {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className={styles.tableRow}>
-                            {row.getVisibleCells().map(cell => (
-                                <td key={cell.id} className={styles.cell}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <Pagination table={table} pageCount={Math.ceil(followers.length / _pageSize)} />
         </div>
     )
 }

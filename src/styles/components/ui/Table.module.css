@@ -1,0 +1,121 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.table {
+    border-spacing: 0;
+    border-collapse: separate;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    padding: 19px 16px 19px 16px;
+}
+
+.cell {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1A1C21B2;
+    padding: 19px 16px 19px 16px;
+    border: none;
+    text-align: center;
+}
+
+.header {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1A1C21B2;
+}
+
+.header .cell:first-child {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header .cell:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row:nth-child(odd) .cell {
+    background-color: #F2F2F24D;
+}
+
+.row .cell:first-child {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.row .cell:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sortAsc {
+    transform: rotate(180deg);
+}
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.chevron {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chevron.left {
+    transform: rotate(90deg);
+}
+
+.chevron.right {
+    transform: rotate(-90deg);
+}
+
+.pageNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+    cursor: pointer;
+}
+
+.pageNumber.active {
+    background-color: #7F3FFC;
+    color: #FFFFFF;
+}
