@@ -211,7 +211,6 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
-    color: #1A1C21B2;
     transition: all 0.3s ease-in-out;
 }
 
@@ -224,11 +223,11 @@
     background-color: #7F3FFC;
 }
 
-.menuItem.active .name,
-.menuItem.active .counter {
+.menuItem.active .name {
     color: #FFFFFF;
 }
 
 .menuItem.active .counter {
-    background-color: #FFFFFF33;
+    background-color: #FFFFFF;
+    color: #1A1C21;
 }
