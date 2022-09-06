@@ -76,7 +76,7 @@ const DropdownSearch: React.FC<DropdownProps> = (props) => {
                     transition={{duration:0.2, ease:"easeInOut"}}
                 >
                     <Image
-                        src="/images/icons/chevron-down.svg"
+                        src="/icons/chevron-down.svg"
                         width={16}
                         height={16}
                         objectFit="contain"

@@ -296,7 +296,7 @@ const MatchSummaryPage: React.FC = () => {
                 </span>
                 <span className={styles.infoUrl}>
                     <Image
-                        src="/images/icons/pick.svg"
+                        src="/icons/pick.svg"
                         width={20}
                         height={20}
                     />
