@@ -42,8 +42,8 @@ const Register: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Optimo Registration</title>
-                <meta name="description" content="Optimo betting social media login" />
+                <title>Optimo Sign Up</title>
+                <meta name="description" content="Optimo betting social media sign up" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
