@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filterItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    transition: all 0.3s ease-in-out;
+}
+.filterActive{
+    background: #7F3FFC;
+    border-color: #7F3FFC;
+    color: #FFFFFF;
+}
