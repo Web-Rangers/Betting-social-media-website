@@ -254,3 +254,35 @@
     align-items: center;
     gap: 8px;
 }
+.infoLink{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 50px;
+}
+.infoTitle{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+
+.infoUrl{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* odds */
+.oddsFilter{
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}

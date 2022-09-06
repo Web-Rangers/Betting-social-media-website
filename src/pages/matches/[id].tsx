@@ -1,10 +1,12 @@
-import type { NextComponentType, NextPage } from "next"
+import type { NextPage } from "next"
 import Head from "next/head"
 import styles from "../../styles/pages/MatchSummary.module.css"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import DropdownSearch from "@components/ui/match-summary/DropdownSearch"
+import OddsFilter from "@components/ui/match-summary/OddsFilter"
 
 const pages = [
     {
@@ -37,7 +39,7 @@ const pages = [
     },
     {
         id:8,
-        name:"Match Summary"
+        name:"News"
     },
     ,
     {
@@ -287,7 +289,20 @@ const MatchSummaryPage: React.FC = () => {
                         Some Action
                     </span>
                 </div>
-            </div>            
+            </div>
+            <div className={styles.infoLink}>
+                <span className={styles.infoTitle}>
+                    Match Information
+                </span>
+                <span className={styles.infoUrl}>
+                    <Image
+                        src="/images/icons/pick.svg"
+                        width={20}
+                        height={20}
+                    />
+                    WWK Arena (Augsburg)
+                </span>
+            </div>
         </div>
     )
 }
@@ -303,7 +318,60 @@ const LineupsPage: React.FC = () => {
 const OddsPage: React.FC = () => {
     return (
         <div className={styles.pageContainer}>
-            
+            <div className={styles.oddsFilter}>
+                <DropdownSearch 
+                    items={[
+                        {
+                            id:'1', 
+                            name:"bookmaker 1", 
+                            image:"/images/bookmaker-placeholder-3.png"
+                        },
+                        {
+                            id:'2', 
+                            name:"bookmaker 2", 
+                            image:"/images/bookmaker-placeholder-1.png"
+                        }
+                    ]} 
+                    onSelect={(id) => {}}
+                />
+                <OddsFilter 
+                    items={[
+                        {
+                            id:'1', 
+                            name:"All"
+                        },
+                        {
+                            id:'2', 
+                            name:"Main"
+                        },
+                        {
+                            id:'3', 
+                            name:"Total"
+                        },
+                        {
+                            id:'4', 
+                            name:"Handicap"
+                        },
+                        {
+                            id:'5', 
+                            name:"Half"
+                        },
+                        {
+                            id:'6', 
+                            name:"Goals"
+                        },
+                        {
+                            id:'7', 
+                            name:"O/E"
+                        },
+                        {
+                            id:'8', 
+                            name:"BTS"
+                        }
+                    ]} 
+                    onSelect={(id) => {}} 
+                />
+            </div>
         </div>
     )
 }
