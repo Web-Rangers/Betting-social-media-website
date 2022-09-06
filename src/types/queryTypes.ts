@@ -35,3 +35,5 @@ export type ProfileVisitsInfo = inferQueryOutput<"user.getProfileVisitsInfo">
 export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">
 
 export type PendingPredictions = inferQueryOutput<"user.getPendingTips">
+
+export type HistoricalPredictions = inferQueryOutput<"user.getHistoricalTips">

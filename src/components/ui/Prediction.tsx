@@ -1,15 +1,15 @@
 import React from 'react'
 import styles from '@styles/components/ui/Prediction.module.css'
-import { PendingPredictions, TrackingPredictions } from 'src/types/queryTypes'
+import { HistoricalPredictions, PendingPredictions, TrackingPredictions } from 'src/types/queryTypes'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import Moment from 'react-moment'
 import Image from 'next/image'
 import TextField from './TextField'
 
-type CommentType = inferArrayElementType<inferArrayElementType<TrackingPredictions | PendingPredictions>['info']['comments']> & { canReply?: boolean }
+type CommentType = inferArrayElementType<inferArrayElementType<TrackingPredictions | PendingPredictions | HistoricalPredictions>['info']['comments']> & { canReply?: boolean }
 
 // add a prediction type from a specific match (all types should have matching fields)
-const Prediction: React.FC<inferArrayElementType<TrackingPredictions | PendingPredictions>> = (props) => {
+const Prediction: React.FC<inferArrayElementType<TrackingPredictions | PendingPredictions | HistoricalPredictions>> = (props) => {
     const { author, date, info } = props
 
     return (
