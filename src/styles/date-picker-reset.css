@@ -1,5 +1,9 @@
 /* Date Picker */
 
+.react-datepicker-popper {
+    z-index: 10 !important;
+}
+
 .react-datepicker {
     padding: 20px 24px;
     border: 1px solid #1A1C211A;
