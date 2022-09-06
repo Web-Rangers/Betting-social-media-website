@@ -215,7 +215,10 @@ const TrackingTips = [
                 image: '/images/bookmaker-placeholder-1.png',
                 odd: 1.56,
             },
-            profit: 179,
+            profit: {
+                amount: 179,
+                potential: false
+            },
             liked: true,
             like_count: 1285,
             comment_count: 25,
@@ -327,7 +330,206 @@ const TrackingTips = [
                 image: '/images/bookmaker-placeholder-1.png',
                 odd: 1.56,
             },
-            profit: -179,
+            profit: {
+                amount: 179,
+                potential: false
+            },
+            liked: false,
+            like_count: 31,
+            comment_count: 3,
+            comments: [
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+            ]
+        }
+    }
+]
+
+const PendingTips = [
+    {
+        date: getOffsetDate(-1, 0, 0),
+        author: {
+            image: '/images/profile-placeholder.png',
+            name: 'John Doe',
+            winrate: 0.53,
+            subscribed: false,
+        },
+        info: {
+            tracking: false,
+            match: {
+                teams: [
+                    { name: 'EIN', score: null, image: '/images/team-1-placeholder.svg' },
+                    { name: 'FCB', score: null, image: '/images/team-2-placeholder.svg' },
+                ],
+                date: getOffsetDate(2, 0, 0),
+                league: 'Bundesliga',
+                sport: {
+                    name: 'Football',
+                    image: '/images/sport-placeholder.png'
+                }
+            },
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat arcu vel erat suscipit sodales. Curabitur feugiat, ligula in consequat convallis, turpis arcu aliquet ante, sed rhoncus velit metus nec magna.',
+            market: 'Over/Under-Total',
+            selection: 'Over 2.5',
+            stake: 115,
+            bookmaker: {
+                name: 'some bookmaker',
+                image: '/images/bookmaker-placeholder-1.png',
+                odd: 1.56,
+            },
+            profit: {
+                amount: 179,
+                potential: true
+            },
+            liked: true,
+            like_count: 1285,
+            comment_count: 25,
+            comments: [
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+            ]
+        }
+    },
+    {
+        date: getOffsetDate(-2, 0, 0),
+        author: {
+            image: '/images/profile-placeholder.png',
+            name: 'Jane Doe',
+            winrate: 0.43,
+            subscribed: false,
+        },
+        info: {
+            tracking: false,
+            match: {
+                teams: [
+                    { name: 'EIN', score: null, image: '/images/team-1-placeholder.svg' },
+                    { name: 'FCB', score: null, image: '/images/team-2-placeholder.svg' },
+                ],
+                date: getOffsetDate(2, 0, 0),
+                league: 'Bundesliga',
+                sport: {
+                    name: 'Football',
+                    image: '/images/sport-placeholder.png'
+                }
+            },
+            market: 'Over/Under-Total',
+            selection: 'Over 2.5',
+            stake: 115,
+            bookmaker: {
+                name: 'some bookmaker',
+                image: '/images/bookmaker-placeholder-1.png',
+                odd: 1.56,
+            },
+            profit: {
+                amount: 179,
+                potential: true
+            },
             liked: false,
             like_count: 31,
             comment_count: 3,
@@ -490,4 +692,8 @@ export const userRouter = createRouter()
             return TrackingTips
         }
     })
-
+    .query("getPendingTips", {
+        async resolve() {
+            return PendingTips
+        }
+    })

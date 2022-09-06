@@ -1,15 +1,15 @@
 import React from 'react'
 import styles from '@styles/components/ui/Prediction.module.css'
-import { TrackingPredictions } from 'src/types/queryTypes'
+import { PendingPredictions, TrackingPredictions } from 'src/types/queryTypes'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import Moment from 'react-moment'
 import Image from 'next/image'
 import TextField from './TextField'
 
-type CommentType = inferArrayElementType<inferArrayElementType<TrackingPredictions>['info']['comments']> & { canReply?: boolean }
+type CommentType = inferArrayElementType<inferArrayElementType<TrackingPredictions | PendingPredictions>['info']['comments']> & { canReply?: boolean }
 
 // add a prediction type from a specific match (all types should have matching fields)
-const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props) => {
+const Prediction: React.FC<inferArrayElementType<TrackingPredictions | PendingPredictions>> = (props) => {
     const { author, date, info } = props
 
     return (
@@ -33,7 +33,7 @@ const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props)
                             <span>Hit Rate {author.winrate * 100}%</span>
                         </div>
                     </div>
-                    <button className={styles.subscribe}>
+                    <button className={`${author.subscribed ? styles.subscribed : styles.subscribe}`}>
                         Subscribe
                     </button>
                 </div>
@@ -75,12 +75,12 @@ const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props)
                             </div>
                             <div className={styles.results}>
                                 <div className={styles.score}>
-                                    <span>{info.match.teams[0].score}</span>
+                                    <span>{info.match.teams[0].score ?? '-'}</span>
                                     <div className={styles.date}>
                                         <Moment className={styles.part} format='HH:mm'>{info.match.date}</Moment>
                                         <Moment className={styles.part} format='DD MMM'>{info.match.date}</Moment>
                                     </div>
-                                    <span>{info.match.teams[1].score}</span>
+                                    <span>{info.match.teams[1].score ?? '-'}</span>
                                 </div>
                                 <div className={styles.league}>
                                     <span>{info.match.league}</span>
@@ -127,15 +127,22 @@ const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props)
                         />
                         <span className={styles.odd}>{info.bookmaker.odd}</span>
                     </div>
-                    <div className={styles.profit}>
-                        <span className={info.profit > 0 ? styles.positive : styles.negative}>
-                            {info.profit > 0
-                                ? 'Success'
-                                : 'Lost'
+                    {<div className={styles.profit}>
+                        <span className={info.profit.potential
+                            ? styles.potential
+                            : info.profit.amount > 0
+                                ? styles.positive
+                                : styles.negative
+                        }>
+                            {info.profit.potential
+                                ? 'Potential profit'
+                                : info.profit.amount > 0
+                                    ? 'Success'
+                                    : 'Lost'
                             }
                         </span>
-                        <span>$ {info.profit}</span>
-                    </div>
+                        <span>$ {info.profit.amount}</span>
+                    </div>}
                 </div>
                 <div className={styles.stats}>
                     <div className={styles.stat}>

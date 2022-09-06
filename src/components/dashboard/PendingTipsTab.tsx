@@ -16,8 +16,8 @@ const ProfitabilityFilterItems = [
     { name: 'Lowest to Biggest', id: '2' }
 ]
 
-const TrackingTipsTab: React.FC = () => {
-    const { data, isLoading } = trpc.useQuery(['user.getTrackingTips'])
+const PendingTipsTab: React.FC = () => {
+    const { data, isLoading } = trpc.useQuery(['user.getPendingTips'])
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -69,4 +69,4 @@ const TrackingTipsTab: React.FC = () => {
     )
 }
 
-export default TrackingTipsTab
+export default PendingTipsTab

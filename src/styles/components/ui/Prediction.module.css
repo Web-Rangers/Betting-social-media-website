@@ -317,6 +317,10 @@
     color: #1A1C21;
 }
 
+.profit span:first-child.potential {
+    color: #1A1C21B2;
+}
+
 .profit span:first-child.positive {
     color: #2CD114;
 }
