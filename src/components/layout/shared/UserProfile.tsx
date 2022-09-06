@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from '@styles/components/ui/UserProfile.module.css'
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 
 const NotificationsList = [
     { text: 'You have a new message', date: '10:00', id: 1 },
@@ -215,15 +216,17 @@ const Profile: React.FC<ProfileProps> = (props) => {
                                 </div>
                             </div>
                             <div className={styles.column}>
-                                <div className={styles.menuItem}>
-                                    <Image
-                                        src="/icons/profile/dashboard.svg"
-                                        alt="profile"
-                                        width={24}
-                                        height={24}
-                                    />
-                                    <span>My Dashboard</span>
-                                </div>
+                                <Link href='/user-dashboard'>
+                                    <a className={styles.menuItem}>
+                                        <Image
+                                            src="/icons/profile/dashboard.svg"
+                                            alt="profile"
+                                            width={24}
+                                            height={24}
+                                        />
+                                        <span>My Dashboard</span>
+                                    </a>
+                                </Link>
                                 <div className={styles.menuItem}>
                                     <Image
                                         src="/icons/profile/tips.svg"

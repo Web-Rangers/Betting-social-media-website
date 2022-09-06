@@ -60,12 +60,6 @@ const HistoricalTipsTab: React.FC = () => {
                         onSelect={() => { }}
                     />
                 </div>
-                <div className={styles.filter}>
-                    <span>DATE</span>
-                    <DateInput
-                        onChange={() => { }}
-                    />
-                </div>
                 <div className={`${styles.filter} ${styles.search}`}>
                     <TextField
                         icon='/icons/search.svg'
