@@ -369,7 +369,7 @@
     border-radius: 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 }
 
 .comments h3 {
@@ -400,4 +400,131 @@
 
 .comments .input .textField {
     width: 100%;
+}
+
+.commentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* commentContainer */
+
+.commentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.commentContainer .comment {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.commentContainer .comment .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #1A1C211A;
+    border-radius: 100%;
+    min-height: 46px;
+    min-width: 46px;
+    height: 46px;
+    width: 46px;
+    max-width: 46px;
+    max-height: 46px;
+}
+
+.commentContainer .comment .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.commentContainer .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.commentContainer .info .content .controls {
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.commentContainer .comment .info .data {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #F2F2F24D;
+}
+
+.commentContainer .comment .info .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+
+.commentContainer .comment .info .text {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.commentContainer .comment .info .details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.commentContainer .comment .info .details .date {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+.commentContainer .comment .info .details .date .part:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+
+.commentContainer .comment .info .details .date .part:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21B2;
+}
+
+.commentContainer .comment .info .details .reply {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #7F3FFC;
+    cursor: pointer;
+}
+
+.commentContainer .replies {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 70px;
 }

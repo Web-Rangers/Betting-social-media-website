@@ -6,6 +6,8 @@ import Moment from 'react-moment'
 import Image from 'next/image'
 import TextField from './TextField'
 
+type CommentType = inferArrayElementType<inferArrayElementType<TrackingPredictions>['info']['comments']> & { canReply?: boolean }
+
 // add a prediction type from a specific match (all types should have matching fields)
 const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props) => {
     const { author, date, info } = props
@@ -158,6 +160,11 @@ const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props)
                 <div className={styles.commentsContainer}>
                     <div className={styles.comments}>
                         <h3>Comments</h3>
+                        <div className={styles.commentsList}>
+                            {info.comments.map((comment, index) => (
+                                <Comment {...comment} key={`comment_${index}`} />
+                            ))}
+                        </div>
                         <div className={styles.input}>
                             <div className={styles.avatar}>
                                 <Image
@@ -176,6 +183,52 @@ const Prediction: React.FC<inferArrayElementType<TrackingPredictions>> = (props)
                     </div>
                 </div>
             </div>}
+        </div>
+    )
+}
+
+const Comment: React.FC<CommentType> = (props) => {
+    const { user, text, date, replies, canReply = true } = props
+    return (
+        <div className={styles.commentContainer}>
+            <div className={styles.comment}>
+                <div className={styles.avatar}>
+                    <Image
+                        src={user.image}
+                        height={46}
+                        width={46}
+                    />
+                </div>
+                <div className={styles.info}>
+                    <div className={styles.content}>
+                        <div className={styles.data}>
+                            <span className={styles.name}>{user.name}</span>
+                            <span className={styles.text}>{text}</span>
+                        </div>
+                        <div className={styles.controls}>
+                            <Image
+                                src='/icons/more.svg'
+                                height={24}
+                                width={24}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.details}>
+                        <div className={styles.date}>
+                            <Moment className={styles.part} format="HH:mm">{date}</Moment>
+                            <Moment className={styles.part} format="DD MMM YYYY">{date}</Moment>
+                        </div>
+                        {canReply && <span className={styles.reply}>Reply</span>}
+                    </div>
+                </div>
+            </div>
+            {((replies.length > 0) && replies) && (
+                <div className={styles.replies}>
+                    {replies.map((reply, index) => (
+                        <Comment {...reply} key={`reply_${index}`} canReply={false} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

@@ -223,16 +223,35 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'John Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Cras vitae rutrum purus.',
                     date: getOffsetDate(-1, 0, 0),
-                    replies: []
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
                 },
                 {
                     user: {
                         name: 'Jane Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
                     date: getOffsetDate(-1, 0, 0),
@@ -241,16 +260,35 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'John Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Cras vitae rutrum purus.',
                     date: getOffsetDate(-1, 0, 0),
-                    replies: []
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
                 },
                 {
                     user: {
                         name: 'Jane Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
                     date: getOffsetDate(-1, 0, 0),
@@ -297,7 +335,7 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'John Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Cras vitae rutrum purus.',
                     date: getOffsetDate(-1, 0, 0),
@@ -306,7 +344,7 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'Jane Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
                     date: getOffsetDate(-1, 0, 0),
@@ -315,7 +353,7 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'John Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Cras vitae rutrum purus.',
                     date: getOffsetDate(-1, 0, 0),
@@ -324,7 +362,7 @@ const TrackingTips = [
                 {
                     user: {
                         name: 'Jane Doe',
-                        image: '/images/profile-placeholder-png'
+                        image: '/images/profile-placeholder.png'
                     },
                     text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
                     date: getOffsetDate(-1, 0, 0),
