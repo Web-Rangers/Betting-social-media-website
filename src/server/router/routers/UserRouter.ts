@@ -15,6 +15,8 @@ function getOffsetDate(days: number, months: number, years: number) {
 const UserInfo = {
     image: '/images/profile-placeholder.png',
     name: 'John Doe',
+    nickname: 'xXJohn1337Xx',
+    email: 'john@doe.com',
     rank: 143,
     follower_count: 1782,
     following_count: 395,

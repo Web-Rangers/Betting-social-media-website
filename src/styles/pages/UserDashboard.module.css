@@ -11,6 +11,7 @@
     grid-column-start: 4;
     grid-column-end: 13;
     margin-bottom: 100px;
+    min-height: 100vh;
 }
 
 .navigationContainer {

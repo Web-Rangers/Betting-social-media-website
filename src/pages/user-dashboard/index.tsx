@@ -13,6 +13,7 @@ import ProfileVisitsTab from '@components/dashboard/ProfileVisitsTab'
 import TrackingTipsTab from '@components/dashboard/TrackingTipsTab'
 import PendingTipsTab from '@components/dashboard/PendingTipsTab'
 import HistoricalTipsTab from '@components/dashboard/HistoricalTipsTab'
+import ProfileSettings from '@components/dashboard/ProfileSettings'
 
 enum Tabs {
     Dashboard = 'Dashboard',
@@ -90,7 +91,7 @@ const UserDashboard: NextPage = () => {
             case Tabs.HistoricalTips:
                 return <HistoricalTipsTab />
             case Tabs.Settings:
-                return <>Profile Settings</>
+                return <ProfileSettings />
             case Tabs.Following:
                 return <FollowingTab />
             case Tabs.Followers:
