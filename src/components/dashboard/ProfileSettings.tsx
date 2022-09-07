@@ -72,8 +72,57 @@ const ProfileSettings: React.FC = () => {
                     id={styles.sportDetails}
                     className={styles.block}
                 >
-                    <h2>Sport Details</h2>
-                    <div className={styles.content}></div>
+                    <div className={styles.header}>
+                        <h2>Sport Details</h2>
+                        <div className={styles.edit}>
+                            <Image
+                                src='/icons/pencil.svg'
+                                height={18}
+                                width={18}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.content}>
+                        <div className={styles.sportBlock}>
+                            <span className={styles.label}>Sport</span>
+                            <div className={styles.details}>
+                                <div className={styles.image}>
+                                    <Image
+                                        src={data.sport.image}
+                                        height={34}
+                                        width={34}
+                                    />
+                                </div>
+                                <span className={styles.name}>{data.sport.name}</span>
+                            </div>
+                        </div>
+                        <div className={styles.sportBlock}>
+                            <span className={styles.label}>Club</span>
+                            <div className={styles.details}>
+                                <div className={styles.image}>
+                                    <Image
+                                        src={data.club.image}
+                                        height={34}
+                                        width={34}
+                                    />
+                                </div>
+                                <span className={styles.name}>{data.club.name}</span>
+                            </div>
+                        </div>
+                        <div className={styles.sportBlock}>
+                            <span className={styles.label}>Country</span>
+                            <div className={styles.details}>
+                                <div className={styles.image}>
+                                    <Image
+                                        src={data.country.image}
+                                        height={34}
+                                        width={34}
+                                    />
+                                </div>
+                                <span className={styles.name}>{data.country.name}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -17,6 +17,18 @@ const UserInfo = {
     name: 'John Doe',
     nickname: 'xXJohn1337Xx',
     email: 'john@doe.com',
+    sport: {
+        name: 'Box',
+        image: '/images/sport-placeholder.svg'
+    },
+    club: {
+        name: 'FC Bayern Munich',
+        image: '/images/team-1-placeholder.svg'
+    },
+    country: {
+        name: 'Spain',
+        image: '/icons/flags/sp.svg'
+    },
     rank: 143,
     follower_count: 1782,
     following_count: 395,
