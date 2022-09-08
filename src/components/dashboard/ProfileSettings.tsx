@@ -4,10 +4,12 @@ import Image from 'next/image'
 import { trpc } from 'src/utils/trpc'
 import { AnimatePresence, motion } from 'framer-motion'
 import PasswordField from '@components/ui/PasswordField'
+import Dropdown from '@components/ui/Dropdown'
 
 const ProfileSettings: React.FC = () => {
     const { data, isLoading } = trpc.useQuery(['user.getInfo'])
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
+    const [isSportModalOpen, setIsSportModalOpen] = useState(false)
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -20,7 +22,8 @@ const ProfileSettings: React.FC = () => {
     return (
         <>
             <AnimatePresence initial={false}>
-                {isModalOpen && <PasswordModal onClose={() => setIsModalOpen(false)} />}
+                {isPasswordModalOpen && <PasswordModal onClose={() => setIsPasswordModalOpen(false)} />}
+                {isSportModalOpen && <SportModal onClose={() => setIsSportModalOpen(false)} />}
             </AnimatePresence>
             <div className={styles.profileSettings}>
                 <div
@@ -56,7 +59,7 @@ const ProfileSettings: React.FC = () => {
                             <ProfileField label='Email' defaultValue={data.email} />
                             <div
                                 className={styles.changePassword}
-                                onClick={() => setIsModalOpen(true)}
+                                onClick={() => setIsPasswordModalOpen(true)}
                             >
                                 <span>Change Password</span>
                                 <Image
@@ -74,7 +77,10 @@ const ProfileSettings: React.FC = () => {
                 >
                     <div className={styles.header}>
                         <h2>Sport Details</h2>
-                        <div className={styles.edit}>
+                        <div
+                            className={styles.edit}
+                            onClick={() => setIsSportModalOpen(true)}
+                        >
                             <Image
                                 src='/icons/pencil.svg'
                                 height={18}
@@ -214,6 +220,94 @@ const PasswordModal: React.FC<{ onClose: () => void }> = (props) => {
                     <PasswordField placeholder='Repeat Password' />
                 </div>
                 <button>Save new password</button>
+            </div>
+        </motion.div>
+    )
+}
+
+const SportModal: React.FC<{ onClose: () => void }> = (props) => {
+    const { onClose } = props
+    const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
+    const { data: clubs, isLoading: clubsLoading } = trpc.useQuery(['filters.getSportClubs'])
+    const { data: countries, isLoading: countriesLoading } = trpc.useQuery(['filters.getCountries'])
+
+    if (sportsLoading || clubsLoading || countriesLoading) {
+        return <></>
+    }
+
+    if (!sports || !clubs || !countries) {
+        return <></>
+    }
+
+    return (
+        <motion.div
+            className={styles.modalContainer}
+            variants={ModalVariants}
+            initial='closed'
+            animate='open'
+            exit='closed'
+        >
+            <div className={styles.modal}>
+                <div className={styles.header}>
+                    <span>Sport Details</span>
+                    <div
+                        className={styles.close}
+                        onClick={onClose}
+                    >
+                        <Image
+                            src='/icons/close.svg'
+                            height={24}
+                            width={24}
+                        />
+                    </div>
+                </div>
+                <div className={styles.content}>
+                    <Dropdown
+                        items={sports.map(item => (
+                            {
+                                name: item.name,
+                                id: item.id,
+                                label: <Image
+                                    src={item.image}
+                                    height={34}
+                                    width={34}
+                                />
+                            }
+                        ))}
+                        onSelect={() => { }}
+                        label="Sport"
+                    />
+                    <Dropdown
+                        items={clubs.map(item => (
+                            {
+                                name: item.name,
+                                id: item.id,
+                                label: <Image
+                                    src={item.image}
+                                    height={34}
+                                    width={34}
+                                />
+                            }
+                        ))}
+                        onSelect={() => { }}
+                        label="Club"
+                    />
+                    <Dropdown
+                        items={countries.map(item => (
+                            {
+                                name: item.name,
+                                id: item.id,
+                                label: <Image
+                                    src={item.image}
+                                    height={34}
+                                    width={34}
+                                />
+                            }
+                        ))}
+                        onSelect={() => { }}
+                        label="Country"
+                    />
+                </div>
             </div>
         </motion.div>
     )
