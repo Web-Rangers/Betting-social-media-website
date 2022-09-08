@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from '@styles/components/layout/shared/UserProfile.module.css'
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 const NotificationsList = [
@@ -226,15 +227,17 @@ const Profile: React.FC<ProfileProps> = (props) => {
                                 </div>
                             </div>
                             <div className={styles.column}>
-                                <div className={styles.menuItem}>
-                                    <Image
-                                        src="/icons/profile/dashboard.svg"
-                                        alt="profile"
-                                        width={24}
-                                        height={24}
-                                    />
-                                    <span>My Dashboard</span>
-                                </div>
+                                <Link href='/user-dashboard'>
+                                    <a className={styles.menuItem}>
+                                        <Image
+                                            src="/icons/profile/dashboard.svg"
+                                            alt="profile"
+                                            width={24}
+                                            height={24}
+                                        />
+                                        <span>My Dashboard</span>
+                                    </a>
+                                </Link>
                                 <div className={styles.menuItem}>
                                     <Image
                                         src="/icons/profile/tips.svg"

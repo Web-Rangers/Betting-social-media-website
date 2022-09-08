@@ -23,3 +23,21 @@ export type Sports = inferQueryOutput<"filters.getSports">
 export type Methods = inferQueryOutput<"coins.getMethods">
 
 export type LeaguesByCountry = inferQueryOutput<"filters.getLeaguesByCountry">
+
+export type UserInfo = inferQueryOutput<"user.getInfo">
+
+export type WithdrawInfo = inferQueryOutput<"user.getWithdrawInfo">
+
+export type FollowersInfo = inferQueryOutput<"user.getFollowersInfo">
+
+export type FollowingInfo = inferQueryOutput<"user.getFollowingInfo">
+
+export type SubscriptionInfo = inferQueryOutput<"user.getSubscriptionInfo">
+
+export type ProfileVisitsInfo = inferQueryOutput<"user.getProfileVisitsInfo">
+
+export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">
+
+export type PendingPredictions = inferQueryOutput<"user.getPendingTips">
+
+export type HistoricalPredictions = inferQueryOutput<"user.getHistoricalTips">

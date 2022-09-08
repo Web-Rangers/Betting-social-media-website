@@ -1,0 +1,424 @@
+.withdrawTab {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.withdrawTab h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+#withdrawBalance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(/images/dashboard/masks/withdraw-mask.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#withdrawBalance div:first-child {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+#withdrawBalance div:first-child .text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#withdrawBalance div:first-child h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+#withdrawBalance div:first-child span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+
+#withdrawBalance div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#withdrawBalance div:last-child h5 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+#withdrawTotal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    background-image: url(/images/dashboard/masks/withdraw-total-mask.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: auto;
+}
+
+#withdrawTotal .text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#withdrawTotal h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21B2;
+}
+
+#withdrawTotal span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #1A1C21;
+}
+
+/* Withdraw Button */
+
+.withdrawButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 24px;
+    gap: 9px;
+    width: min-content;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.withdrawButton span {
+    width: max-content;
+}
+
+.withdrawButton span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+}
+
+.withdrawButton span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #7F3FFC;
+}
+
+/* Withdraw Modal */
+
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: brightness(50%);
+}
+
+.modalContainer .modal {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 40px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    width: 380px;
+}
+
+.modal .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #1A1C21;
+}
+
+.modal .header .close {
+    cursor: pointer;
+}
+
+.modal .input {
+    position: relative;
+    width: 100%;
+}
+
+.modal .input input[type="number"] {
+    padding: 14px 100px 14px 100px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+    text-align: center;
+    width: 100%;
+    outline: none;
+}
+
+.modal .input input[type="number"]::placeholder {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.modal .input .label {
+    position: absolute;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21B2;
+    top: calc(50% - 9px);
+    left: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.modal .input .label b {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.modal .input button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #F2F2F280;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal .input button.max {
+    color: #FFFFFF;
+    background-color: #7F3FFC;
+}
+
+.modal h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21B2;
+}
+
+.modal .methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal .methods .method {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 24px;
+    border: 1px solid #1A1C2133;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modal .methods .method div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.modal .methods .method input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
+    border: 1px solid #1A1C214D;
+    border-radius: 4px;
+}
+
+.modal .methods .method input[type="checkbox"]:checked {
+    accent-color: #7F3FFC;
+}
+
+.modal .code {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.modal .code button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    width: max-content;
+    white-space: nowrap;
+    border: 1px solid #1A1C2133;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+    cursor: pointer;
+    min-width: 123px;
+}
+
+.modal .code input[type="text"] {
+    padding: 14px;
+    border: 1px solid #1A1C211A;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+    outline: none;
+    width: 100%;
+}
+
+.modal .code input[type="text"]::placeholder {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.modal .submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    background-color: #7F3FFC;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.id {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.amount {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.status {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.status.pending {
+    color: #1A1C21B2;
+}
+
+.status.pending:before {
+    content: url(/icons/dashboard/pending.svg);
+    height: 24px;
+    width: 24px;
+}
+
+.status.success {
+    color: #2CD114;
+}
+
+.status.success:before {
+    content: url(/icons/dashboard/success.svg);
+    height: 24px;
+    width: 24px;
+}
+
+.status.blocked {
+    color: #CF1F1F;
+}
+
+.status.blocked:before {
+    content: url(/icons/dashboard/blocked.svg);
+    height: 24px;
+    width: 24px;
+}

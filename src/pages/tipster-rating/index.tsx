@@ -6,19 +6,22 @@ import Slider from '@components/ui/Slider';
 import type { CurrentCompetition, Tipsters } from 'src/types/queryTypes';
 import { inferArrayElementType } from 'src/utils/inferArrayElementType';
 import * as portals from 'react-reverse-portal';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Moment from 'react-moment';
 import BestBookmakers from '@components/ui/BestBookmakers';
 import LiveMatches from '@components/ui/LiveMatches';
 import Banner from '@components/ui/Banner';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import TipsterTable from '@components/ui/TipsterTable';
 import TipsterModal from '@components/ui/TipsterModal';
 import { PortalContext } from 'src/utils/portalContext';
 import { NextPage } from 'next';
 import TextField from '@components/ui/TextField';
 import Dropdown from '@components/ui/Dropdown';
+import useModalPortal from 'src/utils/usePortal';
+import { createColumnHelper } from '@tanstack/react-table';
+import shortenNumber from 'src/utils/shortenNumber';
+import Table from '@components/ui/Table';
 
 const SportItems = [
     {
@@ -58,21 +61,70 @@ const TimeItems = [
     },
 ]
 
+const columnHelper = createColumnHelper<inferArrayElementType<Tipsters>>()
+
+const columns = [
+    columnHelper.display({
+        id: 'index',
+        header: '#',
+        cell: props => props.row.index === 0
+            ? <div>
+                <Image
+                    src='/icons/crown-violet.svg'
+                    height={24}
+                    width={24}
+                />
+            </div>
+            : props.row.index + 1,
+        enableSorting: false,
+    }),
+    columnHelper.accessor(row => ({ ...row }), {
+        id: 'user',
+        cell: info => {
+            return <TipsterInfo {...info.getValue()} />
+        },
+        header: () => <span>Tipster</span>,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('form', {
+        cell: info => <div className={styles.dots}>
+            {info.getValue().map((value, index) => {
+                return value
+                    ? <div
+                        key={`table_dot_${index}_${info.row.index}`}
+                        className={`${styles.dot} ${styles.win}`}
+                    />
+                    : <div
+                        key={`table_dot_${index}_${info.row.index}`}
+                        className={`${styles.dot} ${styles.lose}`}
+                    />
+            })}
+        </div>,
+        header: () => <span>Form</span>,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('betCount', {
+        cell: info => info.getValue(),
+        header: () => <span>Bets</span>,
+    }),
+    columnHelper.accessor('winrate', {
+        cell: info => info.getValue() * 100 + '%',
+        header: () => <span>Hitrates</span>
+    }),
+    columnHelper.accessor('roi', {
+        cell: info => info.getValue() > 0
+            ? <span className={`${styles.roi} ${styles.positive}`}>{info.getValue()}</span>
+            : <span className={`${styles.roi} ${styles.negative}`}>{info.getValue()}</span>,
+        header: () => <span>ROI</span>
+    }),
+]
+
 const TipsterRating: NextPage = () => {
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll']);
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
-    const portalNode = useMemo(() => {
-        if (typeof window === "undefined") {
-            return null;
-        }
-        return portals.createHtmlPortalNode({
-            attributes: {
-                style: "position: absolute; top: 0; left: 0;"
-            }
-        });
-    }, []);
+    const portalNode = useModalPortal()
 
 
     if (tipstersLoading || bookmakersLoading || liveMatchesLoading || currentCompetitionLoading) {
@@ -114,7 +166,11 @@ const TipsterRating: NextPage = () => {
                                 <button>Reset</button>
                             </div>
                         </div>
-                        <TipsterTable tipsters={tipsters} />
+                        <Table
+                            data={tipsters}
+                            columns={columns}
+                            sortable={true}
+                        />
                     </div>
                     <Banner image='/images/banner-placeholder-1.png' height={200} />
                     <PageTips />
@@ -368,6 +424,128 @@ const PageTips: React.FC = () => {
         </div>
     )
 
+}
+
+const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
+    const { name, image, subscriberCount } = props
+    const [modalOpen, setModalOpen] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+
+    return (
+        <>
+            <PortalContext.Consumer>
+                {({ portalNode }) =>
+                    portalNode && <portals.InPortal node={portalNode}>
+                        <AnimatePresence>
+                            {modalOpen && <TipsterModal {...props} onClose={() => setModalOpen(false)} />}
+                        </AnimatePresence>
+                    </portals.InPortal>
+                }
+            </PortalContext.Consumer>
+            <div className={styles.tipster}>
+                <div
+                    className={styles.user}
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                >
+                    <AnimatePresence initial={false}>
+                        {isHovering && <UserHover {...props} />}
+                    </AnimatePresence>
+                    <div className={styles.avatar}>
+                        <Image
+                            src={image}
+                            height={36}
+                            width={36}
+                            alt={name}
+                        />
+                    </div>
+                    <div className={styles.userInfo}>
+                        <span className={styles.name}>{name}</span>
+                        <span className={styles.subscribers}>{shortenNumber(subscriberCount, 0)} subscribers</span>
+                    </div>
+                </div>
+                <button onClick={() => setModalOpen(!modalOpen)}>
+                    <Image
+                        src='/icons/plus-gray.svg'
+                        height={18}
+                        width={18}
+                    />
+                    Subscribe
+                </button>
+            </div>
+        </>
+    )
+}
+
+const UserHoverVariants = {
+    open: {
+        opacity: [0, 1],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    },
+    closed: {
+        opacity: [1, 0],
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const UserHover: React.FC<inferArrayElementType<Tipsters>> = (props) => {
+    const { avgProfit, name, image, sport, followerCount } = props
+
+    return (
+        <motion.div
+            className={styles.hoverContainer}
+            variants={UserHoverVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+        >
+            <div className={`${styles.profit} ${avgProfit > 0 ? styles.positive : styles.negative}`}>
+                <span>Avg. Monthly Profit</span>
+                <span>$ {avgProfit}</span>
+            </div>
+            <div className={styles.userDetailed}>
+                <div className={styles.infoContainer}>
+                    <div className={styles.user}>
+                        <div className={styles.avatar}>
+                            <Image
+                                src={image}
+                                height={60}
+                                width={60}
+                            />
+                        </div>
+                        <div className={styles.userInfo}>
+                            <span className={styles.name}>{name}</span>
+                            <span className={styles.sport}>
+                                Top {sport.name} Tipster
+                                <Image
+                                    src={sport.image}
+                                    height={24}
+                                    width={24}
+                                />
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.followers}>
+                        <button>
+                            <Image
+                                src='/icons/follow.svg'
+                                height={20}
+                                width={20}
+                            />
+                            Follow
+                        </button>
+                        <span>{shortenNumber(followerCount, 0)} followers</span>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    )
 }
 
 export default TipsterRating;

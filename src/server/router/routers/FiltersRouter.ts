@@ -135,6 +135,20 @@ const LeaguesByCountry = [
     }
 ]
 
+const Countries = [
+    { name: 'United Kingdom', image: '/icons/flags/en.svg', id: '1' },
+    { name: 'Germany', image: '/icons/flags/ger.svg', id: '2' },
+    { name: 'Russia', image: '/icons/flags/ru.svg', id: '3' },
+    { name: 'Spain', image: '/icons/flags/sp.svg', id: '4' },
+]
+
+const SportClubs = [
+    { name: 'FC Bayern Munich', image: '/images/team-1-placeholder.svg', id: '1' },
+    { name: 'FC Bayern Munich', image: '/images/team-1-placeholder.svg', id: '2' },
+    { name: 'FC Bayern Munich', image: '/images/team-1-placeholder.svg', id: '3' },
+    { name: 'FC Bayern Munich', image: '/images/team-1-placeholder.svg', id: '4' },
+]
+
 export const filtersRouter = createRouter()
     .query("getLeagues", {
         async resolve() {
@@ -149,5 +163,15 @@ export const filtersRouter = createRouter()
     .query("getLeaguesByCountry", {
         async resolve() {
             return LeaguesByCountry
+        }
+    })
+    .query("getCountries", {
+        async resolve() {
+            return Countries
+        }
+    })
+    .query("getSportClubs", {
+        async resolve() {
+            return SportClubs
         }
     })
