@@ -286,3 +286,90 @@
     align-items: stretch;
     gap: 10px;
 }
+.oddsContent{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.oddsBlock{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+    gap: 14px;
+}
+.oddsBlock[aria-colcount="2"]{    
+    grid-template-columns: repeat(2, 1fr);
+}
+.oddsBlock[aria-colcount="3"]{
+    grid-template-columns: repeat(3, 1fr);
+}
+.oddsBlock[aria-colcount="4"]{
+    grid-template-columns: repeat(4, 1fr);
+}
+.oddsBlockTitle{
+    width: 100%;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+    grid-column: 1 / -1;
+}
+.odd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 24px;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    flex: 1 1;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+.oddsColTitle{
+    text-align: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.oddCondition{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+}
+.oddValue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+.odd.oddActive, .oddValue.oddActive {
+    background: #7F3FFC;
+    color: #FFFFFF;
+}
