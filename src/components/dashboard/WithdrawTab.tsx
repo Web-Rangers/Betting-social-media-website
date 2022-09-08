@@ -9,7 +9,7 @@ import { WithdrawInfo } from 'src/types/queryTypes'
 import Moment from 'react-moment'
 import { TransactionStatus } from 'src/types/transactionStatus'
 import * as portals from 'react-reverse-portal'
-import useModalPortal from 'src/utils/usePortal'
+import usePortal from 'src/utils/usePortal'
 import { PortalContext } from 'src/utils/portalContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import Table from '@components/ui/Table'
@@ -65,7 +65,7 @@ const columns = [
 
 const WithdrawTab: React.FC = () => {
     const { data, isLoading } = trpc.useQuery(['user.getWithdrawInfo'])
-    const portalNode = useModalPortal()
+    const portalNode = usePortal()
 
     if (isLoading) {
         return <div>Loading...</div>

@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Slider from '@components/ui/Slider'
 import shortenNumber from 'src/utils/shortenNumber'
 import TipsterModal from '@components/ui/TipsterModal'
-import useModalPortal from 'src/utils/usePortal'
+import usePortal from 'src/utils/usePortal'
 import Table from '@components/ui/Table'
 import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
@@ -137,7 +137,7 @@ const TipsterCompetition: NextPage = () => {
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
     const { data: previousCompetition, isLoading: previousCompetitionLoading } = trpc.useQuery(['competitions.getPrevious'])
-    const portalNode = useModalPortal()
+    const portalNode = usePortal()
 
     if (currentCompetitionLoading || tipstersLoading || previousCompetitionLoading) {
         return <div>Loading...</div>

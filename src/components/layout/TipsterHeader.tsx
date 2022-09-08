@@ -6,38 +6,35 @@ import React, { useEffect, useState } from 'react'
 import styles from '@styles/components/layout/Header.module.css'
 import Dropdown from '@components/ui/Dropdown';
 import { useSession } from 'next-auth/react';
-import UserProfile from '@components/layout/shared/UserProfile';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
 import 'moment-timezone';
 import Moment from 'react-moment';
+import dynamic from 'next/dynamic';
+import { trpc } from 'src/utils/trpc';
+import UserProfile from './shared/UserProfile';
+// const UserProfile = dynamic(() => import('@components/layout/shared/UserProfile'))
 
 const links = [
     { href: '/tipster-rating', label: 'Tipsters' },
     { href: '/tipster-competition', label: 'Competition' },
 ]
 
-const Timezones = [
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} tz={'America/New_York'} format={'DD.MM Z'} />, id: '1', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} tz={'Europe/Moscow'} format={'DD.MM Z'} />, id: '2', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} tz={'Asia/Tokyo'} format={'DD.MM Z'} />, id: '3', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} tz={'Atlantic/South_Georgia'} format={'DD.MM Z'} />, id: '4', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} tz={'Europe/Amsterdam'} format={'DD.MM Z'} />, id: '5', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} format={'HH:mm'} /> },
-]
-
 const TipsterHeader: React.FC = () => {
     const router = useRouter()
-    const { data: session } = useSession()
+    const { data: Timezones } = trpc.useQuery(['navigation.getTimezones'])
 
     return (
         <div className={styles.container}>
-            <div className={styles.logo}>
-                <Image
-                    src="/logo.svg"
-                    height={32}
-                    width={188}
-                />
-            </div>
+            <Link href={'/'}>
+                <a className={styles.logo}>
+                    <Image
+                        src="/logo.svg"
+                        height={32}
+                        width={188}
+                    />
+                </a>
+            </Link>
             <nav>
                 <div className={styles.links}>
                     {
@@ -52,11 +49,17 @@ const TipsterHeader: React.FC = () => {
                     }
                 </div>
                 <div className={styles.controls}>
-                    <Dropdown
-                        items={Timezones}
+                    {Timezones && <Dropdown
+                        items={Timezones.map(tz => (
+                            {
+                                name: <Moment date={tz.date} tz={tz.name} format={'DD.MM Z'} />,
+                                label: <Moment date={tz.date} format={'HH:mm'} tz={tz.name} />,
+                                id: tz.id
+                            }
+                        ))}
                         onSelect={(id) => { }}
                         minWidth={200}
-                    />
+                    />}
                     <Settings />
                     <UserProfile />
                 </div>

@@ -7,14 +7,16 @@ import styles from '@styles/components/layout/Header.module.css'
 import Dropdown from '@components/ui/Dropdown';
 import TextField from '@components/ui/TextField';
 import Fuse from 'fuse.js'
-import UserProfile from '@components/layout/shared/UserProfile';
-import { signIn, useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
 import { trpc } from 'src/utils/trpc';
 import 'moment-timezone';
 import Moment from 'react-moment';
 import debounce from 'src/utils/debounce';
+import dynamic from 'next/dynamic';
+import UserProfile from './shared/UserProfile';
+// const UserProfile = dynamic(() => import('@components/layout/shared/UserProfile'))
+
 
 const Header: React.FC = () => {
     const router = useRouter()

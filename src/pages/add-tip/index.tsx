@@ -10,7 +10,7 @@ import * as portals from 'react-reverse-portal'
 import { PortalContext } from 'src/utils/portalContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import DateInput from '@components/ui/DatePicker'
-import useModalPortal from 'src/utils/usePortal'
+import usePortal from 'src/utils/usePortal'
 
 // TODO
 // fix prop drilling
@@ -18,7 +18,7 @@ import useModalPortal from 'src/utils/usePortal'
 const AddTip: NextPage = () => {
     const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
     const [step, setStep] = useState(1);
-    const portalNode = useModalPortal()
+    const portalNode = usePortal()
 
     if (sportsLoading) {
         return <div>Loading...</div>

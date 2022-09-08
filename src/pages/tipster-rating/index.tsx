@@ -18,7 +18,7 @@ import { PortalContext } from 'src/utils/portalContext';
 import { NextPage } from 'next';
 import TextField from '@components/ui/TextField';
 import Dropdown from '@components/ui/Dropdown';
-import useModalPortal from 'src/utils/usePortal';
+import usePortal from 'src/utils/usePortal';
 import { createColumnHelper } from '@tanstack/react-table';
 import shortenNumber from 'src/utils/shortenNumber';
 import Table from '@components/ui/Table';
@@ -124,7 +124,7 @@ const TipsterRating: NextPage = () => {
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
-    const portalNode = useModalPortal()
+    const portalNode = usePortal()
 
 
     if (tipstersLoading || bookmakersLoading || liveMatchesLoading || currentCompetitionLoading) {
