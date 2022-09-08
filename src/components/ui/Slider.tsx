@@ -3,9 +3,11 @@ import styles from '@styles/components/ui/Slider.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Image from 'next/image';
-import * as portals from 'react-reverse-portal';
 import usePortal from 'src/utils/usePortal';
-import { PortalContext } from 'src/utils/portalContext';
+import dynamic from 'next/dynamic';
+
+const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
+const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
 
 interface SliderProps {
     children?: ReactElement[]
@@ -46,23 +48,23 @@ const Slider: React.FC<SliderProps> = (props) => {
 
     return (
         <>
-            {portalNode && <portals.OutPortal node={portalNode} />}
-            <PortalContext.Provider value={{ portalNode: portalNode }}>
-                <Carousel
-                    className={styles.container}
-                    showArrows={showArrows}
-                    showIndicators={showPagination}
-                    showStatus={false}
-                    showThumbs={false}
-                    autoPlay={autoPlay}
-                    infiniteLoop={loop}
-                    stopOnHover={true}
-                    interval={5000}
-                    emulateTouch
-                    renderIndicator={(clickHandler, isSelected, index) =>
-                        <Dot clickHandler={clickHandler} isSelected={isSelected} index={index} />
-                    }
-                    renderArrowNext={(clickHandler, hasNext) =>
+            {(portalNode && showArrows) && <OutPortal node={portalNode} />}
+            <Carousel
+                className={styles.container}
+                showArrows={showArrows}
+                showIndicators={showPagination}
+                showStatus={false}
+                showThumbs={false}
+                autoPlay={autoPlay}
+                infiniteLoop={loop}
+                stopOnHover={true}
+                interval={5000}
+                emulateTouch
+                renderIndicator={(clickHandler, isSelected, index) =>
+                    <Dot clickHandler={clickHandler} isSelected={isSelected} index={index} />
+                }
+                renderArrowNext={(clickHandler, hasNext) =>
+                    (portalNode && showArrows) && <InPortal node={portalNode}>
                         <ArrowNext
                             clickHandler={clickHandler}
                             hasNext={hasNext}
@@ -71,8 +73,10 @@ const Slider: React.FC<SliderProps> = (props) => {
                             backgroundColor={arrowOptions?.backgroundColor}
                             arrowColor={arrowOptions?.arrowColor}
                         />
-                    }
-                    renderArrowPrev={(clickHandler, hasPrev) =>
+                    </InPortal>
+                }
+                renderArrowPrev={(clickHandler, hasPrev) =>
+                    (portalNode && showArrows) && <InPortal node={portalNode}>
                         <ArrowPrev
                             clickHandler={clickHandler}
                             hasPrev={hasPrev}
@@ -81,11 +85,11 @@ const Slider: React.FC<SliderProps> = (props) => {
                             backgroundColor={arrowOptions?.backgroundColor}
                             arrowColor={arrowOptions?.arrowColor}
                         />
-                    }
-                >
-                    {children}
-                </Carousel>
-            </PortalContext.Provider>
+                    </InPortal>
+                }
+            >
+                {children}
+            </Carousel>
         </>
     )
 }
@@ -142,32 +146,26 @@ const ArrowNext: React.FC<ArrowProps> = (props) => {
     }
 
     return (
-        <PortalContext.Consumer>
-            {({ portalNode }) =>
-                portalNode && <portals.InPortal node={portalNode}>
-                    <div
-                        className={`${styles.arrow} ${styles.next} ${hasNext && styles.active}`}
-                        onClick={clickHandler}
-                        style={{
-                            top: offset?.top ?? undefined,
-                            right: offset?.side ?? undefined,
-                            height: size?.height ?? undefined,
-                            width: size?.width ?? undefined,
-                            backgroundColor: backgroundColor ?? undefined,
-                        }}
-                    >
-                        <Image
-                            src='/icons/slider-next.svg'
-                            height={12}
-                            width={7}
-                            style={{
-                                filter: getArrowColor(arrowColor)
-                            }}
-                        />
-                    </div>
-                </portals.InPortal>
-            }
-        </PortalContext.Consumer>
+        <div
+            className={`${styles.arrow} ${styles.next} ${hasNext && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                right: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-next.svg'
+                height={12}
+                width={7}
+                style={{
+                    filter: getArrowColor(arrowColor)
+                }}
+            />
+        </div>
     )
 }
 
@@ -186,32 +184,26 @@ const ArrowPrev: React.FC<ArrowProps> = (props) => {
     }
 
     return (
-        <PortalContext.Consumer>
-            {({ portalNode }) =>
-                portalNode && <portals.InPortal node={portalNode}>
-                    <div
-                        className={`${styles.arrow} ${styles.prev} ${hasPrev && styles.active}`}
-                        onClick={clickHandler}
-                        style={{
-                            top: offset?.top ?? undefined,
-                            left: offset?.side ?? undefined,
-                            height: size?.height ?? undefined,
-                            width: size?.width ?? undefined,
-                            backgroundColor: backgroundColor ?? undefined,
-                        }}
-                    >
-                        <Image
-                            src='/icons/slider-prev.svg'
-                            height={12}
-                            width={7}
-                            style={{
-                                filter: getArrowColor(arrowColor)
-                            }}
-                        />
-                    </div>
-                </portals.InPortal>
-            }
-        </PortalContext.Consumer>
+        <div
+            className={`${styles.arrow} ${styles.prev} ${hasPrev && styles.active}`}
+            onClick={clickHandler}
+            style={{
+                top: offset?.top ?? undefined,
+                left: offset?.side ?? undefined,
+                height: size?.height ?? undefined,
+                width: size?.width ?? undefined,
+                backgroundColor: backgroundColor ?? undefined,
+            }}
+        >
+            <Image
+                src='/icons/slider-prev.svg'
+                height={12}
+                width={7}
+                style={{
+                    filter: getArrowColor(arrowColor)
+                }}
+            />
+        </div>
     )
 }
 

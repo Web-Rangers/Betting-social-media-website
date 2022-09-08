@@ -1,11 +1,10 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "@styles/pages/TipsterRating.module.css"
-import { inferQueryOutput, trpc } from 'src/utils/trpc'
+import { trpc } from 'src/utils/trpc'
 import Image from 'next/image';
 import Slider from '@components/ui/Slider';
 import type { CurrentCompetition, Tipsters } from 'src/types/queryTypes';
 import { inferArrayElementType } from 'src/utils/inferArrayElementType';
-import * as portals from 'react-reverse-portal';
 import { AnimatePresence, motion } from 'framer-motion';
 import Moment from 'react-moment';
 import BestBookmakers from '@components/ui/BestBookmakers';
@@ -22,6 +21,11 @@ import usePortal from 'src/utils/usePortal';
 import { createColumnHelper } from '@tanstack/react-table';
 import shortenNumber from 'src/utils/shortenNumber';
 import Table from '@components/ui/Table';
+import dynamic from 'next/dynamic';
+import { HtmlPortalNode } from 'react-reverse-portal';
+
+const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
+const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
 
 const SportItems = [
     {
@@ -138,7 +142,7 @@ const TipsterRating: NextPage = () => {
     return (
         <>
             <PortalContext.Provider value={{ portalNode: portalNode }}>
-                {portalNode && <portals.OutPortal node={portalNode} />}
+                {portalNode && <OutPortal node={portalNode} />}
                 <div className={styles.mainBlock}>
                     <VerifiedTipsters tipsters={tipsters} portalNode={portalNode} />
                 </div>
@@ -186,7 +190,7 @@ const TipsterRating: NextPage = () => {
     )
 }
 
-const VerifiedTipsters: React.FC<{ tipsters: Tipsters, portalNode: portals.HtmlPortalNode | null }> = (props) => {
+const VerifiedTipsters: React.FC<{ tipsters: Tipsters, portalNode: HtmlPortalNode | null }> = (props) => {
     const { tipsters } = props;
     const _tipsters = sliceIntoChunks(tipsters, 3);
 
@@ -245,11 +249,11 @@ const TipsterCard: React.FC<inferArrayElementType<Tipsters>> = (props) => {
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) => portalNode &&
-                    <portals.InPortal node={portalNode}>
+                    <InPortal node={portalNode}>
                         <AnimatePresence initial={false}>
                             {modalOpen && <TipsterModal {...props} onClose={() => setModalOpen(false)} />}
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <div className={styles.tipsterCard}>
@@ -435,11 +439,11 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) =>
-                    portalNode && <portals.InPortal node={portalNode}>
+                    portalNode && <InPortal node={portalNode}>
                         <AnimatePresence>
                             {modalOpen && <TipsterModal {...props} onClose={() => setModalOpen(false)} />}
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <div className={styles.tipster}>

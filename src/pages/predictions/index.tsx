@@ -12,6 +12,7 @@ import Filter from '@components/ui/Filter'
 import Predictions from '@components/ui/Predictions'
 import TextField from '@components/ui/TextField'
 import DatePicker from '@components/ui/DatePicker'
+import dynamic from 'next/dynamic'
 
 const SortItems = [
     {

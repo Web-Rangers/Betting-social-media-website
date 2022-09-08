@@ -6,11 +6,14 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar'
 import { Matches, Sports } from 'src/types/queryTypes'
 import { trpc } from 'src/utils/trpc'
 import debounce from 'src/utils/debounce'
-import * as portals from 'react-reverse-portal'
 import { PortalContext } from 'src/utils/portalContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import DateInput from '@components/ui/DatePicker'
 import usePortal from 'src/utils/usePortal'
+import dynamic from 'next/dynamic'
+
+const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
+const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
 
 // TODO
 // fix prop drilling
@@ -31,7 +34,7 @@ const AddTip: NextPage = () => {
     return (
         <>
             <PortalContext.Provider value={{ portalNode: portalNode }}>
-                {portalNode && <portals.OutPortal node={portalNode} />}
+                {portalNode && <OutPortal node={portalNode} />}
                 <div className={styles.mainBlock}>
                     <div className={styles.background}>
                         <Image
@@ -178,7 +181,7 @@ const Filter: React.FC<{ sports: Sports, onChange: (ids: string[]) => void, defa
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) => portalNode &&
-                    <portals.InPortal node={portalNode}>
+                    <InPortal node={portalNode}>
                         <AnimatePresence initial={false}>
                             {isOpen &&
                                 <FilterModal
@@ -189,7 +192,7 @@ const Filter: React.FC<{ sports: Sports, onChange: (ids: string[]) => void, defa
                                 />
                             }
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <div

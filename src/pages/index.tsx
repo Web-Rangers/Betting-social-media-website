@@ -1,20 +1,19 @@
 import Banner from "@components/ui/Banner";
 import type { NextPage } from "next";
-import Head from "next/head";
 import { trpc } from "../utils/trpc";
 import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
 import Predictions from "@components/ui/Predictions";
-import { MatchStatus } from "src/types/matchStatus";
 import { MostTips, Tipsters } from "src/types/queryTypes";
 import MatchTipsCard from "@components/ui/MatchTipsCard";
 import Matches from "@components/ui/Matches";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()

@@ -1,11 +1,10 @@
 import { NextPage } from 'next'
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/pages/TipsterCompetition.module.css'
 import Image from 'next/image'
 import { CurrentCompetition, PreviousCompetitions, Tipsters } from 'src/types/queryTypes'
 import Moment from 'react-moment'
-import * as portals from 'react-reverse-portal'
 import { PortalContext } from 'src/utils/portalContext'
 import TextField from '@components/ui/TextField'
 import Dropdown from '@components/ui/Dropdown'
@@ -17,6 +16,10 @@ import usePortal from 'src/utils/usePortal'
 import Table from '@components/ui/Table'
 import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
+import dynamic from 'next/dynamic'
+
+const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
+const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
 
 const TableDropdownItems = [
     {
@@ -150,7 +153,7 @@ const TipsterCompetition: NextPage = () => {
     return (
         <>
             <PortalContext.Provider value={{ portalNode: portalNode }}>
-                {portalNode && <portals.OutPortal node={portalNode} />}
+                {portalNode && <OutPortal node={portalNode} />}
                 <div className={styles.mainBlock}>
                     <CurrentCompetition {...currentCompetition} />
                 </div>
@@ -466,7 +469,7 @@ const CompetitionParticipant: React.FC<CompetitionParticipantProps> = (props) =>
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) => portalNode &&
-                    <portals.InPortal node={portalNode}>
+                    <InPortal node={portalNode}>
                         <AnimatePresence initial={false}>
                             {modalOpen &&
                                 <TipsterModal
@@ -481,7 +484,7 @@ const CompetitionParticipant: React.FC<CompetitionParticipantProps> = (props) =>
                                 />
                             }
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <div className={styles.participant}>
@@ -548,11 +551,11 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) =>
-                    portalNode && <portals.InPortal node={portalNode}>
+                    portalNode && <InPortal node={portalNode}>
                         <AnimatePresence>
                             {modalOpen && <TipsterModal {...props} onClose={() => setModalOpen(false)} />}
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <div className={styles.tipster}>

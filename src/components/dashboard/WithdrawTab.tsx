@@ -8,11 +8,14 @@ import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import { WithdrawInfo } from 'src/types/queryTypes'
 import Moment from 'react-moment'
 import { TransactionStatus } from 'src/types/transactionStatus'
-import * as portals from 'react-reverse-portal'
 import usePortal from 'src/utils/usePortal'
 import { PortalContext } from 'src/utils/portalContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import Table from '@components/ui/Table'
+import dynamic from 'next/dynamic'
+
+const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
+const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
 
 const columnHelper = createColumnHelper<inferArrayElementType<WithdrawInfo['history']>>()
 
@@ -78,7 +81,7 @@ const WithdrawTab: React.FC = () => {
     return (
         <>
             <PortalContext.Provider value={{ portalNode: portalNode }}>
-                {portalNode && <portals.OutPortal node={portalNode} />}
+                {portalNode && <OutPortal node={portalNode} />}
                 <div className={styles.withdrawTab}>
                     <div className={sharedStyles.row}>
                         <div
@@ -141,7 +144,7 @@ const WithdrawButton: React.FC<{ balance: number }> = (props) => {
         <>
             <PortalContext.Consumer>
                 {({ portalNode }) => portalNode &&
-                    <portals.InPortal node={portalNode}>
+                    <InPortal node={portalNode}>
                         <AnimatePresence initial={false}>
                             {isOpen &&
                                 <WithdrawModal
@@ -150,7 +153,7 @@ const WithdrawButton: React.FC<{ balance: number }> = (props) => {
                                 />
                             }
                         </AnimatePresence>
-                    </portals.InPortal>
+                    </InPortal>
                 }
             </PortalContext.Consumer>
             <button
