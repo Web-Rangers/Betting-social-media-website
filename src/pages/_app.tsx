@@ -61,20 +61,6 @@ export default withTRPC<AppRouter>({
          */
         const url = `${getBaseUrl()}/api/trpc`;
 
-        if (typeof window !== 'undefined') {
-            // during client requests
-            return {
-                url: '/api/trpc',
-                transformer: superjson, // optional - adds superjson serialization
-            };
-        }
-
-        const ONE_DAY_SECONDS = 60 * 60 * 24;
-        ctx?.res?.setHeader(
-            'Cache-Control',
-            `s-maxage=1, stale-while-revalidate=${ONE_DAY_SECONDS}`,
-        );
-
         return {
             url,
             transformer: superjson,
@@ -82,14 +68,10 @@ export default withTRPC<AppRouter>({
              * @link https://react-query.tanstack.com/reference/QueryClient
              */
             // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-            headers: {
-                // optional - inform server that it's an ssr request
-                'x-ssr': '1',
-            },
         };
     },
     /**
      * @link https://trpc.io/docs/ssr
      */
-    ssr: true,
+    ssr: false,
 })(MyApp);

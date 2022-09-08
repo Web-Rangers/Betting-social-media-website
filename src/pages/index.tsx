@@ -1,5 +1,5 @@
 import Banner from "@components/ui/Banner";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import { trpc } from "../utils/trpc";
 import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
@@ -13,7 +13,10 @@ import { MostTips, Tipsters } from "src/types/queryTypes";
 import MatchTipsCard from "@components/ui/MatchTipsCard";
 import Matches from "@components/ui/Matches";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { createSSGHelpers } from '@trpc/react/ssg';
+import { appRouter } from "src/server/router";
+import { createContext } from "src/server/router/context";
+import superjson from 'superjson';
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
@@ -245,6 +248,29 @@ const MostTips: React.FC<{ tips: MostTips }> = (props) => {
             </div>
         </div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('bookmakers.getAll')
+    await ssg.prefetchQuery('filters.getLeagues')
+    await ssg.prefetchQuery('predictions.getAll')
+    await ssg.prefetchQuery('matches.getAllLive')
+    await ssg.prefetchQuery('matches.getAllByLeague')
+    await ssg.prefetchQuery('tips.getAll')
+    await ssg.prefetchQuery('tipsters.getAll')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
 }
 
 export default Home;

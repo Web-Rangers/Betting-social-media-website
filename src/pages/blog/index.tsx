@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import React from 'react'
 import styles from '@styles/pages/Blog.module.css'
 import Image from 'next/image';
@@ -6,6 +6,10 @@ import { trpc } from 'src/utils/trpc';
 import Moment from 'react-moment';
 import shortenString from 'src/utils/shortenString';
 import { MatchStatus } from 'src/types/matchStatus';
+import { createSSGHelpers } from '@trpc/react/ssg';
+import { appRouter } from 'src/server/router';
+import { createContext } from 'src/server/router/context';
+import superjson from 'superjson';
 
 const BlogPage: NextPage = () => {
     const { data: news, isLoading: newsLoading } = trpc.useQuery(['news.getAll']);
@@ -453,6 +457,24 @@ const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
             </div>
         </div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('news.getAll')
+    await ssg.prefetchQuery('matches.getAll')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
 }
 
 export default BlogPage;

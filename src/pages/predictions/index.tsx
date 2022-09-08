@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import styles from '@styles/pages/Predictions.module.css'
 import { trpc } from 'src/utils/trpc'
 import { MostTips, Predictions as PredictionsType, Sports } from 'src/types/queryTypes'
@@ -12,7 +12,10 @@ import Filter from '@components/ui/Filter'
 import Predictions from '@components/ui/Predictions'
 import TextField from '@components/ui/TextField'
 import DatePicker from '@components/ui/DatePicker'
-import dynamic from 'next/dynamic'
+import { createSSGHelpers } from '@trpc/react/ssg'
+import { appRouter } from 'src/server/router'
+import { createContext } from 'src/server/router/context'
+import superjson from 'superjson';
 
 const SortItems = [
     {
@@ -48,15 +51,15 @@ const PredictionsPage: NextPage = () => {
     const [limit, setLimit] = useState<number>(3)
     const [previousPredictions, setPreviousPredictions] = useState<PredictionsType | null>(null)
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
+    const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
+    const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeagues'])
+    const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(
         ['predictions.getAll', { limit: limit }],
         {
             onSuccess: (data) => setPreviousPredictions(data)
         }
     )
-    const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
-    const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(['filters.getLeagues'])
-    const { data: sports, isLoading: sportsLoading } = trpc.useQuery(['filters.getSports'])
 
     if (tipsLoading || bookmakersLoading || leaguesLoading || sportsLoading) {
         return <div>Loading...</div>
@@ -300,6 +303,27 @@ const SortButtons: React.FC<SortButtonsProps> = (props) => {
             ))}
         </div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('tips.getAll')
+    await ssg.prefetchQuery('bookmakers.getAll')
+    await ssg.prefetchQuery('filters.getLeagues')
+    await ssg.prefetchQuery('filters.getSports')
+    await ssg.prefetchQuery('predictions.getAll', { limit: 3 })
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
 }
 
 export default PredictionsPage

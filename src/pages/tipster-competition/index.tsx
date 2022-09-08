@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import React, { useState } from 'react'
 import { trpc } from 'src/utils/trpc'
 import styles from '@styles/pages/TipsterCompetition.module.css'
@@ -17,6 +17,10 @@ import Table from '@components/ui/Table'
 import { createColumnHelper } from '@tanstack/react-table'
 import { inferArrayElementType } from 'src/utils/inferArrayElementType'
 import dynamic from 'next/dynamic'
+import { createSSGHelpers } from '@trpc/react/ssg'
+import { appRouter } from 'src/server/router'
+import { createContext } from 'src/server/router/context'
+import superjson from 'superjson';
 
 const InPortal = dynamic(async () => (await import('react-reverse-portal')).InPortal, { ssr: false })
 const OutPortal = dynamic(async () => (await import('react-reverse-portal')).OutPortal, { ssr: false })
@@ -664,5 +668,23 @@ const UserHover: React.FC<inferArrayElementType<Tipsters>> = (props) => {
     )
 }
 
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('competitions.getCurrent')
+    await ssg.prefetchQuery('tipsters.getAll')
+    await ssg.prefetchQuery('competitions.getPrevious')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
+}
 
 export default TipsterCompetition;

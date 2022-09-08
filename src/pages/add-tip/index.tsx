@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import React, { ChangeEvent, ChangeEventHandler, useMemo, useState, VoidFunctionComponent } from 'react'
 import styles from '@styles/pages/AddTip.module.css'
 import Image from 'next/image'
@@ -11,6 +11,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import DateInput from '@components/ui/DatePicker'
 import usePortal from 'src/utils/usePortal'
 import dynamic from 'next/dynamic'
+import superjson from 'superjson';
+import { createSSGHelpers } from '@trpc/react/ssg'
+import { appRouter } from 'src/server/router'
+import { createContext } from 'src/server/router/context'
 
 const InPortal = dynamic(async () => (await import('react-reverse-portal')).InPortal, { ssr: false })
 const OutPortal = dynamic(async () => (await import('react-reverse-portal')).OutPortal, { ssr: false })
@@ -311,5 +315,23 @@ const FilterModal: React.FC<{ sports: Sports, onClose: () => void, onChange: (id
         </motion.div>
     )
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('filters.getSports')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
+}
+
 
 export default AddTip

@@ -14,7 +14,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import TipsterModal from '@components/ui/TipsterModal';
 import { PortalContext } from 'src/utils/portalContext';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import TextField from '@components/ui/TextField';
 import Dropdown from '@components/ui/Dropdown';
 import usePortal from 'src/utils/usePortal';
@@ -23,6 +23,10 @@ import shortenNumber from 'src/utils/shortenNumber';
 import Table from '@components/ui/Table';
 import dynamic from 'next/dynamic';
 import { HtmlPortalNode } from 'react-reverse-portal';
+import { createSSGHelpers } from '@trpc/react/ssg';
+import { appRouter } from 'src/server/router';
+import { createContext } from 'src/server/router/context';
+import superjson from 'superjson';
 
 const InPortal = dynamic(async () => (await import('react-reverse-portal')).InPortal, { ssr: false })
 const OutPortal = dynamic(async () => (await import('react-reverse-portal')).OutPortal, { ssr: false })
@@ -129,7 +133,6 @@ const TipsterRating: NextPage = () => {
     const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
     const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(['competitions.getCurrent'])
     const portalNode = usePortal()
-
 
     if (tipstersLoading || bookmakersLoading || liveMatchesLoading || currentCompetitionLoading) {
         return <div>Loading...</div>
@@ -550,6 +553,26 @@ const UserHover: React.FC<inferArrayElementType<Tipsters>> = (props) => {
             </div>
         </motion.div>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('tipsters.getAll')
+    await ssg.prefetchQuery('bookmakers.getAll')
+    await ssg.prefetchQuery('matches.getAllLive')
+    await ssg.prefetchQuery('competitions.getCurrent')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
 }
 
 export default TipsterRating;

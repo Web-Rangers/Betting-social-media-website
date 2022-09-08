@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import styles from '@styles/pages/Matches.module.css'
 import { trpc } from 'src/utils/trpc'
 import BestBookmakers from '@components/ui/BestBookmakers'
@@ -9,6 +9,10 @@ import DatePicker from '@components/ui/DatePicker'
 import LiveMatches from '@components/ui/LiveMatches'
 import Matches from '@components/ui/Matches'
 import NestedFilter from '@components/ui/NestedFilter'
+import { createSSGHelpers } from '@trpc/react/ssg'
+import { appRouter } from 'src/server/router'
+import { createContext } from 'src/server/router/context'
+import superjson from 'superjson';
 
 const MatchesPage: NextPage = () => {
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
@@ -64,6 +68,28 @@ const MatchesPage: NextPage = () => {
             </div>
         </>
     )
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const ssg = createSSGHelpers({
+        router: appRouter,
+        ctx: await createContext(),
+        transformer: superjson,
+    });
+
+    await ssg.prefetchQuery('tips.getAll')
+    await ssg.prefetchQuery('matches.getAllByLeague')
+    await ssg.prefetchQuery('bookmakers.getAll')
+    await ssg.prefetchQuery('filters.getLeaguesByCountry')
+    await ssg.prefetchQuery('filters.getSports')
+    await ssg.prefetchQuery('matches.getAllLive')
+
+    return {
+        props: {
+            trpcState: ssg.dehydrate(),
+        },
+        revalidate: 60,
+    };
 }
 
 export default MatchesPage
