@@ -2,6 +2,7 @@ import { createRouter } from "../context";
 import { z } from "zod";
 import { TransactionStatus } from "src/types/transactionStatus";
 import Fuse from 'fuse.js'
+import { createProtectedRouter } from "../protected-router";
 
 // THIS IS A TEMPORARY FUNCTION FOR GENERATING DATES
 function getOffsetDate(days: number, months: number, years: number) {
@@ -785,7 +786,7 @@ const HistoricalTips = [
     }
 ]
 
-export const userRouter = createRouter()
+export const userRouter = createProtectedRouter()
     .query("getInfo", {
         async resolve() {
             return UserInfo

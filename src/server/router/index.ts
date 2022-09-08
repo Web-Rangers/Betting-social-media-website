@@ -1,9 +1,6 @@
 // src/server/router/index.ts
 import { createRouter } from "./context";
 import superjson from "superjson";
-
-import { exampleRouter } from "./example";
-import { protectedExampleRouter } from "./protected-example-router";
 import { tipsterRouter } from "./routers/TipsterRouter";
 import { tipsRouter } from "./routers/TipsRouter";
 import { bookmakerRouter } from "./routers/BookmakerRouter";
