@@ -14,8 +14,7 @@ import { newsRouter } from "./routers/NewsRouter";
 import { competitionRouter } from "./routers/CompetitionRouter";
 import { coinsRouter } from "./routers/CoinsRouter";
 import { userRouter } from "./routers/UserRouter";
-
-import { navigationRouter } from "./tempRouters/NavigationRouter";
+import { navigationRouter } from "./routers/NavigationRouter";
 
 export const appRouter = createRouter()
     .transformer(superjson)
