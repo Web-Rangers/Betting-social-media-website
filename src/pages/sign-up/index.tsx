@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import styles from "../../styles/pages/Login.module.css"
+import styles from "../../styles/pages/Auth.module.css"
 import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
@@ -59,7 +59,7 @@ const Register: NextPage = () => {
                         </h1>
                         <span className={styles.formText}>
                             You already have an account?&nbsp;&nbsp;&nbsp;
-                            <Link href="/login">
+                            <Link href="/sign-in">
                                 <a>
                                     Sign In
                                 </a>
@@ -162,7 +162,7 @@ const Register: NextPage = () => {
                                 <input type={'checkbox'} name="agree_to_terms" />
                                 <div className={styles.checkBox} />
                                 <span className={styles.checkText}>
-                                    I confirm that I am over 18 years old and I agree with the <Link href="/login"><a>Terms and Conditions and Privacy Policy.</a></Link>
+                                    I confirm that I am over 18 years old and I agree with the <Link href="/sign-in"><a>Terms and Conditions and Privacy Policy.</a></Link>
                                 </span>
                             </label>
                         </div>

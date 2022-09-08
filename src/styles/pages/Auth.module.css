@@ -1,13 +1,15 @@
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     display: flex;
 }
-.pageImg{
+
+.pageImg {
     width: 56%;
     position: relative;
 }
-.formArea{
+
+.formArea {
     min-width: 500px;
     width: 44%;
     display: flex;
@@ -15,7 +17,8 @@
     justify-content: center;
     align-items: center;
 }
-.form{
+
+.form {
     width: 500px;
     display: flex;
     flex-direction: column;
@@ -26,10 +29,12 @@
     padding-left: 5px;
     padding-right: 5px;
 }
-.form::-webkit-scrollbar{
+
+.form::-webkit-scrollbar {
     display: none;
 }
-.loginTitle{
+
+.loginTitle {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-weight: 600;
@@ -39,7 +44,8 @@
     margin-top: 0;
     margin-bottom: 12px;
 }
-.formText{
+
+.formText {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-weight: 400;
@@ -47,18 +53,21 @@
     line-height: 18px;
     color: rgba(26, 28, 33, 0.7);
 }
-.formText a{
+
+.formText a {
     color: #7F3FFC;
     font-weight: 600;
 }
-.socials{
+
+.socials {
     display: flex;
     align-items: center;
     gap: 30px;
     margin-top: 54px;
     margin-bottom: 30px;
 }
-.social{
+
+.social {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,7 +76,8 @@
     border-radius: 8px;
     flex: 1 1;
 }
-.separatorOr{
+
+.separatorOr {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-weight: 600;
@@ -79,31 +89,37 @@
     display: flex;
     align-items: center;
 }
-.separatorOr::before, .separatorOr::after{
+
+.separatorOr::before,
+.separatorOr::after {
     content: "";
     height: 0px;
     width: 100%;
     border-top: 1px solid rgba(26, 28, 33, 0.2);
 }
-.fields{
+
+.fields {
     display: flex;
     flex-direction: column;
     gap: 24px;
     margin-top: 30px;
     margin-bottom: 24px;
 }
-.formBtns{
+
+.formBtns {
     width: 100%;
     justify-content: space-between;
     align-items: center;
     display: flex;
 }
-.row{
+
+.row {
     display: flex;
     align-items: center;
     gap: 30px;
 }
-.row > div {
+
+.row>div {
     flex: 1 1;
 }
 
@@ -206,7 +222,7 @@
     transform: rotate(45deg);
 }
 
-.formTextForgot{
+.formTextForgot {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-weight: 400;
@@ -215,7 +231,7 @@
     color: rgba(26, 28, 33, 0.7);
 }
 
-.backToLogin{
+.backToLogin {
     font-family: 'Samsung Sans';
     font-style: normal;
     font-size: 15px;
@@ -227,7 +243,7 @@
     margin-bottom: 54px;
 }
 
-.header{
+.header {
     position: fixed;
     top: 27px;
     left: calc((44% - 490px) / 2);

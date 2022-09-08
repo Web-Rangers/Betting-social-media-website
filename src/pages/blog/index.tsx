@@ -39,7 +39,11 @@ const BlogPage: NextPage = () => {
                 h3="News"
             />
             <div className={`${styles.mainColumn} ${styles.bottom}`}>
-                <NewsBlock news={news.slice(12)} />
+                <NewsBlock
+                    news={news.slice(12)}
+                    h2="Last Month"
+                    h3="News"
+                />
             </div>
         </>
     )

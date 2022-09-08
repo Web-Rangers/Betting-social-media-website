@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import Head from "next/head"
-import styles from "../../styles/pages/Login.module.css"
+import styles from "../../styles/pages/Auth.module.css"
 import Image from "next/image"
 import TextField from "../../components/ui/TextField"
 import PasswordField from "../../components/ui/PasswordField"
@@ -33,8 +33,8 @@ const Forgot: NextPage = () => {
                 <div className={styles.formArea}>
                     {!submitted ?
                         <form className={styles.form} onSubmit={submitForgot}>
-                            <Link className={styles.backToLogin} href="/login">
-                                <a>
+                            <Link href="/sign-in">
+                                <a className={styles.backToLogin}>
                                     <Image
                                         src="/icons/arrow-left-purple.svg"
                                         width={24}

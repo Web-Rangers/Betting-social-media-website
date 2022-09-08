@@ -26,6 +26,115 @@ const Sports = [
     { name: "Badminton", image: "/images/sport-placeholder.svg", id: '9' }
 ]
 
+const LeaguesByCountry = [
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '1',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '2' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '3' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '4' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '5' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '8',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '9' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '10' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '12' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '13' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '14' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '15',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '16' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '17' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '18' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '19' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '20' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '21' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '22',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '23' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '24' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '25' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '26' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '27' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '28' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 23,
+        id: '1',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '24' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '25' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '26' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '27' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 28,
+        id: '8',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '29' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '30' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '31' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '32' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '33' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '34',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '35' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '36' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '37' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '38' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '39' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '40' },
+        ]
+    },
+    {
+        name: 'England',
+        image: '/images/country-placeholder.svg',
+        count: 22,
+        id: '41',
+        leagues: [
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '42' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '43' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '44' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '45' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '46' },
+            { name: 'Premier League', image: '/images/team-1-placeholder.svg', count: 78, id: '47' },
+        ]
+    }
+]
+
 const Countries = [
     { name: 'United Kingdom', image: '/icons/flags/en.svg', id: '1' },
     { name: 'Germany', image: '/icons/flags/ger.svg', id: '2' },
@@ -49,6 +158,11 @@ export const filtersRouter = createRouter()
     .query("getSports", {
         async resolve() {
             return Sports
+        }
+    })
+    .query("getLeaguesByCountry", {
+        async resolve() {
+            return LeaguesByCountry
         }
     })
     .query("getCountries", {

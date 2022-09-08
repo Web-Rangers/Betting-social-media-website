@@ -24,6 +24,7 @@
     grid-column-end: 13;
     grid-row-start: 2;
     grid-row-end: 3;
+    margin-bottom: 100px;
 }
 
 .bottomBlock {
@@ -406,6 +407,7 @@
     background-color: #7F3FFC;
     border-radius: 16px;
     gap: 17px;
+    cursor: pointer;
 }
 
 .step .description {

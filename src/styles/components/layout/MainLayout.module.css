@@ -10,5 +10,6 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 30px;
-    margin-right: 140px;
+    /* margin is 5px less than design to adjust to scrollbar width */
+    margin-right: 135px;
 }

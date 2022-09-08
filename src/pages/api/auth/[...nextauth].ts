@@ -1,25 +1,31 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { env } from "../../../env/server.mjs";
 
 export const authOptions: NextAuthOptions = {
-    // Include user.id on session
-    callbacks: {
-        session({ session, user }) {
-            if (session.user) {
-                session.user.id = user.id;
-            }
-            return session;
-        },
+    pages: {
+        signIn: '/sign-in'
     },
     // Configure one or more authentication providers
     providers: [
-        // DiscordProvider({
-        //   clientId: env.DISCORD_CLIENT_ID,
-        //   clientSecret: env.DISCORD_CLIENT_SECRET,
-        // }),
-        // ...add more providers here
+        CredentialsProvider({
+            credentials: {
+                email: { label: "Email", type: "text", placeholder: "E-mail" },
+                password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials, req) {
+                if ((credentials?.email === 'qwe@qwe.qwe') && (credentials.password === 'qwerty')) {
+                    // handle user auth here
+                    const user = { id: 1, name: "John Doe", email: credentials?.email }
+                    return user
+                } else {
+                    return null
+                }
+            },
+        }),
     ],
+    debug: process.env.NODE_ENV === 'development',
+    secret: env.NEXTAUTH_SECRET
 };
 
 export default NextAuth(authOptions);

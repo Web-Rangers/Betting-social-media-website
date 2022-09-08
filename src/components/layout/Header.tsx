@@ -8,25 +8,25 @@ import Dropdown from '@components/ui/Dropdown';
 import TextField from '@components/ui/TextField';
 import Fuse from 'fuse.js'
 import UserProfile from '@components/layout/shared/UserProfile';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
+import { trpc } from 'src/utils/trpc';
+import 'moment-timezone';
+import Moment from 'react-moment';
 import debounce from 'src/utils/debounce';
 
-const links = [
-    { href: '/sport', label: 'Football' },
-    { href: '/sport', label: 'Basketball' },
-    { href: '/sport', label: 'Hockey' },
-    { href: '/sport', label: 'Handball' },
-    { href: '/sport', label: 'Tennis' },
-    { href: '/sport', label: 'Rugby' },
-    { href: '/sport', label: 'Baseball' },
-    { href: '/sport', label: 'Volleyball' },
+const Timezones = [
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} tz={'America/New_York'} format={'DD.MM Z'} />, id: '1', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} tz={'Europe/Moscow'} format={'DD.MM Z'} />, id: '2', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} tz={'Asia/Tokyo'} format={'DD.MM Z'} />, id: '3', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} tz={'Atlantic/South_Georgia'} format={'DD.MM Z'} />, id: '4', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} format={'HH:mm'} /> },
+    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} tz={'Europe/Amsterdam'} format={'DD.MM Z'} />, id: '5', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} format={'HH:mm'} /> },
 ]
 
 const Header: React.FC = () => {
     const router = useRouter()
-    const { data: session } = useSession()
+    const { data: links, isLoading: linksLoading } = trpc.useQuery(['navigation.getSports'])
 
     return (
         <div className={styles.container}>
@@ -40,38 +40,26 @@ const Header: React.FC = () => {
                 </a>
             </Link>
             <nav>
-                <div className={styles.links}>
+                {links && <div className={styles.links}>
                     {
-                        links.slice(0, 6).map(({ href, label }) => (
+                        links.slice(0, 6).map((link) => (
                             <MenuLink
-                                key={label}
-                                href={href}
-                                label={label}
-                                active={router.pathname.includes(href)}
+                                key={link.label}
+                                {...link}
+                                active={router.pathname.includes(link.href)}
                             />
                         ))
                     }
                     <More items={links.slice(6)} />
-                </div>
+                </div>}
                 <div className={styles.controls}>
                     <Dropdown
-                        items={[
-                            { name: 'GMT+1', id: '1', label: '13:00' },
-                            { name: 'GMT+2', id: '2', label: '14:00' },
-                            { name: 'GMT+3', id: '3', label: '15:00' },
-                            { name: 'GMT+4', id: '4', label: '16:00' },
-                            { name: 'GMT+5', id: '5', label: '17:00' },
-                        ]}
+                        items={Timezones}
                         onSelect={(id) => { }}
+                        minWidth={200}
                     />
                     <Settings />
-                    {
-                        !session
-                            ? <button className={styles.button}>
-                                Sign In
-                            </button>
-                            : <UserProfile />
-                    }
+                    <UserProfile />
                 </div>
             </nav>
         </div>

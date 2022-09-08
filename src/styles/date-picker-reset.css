@@ -107,10 +107,6 @@
     border-top-right-radius: 2px;
 }
 
-.datePickerPopper .react-datepicker__month {
-    margin: 0;
-}
-
 .datePickerPopper .react-datepicker__header {
     padding: 0;
 }

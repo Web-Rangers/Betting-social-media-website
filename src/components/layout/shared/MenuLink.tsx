@@ -1,20 +1,20 @@
 import React from 'react'
-import styles from '@styles/components/layout/Header.module.css'
+import styles from '@styles/components/layout/shared/MenuLink.module.css'
 import Link from 'next/link';
 
 interface LinkProps {
     href: string;
     label: string;
     active?: boolean;
-    newPosts?: boolean
+    live?: boolean
 }
 
 const MenuLink: React.FC<LinkProps> = (props) => {
-    const { href, label, active, newPosts } = props;
+    const { href, label, active, live } = props;
 
     return (
         <Link href={href} key={label}>
-            <a className={`${styles.link} ${active && styles.active}`}>
+            <a className={`${styles.link} ${active && styles.active} ${live && styles.live}`}>
                 {label}
             </a>
         </Link>

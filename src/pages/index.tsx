@@ -5,7 +5,7 @@ import { trpc } from "../utils/trpc";
 import styles from '@styles/pages/Home.module.css';
 import Slider from "@components/ui/Slider";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import BestBookmakers from "@components/ui/BestBookmakers";
 import LiveMatches from "@components/ui/LiveMatches";
 import Filter from "@components/ui/Filter";
@@ -13,21 +13,24 @@ import Predictions from "@components/ui/Predictions";
 import { MatchStatus } from "src/types/matchStatus";
 import { MostTips, Tipsters } from "src/types/queryTypes";
 import MatchTipsCard from "@components/ui/MatchTipsCard";
+import Matches from "@components/ui/Matches";
+import Link from "next/link";
 
 const Home: NextPage = () => {
     const { data: session } = useSession()
     const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(['bookmakers.getAll'])
     const { data: filters, isLoading: filtersLoading } = trpc.useQuery(['filters.getLeagues'])
     const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(['predictions.getAll'])
-    const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllLive'])
+    const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(['matches.getAllLive'])
+    const { data: matches, isLoading: matchesLoading } = trpc.useQuery(['matches.getAllByLeague'])
     const { data: tips, isLoading: tipsLoading } = trpc.useQuery(['tips.getAll'])
     const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(['tipsters.getAll'])
 
-    if (bookmakersLoading || filtersLoading || predictionsLoading || matchesLoading || tipsLoading || tipstersLoading) {
+    if (bookmakersLoading || filtersLoading || predictionsLoading || liveMatchesLoading || tipsLoading || tipstersLoading || matchesLoading) {
         return <div>Loading...</div>
     }
 
-    if (!bookmakers || !filters || !predictions || !matches || !tips || !tipsters) {
+    if (!bookmakers || !filters || !predictions || !liveMatches || !tips || !tipsters || !matches) {
         return <div>Error</div>
     }
 
@@ -35,7 +38,10 @@ const Home: NextPage = () => {
         <>
             <div className={styles.mainColumn}>
                 <div className={styles.slider}>
-                    <Slider>
+                    <Slider
+                        autoPlay={true}
+                        loop={true}
+                    >
                         {
                             [1, 2, 3, 4, 5].map(i => (
                                 <Slide key={`slide_${i}`} />
@@ -61,6 +67,7 @@ const Home: NextPage = () => {
                             />
                         </div>
                         <div className={styles.matches}>
+                            <Matches leagues={matches} />
                             <Predictions
                                 leagues={predictions}
                                 h2="Best Predictions"
@@ -73,7 +80,7 @@ const Home: NextPage = () => {
             <div className={styles.sideColumn}>
                 {!session && <SignUpPropose />}
                 <TopTipsters tipsters={tipsters} />
-                <LiveMatches matches={matches} />
+                <LiveMatches matches={liveMatches} />
                 <Banner height={463} image="/images/banner-placeholder-2.png" />
                 <BestBookmakers bookmakers={bookmakers} />
             </div>
@@ -160,7 +167,9 @@ const SignUpPropose: React.FC = () => {
                 when an unknown printer took a galley of type and scrambled it to make a type
                 specimen book.
             </span>
-            <button>Sign Up</button>
+            <Link href='/sign-up'>
+                <button>Sign Up</button>
+            </Link>
         </div>
     )
 }

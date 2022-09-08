@@ -1,0 +1,6 @@
+# Next Auth
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+
+# Next bundle Analyzer
+ANALYZE=true | false

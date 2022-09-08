@@ -21,14 +21,25 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
                         <div className={styles.matchInfo}>
                             <div className={styles.matchInfoHeader}>
                                 <div className={styles.matchDuration}>Live: {match.duration}</div>
-                                <button className={styles.expand}>
-                                    <Image
-                                        src="/icons/expand.svg"
-                                        width={20}
-                                        height={20}
-                                        alt="expand"
-                                    />
-                                </button>
+                                <div className={styles.buttonContainer}>
+                                    <button>
+                                        <Image
+                                            src="/icons/viewers.svg"
+                                            width={20}
+                                            height={20}
+                                            alt="expand"
+                                        />
+                                        {match.viewer_count}
+                                    </button>
+                                    <button>
+                                        <Image
+                                            src="/icons/expand.svg"
+                                            width={20}
+                                            height={20}
+                                            alt="expand"
+                                        />
+                                    </button>
+                                </div>
                             </div>
                             <div className={styles.matchLive}>
                                 <Image
@@ -45,6 +56,7 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
                                     <div className={styles.matchTeamScore}>{team.score}</div>
                                 </div>
                             ))}
+                            <div className={`${styles.matchDuration} ${styles.absolute}`}>{match.duration}</div>
                         </div>
                     </div>
                 ))}

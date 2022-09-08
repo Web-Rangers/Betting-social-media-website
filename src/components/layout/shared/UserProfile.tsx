@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from '@styles/components/ui/UserProfile.module.css'
+import styles from '@styles/components/layout/shared/UserProfile.module.css'
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const NotificationsList = [
     { text: 'You have a new message', date: '10:00', id: 1 },
@@ -14,6 +15,16 @@ const NotificationsList = [
 ]
 
 const UserProfile: React.FC = () => {
+    const { data: session } = useSession()
+
+    if (!session?.user) {
+        return (
+            <button className={styles.button} onClick={() => signIn()}>
+                Sign In
+            </button>
+        )
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.points}>
@@ -26,7 +37,7 @@ const UserProfile: React.FC = () => {
                 228
             </div>
             <Notifications items={NotificationsList} />
-            <Profile name='John Doe' id={1} image="/images/profile-placeholder.png" />
+            <Profile name={session.user.name} id={1} image="/images/profile-placeholder.png" />
         </div>
     )
 }
@@ -239,7 +250,10 @@ const Profile: React.FC<ProfileProps> = (props) => {
                             </div>
                         </div>
                         <div className={styles.menuSection}>
-                            <div className={styles.menuItem}>
+                            <div
+                                className={styles.menuItem}
+                                onClick={() => signOut()}
+                            >
                                 <Image
                                     src="/icons/profile/logout.svg"
                                     alt="logout"

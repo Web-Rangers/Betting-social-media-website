@@ -158,12 +158,17 @@ const TipsterCompetition: NextPage = () => {
                     <div className={styles.table}>
                         <h2>Top 100 Tipsters</h2>
                         <div className={styles.controls}>
-                            <TextField icon='/icons/search.svg' placeholder='Search for tipsters' />
+                            <TextField
+                                icon='/icons/search.svg'
+                                placeholder='Search for tipsters'
+                                minWidth={400}
+                            />
                             <div>
                                 <Dropdown
                                     items={TableDropdownItems}
                                     onSelect={() => { }}
                                     label="Tipsters by:"
+                                    minWidth={250}
                                 />
                             </div>
                         </div>
@@ -358,6 +363,7 @@ const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => voi
             initial="hide"
             animate="show"
             exit="hide"
+            onClick={onClick}
         >
             <Image
                 src={`/images/tipster-competition-step-${step}.svg`}
@@ -377,10 +383,7 @@ const CompetitionStep: React.FC<{ text: string, step: number, onClick: () => voi
                     />
                 ))}
             </div>
-            <div
-                className={styles.next}
-                onClick={onClick}
-            >
+            <div className={styles.next}>
                 <Image
                     src='/icons/chevron-white.svg'
                     height={24}
@@ -404,6 +407,8 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
                 />
             </div>
             <Slider
+                loop={true}
+                autoPlay={true}
                 showArrows={true}
                 showPagination={false}
                 arrowOptions={{
