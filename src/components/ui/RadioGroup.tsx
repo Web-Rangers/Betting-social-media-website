@@ -26,6 +26,7 @@ const RadioGroup: React.FC<RadioGroupProps> = (props) => {
                 <div
                     className={styles.radio}
                     onClick={() => handleChange(id)}
+                    key={`radio_item_${name}_${id}`}
                 >
                     <input
                         type={'radio'}
