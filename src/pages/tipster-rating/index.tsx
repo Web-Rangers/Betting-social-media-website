@@ -24,8 +24,8 @@ import Table from '@components/ui/Table';
 import dynamic from 'next/dynamic';
 import { HtmlPortalNode } from 'react-reverse-portal';
 
-const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
-const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
+const InPortal = dynamic(async () => (await import('react-reverse-portal')).InPortal, { ssr: false })
+const OutPortal = dynamic(async () => (await import('react-reverse-portal')).OutPortal, { ssr: false })
 
 const SportItems = [
     {

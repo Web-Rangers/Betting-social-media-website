@@ -14,8 +14,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Table from '@components/ui/Table'
 import dynamic from 'next/dynamic'
 
-const InPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.InPortal), { ssr: false })
-const OutPortal = dynamic(() => import('react-reverse-portal').then(mod => mod.OutPortal), { ssr: false })
+const InPortal = dynamic(async () => (await import('react-reverse-portal')).InPortal, { ssr: false })
+const OutPortal = dynamic(async () => (await import('react-reverse-portal')).OutPortal, { ssr: false })
 
 const columnHelper = createColumnHelper<inferArrayElementType<WithdrawInfo['history']>>()
 
