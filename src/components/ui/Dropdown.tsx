@@ -91,17 +91,19 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 initial={false}
                 animate={isOpen ? 'open' : 'closed'}
             >
-                {
-                    items.map(({ name, id, label }) => (
-                        <Item
-                            key={id}
-                            name={name}
-                            id={id}
-                            label={label}
-                            onClick={() => handleSelect(id)}
-                        />
-                    ))
-                }
+                <div className={styles.itemsContainer}>
+                    {
+                        items.map(({ name, id, label }) => (
+                            <Item
+                                key={id}
+                                name={name}
+                                id={id}
+                                label={label}
+                                onClick={() => handleSelect(id)}
+                            />
+                        ))
+                    }
+                </div>
             </motion.div>
         </div>
     )
