@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import React, { useMemo, useState } from 'react'
 import styles from '@styles/pages/UserDashboard.module.css'
 import { trpc } from 'src/utils/trpc'
