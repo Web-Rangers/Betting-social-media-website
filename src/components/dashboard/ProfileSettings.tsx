@@ -311,6 +311,7 @@ const SportModal: React.FC<{ onClose: () => void }> = (props) => {
                         searchable={true}
                     />
                 </div>
+                <button>Save</button>
             </div>
         </motion.div>
     )
