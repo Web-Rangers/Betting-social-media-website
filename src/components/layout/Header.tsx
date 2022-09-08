@@ -11,6 +11,7 @@ import UserProfile from '@components/layout/shared/UserProfile';
 import { useSession } from 'next-auth/react';
 import Settings from '@components/layout/shared/Settings';
 import MenuLink from '@components/layout/shared/MenuLink';
+import debounce from 'src/utils/debounce';
 
 const links = [
     { href: '/sport', label: 'Football' },
@@ -162,7 +163,7 @@ const More: React.FC<MoreProps> = (props) => {
                         >
                             <TextField
                                 placeholder='Search'
-                                onChange={handleSearch}
+                                onChange={debounce(handleSearch, 500)}
                             />
                             {
                                 filteredItems.map((item) => (

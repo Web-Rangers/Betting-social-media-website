@@ -86,3 +86,8 @@
     line-height: 18px;
     color: #1A1C21;
 }
+
+.search {
+    padding: 11px 24px;
+    background-color: #FFFFFF;
+}

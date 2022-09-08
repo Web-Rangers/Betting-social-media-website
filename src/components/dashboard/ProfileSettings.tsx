@@ -276,6 +276,7 @@ const SportModal: React.FC<{ onClose: () => void }> = (props) => {
                         ))}
                         onSelect={() => { }}
                         label="Sport"
+                        searchable={true}
                     />
                     <Dropdown
                         items={clubs.map(item => (
@@ -291,6 +292,7 @@ const SportModal: React.FC<{ onClose: () => void }> = (props) => {
                         ))}
                         onSelect={() => { }}
                         label="Club"
+                        searchable={true}
                     />
                     <Dropdown
                         items={countries.map(item => (
@@ -306,6 +308,7 @@ const SportModal: React.FC<{ onClose: () => void }> = (props) => {
                         ))}
                         onSelect={() => { }}
                         label="Country"
+                        searchable={true}
                     />
                 </div>
             </div>

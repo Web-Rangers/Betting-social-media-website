@@ -1,12 +1,16 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/components/ui/Dropdown.module.css'
 import Image from 'next/image';
+import TextField from './TextField';
+import debounce from 'src/utils/debounce';
+import Fuse from 'fuse.js'
 
 interface DropdownProps {
-    items: { name: string, id: string, label?: string | ReactNode }[];
+    items: { name: string, id: string, label?: string | ReactNode }[],
     label?: string,
-    onSelect: (id: string) => void;
+    onSelect: (id: string) => void,
+    searchable?: boolean
 }
 
 const DropdownVariants = {
@@ -28,10 +32,11 @@ const ChevronVariants = {
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-    const { items, onSelect, label } = props;
+    const { items, onSelect, label, searchable = false } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(items[0]);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const [filteredItems, setFilteredItems] = useState(items)
 
     function handleSelect(id: string) {
         onSelect(id);
@@ -42,6 +47,24 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
     const closeIfNotDropdown = (e: MouseEvent) => {
         if ((e.target != dropdownRef.current) && (!dropdownRef.current?.contains(e.target as Node))) {
             setIsOpen(false)
+        }
+    }
+
+    function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+        e.preventDefault()
+        const searchString = e.target.value;
+        if (e.target.value.length > 0) {
+            const options = {
+                includeScore: false,
+                includeRefIndex: false,
+                threshold: 0.3,
+                keys: ['name']
+            }
+            const fuse = new Fuse(items, options)
+            const result = fuse.search(searchString).map(item => item.item)
+            setFilteredItems(result)
+        } else {
+            setFilteredItems(items)
         }
     }
 
@@ -92,8 +115,17 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
                 animate={isOpen ? 'open' : 'closed'}
             >
                 <div className={styles.itemsContainer}>
+                    {searchable && (
+                        <div className={styles.search}>
+                            <TextField
+                                placeholder='Search'
+                                icon='/icons/search.svg'
+                                onChange={debounce(handleSearch, 500)}
+                            />
+                        </div>
+                    )}
                     {
-                        items.map(({ name, id, label }) => (
+                        filteredItems.map(({ name, id, label }) => (
                             <Item
                                 key={id}
                                 name={name}
