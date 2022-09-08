@@ -16,17 +16,10 @@ import 'moment-timezone';
 import Moment from 'react-moment';
 import debounce from 'src/utils/debounce';
 
-const Timezones = [
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} tz={'America/New_York'} format={'DD.MM Z'} />, id: '1', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} tz={'Europe/Moscow'} format={'DD.MM Z'} />, id: '2', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} tz={'Asia/Tokyo'} format={'DD.MM Z'} />, id: '3', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} tz={'Atlantic/South_Georgia'} format={'DD.MM Z'} />, id: '4', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Atlantic/South_Georgia" })} format={'HH:mm'} /> },
-    { name: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} tz={'Europe/Amsterdam'} format={'DD.MM Z'} />, id: '5', label: <Moment date={new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" })} format={'HH:mm'} /> },
-]
-
 const Header: React.FC = () => {
     const router = useRouter()
-    const { data: links, isLoading: linksLoading } = trpc.useQuery(['navigation.getSports'])
+    const { data: links } = trpc.useQuery(['navigation.getSports'])
+    const { data: Timezones } = trpc.useQuery(['navigation.getTimezones'])
 
     return (
         <div className={styles.container}>
@@ -53,11 +46,17 @@ const Header: React.FC = () => {
                     <More items={links.slice(6)} />
                 </div>}
                 <div className={styles.controls}>
-                    <Dropdown
-                        items={Timezones}
+                    {Timezones && <Dropdown
+                        items={Timezones.map(tz => (
+                            {
+                                name: <Moment date={tz.date} tz={tz.name} format={'DD.MM Z'} />,
+                                label: <Moment date={tz.date} format={'HH:mm'} tz={tz.name} />,
+                                id: tz.id
+                            }
+                        ))}
                         onSelect={(id) => { }}
                         minWidth={200}
-                    />
+                    />}
                     <Settings />
                     <UserProfile />
                 </div>
