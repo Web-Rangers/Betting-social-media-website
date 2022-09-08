@@ -7,7 +7,7 @@ import debounce from 'src/utils/debounce';
 import Fuse from 'fuse.js'
 
 interface DropdownProps {
-    items: { name: string, id: string, label?: string | ReactNode }[];
+    items: { name: string | ReactNode, id: string, label?: string | ReactNode }[];
     label?: string,
     onSelect: (id: string) => void,
     minWidth?: string | number,
