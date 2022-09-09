@@ -76,6 +76,9 @@ const MainNews: React.FC<MainNewsProps> = (props) => {
 				src={image}
 				alt={title}
 				fill
+				style={{
+					objectFit: "cover",
+				}}
 			/>
 			<div className={styles.mainNewsInfo}>
 				<span className={styles.mainNewsDate}>
@@ -138,6 +141,9 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
 						src={news[0].image}
 						alt={news[0].title}
 						fill
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 					<div className={styles.info}>
 						<span className={styles.date}>
@@ -160,6 +166,9 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
 							alt={news.title}
 							height={100}
 							width={100}
+							style={{
+								objectFit: "cover",
+							}}
 						/>
 					</div>
 					<div className={styles.info}>
@@ -317,6 +326,9 @@ const NewsBlock: React.FC<NewsBlockProps> = (props) => {
 								src={news.image}
 								alt={news.title}
 								fill
+								style={{
+									objectFit: "cover",
+								}}
 							/>
 						</div>
 						<div className={styles.info}>
@@ -377,6 +389,9 @@ const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
 								src={news.image}
 								alt={news.title}
 								fill
+								style={{
+									objectFit: "cover",
+								}}
 							/>
 							<div className={styles.info}>
 								<span className={styles.date}>
@@ -421,6 +436,9 @@ const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
 									alt={news.title}
 									height={100}
 									width={100}
+									style={{
+										objectFit: "cover",
+									}}
 								/>
 							</div>
 							<div className={styles.info}>

@@ -258,6 +258,9 @@ const VerifiedTipsters: React.FC<{
 					src="/images/stadium-background.png"
 					fill
 					alt=""
+					style={{
+						objectFit: "cover",
+					}}
 				/>
 			</div>
 			<h2 className={styles.verifiedTipstersTitle}>
@@ -413,6 +416,9 @@ const CountdownTimer: React.FC<CurrentCompetition> = (props) => {
 					src="/images/competition-timer-background.png"
 					fill
 					alt=""
+					style={{
+						objectFit: "cover",
+					}}
 				/>
 			</div>
 			<div className={styles.header}>

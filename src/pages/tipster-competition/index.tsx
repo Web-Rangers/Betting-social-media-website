@@ -264,6 +264,9 @@ const CurrentCompetition: React.FC<CurrentCompetition> = (props) => {
 				src="/images/tipster-competition-background.png"
 				fill
 				alt=""
+				style={{
+					objectFit: "cover",
+				}}
 			/>
 			<h1>Free Tipster Competition</h1>
 			<div className={styles.steps}>
@@ -353,7 +356,8 @@ const Leader: React.FC<{
 				<div className={styles.crown}>
 					<Image
 						src={`/images/competition-crown-${place}.svg`}
-						fill
+						height={24}
+						width={24}
 						alt=""
 					/>
 				</div>
@@ -482,6 +486,9 @@ const PreviousCompetitions: React.FC<{ competitions: PreviousCompetitions }> = (
 					src="/images/previous-competitions-background.png"
 					fill
 					alt=""
+					style={{
+						objectFit: "cover",
+					}}
 				/>
 			</div>
 			<Slider

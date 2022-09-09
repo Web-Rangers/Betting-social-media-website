@@ -28,6 +28,9 @@ const AboutCoins: NextPage = () => {
 						src="/images/about-coins-background.png"
 						fill
 						alt=""
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 				</div>
 				<div className={styles.coins}>
@@ -35,6 +38,9 @@ const AboutCoins: NextPage = () => {
 						src="/images/about-coins-coins.png"
 						fill
 						alt=""
+						style={{
+							objectFit: "contain",
+						}}
 					/>
 				</div>
 				<h2>

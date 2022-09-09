@@ -169,6 +169,9 @@ const TipsSlider: React.FC<{ tips: MostTips }> = (props) => {
 					src="/images/stadium-background.png"
 					fill
 					alt=""
+					style={{
+						objectFit: "cover",
+					}}
 				/>
 			</div>
 			<h2>Most Popular</h2>

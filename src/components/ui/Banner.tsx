@@ -19,6 +19,9 @@ const Banner: React.FC<BannerProps> = (props) => {
 				src={image}
 				alt="banner"
 				fill
+				style={{
+					objectFit: "cover",
+				}}
 			/>
 		</div>
 	);

@@ -32,6 +32,9 @@ const TextField: React.FC<TextFieldProps> = (props) => {
 						src={inputProps.icon}
 						fill
 						alt=""
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 				</div>
 			)}

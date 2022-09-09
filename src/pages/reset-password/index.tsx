@@ -133,6 +133,9 @@ const Forgot: NextPage = () => {
 						src="/images/login/background-password.png"
 						fill
 						alt=""
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 				</div>
 			</div>

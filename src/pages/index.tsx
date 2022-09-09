@@ -132,6 +132,9 @@ const Slide: React.FC = () => {
 					src="/images/slide-background-placeholder.png"
 					alt="slide-background"
 					fill
+					style={{
+						objectFit: "cover",
+					}}
 				/>
 			</div>
 			<div className={styles.slideTimer}>

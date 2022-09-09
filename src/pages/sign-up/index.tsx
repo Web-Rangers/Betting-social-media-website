@@ -193,6 +193,9 @@ const Register: NextPage = () => {
 						src="/images/login/background-register.png"
 						fill
 						alt=""
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 				</div>
 			</div>

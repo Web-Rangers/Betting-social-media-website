@@ -59,6 +59,9 @@ const AddTip: NextPage = () => {
 							src="/images/add-tip-background.png"
 							fill
 							alt=""
+							style={{
+								objectFit: "cover",
+							}}
 						/>
 					</div>
 					<div className={styles.content}>

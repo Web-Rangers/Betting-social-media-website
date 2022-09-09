@@ -115,6 +115,9 @@ const Login: NextPage = () => {
 						src="/images/login/background-login.png"
 						fill
 						alt=""
+						style={{
+							objectFit: "cover",
+						}}
 					/>
 				</div>
 			</div>

@@ -98,6 +98,9 @@ const Prediction: React.FC<
 									src="/images/prediction-background.png"
 									fill
 									alt=""
+									style={{
+										objectFit: "cover",
+									}}
 								/>
 							</div>
 							<div className={styles.matchDetails}>
