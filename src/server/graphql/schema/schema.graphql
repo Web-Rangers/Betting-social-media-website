@@ -1,197 +1,280 @@
-# Indicates what fields are available at the top level of a query operation.
-type Query {
-  # Find a single user by an identifying attribute.
-  user(
-    # Search by primary key.
-    id: ID
-
-    # Search by email address.
-    email: String
-  ): User
-  teams: [Team!]!
-  leagues: [League!]!
-
-  # List multiple users.
-  users(
-    # Filters by name. Accepts SQL LIKE wildcards `%` and `_`.
-    name: String
-
-    # Limits number of fetched items.
-    first: Int = 10
-
-    # The offset from which items are returned.
-    page: Int
-  ): UserPaginator
-}
-
-# Account of a person who utilizes this application.
-type User {
-  # Unique primary key.
+type Country {
   id: ID!
-
-  # Non-unique name.
   name: String!
-
-  # Unique email address.
-  email: String!
-
-  # When the email was verified.
-  email_verified_at: DateTime
-
-  # When the account was created.
-  created_at: DateTime!
-
-  # When the account was last updated.
-  updated_at: DateTime!
 }
 
-# A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`.
+"""A paginated list of Country items."""
+type CountryPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of Country items."""
+  data: [Country!]!
+}
+
+"""
+A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`.
+"""
 scalar DateTime
-
-type Team {
-  id: ID!
-  name: String!
-}
 
 type League {
   id: ID!
   name: String!
 }
 
-# A paginated list of User items.
-type UserPaginator {
-  # Pagination information about the list of items.
+"""A paginated list of League items."""
+type LeaguePaginator {
+  """Pagination information about the list of items."""
   paginatorInfo: PaginatorInfo!
 
-  # A list of User items.
-  data: [User!]!
+  """A list of League items."""
+  data: [League!]!
 }
 
-# Information about pagination using a fully featured paginator.
-type PaginatorInfo {
-  # Number of items in the current page.
-  count: Int!
-
-  # Index of the current page.
-  currentPage: Int!
-
-  # Index of the first item in the current page.
-  firstItem: Int
-
-  # Are there more pages after this one?
-  hasMorePages: Boolean!
-
-  # Index of the last item in the current page.
-  lastItem: Int
-
-  # Index of the last available page.
-  lastPage: Int!
-
-  # Number of items per page.
-  perPage: Int!
-
-  # Number of total available items.
-  total: Int!
-}
-
-# Directions for ordering a list of records.
-enum SortOrder {
-  # Sort records in ascending order.
-  ASC
-
-  # Sort records in descending order.
-  DESC
-}
-
-# Aggregate functions when ordering by a relation without specifying a column.
-enum OrderByRelationAggregateFunction {
-  # Amount of items.
-  COUNT
-}
-
-# Aggregate functions when ordering by a relation that may specify a column.
-enum OrderByRelationWithColumnAggregateFunction {
-  # Average.
-  AVG
-
-  # Minimum.
-  MIN
-
-  # Maximum.
-  MAX
-
-  # Sum.
-  SUM
-
-  # Amount of items.
-  COUNT
-}
-
-# Allows ordering a list of records.
+"""Allows ordering a list of records."""
 input OrderByClause {
-  # The column that is used for ordering.
+  """The column that is used for ordering."""
   column: String!
 
-  # The direction that is used for ordering.
+  """The direction that is used for ordering."""
   order: SortOrder!
 }
 
-# Information about pagination using a simple paginator.
-type SimplePaginatorInfo {
-  # Number of items in the current page.
-  count: Int!
-
-  # Index of the current page.
-  currentPage: Int!
-
-  # Index of the first item in the current page.
-  firstItem: Int
-
-  # Index of the last item in the current page.
-  lastItem: Int
-
-  # Number of items per page.
-  perPage: Int!
-
-  # Are there more pages after this one?
-  hasMorePages: Boolean!
+"""
+Aggregate functions when ordering by a relation without specifying a column.
+"""
+enum OrderByRelationAggregateFunction {
+  """Amount of items."""
+  COUNT
 }
 
-# Information about pagination using a Relay style cursor connection.
+"""
+Aggregate functions when ordering by a relation that may specify a column.
+"""
+enum OrderByRelationWithColumnAggregateFunction {
+  """Average."""
+  AVG
+
+  """Minimum."""
+  MIN
+
+  """Maximum."""
+  MAX
+
+  """Sum."""
+  SUM
+
+  """Amount of items."""
+  COUNT
+}
+
+"""Information about pagination using a Relay style cursor connection."""
 type PageInfo {
-  # When paginating forwards, are there more items?
+  """When paginating forwards, are there more items?"""
   hasNextPage: Boolean!
 
-  # When paginating backwards, are there more items?
+  """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
 
-  # The cursor to continue paginating backwards.
+  """The cursor to continue paginating backwards."""
   startCursor: String
 
-  # The cursor to continue paginating forwards.
+  """The cursor to continue paginating forwards."""
   endCursor: String
 
-  # Total number of nodes in the paginated connection.
+  """Total number of nodes in the paginated connection."""
   total: Int!
 
-  # Number of nodes in the current page.
+  """Number of nodes in the current page."""
   count: Int!
 
-  # Index of the current page.
+  """Index of the current page."""
   currentPage: Int!
 
-  # Index of the last available page.
+  """Index of the last available page."""
   lastPage: Int!
 }
 
-# Specify if you want to include or exclude trashed results from a query.
+"""Information about pagination using a fully featured paginator."""
+type PaginatorInfo {
+  """Number of items in the current page."""
+  count: Int!
+
+  """Index of the current page."""
+  currentPage: Int!
+
+  """Index of the first item in the current page."""
+  firstItem: Int
+
+  """Are there more pages after this one?"""
+  hasMorePages: Boolean!
+
+  """Index of the last item in the current page."""
+  lastItem: Int
+
+  """Index of the last available page."""
+  lastPage: Int!
+
+  """Number of items per page."""
+  perPage: Int!
+
+  """Number of total available items."""
+  total: Int!
+}
+
+type Player {
+  id: ID!
+  name: String!
+}
+
+"""A paginated list of Player items."""
+type PlayerPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of Player items."""
+  data: [Player!]!
+}
+
+"""
+Indicates what fields are available at the top level of a query operation.
+"""
+type Query {
+  """Find a single user by an identifying attribute."""
+  user(
+    """Search by primary key."""
+    id: ID
+
+    """Search by email address."""
+    email: String
+  ): User
+
+  """List multiple users."""
+  users(
+    """Filters by name. Accepts SQL LIKE wildcards `%` and `_`."""
+    name: String
+
+    """Limits number of fetched items."""
+    first: Int = 10
+
+    """The offset from which items are returned."""
+    page: Int
+  ): UserPaginator
+  teams(
+    """Limits number of fetched items."""
+    first: Int = 25
+
+    """The offset from which items are returned."""
+    page: Int
+  ): TeamPaginator
+  leagues(
+    """Limits number of fetched items."""
+    first: Int = 25
+
+    """The offset from which items are returned."""
+    page: Int
+  ): LeaguePaginator
+  countries(
+    """Limits number of fetched items."""
+    first: Int = 25
+
+    """The offset from which items are returned."""
+    page: Int
+  ): CountryPaginator
+  players(
+    """Limits number of fetched items."""
+    first: Int = 25
+
+    """The offset from which items are returned."""
+    page: Int
+  ): PlayerPaginator
+}
+
+"""Information about pagination using a simple paginator."""
+type SimplePaginatorInfo {
+  """Number of items in the current page."""
+  count: Int!
+
+  """Index of the current page."""
+  currentPage: Int!
+
+  """Index of the first item in the current page."""
+  firstItem: Int
+
+  """Index of the last item in the current page."""
+  lastItem: Int
+
+  """Number of items per page."""
+  perPage: Int!
+
+  """Are there more pages after this one?"""
+  hasMorePages: Boolean!
+}
+
+"""Directions for ordering a list of records."""
+enum SortOrder {
+  """Sort records in ascending order."""
+  ASC
+
+  """Sort records in descending order."""
+  DESC
+}
+
+type Team {
+  id: ID!
+  name: String!
+}
+
+"""A paginated list of Team items."""
+type TeamPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of Team items."""
+  data: [Team!]!
+}
+
+"""
+Specify if you want to include or exclude trashed results from a query.
+"""
 enum Trashed {
-  # Only return trashed results.
+  """Only return trashed results."""
   ONLY
 
-  # Return both trashed and non-trashed results.
+  """Return both trashed and non-trashed results."""
   WITH
 
-  # Only return non-trashed results.
+  """Only return non-trashed results."""
   WITHOUT
 }
+
+"""Account of a person who utilizes this application."""
+type User {
+  """Unique primary key."""
+  id: ID!
+
+  """Non-unique name."""
+  name: String!
+
+  """Unique email address."""
+  email: String!
+
+  """When the email was verified."""
+  email_verified_at: DateTime
+
+  """When the account was created."""
+  created_at: DateTime!
+
+  """When the account was last updated."""
+  updated_at: DateTime!
+}
+
+"""A paginated list of User items."""
+type UserPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of User items."""
+  data: [User!]!
+}
+
