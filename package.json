@@ -9,6 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@apollo/client": "^3.6.9",
         "@next/bundle-analyzer": "^12.2.5",
         "@tanstack/react-table": "^8.5.11",
         "@trpc/client": "^9.27.0",
@@ -17,6 +18,7 @@
         "@trpc/server": "^9.27.0",
         "framer-motion": "^7.0.1",
         "fuse.js": "^6.6.2",
+        "graphql": "^16.6.0",
         "moment-timezone": "^0.5.37",
         "next": "^12.2.5",
         "next-auth": "^4.10.3",
