@@ -21,7 +21,7 @@ import superjson from "superjson";
 const Home: NextPage = () => {
 	const { data: session } = useSession();
 	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery([
-		"bookmakers.getAll",
+		"bookmakers.getTop",
 	]);
 	const { data: filters, isLoading: filtersLoading } = trpc.useQuery([
 		"filters.getLeagues",
@@ -316,7 +316,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		transformer: superjson,
 	});
 
-	await ssg.prefetchQuery("bookmakers.getAll");
+	await ssg.prefetchQuery("bookmakers.getTop");
 	await ssg.prefetchQuery("filters.getLeagues");
 	await ssg.prefetchQuery("predictions.getAll");
 	await ssg.prefetchQuery("matches.getAllLive");
