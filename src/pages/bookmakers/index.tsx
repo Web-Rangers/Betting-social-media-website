@@ -3,8 +3,12 @@ import styles from "@styles/pages/Bookmakers.module.css";
 import Image from "next/future/image";
 import { inferArrayElementType } from "src/utils/inferArrayElementType";
 import { BestBookmakers, Bookmakers } from "src/types/queryTypes";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { trpc } from "src/utils/trpc";
+import { createSSGHelpers } from "@trpc/react/ssg";
+import { appRouter } from "src/server/router";
+import { createContext } from "src/server/router/context";
+import superjson from "superjson";
 
 const Bookmakers: NextPage = () => {
 	const { data: bestBookmakers, isLoading: bestBookmakersLoading } = trpc.useQuery(["bookmakers.getTop"]);
@@ -378,6 +382,24 @@ const TextBlock: React.FC = () => {
 			</div>
 		</>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	const ssg = createSSGHelpers({
+		router: appRouter,
+		ctx: await createContext(),
+		transformer: superjson,
+	});
+
+	await ssg.prefetchQuery("bookmakers.getTop");
+	await ssg.prefetchQuery("bookmakers.getAll");
+
+	return {
+		props: {
+			trpcState: ssg.dehydrate(),
+		},
+		revalidate: 60,
+	};
 };
 
 export default Bookmakers;
