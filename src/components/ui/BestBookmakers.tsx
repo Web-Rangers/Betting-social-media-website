@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "@styles/components/ui/BestBookmakers.module.css";
 import Image from "next/future/image";
-import { Bookmakers } from "src/types/queryTypes";
+import { BestBookmakers } from "src/types/queryTypes";
 
-const BestBookmakers: React.FC<{ bookmakers: Bookmakers }> = (props) => {
+const BestBookmakers: React.FC<{ bookmakers: BestBookmakers }> = (props) => {
 	const { bookmakers } = props;
 
 	return (
