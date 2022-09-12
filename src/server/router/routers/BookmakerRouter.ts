@@ -62,6 +62,18 @@ const BookmakersTemp = [
 		rating: 3.5,
 		color: "#193052",
 	},
+	{
+		name: "Betway",
+		image: "/images/bookmaker-placeholder-3.png",
+		rating: 3.5,
+		color: "#193052",
+	},
+	{
+		name: "Bet365",
+		image: "/images/bookmaker-placeholder-1.png",
+		rating: 4.5,
+		color: "#26292E",
+	},
 ];
 
 export const bookmakerRouter = createRouter()

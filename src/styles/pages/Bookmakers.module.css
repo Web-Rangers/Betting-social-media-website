@@ -4,18 +4,11 @@
     grid-row-start: 1;
     grid-row-end: 2;
     margin-right: -135px;
-    padding: 40px 60px;
+    padding: 40px 60px 40px 60px;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 40px;
-}
-
-.content {
-    grid-column-start: 1;
-    grid-column-end: 13;
-    grid-row-start: 2;
-    grid-row-end: 3;
 }
 
 .bestBookmakers .background {
@@ -62,6 +55,49 @@
 
 .bestBookmakers .bookmakers * {
     z-index: 1;
+}
+
+.allBookmakers {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 60px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.allBookmakers .header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.allBookmakers .header h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.allBookmakers .header h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.allBookmakers .bookmakers {
+    display: flex;
+    flex-direction: row;
+    gap: 40PX;
+    flex-wrap: wrap;
 }
 
 /* Best Bookmaker */
@@ -165,4 +201,92 @@
 .bestBookmaker button.review {
     background-color: #FFFFFF;
     color: #1A1C21;
+}
+
+/* Bookmaker */
+.bookmaker {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    width: calc(25% - 30px);
+}
+
+.bookmaker .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 40px;
+    gap: 12px;
+}
+
+.bookmaker .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.bookmaker .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 28px 40px;
+    gap: 12px;
+    border-left: 1px solid #1A1C2133;
+    border-right: 1px solid #1A1C2133;
+    border-bottom: 1px solid #1A1C2133;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    gap: 40px;
+}
+
+.bookmaker .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border-radius: 8px;
+    border: none;
+    flex: 1;
+    background-color: #F2F2F280;
+    gap: 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+
+.bookmaker .review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border-radius: 8px;
+    border: none;
+    flex: 1;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+    background-color: #FFFFFF;
+    cursor: pointer;
 }
