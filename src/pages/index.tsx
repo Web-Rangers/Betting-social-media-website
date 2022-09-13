@@ -20,27 +20,13 @@ import superjson from "superjson";
 
 const Home: NextPage = () => {
 	const { data: session } = useSession();
-	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery([
-		"bookmakers.getAll",
-	]);
-	const { data: filters, isLoading: filtersLoading } = trpc.useQuery([
-		"filters.getLeagues",
-	]);
-	const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery([
-		"predictions.getAll",
-	]);
-	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery([
-		"matches.getAllLive",
-	]);
-	const { data: matches, isLoading: matchesLoading } = trpc.useQuery([
-		"matches.getAllByLeague",
-	]);
-	const { data: tips, isLoading: tipsLoading } = trpc.useQuery([
-		"tips.getAll",
-	]);
-	const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery([
-		"tipsters.getAll",
-	]);
+	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(["bookmakers.getTop"]);
+	const { data: filters, isLoading: filtersLoading } = trpc.useQuery(["filters.getLeagues"]);
+	const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(["predictions.getAll"]);
+	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(["matches.getAllLive"]);
+	const { data: matches, isLoading: matchesLoading } = trpc.useQuery(["matches.getAllByLeague"]);
+	const { data: tips, isLoading: tipsLoading } = trpc.useQuery(["tips.getAll"]);
+	const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(["tipsters.getAll"]);
 
 	if (
 		bookmakersLoading ||
@@ -54,15 +40,7 @@ const Home: NextPage = () => {
 		return <div>Loading...</div>;
 	}
 
-	if (
-		!bookmakers ||
-		!filters ||
-		!predictions ||
-		!liveMatches ||
-		!tips ||
-		!tipsters ||
-		!matches
-	) {
+	if (!bookmakers || !filters || !predictions || !liveMatches || !tips || !tipsters || !matches) {
 		return <div>Error</div>;
 	}
 
@@ -160,18 +138,12 @@ const Slide: React.FC = () => {
 			</div>
 			<div className={styles.slideSummary}>
 				<div className={styles.slideSummaryTitle}>
-					<span className={styles.slideSummaryTitleCountry}>
-						Germany
-					</span>
-					<span className={styles.slideSummaryTitleLeague}>
-						Bunes League
-					</span>
+					<span className={styles.slideSummaryTitleCountry}>Germany</span>
+					<span className={styles.slideSummaryTitleLeague}>Bunes League</span>
 				</div>
 				<div className={styles.slideSummaryTeams}>
 					<div className={styles.slideSummaryTeam}>
-						<span className={styles.slideSummaryTeamName}>
-							Eintracht Frankfurt
-						</span>
+						<span className={styles.slideSummaryTeamName}>Eintracht Frankfurt</span>
 						<div className={styles.slideSummaryTeamImage}>
 							<Image
 								src="/images/team-1-placeholder.svg"
@@ -191,9 +163,7 @@ const Slide: React.FC = () => {
 								height={36}
 							/>
 						</div>
-						<span className={styles.slideSummaryTeamName}>
-							Bayern Munich
-						</span>
+						<span className={styles.slideSummaryTeamName}>Bayern Munich</span>
 					</div>
 				</div>
 			</div>
@@ -206,10 +176,9 @@ const SignUpPropose: React.FC = () => {
 		<div className={styles.signUpPropose}>
 			<h2>Join with us!</h2>
 			<span>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy
-				text ever since the 1500s, when an unknown printer took a galley
-				of type and scrambled it to make a type specimen book.
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book.
 			</span>
 			<Link href="/sign-up">
 				<button>Sign Up</button>
@@ -239,16 +208,10 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 									height={70}
 								/>
 							</div>
-							<span className={styles.topTipsterName}>
-								{tipster.name}
-							</span>
+							<span className={styles.topTipsterName}>{tipster.name}</span>
 							<div className={styles.topTipsterWinrate}>
-								<span className={styles.winrateLabel}>
-									Winrate
-								</span>
-								<span className={styles.winratePercent}>
-									{tipster.winrate * 100}%
-								</span>
+								<span className={styles.winrateLabel}>Winrate</span>
+								<span className={styles.winratePercent}>{tipster.winrate * 100}%</span>
 							</div>
 						</div>
 					))}
@@ -260,10 +223,7 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 							key={`tipster_${index + 4}`}
 						>
 							<div className={styles.otherContent}>
-								<div className={styles.otherIndex}>
-									{" "}
-									{index + 4}{" "}
-								</div>
+								<div className={styles.otherIndex}> {index + 4} </div>
 								<div className={styles.otherInfo}>
 									<div className={styles.topOtherImage}>
 										<Image
@@ -273,15 +233,10 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 											height={30}
 										/>
 									</div>
-									<span className={styles.topTipsterName}>
-										{" "}
-										{tipster.name}{" "}
-									</span>
+									<span className={styles.topTipsterName}> {tipster.name} </span>
 								</div>
 							</div>
-							<div className={styles.topOtherWinrate}>
-								Winrate {tipster.winrate * 100}%
-							</div>
+							<div className={styles.topOtherWinrate}>Winrate {tipster.winrate * 100}%</div>
 						</div>
 					))}
 					<a className={styles.topTipstersMore}>See All</a>
@@ -316,7 +271,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		transformer: superjson,
 	});
 
-	await ssg.prefetchQuery("bookmakers.getAll");
+	await ssg.prefetchQuery("bookmakers.getTop");
 	await ssg.prefetchQuery("filters.getLeagues");
 	await ssg.prefetchQuery("predictions.getAll");
 	await ssg.prefetchQuery("matches.getAllLive");

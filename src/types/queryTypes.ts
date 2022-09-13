@@ -1,43 +1,45 @@
 import { inferQueryOutput } from "src/utils/trpc";
 
-export type Tipsters = inferQueryOutput<'tipsters.getAll'>;
+export type Tipsters = inferQueryOutput<"tipsters.getAll">;
 
-export type Bookmakers = inferQueryOutput<'bookmakers.getAll'>
+export type BestBookmakers = inferQueryOutput<"bookmakers.getTop">;
 
-export type LiveMatches = inferQueryOutput<"matches.getAllLive">
+export type Bookmakers = inferQueryOutput<"bookmakers.getAll">;
 
-export type Matches = inferQueryOutput<"matches.getAll">
+export type LiveMatches = inferQueryOutput<"matches.getAllLive">;
 
-export type MatchesByLeague = inferQueryOutput<"matches.getAllByLeague">
+export type Matches = inferQueryOutput<"matches.getAll">;
 
-export type CurrentCompetition = inferQueryOutput<"competitions.getCurrent">
+export type MatchesByLeague = inferQueryOutput<"matches.getAllByLeague">;
 
-export type PreviousCompetitions = inferQueryOutput<"competitions.getPrevious">
+export type CurrentCompetition = inferQueryOutput<"competitions.getCurrent">;
 
-export type MostTips = inferQueryOutput<"tips.getAll">
+export type PreviousCompetitions = inferQueryOutput<"competitions.getPrevious">;
 
-export type Predictions = inferQueryOutput<"predictions.getAll">
+export type MostTips = inferQueryOutput<"tips.getAll">;
 
-export type Sports = inferQueryOutput<"filters.getSports">
+export type Predictions = inferQueryOutput<"predictions.getAll">;
 
-export type Methods = inferQueryOutput<"coins.getMethods">
+export type Sports = inferQueryOutput<"filters.getSports">;
 
-export type LeaguesByCountry = inferQueryOutput<"filters.getLeaguesByCountry">
+export type Methods = inferQueryOutput<"coins.getMethods">;
 
-export type UserInfo = inferQueryOutput<"user.getInfo">
+export type LeaguesByCountry = inferQueryOutput<"filters.getLeaguesByCountry">;
 
-export type WithdrawInfo = inferQueryOutput<"user.getWithdrawInfo">
+export type UserInfo = inferQueryOutput<"user.getInfo">;
 
-export type FollowersInfo = inferQueryOutput<"user.getFollowersInfo">
+export type WithdrawInfo = inferQueryOutput<"user.getWithdrawInfo">;
 
-export type FollowingInfo = inferQueryOutput<"user.getFollowingInfo">
+export type FollowersInfo = inferQueryOutput<"user.getFollowersInfo">;
 
-export type SubscriptionInfo = inferQueryOutput<"user.getSubscriptionInfo">
+export type FollowingInfo = inferQueryOutput<"user.getFollowingInfo">;
 
-export type ProfileVisitsInfo = inferQueryOutput<"user.getProfileVisitsInfo">
+export type SubscriptionInfo = inferQueryOutput<"user.getSubscriptionInfo">;
 
-export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">
+export type ProfileVisitsInfo = inferQueryOutput<"user.getProfileVisitsInfo">;
 
-export type PendingPredictions = inferQueryOutput<"user.getPendingTips">
+export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">;
 
-export type HistoricalPredictions = inferQueryOutput<"user.getHistoricalTips">
+export type PendingPredictions = inferQueryOutput<"user.getPendingTips">;
+
+export type HistoricalPredictions = inferQueryOutput<"user.getHistoricalTips">;

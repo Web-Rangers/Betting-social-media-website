@@ -8,7 +8,7 @@ import styles from "@styles/components/layout/Sidebar.module.css";
 
 const links = [
 	{
-		href: "/popular-matches",
+		href: "/",
 		label: "Popular Games",
 		image: "/images/menu/popular-games.svg",
 	},

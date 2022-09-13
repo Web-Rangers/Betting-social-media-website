@@ -59,7 +59,7 @@ const PredictionsPage: NextPage = () => {
 		"tips.getAll",
 	]);
 	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery([
-		"bookmakers.getAll",
+		"bookmakers.getTop",
 	]);
 	const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery([
 		"filters.getLeagues",
@@ -366,7 +366,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	});
 
 	await ssg.prefetchQuery("tips.getAll");
-	await ssg.prefetchQuery("bookmakers.getAll");
+	await ssg.prefetchQuery("bookmakers.getTop");
 	await ssg.prefetchQuery("filters.getLeagues");
 	await ssg.prefetchQuery("filters.getSports");
 	await ssg.prefetchQuery("predictions.getAll", { limit: 3 });
