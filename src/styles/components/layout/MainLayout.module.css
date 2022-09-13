@@ -8,6 +8,6 @@
 }
 
 .content {
-    height: 200vh;
+    min-height: 120vh;
     padding: 20px;
 }
