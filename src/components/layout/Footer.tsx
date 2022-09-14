@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/future/image";
 
 const GeneralLinks = [
-	{ href: "/about", text: "About us" },
-	{ href: "/contact", text: "Contact us" },
-	{ href: "/privacy", text: "Privacy policy" },
-	{ href: "/cookies", text: "Cookies policy" },
-	{ href: "/terms", text: "Terms of use" },
+	{ href: "/about-us", text: "About us" },
+	{ href: "/contact-us", text: "Contact us" },
+	{ href: "/privacy-policy", text: "Privacy policy" },
+	{ href: "/cookies-policy", text: "Cookies policy" },
+	{ href: "/terms-of-us", text: "Terms of use" },
 	{ href: "/faq", text: "FAQ" },
 ];
 
@@ -107,14 +107,10 @@ const Footer: React.FC = () => {
 					</div>
 				</div>
 				<div className={styles.column}>
-					Historical results are not an indication of future results.
-					The information on betting.com website is not investment
-					advice.betting.com does not facilitate betting on sports.
-					betting.com is not a bookmaker and does not handle any
-					payments for sports betting activities. Values quoted on the
-					site hold no real or implied value.Betting.com is owned by
-					Game Lounge Ltd, a Maltese company with organization number
-					- C53144 and is completely independent of the gaming
+					Historical results are not an indication of future results. The information on betting.com website is not investment
+					advice.betting.com does not facilitate betting on sports. betting.com is not a bookmaker and does not handle any
+					payments for sports betting activities. Values quoted on the site hold no real or implied value.Betting.com is owned by
+					Game Lounge Ltd, a Maltese company with organization number - C53144 and is completely independent of the gaming
 					companies.
 				</div>
 			</div>
