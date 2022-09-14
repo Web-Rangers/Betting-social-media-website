@@ -152,13 +152,9 @@ const columns = [
 ];
 
 const TipsterCompetition: NextPage = () => {
-	const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery([
-		"competitions.getCurrent",
-	]);
+	const { data: currentCompetition, isLoading: currentCompetitionLoading } = trpc.useQuery(["competitions.getCurrent"]);
 	const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(["tipsters.getAll"]);
-	const { data: previousCompetition, isLoading: previousCompetitionLoading } = trpc.useQuery([
-		"competitions.getPrevious",
-	]);
+	const { data: previousCompetition, isLoading: previousCompetitionLoading } = trpc.useQuery(["competitions.getPrevious"]);
 	const portalNode = usePortal();
 
 	if (currentCompetitionLoading || tipstersLoading || previousCompetitionLoading) {
@@ -306,11 +302,10 @@ const CurrentCompetition: React.FC<CurrentCompetition> = (props) => {
 					</div>
 				</div>
 				<span className={styles.text}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique hendrerit ligula,
-					vitae finibus odio aliquet sit amet. Mauris semper arcu vitae neque sollicitudin lobortis
-					vitae sit amet quam. Proin viverra nulla in tellus dictum faucibus. Proin a dictum nulla.
-					Duis euismod venenatis semper. Mauris sed volutpat elit, eget egestas nulla. Pellentesque
-					vitae consequat ipsum.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tristique hendrerit ligula, vitae finibus odio aliquet
+					sit amet. Mauris semper arcu vitae neque sollicitudin lobortis vitae sit amet quam. Proin viverra nulla in tellus dictum
+					faucibus. Proin a dictum nulla. Duis euismod venenatis semper. Mauris sed volutpat elit, eget egestas nulla.
+					Pellentesque vitae consequat ipsum.
 				</span>
 			</div>
 		</div>
@@ -569,9 +564,7 @@ const CompetitionParticipant: React.FC<CompetitionParticipantProps> = (props) =>
 						</div>
 						<div className={styles.detailedInfo}>
 							<span className={styles.name}>{name}</span>
-							<span className={styles.subscribers}>
-								{shortenNumber(subscriberCount, 0)} subscribers
-							</span>
+							<span className={styles.subscribers}>{shortenNumber(subscriberCount, 0)} subscribers</span>
 							<button>
 								<Image
 									src="/icons/follow-white.svg"
@@ -643,9 +636,7 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
 					onMouseEnter={() => setIsHovering(true)}
 					onMouseLeave={() => setIsHovering(false)}
 				>
-					<AnimatePresence initial={false}>
-						{isHovering && <UserHover {...props} />}
-					</AnimatePresence>
+					<AnimatePresence initial={false}>{isHovering && <UserHover {...props} />}</AnimatePresence>
 					<div className={styles.avatar}>
 						<Image
 							src={image}
@@ -656,9 +647,7 @@ const TipsterInfo: React.FC<inferArrayElementType<Tipsters>> = (props) => {
 					</div>
 					<div className={styles.userInfo}>
 						<span className={styles.name}>{name}</span>
-						<span className={styles.subscribers}>
-							{shortenNumber(subscriberCount, 0)} subscribers
-						</span>
+						<span className={styles.subscribers}>{shortenNumber(subscriberCount, 0)} subscribers</span>
 					</div>
 				</div>
 				<button onClick={() => setModalOpen(!modalOpen)}>
