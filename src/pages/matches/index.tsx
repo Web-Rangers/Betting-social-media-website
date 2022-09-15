@@ -15,44 +15,18 @@ import { createContext } from "src/server/router/context";
 import superjson from "superjson";
 
 const MatchesPage: NextPage = () => {
-	const { data: tips, isLoading: tipsLoading } = trpc.useQuery([
-		"tips.getAll",
-	]);
-	const { data: matches, isLoading: matchesLoading } = trpc.useQuery([
-		"matches.getAllByLeague",
-	]);
-	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery([
-		"bookmakers.getTop",
-	]);
-	const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery([
-		"filters.getLeaguesByCountry",
-	]);
-	const { data: sports, isLoading: sportsLoading } = trpc.useQuery([
-		"filters.getSports",
-	]);
-	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery([
-		"matches.getAllLive",
-	]);
+	const { data: tips, isLoading: tipsLoading } = trpc.useQuery(["tips.getAll"]);
+	const { data: matches, isLoading: matchesLoading } = trpc.useQuery(["matches.getAllByLeague"]);
+	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(["bookmakers.getTop"]);
+	const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(["filters.getLeaguesByCountry"]);
+	const { data: sports, isLoading: sportsLoading } = trpc.useQuery(["filters.getSports"]);
+	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(["matches.getAllLive", { limit: 3 }]);
 
-	if (
-		tipsLoading ||
-		bookmakersLoading ||
-		leaguesLoading ||
-		sportsLoading ||
-		liveMatchesLoading ||
-		matchesLoading
-	) {
+	if (tipsLoading || bookmakersLoading || leaguesLoading || sportsLoading || liveMatchesLoading || matchesLoading) {
 		return <div>Loading...</div>;
 	}
 
-	if (
-		!tips ||
-		!liveMatches ||
-		!bookmakers ||
-		!leagues ||
-		!sports ||
-		!matches
-	) {
+	if (!tips || !liveMatches || !bookmakers || !leagues || !sports || !matches) {
 		return <div>Error...</div>;
 	}
 
@@ -114,7 +88,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	await ssg.prefetchQuery("bookmakers.getTop");
 	await ssg.prefetchQuery("filters.getLeaguesByCountry");
 	await ssg.prefetchQuery("filters.getSports");
-	await ssg.prefetchQuery("matches.getAllLive");
+	await ssg.prefetchQuery("matches.getAllLive", { limit: 3 });
 
 	return {
 		props: {

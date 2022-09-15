@@ -1,6 +1,7 @@
 type Country {
   id: ID!
   name: String!
+  leagues: [League!]!
 }
 
 """A paginated list of Country items."""
@@ -17,9 +18,31 @@ A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`.
 """
 scalar DateTime
 
+type Event {
+  id: ID!
+  home: Team
+  away: Team
+  league: League
+  country: Country
+  halftime_result: String
+  final_result: String
+  penalty_result: String
+  date: String
+}
+
+"""A paginated list of Event items."""
+type EventPaginator {
+  """Pagination information about the list of items."""
+  paginatorInfo: PaginatorInfo!
+
+  """A list of Event items."""
+  data: [Event!]!
+}
+
 type League {
   id: ID!
   name: String!
+  teams: [Team!]!
 }
 
 """A paginated list of League items."""
@@ -188,6 +211,16 @@ type Query {
     """The offset from which items are returned."""
     page: Int
   ): PlayerPaginator
+  events(
+    """Place an exact match filter (=) on the data"""
+    date: DateTime
+
+    """Limits number of fetched items."""
+    first: Int = 25
+
+    """The offset from which items are returned."""
+    page: Int
+  ): EventPaginator
 }
 
 """Information about pagination using a simple paginator."""

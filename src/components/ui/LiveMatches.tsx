@@ -23,11 +23,11 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
 					>
 						<div className={styles.matchInfo}>
 							<div className={styles.matchInfoHeader}>
-								<div className={styles.matchDuration}>
+								{/* <div className={styles.matchDuration}>
 									Live: {match.duration}
-								</div>
+								</div> */}
 								<div className={styles.buttonContainer}>
-									<button>
+									{/* <button>
 										<Image
 											src="/icons/viewers.svg"
 											width={20}
@@ -35,7 +35,7 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
 											alt="expand"
 										/>
 										{match.viewer_count}
-									</button>
+									</button> */}
 									<button>
 										<Image
 											src="/icons/expand.svg"
@@ -56,24 +56,25 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
 							</div>
 						</div>
 						<div className={styles.matchTeams}>
-							{match.teams.map((team, index) => (
-								<div
-									className={styles.matchTeam}
-									key={`team_${index}`}
-								>
-									<div className={styles.matchTeamName}>
-										{team.name}
-									</div>
-									<div className={styles.matchTeamScore}>
-										{team.score}
-									</div>
-								</div>
-							))}
 							<div
+								className={styles.matchTeam}
+								key={`team_${index}`}
+							>
+								<div className={styles.matchTeamName}>{match.home.name}</div>
+								{/* <div className={styles.matchTeamScore}>{match.home.score}</div> */}
+							</div>
+							<div
+								className={styles.matchTeam}
+								key={`team_${index}`}
+							>
+								<div className={styles.matchTeamName}>{match.away.name}</div>
+								{/* <div className={styles.matchTeamScore}>{match.away.score}</div> */}
+							</div>
+							{/* <div
 								className={`${styles.matchDuration} ${styles.absolute}`}
 							>
 								{match.duration}
-							</div>
+							</div> */}
 						</div>
 					</div>
 				))}

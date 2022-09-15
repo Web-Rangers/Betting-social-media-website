@@ -11,7 +11,7 @@ const queryClient = new ApolloClient({
     Might just write queries inside the TRPC router
     instead of exporting functions from here
 */
-export async function getUsers(limit?: number) {
+async function getUsers(limit?: number) {
 	const data = await queryClient.query({
 		query: gql`
 			query GetUsers($limit: Int!) {

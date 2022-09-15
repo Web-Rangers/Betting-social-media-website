@@ -10,14 +10,12 @@ import { createSSGHelpers } from "@trpc/react/ssg";
 import { appRouter } from "src/server/router";
 import { createContext } from "src/server/router/context";
 import superjson from "superjson";
+import { Matches } from "src/types/queryTypes";
+import { inferArrayElementType } from "src/utils/inferArrayElementType";
 
 const BlogPage: NextPage = () => {
-	const { data: news, isLoading: newsLoading } = trpc.useQuery([
-		"news.getAll",
-	]);
-	const { data: matches, isLoading: matchesLoading } = trpc.useQuery([
-		"matches.getAll",
-	]);
+	const { data: news, isLoading: newsLoading } = trpc.useQuery(["news.getAll"]);
+	const { data: matches, isLoading: matchesLoading } = trpc.useQuery(["matches.getAll", { limit: 5 }]);
 
 	if (newsLoading || matchesLoading) {
 		return <div>Loading...</div>;
@@ -149,9 +147,7 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
 						<span className={styles.date}>
 							<Moment format="DD MMM YYYY">{news[0].date}</Moment>
 						</span>
-						<h2 className={styles.title}>
-							{shortenString(news[0].title, 75)}
-						</h2>
+						<h2 className={styles.title}>{shortenString(news[0].title, 75)}</h2>
 					</div>
 				</div>
 			)}
@@ -175,9 +171,7 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
 						<span className={styles.date}>
 							<Moment format="DD MMM YYYY">{news.date}</Moment>
 						</span>
-						<h2 className={styles.title}>
-							{shortenString(news.title, 45)}
-						</h2>
+						<h2 className={styles.title}>{shortenString(news.title, 45)}</h2>
 						<div className={styles.stats}>
 							<span className={styles.stat}>
 								<Image
@@ -205,41 +199,27 @@ const SideNews: React.FC<SideNewsProps> = (props) => {
 	);
 };
 
-interface TopMatchesProps {
-	matches: {
-		teams: {
-			name: string;
-			image: string;
-			score: number;
-		}[];
-		id: number;
-		date: string;
-		status: MatchStatus;
-		duration?: string;
-	}[];
-}
-
-const TopMatches: React.FC<TopMatchesProps> = (props) => {
+const TopMatches: React.FC<{ matches: Matches }> = (props) => {
 	const { matches } = props;
 
-	function getElementByStatus(match: typeof matches[0]): React.ReactElement {
-		switch (match.status) {
-			case MatchStatus.live:
-				return <div className={styles.live}>Live</div>;
-			default:
-				return (
-					<div className={styles.matchDate}>
-						<Moment
-							format="HH:mm"
-							className={styles.date}
-						>
-							{match.date}
-						</Moment>
-						<span className={styles.today}>Today</span>
-					</div>
-				);
-		}
-	}
+	// function getElementByStatus(match: inferArrayElementType<Matches>): React.ReactElement {
+	// 	switch (match.status) {
+	// 		case MatchStatus.live:
+	// 			return <div className={styles.live}>Live</div>;
+	// 		default:
+	// 			return (
+	// 				<div className={styles.matchDate}>
+	// 					<Moment
+	// 						format="HH:mm"
+	// 						className={styles.date}
+	// 					>
+	// 						{match.date}
+	// 					</Moment>
+	// 					<span className={styles.today}>Today</span>
+	// 				</div>
+	// 			);
+	// 	}
+	// }
 
 	return (
 		<div className={styles.topMatches}>
@@ -251,37 +231,50 @@ const TopMatches: React.FC<TopMatchesProps> = (props) => {
 				<button>See All</button>
 			</div>
 			<div className={styles.topMatchesContent}>
-				{matches.slice(0, 5).map((match, index) => (
+				{matches.map((match, index) => (
 					<div
 						key={`top_match_${index}`}
 						className={styles.topMatch}
 					>
-						{getElementByStatus(match)}
+						{/* {getElementByStatus(match)} */}
 						<div className={styles.topMatchInfo}>
 							<div className={styles.topMatchTeams}>
-								{match.teams.map((team, index) => (
-									<div
-										key={`top_match_team_image_${index}`}
-										className={styles.topMatchTeam}
-									>
-										<Image
-											src={team.image}
-											alt={team.name}
-											width={32}
-											height={32}
-										/>
-									</div>
-								))}
+								<div
+									key={`top_match_team_image_${index}_${match.home.name}`}
+									className={styles.topMatchTeam}
+								>
+									{/* <Image
+										src={match.home.image}
+										alt={match.home.name}
+										width={32}
+										height={32}
+									/> */}
+								</div>
+								<div
+									key={`top_match_team_image_${index}_${match.away.name}`}
+									className={styles.topMatchTeam}
+								>
+									{/* <Image
+										src={match.away.image}
+										alt={match.away.name}
+										width={32}
+										height={32}
+									/> */}
+								</div>
 							</div>
 							<div className={styles.topMatchTeamNames}>
-								{match.teams.map((team, index) => (
-									<div
-										key={`top_match_team_name_${index}`}
-										className={styles.topMatchTeamName}
-									>
-										{team.name}
-									</div>
-								))}
+								<div
+									key={`top_match_team_name_${index}_${match.home.name}`}
+									className={styles.topMatchTeamName}
+								>
+									{match.home.name}
+								</div>
+								<div
+									key={`top_match_team_name_${index}_${match.away.name}`}
+									className={styles.topMatchTeamName}
+								>
+									{match.away.name}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -334,9 +327,7 @@ const NewsBlock: React.FC<NewsBlockProps> = (props) => {
 						<div className={styles.info}>
 							<div className={styles.mainInfo}>
 								<span className={styles.date}>
-									<Moment format="DD MMM YYYY">
-										{news.date}
-									</Moment>
+									<Moment format="DD MMM YYYY">{news.date}</Moment>
 								</span>
 								<h2 className={styles.title}>{news.title}</h2>
 							</div>
@@ -395,9 +386,7 @@ const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
 							/>
 							<div className={styles.info}>
 								<span className={styles.date}>
-									<Moment format="DD MMM YYYY">
-										{news.date}
-									</Moment>
+									<Moment format="DD MMM YYYY">{news.date}</Moment>
 								</span>
 								<h2 className={styles.title}>{news.title}</h2>
 							</div>
@@ -443,13 +432,9 @@ const FullWidthNewsBlock: React.FC<NewsBlockProps> = (props) => {
 							</div>
 							<div className={styles.info}>
 								<span className={styles.date}>
-									<Moment format="DD MMM YYYY">
-										{news.date}
-									</Moment>
+									<Moment format="DD MMM YYYY">{news.date}</Moment>
 								</span>
-								<h2 className={styles.title}>
-									{shortenString(news.title, 45)}
-								</h2>
+								<h2 className={styles.title}>{shortenString(news.title, 45)}</h2>
 								<div className={styles.stats}>
 									<span className={styles.stat}>
 										<Image

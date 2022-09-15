@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(["bookmakers.getTop"]);
 	const { data: filters, isLoading: filtersLoading } = trpc.useQuery(["filters.getLeagues"]);
 	const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(["predictions.getAll"]);
-	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(["matches.getAllLive"]);
+	const { data: liveMatches, isLoading: liveMatchesLoading } = trpc.useQuery(["matches.getAllLive", { limit: 3 }]);
 	const { data: matches, isLoading: matchesLoading } = trpc.useQuery(["matches.getAllByLeague"]);
 	const { data: tips, isLoading: tipsLoading } = trpc.useQuery(["tips.getAll"]);
 	const { data: tipsters, isLoading: tipstersLoading } = trpc.useQuery(["tipsters.getAll"]);
@@ -274,7 +274,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	await ssg.prefetchQuery("bookmakers.getTop");
 	await ssg.prefetchQuery("filters.getLeagues");
 	await ssg.prefetchQuery("predictions.getAll");
-	await ssg.prefetchQuery("matches.getAllLive");
+	await ssg.prefetchQuery("matches.getAllLive", { limit: 3 });
 	await ssg.prefetchQuery("matches.getAllByLeague");
 	await ssg.prefetchQuery("tips.getAll");
 	await ssg.prefetchQuery("tipsters.getAll");
