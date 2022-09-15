@@ -11,21 +11,11 @@ const MatchTipsCard: React.FC<inferArrayElementType<MostTips>> = (props) => {
 	function getStatusComponent(tip: inferArrayElementType<MostTips>) {
 		switch (tip.status) {
 			case MatchStatus.finished:
-				return (
-					<span className={styles.mostTipsFinished}>
-						{tip.duration}s
-					</span>
-				);
+				return <span className={styles.mostTipsFinished}>{tip.duration}s</span>;
 			case MatchStatus.live:
-				return (
-					<span className={styles.mostTipsLive}>
-						Live: {tip.duration}
-					</span>
-				);
+				return <span className={styles.mostTipsLive}>Live: {tip.duration}</span>;
 			case MatchStatus.upcoming:
-				return (
-					<span className={styles.mostTipsUpcoming}>{tip.date}</span>
-				);
+				return <span className={styles.mostTipsUpcoming}>{tip.date}</span>;
 		}
 	}
 
@@ -41,8 +31,8 @@ const MatchTipsCard: React.FC<inferArrayElementType<MostTips>> = (props) => {
 							<Image
 								src={team.image}
 								alt={team.name}
-								width={30}
-								height={30}
+								width={35}
+								height={35}
 							/>
 						</div>
 					))}

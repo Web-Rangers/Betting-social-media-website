@@ -33,6 +33,9 @@
     width: 30px;
     overflow: hidden;
     border: 3px solid #E8E8E9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mostTipsFinished {

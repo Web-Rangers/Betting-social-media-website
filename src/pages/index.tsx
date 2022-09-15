@@ -176,9 +176,9 @@ const SignUpPropose: React.FC = () => {
 		<div className={styles.signUpPropose}>
 			<h2>Join with us!</h2>
 			<span>
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-				been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-				galley of type and scrambled it to make a type specimen book.
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+				book.
 			</span>
 			<Link href="/sign-up">
 				<button>Sign Up</button>
@@ -204,8 +204,8 @@ const TopTipsters: React.FC<{ tipsters: Tipsters }> = (props) => {
 								<Image
 									src={tipster.image}
 									alt={tipster.name}
-									width={70}
-									height={70}
+									width={65}
+									height={65}
 								/>
 							</div>
 							<span className={styles.topTipsterName}>{tipster.name}</span>
