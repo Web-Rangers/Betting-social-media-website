@@ -2,15 +2,10 @@ import { z } from "zod";
 import { TransactionStatus } from "src/types/transactionStatus";
 import Fuse from "fuse.js";
 import { createProtectedRouter } from "../protected-router";
-import { getUsers } from "../../graphql/client/apollo-client";
 
 // THIS IS A TEMPORARY FUNCTION FOR GENERATING DATES
 function getOffsetDate(days: number, months: number, years: number) {
-	return new Date(
-		new Date().getFullYear() + years,
-		new Date().getMonth() + months,
-		new Date().getDate() + days
-	);
+	return new Date(new Date().getFullYear() + years, new Date().getMonth() + months, new Date().getDate() + days);
 }
 
 const UserInfo = {

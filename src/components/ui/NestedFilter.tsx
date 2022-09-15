@@ -49,14 +49,7 @@ const ChevronVariants = {
 };
 
 const NestedFilter: React.FC<NestedFilterProps> = (props) => {
-	const {
-		items,
-		onChange,
-		h2,
-		h3,
-		withClearButton = true,
-		colapsible = false,
-	} = props;
+	const { items, onChange, h2, h3, withClearButton = true, colapsible = false } = props;
 	const [selectedItems, setSelectedItems] = useState<string[]>([]);
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -156,25 +149,21 @@ const SubItemsVariants = {
 };
 
 const Item: React.FC<ItemType> = (props) => {
-	const { count, id, image, name, selectedItems, onSelect, leagues } = props;
+	const { id, name, selectedItems, onSelect, leagues } = props;
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className={styles.itemContainer}>
-			<div
-				className={`${styles.item} ${
-					selectedItems.includes(id) && styles.active
-				}`}
-			>
+			<div className={`${styles.item} ${selectedItems.includes(id) && styles.active}`}>
 				<div className={styles.info}>
-					<div className={styles.image}>
+					{/* <div className={styles.image}>
 						<Image
 							src={image}
 							height={34}
 							width={34}
 							alt=""
 						/>
-					</div>
+					</div> */}
 					<span
 						className={styles.name}
 						onClick={() => setIsOpen(!isOpen)}
@@ -182,12 +171,12 @@ const Item: React.FC<ItemType> = (props) => {
 						{name}
 					</span>
 				</div>
-				<div
+				{/* <div
 					className={styles.count}
 					onClick={() => onSelect(id)}
 				>
 					{count}
-				</div>
+				</div> */}
 			</div>
 			<motion.div
 				className={styles.subItems}
@@ -195,25 +184,23 @@ const Item: React.FC<ItemType> = (props) => {
 				animate={isOpen ? "open" : "closed"}
 				initial={false}
 			>
-				{leagues.map(({ count, id, image, name }) => (
+				{leagues.map(({ id, name }) => (
 					<div
-						className={`${styles.subItem} ${
-							selectedItems.includes(id) && styles.active
-						}`}
+						className={`${styles.subItem} ${selectedItems.includes(id) && styles.active}`}
 						key={`nested_filter_item_${id} `}
 					>
 						<div className={styles.info}>
-							<div className={styles.image}>
+							{/* <div className={styles.image}>
 								<Image
 									src={image}
 									height={34}
 									width={34}
 									alt=""
 								/>
-							</div>
+							</div> */}
 							<span className={styles.name}>{name}</span>
 						</div>
-						<div
+						{/* <div
 							className={styles.count}
 							onClick={() => onSelect(id)}
 						>
@@ -223,7 +210,7 @@ const Item: React.FC<ItemType> = (props) => {
 								checked={selectedItems.includes(id)}
 								readOnly
 							/>
-						</div>
+						</div> */}
 					</div>
 				))}
 			</motion.div>
