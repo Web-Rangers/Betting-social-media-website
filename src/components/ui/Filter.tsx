@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import styles from "@styles/components/ui/Filter.module.css";
 import Image from "next/future/image";
 import { motion } from "framer-motion";
+import { Leagues } from "src/types/queryTypes";
 
 interface FilterProps {
 	h3: string;
 	h2?: string;
-	items: {
-		name: string;
-		subName?: string;
-		count: number;
-		image: string;
-		id: string;
-	}[];
+	items: Leagues;
 	onChange: (ids: string[]) => void;
 }
 
@@ -64,32 +59,24 @@ const Filter: React.FC<FilterProps> = (props) => {
 				{items.map((item) => (
 					<div
 						key={item.id}
-						className={`${styles.item} ${
-							selectedItems.includes(item.id) && styles.selected
-						}`}
+						className={`${styles.item} ${selectedItems.includes(item.id) && styles.selected}`}
 						onClick={() => handleSelect(item.id)}
 					>
 						<div className={styles.info}>
 							<div className={styles.image}>
-								<Image
+								{/* <Image
 									src={item.image}
 									alt={item.name}
 									width={40}
 									height={40}
-								/>
+								/> */}
 							</div>
 							<div className={styles.titles}>
-								<span className={styles.itemName}>
-									{item.name}
-								</span>
-								{item.subName && (
-									<span className={styles.itemSubname}>
-										{item.subName}
-									</span>
-								)}
+								<span className={styles.itemName}>{item.name}</span>
+								<span className={styles.itemSubname}>{item.country.name}</span>
 							</div>
 						</div>
-						<div className={styles.count}>{item.count}</div>
+						<div className={styles.count}>{/* {item.count} */} 0</div>
 					</div>
 				))}
 			</motion.div>

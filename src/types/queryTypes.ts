@@ -26,6 +26,8 @@ export type Methods = inferQueryOutput<"coins.getMethods">;
 
 export type LeaguesByCountry = inferQueryOutput<"filters.getLeaguesByCountry">;
 
+export type Leagues = inferQueryOutput<"filters.getLeagues">;
+
 export type UserInfo = inferQueryOutput<"user.getInfo">;
 
 export type WithdrawInfo = inferQueryOutput<"user.getWithdrawInfo">;
