@@ -19,7 +19,7 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
 				{matches.map((match, index) => (
 					<div
 						className={styles.liveMatchesItem}
-						key={`match_${index}`}
+						key={`match_${match.id}`}
 					>
 						<div className={styles.matchInfo}>
 							<div className={styles.matchInfoHeader}>
@@ -58,14 +58,14 @@ const LiveMatches: React.FC<{ matches: LiveMatches }> = (props) => {
 						<div className={styles.matchTeams}>
 							<div
 								className={styles.matchTeam}
-								key={`team_${index}`}
+								key={`team_1_${index}`}
 							>
 								<div className={styles.matchTeamName}>{match.home.name}</div>
 								{/* <div className={styles.matchTeamScore}>{match.home.score}</div> */}
 							</div>
 							<div
 								className={styles.matchTeam}
-								key={`team_${index}`}
+								key={`team_2_${index}`}
 							>
 								<div className={styles.matchTeamName}>{match.away.name}</div>
 								{/* <div className={styles.matchTeamScore}>{match.away.score}</div> */}
