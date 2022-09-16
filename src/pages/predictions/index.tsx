@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 import styles from "@styles/pages/Predictions.module.css";
 import { trpc } from "src/utils/trpc";
-import {
-	MostTips,
-	Predictions as PredictionsType,
-	Sports,
-} from "src/types/queryTypes";
+import { MostTips, Predictions as PredictionsType, Sports } from "src/types/queryTypes";
 import Slider from "@components/ui/Slider";
 import MatchTipsCard from "@components/ui/MatchTipsCard";
 import Image from "next/future/image";
@@ -53,26 +49,14 @@ const TypeItems = [
 
 const PredictionsPage: NextPage = () => {
 	const [limit, setLimit] = useState<number>(3);
-	const [previousPredictions, setPreviousPredictions] =
-		useState<PredictionsType | null>(null);
-	const { data: tips, isLoading: tipsLoading } = trpc.useQuery([
-		"tips.getAll",
-	]);
-	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery([
-		"bookmakers.getTop",
-	]);
-	const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery([
-		"filters.getLeagues",
-	]);
-	const { data: sports, isLoading: sportsLoading } = trpc.useQuery([
-		"filters.getSports",
-	]);
-	const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(
-		["predictions.getAll", { limit: limit }],
-		{
-			onSuccess: (data) => setPreviousPredictions(data),
-		}
-	);
+	const [previousPredictions, setPreviousPredictions] = useState<PredictionsType | null>(null);
+	const { data: tips, isLoading: tipsLoading } = trpc.useQuery(["tips.getAll"]);
+	const { data: bookmakers, isLoading: bookmakersLoading } = trpc.useQuery(["bookmakers.getTop"]);
+	const { data: leagues, isLoading: leaguesLoading } = trpc.useQuery(["filters.getLeagues"]);
+	const { data: sports, isLoading: sportsLoading } = trpc.useQuery(["filters.getSports"]);
+	const { data: predictions, isLoading: predictionsLoading } = trpc.useQuery(["predictions.getAll", { limit: limit }], {
+		onSuccess: (data) => setPreviousPredictions(data),
+	});
 
 	if (tipsLoading || bookmakersLoading || leaguesLoading || sportsLoading) {
 		return <div>Loading...</div>;
@@ -117,18 +101,13 @@ const PredictionsPage: NextPage = () => {
 				</div>
 				<div className={styles.predictions}>
 					<SportsSider
-						sports={[
-							{ name: "All", image: "", id: "0" },
-							...sports,
-						]}
+						sports={[{ name: "All", image: "", id: "0" }, ...sports]}
 						onChange={() => {}}
 					/>
 					{predictions && !predictionsLoading ? (
 						<Predictions leagues={predictions} />
 					) : (
-						previousPredictions && (
-							<Predictions leagues={previousPredictions} />
-						)
+						previousPredictions && <Predictions leagues={previousPredictions} />
 					)}
 					<button
 						className={styles.showMore}
@@ -239,15 +218,10 @@ const SportsSider: React.FC<{
 			return;
 		}
 		if (selectedItems.includes(id)) {
-			setSelectedItems(
-				selectedItems.filter((item) => item !== id && item !== "0")
-			);
+			setSelectedItems(selectedItems.filter((item) => item !== id && item !== "0"));
 			onChange(selectedItems.filter((item) => item !== id));
 		} else {
-			setSelectedItems([
-				...selectedItems.filter((item) => item !== "0"),
-				id,
-			]);
+			setSelectedItems([...selectedItems.filter((item) => item !== "0"), id]);
 			onChange([...selectedItems, id]);
 		}
 	}
@@ -284,9 +258,7 @@ const SportsSider: React.FC<{
 					>
 						{sportsChunk.map(({ name, image, id }, index) => (
 							<div
-								className={`${styles.sport} ${
-									selectedItems.includes(id) && styles.active
-								}`}
+								className={`${styles.sport} ${selectedItems.includes(id) && styles.active}`}
 								key={`sports_slide_${slideIndex}_item_${index}`}
 								onClick={() => handleSelect(id)}
 							>
@@ -328,15 +300,10 @@ const SortButtons: React.FC<SortButtonsProps> = (props) => {
 			return;
 		}
 		if (selectedItems.includes(id)) {
-			setSelectedItems(
-				selectedItems.filter((item) => item !== id && item !== "0")
-			);
+			setSelectedItems(selectedItems.filter((item) => item !== id && item !== "0"));
 			onChange(selectedItems.filter((item) => item !== id));
 		} else {
-			setSelectedItems([
-				...selectedItems.filter((item) => item !== "0"),
-				id,
-			]);
+			setSelectedItems([...selectedItems.filter((item) => item !== "0"), id]);
 			onChange([...selectedItems, id]);
 		}
 	}
@@ -347,9 +314,7 @@ const SortButtons: React.FC<SortButtonsProps> = (props) => {
 				<button
 					key={`sort_button_${id}_${name}`}
 					onClick={() => handleSelect(id)}
-					className={
-						selectedItems.includes(id) ? styles.active : undefined
-					}
+					className={selectedItems.includes(id) ? styles.active : undefined}
 				>
 					{name}
 				</button>

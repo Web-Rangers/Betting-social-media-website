@@ -43,6 +43,8 @@ type League {
   id: ID!
   name: String!
   teams: [Team!]!
+  events: [Event!]!
+  country: Country
 }
 
 """A paginated list of League items."""

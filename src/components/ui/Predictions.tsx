@@ -4,6 +4,7 @@ import Image from "next/future/image";
 import { Predictions } from "src/types/queryTypes";
 import { inferArrayElementType } from "src/utils/inferArrayElementType";
 import { motion } from "framer-motion";
+import Moment from "react-moment";
 
 interface PredictionsProps {
 	leagues: Predictions;
@@ -11,9 +12,7 @@ interface PredictionsProps {
 	h2?: string;
 }
 
-type MatchType = inferArrayElementType<
-	inferArrayElementType<Predictions>["matches"]
->;
+type MatchType = inferArrayElementType<inferArrayElementType<Predictions>["events"]>;
 
 const Predictions: React.FC<PredictionsProps> = (props) => {
 	const { leagues, h2, h3 } = props;
@@ -33,22 +32,22 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
 				>
 					<div className={styles.leagueDescription}>
 						<div className={styles.image}>
-							<Image
+							{/* <Image
 								src={league.image}
 								height={40}
 								width={40}
 								alt={league.name}
-							/>
+							/> */}
 						</div>
 						<div className={styles.titles}>
 							<span>
-								{league.country} • {league.sport.name}
+								{league.country.name} • {/* {league.sport.name} */}
 							</span>
 							<span>{league.name}</span>
 						</div>
 					</div>
 					<div className={styles.matches}>
-						{league.matches.map((match, index) => (
+						{league.events.map((match, index) => (
 							<Match
 								{...match}
 								key={`league_${leagueIndex}_match_${index}`}
@@ -79,7 +78,7 @@ const PredictionsVariants = {
 };
 
 const Match: React.FC<MatchType> = (props) => {
-	const { predictions, teams, time } = props;
+	const { home, away, date } = props;
 	const [isOpen, setIsOpen] = useState(true);
 
 	return (
@@ -87,49 +86,45 @@ const Match: React.FC<MatchType> = (props) => {
 			<div className={styles.header}>
 				<div className={styles.info}>
 					<div className={styles.time}>
-						<span>{time}</span>
+						<span>
+							<Moment format="HH:mm">{date ?? ""}</Moment>
+						</span>
 						<span>Today</span>
 					</div>
 					<div className={styles.teamImages}>
-						{teams.map((team, index) => (
-							<div
-								key={index}
-								className={styles.teamImage}
-							>
-								<Image
-									src={team.image}
-									alt={team.name}
-									width={40}
-									height={40}
-								/>
-							</div>
-						))}
+						<div className={styles.teamImage}>
+							{/* <Image
+								src={home.image}
+								alt={home.name}
+								width={40}
+								height={40}
+							/>
+							<Image
+								src={away.image}
+								alt={away.name}
+								width={40}
+								height={40}
+							/> */}
+						</div>
 					</div>
 					<div className={styles.teamNames}>
-						{teams.map((team, index) => (
-							<div
-								key={index}
-								className={styles.teamName}
-							>
-								{team.name}
-							</div>
-						))}
+						<div className={styles.teamName}>{home?.name}</div>
+						<div className={styles.teamName}>{away?.name}</div>
 					</div>
 				</div>
 				<div className={styles.details}>
 					<div
-						className={`${styles.total} ${
-							isOpen ? styles.open : styles.closed
-						}`}
+						className={`${styles.total} ${isOpen ? styles.open : styles.closed}`}
 						onClick={() => setIsOpen(!isOpen)}
 					>
-						{predictions.length} Tip
-						{predictions.length > 1 ? "s" : ""}
+						{/* {predictions.length} Tip
+						{predictions.length > 1 ? "s" : ""} */}
+						0 Tips
 					</div>
 					<div className={styles.more}>Details</div>
 				</div>
 			</div>
-			<motion.div
+			{/* <motion.div
 				className={styles.predictions}
 				variants={PredictionsVariants}
 				animate={isOpen ? "open" : "closed"}
@@ -155,12 +150,8 @@ const Match: React.FC<MatchType> = (props) => {
 									/>
 								</div>
 								<div className={styles.userInfo}>
-									<div className={styles.userName}>
-										{prediction.user.name}
-									</div>
-									<div className={styles.userWinrate}>
-										Winrate {prediction.user.winrate * 100}%
-									</div>
+									<div className={styles.userName}>{prediction.user.name}</div>
+									<div className={styles.userWinrate}>Winrate {prediction.user.winrate * 100}%</div>
 								</div>
 							</div>
 						</div>
@@ -171,11 +162,7 @@ const Match: React.FC<MatchType> = (props) => {
 								width={20}
 								height={20}
 							/>
-							<span>
-								{prediction.comment
-									? "With Comment"
-									: "Without comment"}
-							</span>
+							<span>{prediction.comment ? "With Comment" : "Without comment"}</span>
 						</div>
 						<div className={styles.outcome}>
 							<span>{prediction.type} Prediction</span>
@@ -183,7 +170,7 @@ const Match: React.FC<MatchType> = (props) => {
 						</div>
 					</div>
 				))}
-			</motion.div>
+			</motion.div> */}
 		</div>
 	);
 };
