@@ -5,16 +5,11 @@ import Image from "next/future/image";
 import TextField from "../../components/ui/TextField";
 import PasswordField from "../../components/ui/PasswordField";
 import SubmitButton from "../../components/ui/SubmitButton";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import Link from "next/link";
 
 const Register: NextPage = () => {
-	const [passwordCheck, setPasswordCheck] = useState([
-		false,
-		false,
-		false,
-		false,
-	]);
+	const [passwordCheck, setPasswordCheck] = useState([false, false, false, false]);
 
 	function checkPassword(e: React.ChangeEvent<HTMLInputElement>) {
 		setPasswordCheck([
@@ -23,24 +18,34 @@ const Register: NextPage = () => {
 			e.target.value
 				?.split("")
 				.filter(
-					(letter) =>
-						isNaN(parseInt(letter)) &&
-						letter.toLowerCase() != letter.toUpperCase() &&
-						letter == letter.toUpperCase()
+					(letter) => isNaN(parseInt(letter)) && letter.toLowerCase() != letter.toUpperCase() && letter == letter.toUpperCase()
 				).length > 0,
 
-			e.target.value
-				?.split("")
-				.filter((letter) => !isNaN(parseInt(letter))).length > 0,
+			e.target.value?.split("").filter((letter) => !isNaN(parseInt(letter))).length > 0,
 
-			e.target.value
-				?.split("")
-				.filter(
-					(letter) =>
-						isNaN(parseInt(letter)) &&
-						letter.toLowerCase() == letter.toUpperCase()
-				).length > 0,
+			e.target.value?.split("").filter((letter) => isNaN(parseInt(letter)) && letter.toLowerCase() == letter.toUpperCase()).length >
+				0,
 		]);
+	}
+
+	function handleRegister(e: SyntheticEvent) {
+		e.preventDefault();
+		if (passwordCheck.filter((check) => check).length == 4) {
+			const target = e.target as typeof e.target & {
+				email: { value: string };
+				password: { value: string };
+				firstName: { value: string };
+				lastName: { value: string };
+				nickname: { value: string };
+			};
+			const email = target.email.value;
+			const password = target.password.value;
+			const firstName = target.firstName.value;
+			const lastName = target.lastName.value;
+			const nickname = target.nickname.value;
+		} else {
+			alert("invalid data");
+		}
 	}
 
 	return (
@@ -63,7 +68,10 @@ const Register: NextPage = () => {
 					</Link>
 				</div>
 				<div className={styles.formArea}>
-					<form className={styles.form}>
+					<form
+						className={styles.form}
+						onSubmit={handleRegister}
+					>
 						<h1 className={styles.loginTitle}>Sign Up</h1>
 						<span className={styles.formText}>
 							You already have an account?&nbsp;&nbsp;&nbsp;
@@ -103,21 +111,25 @@ const Register: NextPage = () => {
 								<TextField
 									type="text"
 									placeholder="First Name"
+									name="firstName"
 								/>
 								<TextField
 									type="text"
 									placeholder="Last Name"
+									name="lastName"
 								/>
 							</div>
 							<TextField
 								type="email"
 								placeholder="Email Address"
+								name="email"
 							/>
 							<TextField
 								type="nickname"
 								placeholder="Nickname"
 								icon="/images/login/dice.svg"
 								iconClick={() => {}}
+								name="nickname"
 							/>
 							<PasswordField
 								name="password"
@@ -130,9 +142,7 @@ const Register: NextPage = () => {
 							/>
 						</div>
 						<div className={styles.passwordDescription}>
-							<span className={styles.passwordTitle}>
-								Your password must:
-							</span>
+							<span className={styles.passwordTitle}>Your password must:</span>
 							<span
 								className={`
                                     ${styles.checkOption} 
@@ -172,13 +182,9 @@ const Register: NextPage = () => {
 								/>
 								<div className={styles.checkBox} />
 								<span className={styles.checkText}>
-									I confirm that I am over 18 years old and I
-									agree with the{" "}
+									I confirm that I am over 18 years old and I agree with the{" "}
 									<Link href="/sign-in">
-										<a>
-											Terms and Conditions and Privacy
-											Policy.
-										</a>
+										<a>Terms and Conditions and Privacy Policy.</a>
 									</Link>
 								</span>
 							</label>
