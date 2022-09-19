@@ -20,7 +20,7 @@
 .mainColumn {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(2, 200px);
+    grid-template-rows: repeat(2, 200px, 100%);
     gap: 40px;
     grid-column-start: 4;
     grid-column-end: 13;
