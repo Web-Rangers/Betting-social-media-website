@@ -47,7 +47,7 @@ const Predictions: React.FC<PredictionsProps> = (props) => {
 						</div>
 					</div>
 					<div className={styles.matches}>
-						{league.events.map((match, index) => (
+						{league.events.slice(0, 5).map((match, index) => (
 							<Match
 								{...match}
 								key={`league_${leagueIndex}_match_${index}`}

@@ -147,7 +147,7 @@ const League: React.FC<{
 				</div>
 			</div>
 			<div className={styles.matches}>
-				{league.events.map((match, index) => (
+				{league.events.slice(0, 5).map((match, index) => (
 					<Match
 						{...match}
 						key={`league_match_${match.id}`}
