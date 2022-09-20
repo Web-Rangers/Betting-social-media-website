@@ -10,6 +10,7 @@ import LineupsPage from "@components/match-summary/LineupsPage"
 import OddsPage from "@components/match-summary/OddsPage"
 import H2HPage from "@components/match-summary/H2HPage"
 import StandingsPage from "@components/match-summary/StandingsPage"
+import PredictionsPage from "@components/match-summary/PredictionsPage"
 
 const pages = [
     {
@@ -72,6 +73,9 @@ const MatchSummary: NextPage = () => {
                 break;
             case 4:
                 setSelectedPageComponent(<StandingsPage />)
+                break;
+            case 5:
+                setSelectedPageComponent(<PredictionsPage />)
                 break;
         }
     },[selectedPage])
