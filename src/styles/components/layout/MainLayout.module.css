@@ -1,5 +1,4 @@
 .pageWrap {
-    position: relative;
     margin-top: 85px;
     margin-left: 80px;
     max-height: calc(100vh - 85px);
@@ -8,6 +7,9 @@
 }
 
 .content {
-    min-height: 120vh;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 30px;
+    /* margin is 5px less than design to adjust to scrollbar width */
+    margin-right: 135px;
 }

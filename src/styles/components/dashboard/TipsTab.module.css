@@ -1,0 +1,36 @@
+.trackingTipsTab {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    flex: 0.5;
+}
+
+.filter>span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C2180;
+}
+
+.filter.search {
+    flex: 1;
+}
+
+.filter.search input {
+    max-height: 42px;
+}

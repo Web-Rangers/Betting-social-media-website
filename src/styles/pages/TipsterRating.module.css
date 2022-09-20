@@ -1,0 +1,725 @@
+.mainBlock {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.mainColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 60px;
+    margin-bottom: 100px;
+}
+
+.sideColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    grid-column-start: 10;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-bottom: 100px;
+}
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tableContainer .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 42px;
+}
+
+.tableContainer .controls .dropdowns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.tableContainer .controls .dropdowns button {
+    border: none;
+    background-color: transparent;
+    padding: 12px 31px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    cursor: pointer;
+}
+
+/* Verified Tipsters */
+
+.verifiedTipsters {
+    position: relative;
+    height: 510px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 40px 170px 15px;
+    border-top-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
+    gap: 40px;
+}
+
+.verifiedTipstersBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.verifiedTipstersTitle {
+    z-index: 1;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.verifiedTipstersSubtitle {
+    z-index: 1;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.verifiedTipstersSlider {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.tipsterSlide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 50px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+/* Tipster Card */
+
+.tipsterCard {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 20px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    flex: 1;
+}
+
+.tipsterCard .mainInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.tipsterCard .avatar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+    flex: 1;
+}
+
+.tipsterCard .info {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+.tipsterCard .info .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1A1C211A;
+}
+
+.tipsterCard .info .header .sport {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+
+.tipsterCard .info .header button {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #7F3FFC;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.tipsterCard .info .stats {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tipsterCard .info .stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.tipsterCard .info .stats div h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C2199;
+}
+
+.tipsterCard .info .stats div span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+}
+
+.tipsterCard .subscriptionInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #1A1C211A;
+}
+
+.tipsterCard .subscriptionInfo div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.tipsterCard .subscriptionInfo div h4 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: #1A1C21;
+}
+
+.tipsterCard .subscriptionInfo div span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21B2;
+}
+
+.tipsterCard .subscriptionInfo button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px;
+    border-radius: 8px;
+    background-color: #7F3FFC;
+    border: none;
+    cursor: pointer;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Countdown Timer */
+
+.timer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 25px 32px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.timer .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.timer .header {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.timer .header h3 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.timer .header span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFFCC;
+}
+
+.timer .time {
+    width: max-content;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    word-spacing: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.timer .timeHint {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+    min-width: 172px;
+}
+
+/* .timer .timeHint span:first-child {
+    margin-left: -25px;
+} */
+
+.timer .timeHint span:nth-child(2) {
+    margin-right: -8px;
+}
+
+.timer .timeHint span:last-child {
+    margin-right: -15px;
+}
+
+.timer .rules {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.timer .rules span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFFCC;
+}
+
+.timer .rules button {
+    padding: 12px 24px;
+    background-color: #FFFFFF33;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Page Tips */
+
+.tips {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 40px;
+    gap: 40px;
+    background-color: #F2F2F24D;
+    border-radius: 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1A1C21;
+}
+
+.tips .block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}
+
+.tips .block ol {
+    padding: 0 20px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tips .block ol li::marker {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    color: #1A1C21;
+}
+
+.tips .block h2 {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #1A1C21;
+}
+
+.tips .block div {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* User */
+
+.tipster {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tipster button {
+    padding: 8px 24px 8px 24px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1A1C21;
+    border: 1px solid #1A1C2133;
+    border-radius: 4px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.user .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+}
+
+.user .userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.user .userInfo .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21CC;
+}
+
+.user .userInfo .subscribers {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21B2;
+}
+
+/* User Hover Container */
+
+.hoverContainer {
+    position: absolute;
+    bottom: 130%;
+    left: -10px;
+    z-index: 1;
+    background-color: #FFFFFF;
+    min-width: 422px;
+    border-radius: 16px;
+}
+
+.hoverContainer:after {
+    content: url(/icons/modal-corner.svg);
+    position: absolute;
+    top: calc(100% - 7px);
+    left: 20px;
+    width: 0;
+    height: 0;
+    background-color: #FFFFFF;
+}
+
+.hoverContainer .profit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 24px 6px;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.hoverContainer .profit span:first-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.hoverContainer .profit span:last-child {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.hoverContainer .profit.positive {
+    background-color: #2CD114;
+}
+
+.hoverContainer .profit.negative {
+    background-color: #CF1F1F;
+}
+
+.hoverContainer .userDetailed {
+    padding: 20px 24px;
+    border: 1px solid #1A1C211A;
+    border-top: none;
+    overflow: hidden;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.hoverContainer .infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hoverContainer .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.hoverContainer .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.hoverContainer .userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+}
+
+.hoverContainer .name {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21CC;
+}
+
+.hoverContainer .sport {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21B2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hoverContainer .followers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.hoverContainer .followers button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: none;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #7F3FFC;
+    cursor: pointer;
+}
+
+.hoverContainer .followers span {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21B2;
+}
+
+/* Dots */
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+}
+
+.dot.win {
+    background-color: #2CD114;
+}
+
+.dot.lose {
+    background-color: #CF1F1F;
+}
+
+.dots {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* ROI */
+
+.roi {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.roi.positive {
+    color: #2CD114;
+}
+
+.roi.positive:before {
+    content: url(/icons/roi-positive.svg);
+    position: absolute;
+    left: -20px;
+}
+
+.roi.negative {
+    color: #CF1F1F;
+}
+
+.roi.negative:before {
+    content: url(/icons/roi-negative.svg);
+    position: absolute;
+    left: -20px;
+}

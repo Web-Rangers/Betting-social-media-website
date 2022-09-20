@@ -1,0 +1,34 @@
+.link {
+    position: relative;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21B2;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+    color: #1A1C21;
+}
+
+.link.active {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.link.live:after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -10px;
+    height: 6px;
+    width: 6px;
+    border-radius: 100%;
+    background-color: #CF1F1F;
+}

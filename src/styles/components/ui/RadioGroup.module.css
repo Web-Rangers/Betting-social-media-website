@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.radio {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding: 9px 20px;
+    border: 1px solid #1A1C2133;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.radio label {
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+
+.radio input[type="radio"] {
+    accent-color: #7F3FFC;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
