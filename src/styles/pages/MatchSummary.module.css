@@ -12,6 +12,11 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    grid-column-start: 4;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-bottom: 100px;
 }
 .matchPreview{
     position: relative;

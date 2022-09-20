@@ -83,12 +83,11 @@ const MatchSummary: NextPage = () => {
                 <meta name="description" content="Optimo betting social media. Match summary" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className={styles.container}>
-                <div className={styles.sideCol}>
+            <div className={styles.sideCol}>
 
-                </div>
-                <main className={styles.main}>
-                    <div className={styles.matchPreview}>
+            </div>
+            <main className={styles.main}>
+                <div className={styles.matchPreview}>
                         <Image 
                             //test img link
                             src="/testimg/football.jpg"
@@ -160,38 +159,37 @@ const MatchSummary: NextPage = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
 
-                    <div className={styles.matchStatPages}>
-                        <div className={styles.pageSelector}>
-                            {pages.map((page, index) => (
-                                <span 
-                                    className={`${styles.page} ${index == selectedPage && styles.pageActive}`}
-                                    onClick={()=>setSelectedPage(index)}
-                                    key={page?.id}
-                                    aria-label={page?.name}
-                                >
-                                    {page?.name}
-                                    {index == selectedPage && 
-                                        <motion.div className={styles.pageUnderline} layoutId="pageUnderline" />
-                                    }
-                                </span>
-                            ))}
-                        </div>
-                        <AnimatePresence exitBeforeEnter>
-                            <motion.div
-                                key={selectedPage ? selectedPage : "empty"}
-                                initial={{ y: 10, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -10, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
+                <div className={styles.matchStatPages}>
+                    <div className={styles.pageSelector}>
+                        {pages.map((page, index) => (
+                            <span 
+                                className={`${styles.page} ${index == selectedPage && styles.pageActive}`}
+                                onClick={()=>setSelectedPage(index)}
+                                key={page?.id}
+                                aria-label={page?.name}
                             >
-                                {selectedPageComponent}
-                            </motion.div>
-                        </AnimatePresence>
+                                {page?.name}
+                                {index == selectedPage && 
+                                    <motion.div className={styles.pageUnderline} layoutId="pageUnderline" />
+                                }
+                            </span>
+                        ))}
                     </div>
-                </main>
-            </div>
+                    <AnimatePresence exitBeforeEnter>
+                        <motion.div
+                            key={selectedPage ? selectedPage : "empty"}
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {selectedPageComponent}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </main>
         </>
     );
 };
