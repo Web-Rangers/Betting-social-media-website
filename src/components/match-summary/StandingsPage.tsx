@@ -60,8 +60,8 @@ const StandingsPage: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {[1,1,1,1,1,1,1,1,1].map(item => (
-                        <tr>
+                    {[1,1,1,1,1,1,1,1,1].map((item,index) => (
+                        <tr key={index}>
                             <td>1</td>
                             <td className={styles.teamCell}>
                                 <span>
