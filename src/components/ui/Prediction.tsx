@@ -4,6 +4,7 @@ import {
 	HistoricalPredictions,
 	PendingPredictions,
 	TrackingPredictions,
+	MatchPredictions
 } from "src/types/queryTypes";
 import { inferArrayElementType } from "src/utils/inferArrayElementType";
 import Moment from "react-moment";
@@ -12,14 +13,14 @@ import TextField from "./TextField";
 
 type CommentType = inferArrayElementType<
 	inferArrayElementType<
-		TrackingPredictions | PendingPredictions | HistoricalPredictions
+		TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions
 	>["info"]["comments"]
 > & { canReply?: boolean };
 
 // add a prediction type from a specific match (all types should have matching fields)
 const Prediction: React.FC<
 	inferArrayElementType<
-		TrackingPredictions | PendingPredictions | HistoricalPredictions
+		TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions
 	>
 > = (props) => {
 	const { author, date, info } = props;
@@ -91,7 +92,7 @@ const Prediction: React.FC<
 			</div>
 			{info && (
 				<div className={styles.predictionInfo}>
-					{info.match.teams[0] && info.match.teams[1] && (
+					{info.match && info.match.teams[0] && info.match.teams[1] && (
 						<div className={styles.matchInfo}>
 							<div className={styles.background}>
 								<Image
@@ -204,6 +205,17 @@ const Prediction: React.FC<
 										: "Lost"}
 								</span>
 								<span>$ {info.profit.amount}</span>
+							</div>
+						}
+						{info?.bet_now &&
+							<div className={styles.betNow}>
+								<Image
+									src="/icons/refresh.svg"
+									height={24}
+									width={24}
+									alt=""
+								/>
+								Bet Now
 							</div>
 						}
 					</div>

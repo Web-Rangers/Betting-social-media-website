@@ -43,3 +43,5 @@ export type TrackingPredictions = inferQueryOutput<"user.getTrackingTips">;
 export type PendingPredictions = inferQueryOutput<"user.getPendingTips">;
 
 export type HistoricalPredictions = inferQueryOutput<"user.getHistoricalTips">;
+
+export type MatchPredictions = inferQueryOutput<"matches.getMatchTips">;
