@@ -92,20 +92,26 @@ const Match: React.FC<MatchType> = (props) => {
 						<span>Today</span>
 					</div>
 					<div className={styles.teamImages}>
-						<div className={styles.teamImage}>
-							{/* <Image
-								src={home.image}
-								alt={home.name}
-								width={40}
-								height={40}
-							/>
-							<Image
-								src={away.image}
-								alt={away.name}
-								width={40}
-								height={40}
-							/> */}
-						</div>
+						{home && (
+							<div className={styles.teamImage}>
+								<Image
+									src={home.logo}
+									alt={home.name}
+									width={40}
+									height={40}
+								/>
+							</div>
+						)}
+						{away && (
+							<div className={styles.teamImage}>
+								<Image
+									src={away.logo}
+									alt={away.name}
+									width={40}
+									height={40}
+								/>
+							</div>
+						)}
 					</div>
 					<div className={styles.teamNames}>
 						<div className={styles.teamName}>{home?.name}</div>

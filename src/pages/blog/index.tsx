@@ -243,23 +243,23 @@ const TopMatches: React.FC<{ matches: Matches }> = (props) => {
 									key={`top_match_team_image_${index}_${match.home.name}`}
 									className={styles.topMatchTeam}
 								>
-									{/* <Image
-										src={match.home.image}
+									<Image
+										src={match.home.logo}
 										alt={match.home.name}
 										width={32}
 										height={32}
-									/> */}
+									/>
 								</div>
 								<div
 									key={`top_match_team_image_${index}_${match.away.name}`}
 									className={styles.topMatchTeam}
 								>
-									{/* <Image
-										src={match.away.image}
+									<Image
+										src={match.away.logo}
 										alt={match.away.name}
 										width={32}
 										height={32}
-									/> */}
+									/>
 								</div>
 							</div>
 							<div className={styles.topMatchTeamNames}>

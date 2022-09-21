@@ -182,20 +182,26 @@ const Match: React.FC<MatchType> = (props) => {
 				<div className={styles.info}>
 					<div className={styles.time}>{/* {getTag(status)} */}</div>
 					<div className={styles.teamImages}>
-						<div className={styles.teamImage}>
-							{/* <Image
-								src={home.image}
-								alt={home.name}
-								width={22}
-								height={22}
-							/>
-							<Image
-								src={away.image}
-								alt={away.name}
-								width={22}
-								height={22}
-							/> */}
-						</div>
+						{home && (
+							<div className={styles.teamImage}>
+								<Image
+									src={home.logo}
+									alt={home.name}
+									width={22}
+									height={22}
+								/>
+							</div>
+						)}
+						{away && (
+							<div className={styles.teamImage}>
+								<Image
+									src={away.logo}
+									alt={away.name}
+									width={22}
+									height={22}
+								/>
+							</div>
+						)}
 					</div>
 					<div className={styles.teamNames}>
 						<div className={styles.teamName}>{home?.name}</div>

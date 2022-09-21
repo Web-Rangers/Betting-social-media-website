@@ -14,10 +14,12 @@ const MatchesSchema = z.object({
 					home: z.object({
 						id: z.string(),
 						name: z.string(),
+						logo: z.string(),
 					}),
 					away: z.object({
 						id: z.string(),
 						name: z.string(),
+						logo: z.string(),
 					}),
 					final_result: z.string(),
 					date: z.string(),
@@ -44,12 +46,14 @@ const MatchesByLeagueSchema = z.object({
 								.object({
 									id: z.string(),
 									name: z.string(),
+									logo: z.string(),
 								})
 								.nullish(),
 							away: z
 								.object({
 									id: z.string(),
 									name: z.string(),
+									logo: z.string(),
 								})
 								.nullish(),
 							final_results: z.string().nullish(),
@@ -125,10 +129,12 @@ export const matchesRouter = createRouter()
 								home {
 									id
 									name
+									logo
 								}
 								away {
 									id
 									name
+									logo
 								}
 								final_result
 								date
@@ -160,10 +166,12 @@ export const matchesRouter = createRouter()
 								home {
 									id
 									name
+									logo
 								}
 								away {
 									id
 									name
+									logo
 								}
 								final_result
 								date
@@ -201,10 +209,12 @@ export const matchesRouter = createRouter()
 									home {
 										id
 										name
+										logo
 									}
 									away {
 										id
 										name
+										logo
 									}
 									final_result
 									date

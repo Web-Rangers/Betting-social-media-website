@@ -258,6 +258,7 @@ enum SortOrder {
 type Team {
   id: ID!
   name: String!
+  logo: String
 }
 
 """A paginated list of Team items."""

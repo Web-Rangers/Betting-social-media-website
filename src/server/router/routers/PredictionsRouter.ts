@@ -20,12 +20,14 @@ const MatchesByLeagueSchema = z.object({
 								.object({
 									id: z.string(),
 									name: z.string(),
+									logo: z.string(),
 								})
 								.nullish(),
 							away: z
 								.object({
 									id: z.string(),
 									name: z.string(),
+									logo: z.string(),
 								})
 								.nullish(),
 							date: z.string({}).nullish(),
@@ -376,10 +378,12 @@ export const predictionsRouter = createRouter().query("getAll", {
 								home {
 									id
 									name
+									logo
 								}
 								away {
 									id
 									name
+									logo
 								}
 								date
 							}
