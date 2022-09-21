@@ -1,0 +1,228 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.filter{
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.matches{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.blockTitle{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+.matchesBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.matchesList{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.match{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-radius: 8px;
+    gap: 30px;
+}
+.matchesList > .match:nth-child(2n-1) {
+    background: rgba(242, 242, 242, 0.3);
+}
+.matchData{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.dateChamp{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.date{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.champ{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.champLogo{
+    overflow: hidden;
+    background: rgba(26, 28, 33, 0.1);
+    border: 3px solid rgba(26, 28, 33, 0.1);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.champName{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+}
+.teams{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.teamLogo{
+    overflow: hidden;
+    background: #FFF;
+    border: 3px solid rgba(26, 28, 33, 0.1);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+.teamLogo:nth-child(2){
+    z-index: 1;
+    margin-left: -22px;
+}
+.teamsNames{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.8);
+}
+.matchResult{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+.score{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.6);
+}
+.winner{
+    font-weight: 600;
+    color: #1A1C21;
+}
+.line{
+    width: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    align-self: stretch;
+    margin-left: -76px;
+}
+.resultWin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2CD114;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.resultWin::before{
+    content: "W";
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.resultLose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #CF1F1F;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.resultLose::before{
+    content: "L";
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.resultDraw{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F7B248;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.resultDraw::before{
+    content: "D";
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.seeMore{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}

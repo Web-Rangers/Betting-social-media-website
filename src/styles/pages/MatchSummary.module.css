@@ -1,0 +1,208 @@
+.container{
+    padding-left: 40px;
+    padding-right: 115px;
+    display: flex;
+    gap: 40px;
+}
+.main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    grid-column-start: 4;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.matchPreview{
+    position: relative;
+    height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 20px;
+}
+.matchPreview::after{
+    background: linear-gradient(180deg, rgba(26, 28, 33, 0.6) 0%, rgba(26, 28, 33, 0.2) 100%);
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.matchInfo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+.matchHeader{
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.buttonBack{
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+}
+.championship{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+.country{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+.tournament{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+.matchData{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 40px;
+    gap: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+    z-index: 1;
+}
+.club{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+.clubLogo{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    background: #FFFFFF;
+    border: 3px solid rgba(26, 28, 33, 0.2);
+    border-radius: 100px;
+}
+.club span{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+.score{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+.currentTime{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+.currentTime span{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.matchStatPages{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.pageSelector{
+    display: flex;
+    gap: 60px;
+    overflow-x: auto;
+    width: 100%;
+    padding-top: 9px;
+    border-bottom: 1px solid rgba(26, 28, 33, 0.1);
+    margin-bottom: 20px;
+}
+.pageSelector::-webkit-scrollbar{
+    display: none;
+}
+.page{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1A1C21;
+    text-transform: capitalize;
+    min-width: max-content;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    display:inline-block;
+    text-align:center;
+    cursor: pointer;
+    padding-bottom: 19px;
+    z-index: 2;
+}
+.page::before{
+    display: block;
+    content: attr(aria-label);  
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;  
+    font-weight: 700;
+    height: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+.pageActive{
+    font-weight: 700;
+}
+.pageUnderline{
+    background: #1A1C21;
+    border-radius: 2px;
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}

@@ -1,0 +1,16 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.filter{
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.predictions{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}

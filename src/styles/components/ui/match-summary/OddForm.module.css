@@ -1,0 +1,341 @@
+.container{
+    position: fixed;
+    right: 140px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 24px;
+    gap: 20px;
+    background: #FFFFFF;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: rgba(26, 28, 33, 0.2);
+    border-radius: 16px 16px 0px 0px;
+    width: 380px;
+    z-index: 999999;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 14px;
+}
+.title{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1A1C21;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+.chevron{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 4px;
+}
+.oddSticker{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 8px;
+}
+.stickerHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(26, 28, 33, 0.8);
+    width: 100%;
+}
+.crossBtn{
+    display: flex;
+    cursor: pointer;
+}
+.stickerContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 14px;
+}
+.stickerText{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.stickerOddType{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.stickerOddChoice{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(26, 28, 33, 0.5);
+}
+.stickerData{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+}
+.stickerPoints{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 10px;
+    background: #1A1C21;
+    border-radius: 4px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+.switchOdd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+.switchBookmaker{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+.bookmakerImgs{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.switchBtn{
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.commentArea{
+    resize: vertical; 
+    padding: 10px 10px 12px 16px;
+    min-height: 42px;
+    max-height: 320px;
+    height: 42px;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    outline: none;
+    
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgb(26, 28, 33);
+}
+.commentArea::placeholder{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.6);
+}
+.commentArea::-webkit-scrollbar{
+    display: none;
+}
+.betAmount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    height: 42px;
+    white-space: nowrap;
+}
+.betText{
+    padding: 11px 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(26, 28, 33, 0.7);
+    flex: 0 1;
+}
+.betCoins{
+    padding: 11px 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(26, 28, 33, 0.7);
+    flex: 0 1;
+    color: #7F3FFC;
+}
+.amountField{
+    flex: 1 1;
+    display: flex;
+    align-items: stretch;
+}
+.amountField input{
+    outline: none;
+    border: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px 16px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+.betAmountBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.amountBlocks{
+    display: flex;
+    gap: 10px;
+}
+.amountBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px 8px 15px;
+    background: rgba(242, 242, 242, 0.5);
+    border-radius: 4px;
+    flex: 1 1 25%;
+    cursor: pointer;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1A1C21;
+}
+.tipStatus{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.tipTitle{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.tipsBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px;
+    gap: 20px;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 8px;
+}
+.radioTip{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding-left: 34px;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+.radioTip > input{
+    display: none;
+}
+.radioTip > .check{
+    position: absolute;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(26, 28, 33, 0.3);
+    border-radius: 4px;
+}
+.radioTip > input:checked ~ .check{
+    border: 1.5px solid #7F3FFC;
+    background: #7F3FFC;
+    background-image: url(/icons/check.svg);
+    background-position: center center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+.tipType{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1A1C21;
+}
+.tipText{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(26, 28, 33, 0.7);
+}
+.addBtn{
+    padding: 10px 44px;
+    gap: 10px;
+    background: #7F3FFC;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}

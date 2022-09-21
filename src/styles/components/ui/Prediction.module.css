@@ -273,8 +273,8 @@
     align-items: center;
     background-color: #26292E;
     gap: 12px;
-    padding: 8px;
-    border-radius: 16px;
+    padding: 4px 4px 4px 12px;
+    border-radius: 8px;
 }
 
 .outcomes .bookmaker .odd {
@@ -289,8 +289,8 @@
     align-items: center;
     padding: 8px 12px;
     background-color: #FFFFFF;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 .profit {
@@ -531,4 +531,22 @@
     flex-direction: column;
     gap: 16px;
     margin-left: 70px;
+}
+
+.betNow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px 9px 16px;
+    gap: 12px;
+    background: #7F3FFC;
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
 }

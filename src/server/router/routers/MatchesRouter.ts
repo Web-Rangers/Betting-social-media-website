@@ -3,6 +3,15 @@ import { z } from "zod";
 import { MatchStatus } from "src/types/matchStatus";
 import Fuse from 'fuse.js'
 
+// THIS IS A TEMPORARY FUNCTION FOR GENERATING DATES
+function getOffsetDate(days: number, months: number, years: number) {
+    return new Date(
+        new Date().getFullYear() + years,
+        new Date().getMonth() + months,
+        new Date().getDate() + days
+    )
+}
+
 const LiveMatchesTemp = [
     {
         teams: [
@@ -250,6 +259,191 @@ const MatchesByLeague = [
     }
 ]
 
+const MatchTips = [
+    {
+        date: getOffsetDate(-1, 0, 0),
+        author: {
+            image: '/images/profile-placeholder.png',
+            name: 'John Doe',
+            winrate: 0.53,
+            subscribed: false,
+        },
+        info: {
+            tracking: true,
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat arcu vel erat suscipit sodales. Curabitur feugiat, ligula in consequat convallis, turpis arcu aliquet ante, sed rhoncus velit metus nec magna.',
+            market: 'Over/Under-Total',
+            selection: 'Over 2.5',
+            stake: 115,
+            bookmaker: {
+                name: 'some bookmaker',
+                image: '/images/bookmaker-placeholder-1.png',
+                odd: 1.56,
+            },
+            profit: {
+                amount: 179,
+                potential: true
+            },
+            bet_now: true,
+            liked: true,
+            like_count: 1285,
+            comment_count: 25,
+            comments: [
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: [
+                        {
+                            user: {
+                                name: 'John Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Cras vitae rutrum purus.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                        {
+                            user: {
+                                name: 'Jane Doe',
+                                image: '/images/profile-placeholder.png'
+                            },
+                            text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                            date: getOffsetDate(-1, 0, 0),
+                            replies: []
+                        },
+                    ]
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+            ]
+        }
+    },
+    {
+        date: getOffsetDate(-2, 0, 0),
+        author: {
+            image: '/images/profile-placeholder.png',
+            name: 'Jane Doe',
+            winrate: 0.43,
+            subscribed: false,
+        },
+        info: {
+            tracking: true,
+            match: {
+                teams: [
+                    { name: 'EIN', score: 2, image: '/images/team-1-placeholder.svg' },
+                    { name: 'FCB', score: 0, image: '/images/team-2-placeholder.svg' },
+                ],
+                date: getOffsetDate(2, 0, 0),
+                league: 'Bundesliga',
+                sport: {
+                    name: 'Football',
+                    image: '/images/sport-placeholder.png'
+                }
+            },
+            market: 'Over/Under-Total',
+            selection: 'Over 2.5',
+            stake: 115,
+            bookmaker: {
+                name: 'some bookmaker',
+                image: '/images/bookmaker-placeholder-1.png',
+                odd: 1.56,
+            },
+            profit: {
+                amount: -179,
+                potential: false
+            },
+            liked: false,
+            like_count: 31,
+            comment_count: 3,
+            comments: [
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'John Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Cras vitae rutrum purus.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+                {
+                    user: {
+                        name: 'Jane Doe',
+                        image: '/images/profile-placeholder.png'
+                    },
+                    text: 'Mauris molestie dictum ex, sit amet blandit nisl dignissim at. Quisque quis lorem tincidunt, commodo turpis nec, laoreet massa.',
+                    date: getOffsetDate(-1, 0, 0),
+                    replies: []
+                },
+            ]
+        }
+    }
+]
+
 export const matchesRouter = createRouter()
     .query("getAllLive", {
         async resolve() {
@@ -284,5 +478,10 @@ export const matchesRouter = createRouter()
             const result = fuse.search(searchString).map(item => item.item)
 
             return result
+        }
+    })
+    .query("getMatchTips", {
+        async resolve() {
+            return MatchTips
         }
     })

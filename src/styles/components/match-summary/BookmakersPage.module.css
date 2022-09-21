@@ -1,0 +1,98 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+.colsHeader{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.colsHeader > *{
+    min-width: 127px;
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 400;
+}
+.bookmakersList{
+    display: flex;
+    flex-direction: column;
+}
+.bookmaker{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    gap: 24px;
+}
+.bookmakersList > .bookmaker:nth-child(2n-1) {
+    background: rgba(242, 242, 242, 0.3);
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #193052;
+    border-radius: 8px;
+}
+.bets{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.bet{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px 8px 8px;
+    min-width: 127px;
+    min-height: 42px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 8px;
+
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1A1C21;
+}
+.bet > *{
+    flex: 1 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bet > *:last-child{
+    font-weight: 400;
+}
+.centerArrow{
+    padding-left: 4px;
+}
+.grayBet{
+    background: rgba(242, 242, 242, 0.8);
+    border: 1px solid rgba(242, 242, 242, 0.8);
+}

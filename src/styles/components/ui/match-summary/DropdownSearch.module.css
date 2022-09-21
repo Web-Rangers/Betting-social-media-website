@@ -1,0 +1,86 @@
+/* Dropdown with search */
+.dropContainer{
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.dropTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 11px 20px;
+}
+.chevron{
+    display: flex;
+    flex-shrink: 0;
+}
+.dropArea{
+    position: absolute;
+    top: 48px;
+    left: 0px;
+    overflow: hidden;
+    min-width: 100%;
+    max-width: 210px;
+}
+.dropArea::before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 48px;
+    width: 10px;
+    height: 10px;
+    background: #FFFFFF;
+    border-left: 1px solid rgba(26, 28, 33, 0.1);
+    border-top: 1px solid rgba(26, 28, 33, 0.1);
+    border-top-left-radius: 3px;
+    transform: rotateZ(45deg);
+}
+.dropItems{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 8px 12px;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;
+    margin-top: 8px;
+    cursor: default;
+}
+.dropSearch{
+    padding: 10px 14px;
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 28, 33, 0.1);
+    border-radius: 4px;    
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgb(26, 28, 33);
+    outline: none;
+}
+.dropSearch::placeholder{
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(26, 28, 33, 0.5);
+}
+.dropItem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Samsung Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(26, 28, 33, 0.7);
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@ import MainLayout from "../components/layout/MainLayout";
 import { ReactElement } from "react";
 import { useRouter } from "next/router";
 import TipsterLayout from "@components/layout/TipsterLayout";
+import MatchesLayout from "@components/layout/MatchesLayout";
 import type { AppProps } from "next/app";
 import type { Session } from "next-auth";
 
@@ -26,6 +27,7 @@ function MyApp(appProps: AppProps<{ session: Session }>) {
 		"/reset-password",
 	];
 	const tipsterRoutes = ["/tipster-rating", "/tipster-competition"];
+	const matchesRoutes = ["matches"];
 
 	function getLayout(): ReactElement {
 		if (!noLayoutRoutes.includes(router.asPath.split("?")[0] ?? "")) {
@@ -34,6 +36,15 @@ function MyApp(appProps: AppProps<{ session: Session }>) {
 					<TipsterLayout>
 						<Component {...pageProps} />
 					</TipsterLayout>
+				);
+			}
+			if (matchesRoutes.includes(router.asPath.split("?")[0]?.split("/")[1] ?? "")) {
+				return (
+					<MainLayout>
+						<MatchesLayout>
+							<Component {...pageProps} />
+						</MatchesLayout>
+					</MainLayout>
 				);
 			}
 			return (
