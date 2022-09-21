@@ -1,28 +1,19 @@
 import React from "react";
 import styles from "@styles/components/ui/Prediction.module.css";
-import {
-	HistoricalPredictions,
-	PendingPredictions,
-	TrackingPredictions,
-	MatchPredictions
-} from "src/types/queryTypes";
+import { HistoricalPredictions, PendingPredictions, TrackingPredictions, MatchPredictions } from "src/types/queryTypes";
 import { inferArrayElementType } from "src/utils/inferArrayElementType";
 import Moment from "react-moment";
 import Image from "next/future/image";
 import TextField from "./TextField";
 
 type CommentType = inferArrayElementType<
-	inferArrayElementType<
-		TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions
-	>["info"]["comments"]
+	inferArrayElementType<TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions>["info"]["comments"]
 > & { canReply?: boolean };
 
 // add a prediction type from a specific match (all types should have matching fields)
-const Prediction: React.FC<
-	inferArrayElementType<
-		TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions
-	>
-> = (props) => {
+const Prediction: React.FC<inferArrayElementType<TrackingPredictions | PendingPredictions | HistoricalPredictions | MatchPredictions>> = (
+	props
+) => {
 	const { author, date, info } = props;
 
 	return (
@@ -57,24 +48,12 @@ const Prediction: React.FC<
 							<span>Hit Rate {author.winrate * 100}%</span>
 						</div>
 					</div>
-					<button
-						className={`${
-							author.subscribed
-								? styles.subscribed
-								: styles.subscribe
-						}`}
-					>
-						Subscribe
-					</button>
+					<button className={`${author.subscribed ? styles.subscribed : styles.subscribe}`}>Subscribe</button>
 				</div>
 				<div className={styles.controls}>
 					<div className={styles.track}>
 						<Image
-							src={
-								info?.tracking
-									? "/icons/star-filled.svg"
-									: "/icons/star.svg"
-							}
+							src={info?.tracking ? "/icons/star-filled.svg" : "/icons/star.svg"}
 							height={24}
 							width={24}
 							alt=""
@@ -116,9 +95,7 @@ const Prediction: React.FC<
 								</div>
 								<div className={styles.results}>
 									<div className={styles.score}>
-										<span>
-											{info.match.teams[0].score ?? "-"}
-										</span>
+										<span>{info.match.teams[0].score ?? "-"}</span>
 										<div className={styles.date}>
 											<Moment
 												className={styles.part}
@@ -133,9 +110,7 @@ const Prediction: React.FC<
 												{info.match.date}
 											</Moment>
 										</div>
-										<span>
-											{info.match.teams[1].score ?? "-"}
-										</span>
+										<span>{info.match.teams[1].score ?? "-"}</span>
 									</div>
 									<div className={styles.league}>
 										<span>{info.match.league}</span>
@@ -157,9 +132,7 @@ const Prediction: React.FC<
 					)}
 					{info.text && (
 						<>
-							<div className={styles.predictionText}>
-								{info.text}
-							</div>
+							<div className={styles.predictionText}>{info.text}</div>
 							<div className={styles.separator} />
 						</>
 					)}
@@ -183,9 +156,7 @@ const Prediction: React.FC<
 								width={56}
 								alt=""
 							/>
-							<span className={styles.odd}>
-								{info.bookmaker.odd}
-							</span>
+							<span className={styles.odd}>{info.bookmaker.odd}</span>
 						</div>
 						{
 							<div className={styles.profit}>
@@ -198,16 +169,12 @@ const Prediction: React.FC<
 											: styles.negative
 									}
 								>
-									{info.profit.potential
-										? "Potential profit"
-										: info.profit.amount > 0
-										? "Success"
-										: "Lost"}
+									{info.profit.potential ? "Potential profit" : info.profit.amount > 0 ? "Success" : "Lost"}
 								</span>
 								<span>$ {info.profit.amount}</span>
 							</div>
 						}
-						{info?.bet_now &&
+						{info.bet_now && (
 							<div className={styles.betNow}>
 								<Image
 									src="/icons/refresh.svg"
@@ -217,16 +184,12 @@ const Prediction: React.FC<
 								/>
 								Bet Now
 							</div>
-						}
+						)}
 					</div>
 					<div className={styles.stats}>
 						<div className={styles.stat}>
 							<Image
-								src={
-									info.liked
-										? "/icons/like-filled.svg"
-										: "/icons/like-black.svg"
-								}
+								src={info.liked ? "/icons/like-filled.svg" : "/icons/like-black.svg"}
 								height={24}
 								width={24}
 								alt=""
@@ -323,9 +286,7 @@ const Comment: React.FC<CommentType> = (props) => {
 								{date}
 							</Moment>
 						</div>
-						{canReply && (
-							<span className={styles.reply}>Reply</span>
-						)}
+						{canReply && <span className={styles.reply}>Reply</span>}
 					</div>
 				</div>
 			</div>
