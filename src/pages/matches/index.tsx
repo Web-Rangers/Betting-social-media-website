@@ -58,24 +58,6 @@ const MatchesPage: NextPage = () => {
 
 	return (
 		<>
-			<div className={styles.rightColumn}>
-				<div className={styles.filters}>
-					<DatePicker onChange={() => {}} />
-					<NestedFilter
-						items={leagues}
-						h3="BY COUNTRY"
-						h2="Choose Matches"
-						onChange={() => {}}
-					/>
-					<NestedFilter
-						items={leagues}
-						h3="OTHER COUNTRIES"
-						onChange={() => {}}
-						withClearButton={false}
-						colapsible={true}
-					/>
-				</div>
-			</div>
 			<div className={styles.mainColumn}>
 				<div className={styles.banner}>
 					<Banner

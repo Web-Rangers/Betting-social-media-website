@@ -91,9 +91,6 @@ const MatchSummary: NextPage = () => {
                 <meta name="description" content="Optimo betting social media. Match summary" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className={styles.sideCol}>
-
-            </div>
             <main className={styles.main}>
                 <div className={styles.matchPreview}>
                         <Image 

@@ -4,9 +4,6 @@
     display: flex;
     gap: 40px;
 }
-.sideCol{
-    width: calc(20% + 190px);
-}
 .main{
     width: 100%;
     display: flex;
