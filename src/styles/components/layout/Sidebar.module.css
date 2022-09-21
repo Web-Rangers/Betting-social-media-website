@@ -79,6 +79,8 @@
 
 .menuLinkIcon {
     position: relative;
+    height: 24px;
+    width: 24px;
 }
 
 .menuLinkIconContainer {
